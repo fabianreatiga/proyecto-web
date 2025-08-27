@@ -1,0 +1,28 @@
+{
+  "name": "nuevomockups",
+  "version": "1.0.0",
+  "description": "A new Flutter project.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "start-server": "node server.js",
+    "start-flutter": "flutter run -d chrome",
+    "start-all": "concurrently \"npm run start-server\" \"npm run start-flutter\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "mongoose": "^8.17.1"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.0"
+  }
+}

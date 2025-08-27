@@ -1,0 +1,57 @@
+name: nuevomockups
+description: "A new Flutter project."
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.7.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  shared_preferences: ^2.2.2
+  mongo_dart: ^0.10.0
+  http: ^1.1.0
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  fonts:
+    - family: Calibri
+      fonts:
+      - asset: assets/fonts/calibri.ttf
+      - asset: assets/fonts/calibrib.ttf
+        weight: 700
+      - asset: assets/fonts/calibrii.ttf
+        style: italic
+      - asset: assets/fonts/calibriz.ttf
+        weight: 700
+        style: italic
+  uses-material-design: true
+
+  assets:
+    - assets/logoSena.png
+    - assets/banner_superior.jpg
+    - assets/fondo_textura.png
+
+#------------------- IMAGENES TITULO ------------------#
+
+    - assets/titulo/titulo.png
+    - assets/titulo/titulo_caracterisitcas.png
+    - assets/titulo/Titulo_otras_caracteristicas.jpg
+    - assets/titulo/Titulo_palabras_utiles.png
+    - assets/titulo/Titulo_ejemplo.png
+
+#---------- IMAGENES PlateamientonoProblemas ----------#
+
+
+
+#--------------- IMAGENES BIBLIOGRAFIA ----------------#
+
+    - assets/bibliografia/Bibliografia_Ejemplo_APA.png
