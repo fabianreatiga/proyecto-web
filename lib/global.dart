@@ -76,9 +76,9 @@ String getFichaGlobal() {
 
 //para que funcione correctamente el guardar progresofinal no se debe borrar el nombre y ficha porque es esencial
 Future<void> guardarProgresoFinal(int id) async {
-  //final url = Uri.parse("http://192.168.0.101:5000/guardarProgreso",);
+  final url = Uri.parse("http://192.168.0.101:5000/guardarProgreso");
   //aqui se debe de cambiar la ip segun la red local
-  final url = Uri.parse("http://192.168.101.19:5000/guardarProgreso");
+  //final url = Uri.parse("http://192.168.101.19:5000/guardarProgreso");
   //final response =
   await http.post(
     url,
