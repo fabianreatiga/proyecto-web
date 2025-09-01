@@ -18,13 +18,13 @@ class ProgresoGlobal {
 
   static double get progreso => pestanasVistas.length / todosLosIDs.length;
 
-  /*static Future<void> cargarProgreso() async {
+  static Future<void> cargarProgreso() async {
     final prefs = await SharedPreferences.getInstance();
     final lista = prefs.getStringList('progreso_visto') ?? [];
     pestanasVistas
       ..clear()
       ..addAll(lista.map(int.parse));
-  }*/
+  }
 
   static Future<void> marcarVisto(int id) async {
     if (todosLosIDs.contains(id)) {
@@ -75,8 +75,8 @@ String getFichaGlobal() {
 }
 
 //para que funcione correctamente el guardar progresofinal no se debe borrar el nombre y ficha porque es esencial
-Future<void> guardarProgresoFinal(int id) async {
-  final url = Uri.parse("http://192.168.0.101:5000/guardarProgreso");
+Future<void> guardarProgresoFinal(String id) async {
+  final url = Uri.parse("http://192.168.0.105:5000/guardarProgreso");
   //aqui se debe de cambiar la ip segun la red local
   //final url = Uri.parse("http://192.168.101.19:5000/guardarProgreso");
   //final response =

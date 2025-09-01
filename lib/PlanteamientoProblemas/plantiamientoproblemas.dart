@@ -420,7 +420,7 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                     }
                   });
                 } else {
-                  guardarProgresoFinal(40);
+                  guardarProgresoFinal('40%');
                   Navigator.push(
                     context,
                     MaterialPageRoute(

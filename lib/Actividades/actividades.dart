@@ -341,7 +341,7 @@ class _ActividadState extends State<Actividad> with TickerProviderStateMixin {
                     }
                   });
                 } else {
-                  guardarProgresoFinal(86);
+                  guardarProgresoFinal('86');
                   Navigator.push(
                     context,
                     MaterialPageRoute(

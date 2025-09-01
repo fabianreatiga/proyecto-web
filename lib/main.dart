@@ -12,7 +12,7 @@ import 'package:http/http.dart' as http;
 
 // Aquí defines SOLO una vez la URL base se debe de cambiar según la red local por el momento
 
-const String baseApiUrl = "http://192.168.0.101:5000";
+const String baseApiUrl = "http://192.168.0.105:5000";
 //const String baseApiUrl = "http://192.168.101.19:5000";
 
 void main(List<String> args) async {
@@ -59,7 +59,7 @@ class Inicio extends StatelessWidget {
       "nombre": _NombreAprendiz.text,
       "programa": _NombrePrograma.text,
       "ficha": _Nficha.text,
-      "progreso": 0,
+      "progreso": '0%',
       "fecha": DateTime.now().toIso8601String(),
     }; // en este bloque de código se crea un mapa con los datos que se van a enviar a la API
 

@@ -383,7 +383,7 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
                     }
                   });
                 } else {
-                  guardarProgresoFinal(62);
+                  guardarProgresoFinal('62');
                   Navigator.push(
                     context,
                     MaterialPageRoute(
