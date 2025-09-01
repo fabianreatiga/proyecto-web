@@ -27,7 +27,7 @@ const ItemSchema = new mongoose.Schema({
   nombre: { type: String, required: true, trim: true, lowercase: true },
   programa: { type: String, trim: true},
   ficha: { type: String, required: true, trim: true },
-  progreso: {type: [String],trim: true, },
+  progreso: { type: Number, default: 0},
   fecha: { type: Date }, 
 }, { timestamps: true });
 
@@ -122,10 +122,35 @@ app.get('/items/:id', async (req, res) => {
   }
 });
 
+app.post("/guardarProgreso", async (req, res) => {
+  try {
+    const { nombre, ficha } = req.body;
+
+    if (!nombre || !ficha) {
+      return res.status(400).json({ mensaje: "nombre y ficha son requeridos" });
+    }
+
+    // Buscar registro
+    let item = await Item.findOne({ nombre, ficha });
+
+    if (!item) {
+      // Si no existe, lo creamos con progreso = 2
+      item = new Item({ nombre, ficha, progreso: 2 });
+    } else {
+      // Si ya existe, sumamos +2
+      item.progreso += 2;
+    }
+
+    await item.save();
+    res.json({ mensaje: "✅ Progreso actualizado", progreso: item.progreso });
+  } catch (err) {
+    res.status(500).json({ mensaje: err.message });
+  }
+});
 
 
 // Guardar progreso (+2 cada vez)
-app.post("/guardarProgreso", async (req, res) => {
+/*app.post("/guardarProgreso", async (req, res) => {
   try {
     const { nombre, ficha, progreso } = req.body;
 
@@ -149,7 +174,7 @@ app.post("/guardarProgreso", async (req, res) => {
   } catch (err) {
     res.status(500).json({ mensaje: err.message });
   }
-});
+});*/
 
 
 /*app.post("/guardarProgreso", async (req, res) => {

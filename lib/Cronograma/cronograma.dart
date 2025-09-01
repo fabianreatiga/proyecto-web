@@ -342,7 +342,7 @@ class _CronogramasState extends State<Cronogramas>
                     }
                   });
                 } else {
-                  guardarProgresoFinal('80');
+                  guardarProgresoFinal(80);
                   Navigator.push(
                     context,
                     MaterialPageRoute(

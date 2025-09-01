@@ -339,15 +339,16 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
               onPressed: () async {
                 if (_index < secciones.length - 1) {
                   _tabController.animateTo(_index + 1);
-                  setState(() {
+                  setState(() async {
                     _currentseccion = _index + 1;
                     if (!pestanasVistas.contains(_index + 1)) {
                       pestanasVistas.add(_index + 1);
                       ProgresoGlobal.marcarVisto(ID_BASE_PROGRESO + _index + 1);
+                      await guardarProgresoFinal(ID_BASE_PROGRESO);
                     }
                   });
                 } else {
-                  guardarProgresoFinal('10%');
+                  await guardarProgresoFinal(ID_BASE_PROGRESO);
                   Navigator.push(
                     context,
                     MaterialPageRoute(

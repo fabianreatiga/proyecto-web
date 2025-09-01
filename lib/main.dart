@@ -59,7 +59,7 @@ class Inicio extends StatelessWidget {
       "nombre": _NombreAprendiz.text,
       "programa": _NombrePrograma.text,
       "ficha": _Nficha.text,
-      "progreso": '0%',
+      //"progreso": 0,
       "fecha": DateTime.now().toIso8601String(),
     }; // en este bloque de código se crea un mapa con los datos que se van a enviar a la API
 
@@ -110,6 +110,10 @@ class Inicio extends StatelessWidget {
 
     setUsuarioGlobal(nombre); // aca guardamos el nombre en la variable global
     setFichaGlobal(ficha); // aca guardamos la ficha en la variable global
+
+    setprogramaGlobal(programa);
+
+    await guardarProgresoFinal(2);
 
     await usuarioRegistrado(
       nombre,

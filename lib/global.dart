@@ -74,8 +74,17 @@ String getFichaGlobal() {
   return fichaglobal;
 }
 
+String programaglobal = '';
+
+void setprogramaGlobal(String programa) {
+  programaglobal = programa;
+}
+
+String getprogramaGlobal() {
+  return programaglobal;
+}
 //para que funcione correctamente el guardar progresofinal no se debe borrar el nombre y ficha porque es esencial
-Future<void> guardarProgresoFinal(String id) async {
+/*Future<void> guardarProgresoFinal(String id) async {
   final url = Uri.parse("http://192.168.0.105:5000/guardarProgreso");
   //aqui se debe de cambiar la ip segun la red local
   //final url = Uri.parse("http://192.168.101.19:5000/guardarProgreso");
@@ -89,4 +98,19 @@ Future<void> guardarProgresoFinal(String id) async {
       "progreso": id, // aca se esta aplicando el progreso del usario
     }),
   );
-} // en este bloque de codigo se obtine el progreso y se guarda en la base de datos
+} */ // en este bloque de codigo se obtine el progreso y se guarda en la base de datos
+
+Future<void> guardarProgresoFinal(int id) async {
+  final url = Uri.parse("http://192.168.0.105:5000/guardarProgreso");
+  // Ojo: cambia la IP según tu red local
+
+  await http.post(
+    url,
+    headers: {"Content-Type": "application/json"},
+    body: jsonEncode({
+      "nombre": usuarioglobal, // nombre del usuario
+      "ficha": fichaglobal,
+      // 👇 Ya no es necesario enviar "progreso"
+    }),
+  );
+}
