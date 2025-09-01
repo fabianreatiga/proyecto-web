@@ -359,17 +359,19 @@ class _MetodologiasState extends State<Metodologias>
             width: 150,
             height: 45,
             child: ElevatedButton.icon(
-              onPressed: () {
+              onPressed: () async {
                 if (_index < secciones.length - 1) {
                   _tabController.animateTo(_index + 1);
-                  setState(() {
+                  setState(() async {
                     _currentseccion = _index + 1;
                     if (!pestanasVistas.contains(_index + 1)) {
                       pestanasVistas.add(_index + 1);
                       ProgresoGlobal.marcarVisto(ID_BASE_PROGRESO + _index + 1);
+                      await guardarProgresoFinal(ID_BASE_PROGRESO);
                     }
                   });
                 } else {
+                  await guardarProgresoFinal(2);
                   guardarProgresoFinal(74);
                   Navigator.push(
                     context,

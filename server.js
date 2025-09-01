@@ -27,7 +27,7 @@ const ItemSchema = new mongoose.Schema({
   nombre: { type: String, required: true, trim: true, lowercase: true },
   programa: { type: String, trim: true},
   ficha: { type: String, required: true, trim: true },
-  progreso: { type: Number, default: 0},
+  progreso: { type: Number,},
   fecha: { type: Date }, 
 }, { timestamps: true });
 
