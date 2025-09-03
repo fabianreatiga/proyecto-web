@@ -12,8 +12,8 @@ import 'package:http/http.dart' as http;
 
 // Aquí defines SOLO una vez la URL base se debe de cambiar según la red local por el momento
 
-const String baseApiUrl = "http://192.168.0.105:5000";
-//const String baseApiUrl = "http://192.168.101.19:5000";
+//const String baseApiUrl = "http://192.168.0.105:5000";
+const String baseApiUrl = "http://192.168.0.100:5000";
 
 void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized(); //en esta linea de codigo se asegura que los widgets esten inicializados antes de ejecutar la aplicacion
@@ -113,7 +113,7 @@ class Inicio extends StatelessWidget {
 
     setprogramaGlobal(programa);
 
-    await guardarProgresoFinal(2);
+    await guardarProgresoFinal(0);
 
     await usuarioRegistrado(
       nombre,

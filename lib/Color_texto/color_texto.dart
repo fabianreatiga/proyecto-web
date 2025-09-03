@@ -5,9 +5,9 @@ Color obtenercolor(String color) {
     case 'Color_Principal': //color principal para el uso de botones y appbars
       return const Color.fromRGBO(57, 169, 0, 1);
     case 'Color_Secundario': // Color secundario para el uso de botones y appbars
-      return const Color.fromRGBO(255, 137, 0, 1);
+      return const Color.fromRGBO(253, 195, 0, 1);
     case 'Color_Texto_Principal': // Color de texto y de iconos
-      return Colors.white;
+      return const Color.fromARGB(255, 255, 255, 255);
     case 'Color_Fondo': // Color del fondo de las pantallas
       return Colors.white;
     default:

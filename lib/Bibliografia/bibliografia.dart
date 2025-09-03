@@ -45,8 +45,8 @@ class _BibliografiasState extends State<Bibliografias>
     'Para ampliar el manejo del estilo APA se recomienda consultar los siguientes sitios web:',
   ];
   final List<String> imagenes = [
-    'assets/bibliografia.jpg', //BIBLIOGRAFÍA
-    'assets/Ejemplos_bibliografia.jpg', //EJEMPLOS
+    'assets/bibliografia/Bibliografia.png', //BIBLIOGRAFÍA
+    'assets/bibliografia/Bibliografia_ejemplo.png', //EJEMPLOS
     'assets/normasapa.png', //NORMAS APA
     'assets/bibliografia/Bibliografia_Ejemplo_APA.png', //EJEMPLOS APA
     'assets/normaieee.png', //NORMAS IEEE
@@ -70,10 +70,10 @@ class _BibliografiasState extends State<Bibliografias>
   }*/
 
   final List<double> alturaImagengrande = [
-    300, //BIBLIOGRAFÍA
-    300, //EJEMPLOS
+    500, //BIBLIOGRAFÍA
+    500, //EJEMPLOS
     600, //NORMAS APA
-    450, //EJEMPLOS APA
+    650, //EJEMPLOS APA
     600, //NORMAS IEEE
     650, //EJEMPLOS IEEE
     400, //SITIOS WEB RECOMENDADOS
@@ -257,7 +257,7 @@ class _BibliografiasState extends State<Bibliografias>
                     : Row(
                       crossAxisAlignment:
                           _index == 0 || _index == 3
-                              ? CrossAxisAlignment.start
+                              ? CrossAxisAlignment.center
                               : CrossAxisAlignment.center,
 
                       children: [

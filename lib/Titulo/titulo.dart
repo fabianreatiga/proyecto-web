@@ -324,9 +324,18 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
                     fontSize: tamanotexto(2),
                   ),
                 ),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: obtenercolor('Color_Principal'),
-                  padding: EdgeInsets.zero,
+                style: ButtonStyle(
+                  padding: MaterialStateProperty.all<EdgeInsets>(
+                    EdgeInsets.zero,
+                  ),
+                  backgroundColor: MaterialStateProperty.resolveWith<Color>((
+                    Set<MaterialState> states,
+                  ) {
+                    if (states.contains(MaterialState.hovered)) {
+                      return const Color(0xFF50E5F9); // Hover (celeste)
+                    }
+                    return obtenercolor('Color_Principal'); // Normal (verde)
+                  }),
                 ),
               ),
             )
@@ -370,9 +379,16 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
                   fontSize: tamanotexto(2),
                 ),
               ),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: obtenercolor('Color_Principal'),
-                padding: EdgeInsets.zero,
+              style: ButtonStyle(
+                padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.zero),
+                backgroundColor: MaterialStateProperty.resolveWith<Color>((
+                  Set<MaterialState> states,
+                ) {
+                  if (states.contains(MaterialState.hovered)) {
+                    return const Color(0xFF50E5F9); // Hover (celeste)
+                  }
+                  return obtenercolor('Color_Principal'); // Normal (verde)
+                }),
               ),
             ),
           ),

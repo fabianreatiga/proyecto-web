@@ -54,4 +54,6 @@ flutter:
 
 #--------------- IMAGENES BIBLIOGRAFIA ----------------#
 
+    - assets/bibliografia/Bibliografia.png
+    - assets/bibliografia/Bibliografia_Ejemplo.png
     - assets/bibliografia/Bibliografia_Ejemplo_APA.png

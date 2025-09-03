@@ -79,7 +79,7 @@ class Appbar2 extends StatelessWidget implements PreferredSizeWidget {
               minHeight: 9,
               value: progreso,
               valueColor: const AlwaysStoppedAnimation(
-                Color.fromARGB(178, 0, 47, 77),
+                Color.fromRGBO(80, 229, 249, 1),
               ),
               backgroundColor: Colors.grey[300],
             ),
