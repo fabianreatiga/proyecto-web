@@ -2,6 +2,7 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:nuevomockups/Actividades/actividades.dart';
 import 'package:nuevomockups/Appbar/appbar.dart';
 import 'package:nuevomockups/Color_texto/color_texto.dart';
 
@@ -47,10 +48,10 @@ class _BibliografiasState extends State<Bibliografias>
   final List<String> imagenes = [
     'assets/bibliografia/Bibliografia.png', //BIBLIOGRAFÍA
     'assets/bibliografia/Bibliografia_ejemplo.png', //EJEMPLOS
-    'assets/normasapa.png', //NORMAS APA
+    'assets/bibliografia/Bibliografia_Normas_APA.png', //NORMAS APA
     'assets/bibliografia/Bibliografia_Ejemplo_APA.png', //EJEMPLOS APA
     'assets/normaieee.png', //NORMAS IEEE
-    'assets/ejemploieee.png', //EJEMPLOS IEEE
+    'assets/bibliografia/BiblioGrafia_Ejemplo_IEEE.png', //EJEMPLOS IEEE
     'assets/web.jpg', //SITIOS WEB RECOMENDADOS
   ];
 
@@ -72,7 +73,7 @@ class _BibliografiasState extends State<Bibliografias>
   final List<double> alturaImagengrande = [
     500, //BIBLIOGRAFÍA
     500, //EJEMPLOS
-    600, //NORMAS APA
+    520, //NORMAS APA
     650, //EJEMPLOS APA
     600, //NORMAS IEEE
     650, //EJEMPLOS IEEE
@@ -297,8 +298,8 @@ class _BibliografiasState extends State<Bibliografias>
                         ),
 
                         // Si index es 0 o 3, agregamos Spacer después para centrar
-                        if (_index == 0 || _index == 3) Spacer(),
-                        if (_index == 0 || _index == 3) Spacer(),
+                        if (_index == 0 || _index == 3 || _index == 5) Spacer(),
+                        if (_index == 0 || _index == 3 || _index == 5) Spacer(),
                       ],
                     ),
               ],
@@ -335,7 +336,7 @@ class _BibliografiasState extends State<Bibliografias>
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const Bibliografia(),
+                      builder: (context) => const Actividades(),
                     ),
                   );
                 }
@@ -359,6 +360,9 @@ class _BibliografiasState extends State<Bibliografias>
               ),
             ),
           ),
+          Text(
+            'Creado por Instructores Sennova CIDM 2022-2023, Developer Omar Chaparro, ©Copyright SENA',
+          ),
           SizedBox(
             width: 150,
             height: 45,
@@ -371,11 +375,11 @@ class _BibliografiasState extends State<Bibliografias>
                     if (!pestanasVistas.contains(_index + 1)) {
                       pestanasVistas.add(_index + 1);
                       ProgresoGlobal.marcarVisto(ID_BASE_PROGRESO + _index + 1);
-                      await guardarProgresoFinal(ID_BASE_PROGRESO);
+                      //await guardarProgresoFinal(ID_BASE_PROGRESO);
                     }
                   });
                 } else {
-                  await guardarProgresoFinal(2);
+                  //await guardarProgresoFinal(2);
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const Titulo()),

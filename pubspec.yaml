@@ -50,10 +50,16 @@ flutter:
 
 #---------- IMAGENES PlateamientonoProblemas ----------#
 
-
+    - assets/PlanteamientoProblema/Planteamiento_del_Problema.png
+    - assets/PlanteamientoProblema/Planteamiento_del_Problema_Definicion.png
+    
 
 #--------------- IMAGENES BIBLIOGRAFIA ----------------#
 
     - assets/bibliografia/Bibliografia.png
     - assets/bibliografia/Bibliografia_Ejemplo.png
     - assets/bibliografia/Bibliografia_Ejemplo_APA.png
+    - assets/bibliografia/BiblioGrafia_Ejemplo_IEEE.png
+    - assets/bibliografia/Bibliografia_Normas_APA.png
+
+#--------------- IMAGENES METODOLOGIA ----------------# 

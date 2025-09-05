@@ -12,8 +12,7 @@ import 'package:http/http.dart' as http;
 
 // Aquí defines SOLO una vez la URL base se debe de cambiar según la red local por el momento
 
-//const String baseApiUrl = "http://192.168.0.105:5000";
-const String baseApiUrl = "http://192.168.0.100:5000";
+//quitarconst String baseApiUrl = "http://192.168.0.100:5000";
 
 void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized(); //en esta linea de codigo se asegura que los widgets esten inicializados antes de ejecutar la aplicacion
@@ -37,6 +36,7 @@ class Inicio extends StatelessWidget {
   final TextEditingController _NombreAprendiz = TextEditingController();
   // variable donde se obtiene el texto del campo Nombre Aprendiz
 
+  /*//quitar
   Future<bool> usuarioRegistrado(String nombre, String ficha) async {
     try {
       final response = await http.get(Uri.parse("$baseApiUrl/items"));
@@ -54,6 +54,7 @@ class Inicio extends StatelessWidget {
   } // en este blloque de código se verifica si el usuario ya está registrado
 
   // Función para guardar en API
+
   Future<void> _guardarEnAPI(BuildContext context) async {
     final data = {
       "nombre": _NombreAprendiz.text,
@@ -69,6 +70,7 @@ class Inicio extends StatelessWidget {
       body: jsonEncode(data),
     );
   } // en este bloque de código se envían los datos a la API y se maneja la respuesta
+*/ //quitar
 
   void _mostrarcamposenblanco(BuildContext context, String mensaje) {
     showDialog(
@@ -103,16 +105,18 @@ class Inicio extends StatelessWidget {
     final programa = _NombrePrograma.text.trim();
     final ficha = _Nficha.text.trim();
 
+    /*//quitar
     if (nombre.isEmpty || programa.isEmpty || ficha.isEmpty) {
       _mostrarcamposenblanco(context, 'No puede haber campos en blanco');
       return;
     } // aca se verifica si hay campos en blanco y si los hay mustra un mensaje de error
-
+*/ //quitar
     setUsuarioGlobal(nombre); // aca guardamos el nombre en la variable global
     setFichaGlobal(ficha); // aca guardamos la ficha en la variable global
 
     setprogramaGlobal(programa);
 
+    /* quitar
     await guardarProgresoFinal(0);
 
     await usuarioRegistrado(
@@ -120,6 +124,7 @@ class Inicio extends StatelessWidget {
       ficha,
     ); //aca se verifica si el usuario ya está registrado
     await _guardarEnAPI(context); // aca se envian los datos a la API
+*/ //quitar
 
     Navigator.push(
       context,

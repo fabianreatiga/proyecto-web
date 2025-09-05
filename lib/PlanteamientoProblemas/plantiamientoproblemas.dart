@@ -76,8 +76,8 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
   ];
 
   final List<String> imagenes = [
-    'assets/planteamiento.png', // PLANTEAMIENTO DEL PROBLEMA
-    'assets/Definicion.png', // DEFINICIÓN
+    'assets/PlanteamientoProblema/Planteamiento_del_Problema.png', // PLANTEAMIENTO DEL PROBLEMA
+    'assets/PlanteamientoProblema/Planteamiento_del_Problema_Definicion.png', // DEFINICIÓN
     'assets/Metodologias.png', // METODOLOGIAS
     'assets/5W1H.png', // 5W1H
     'assets/Ejemplo_5W1H.png', // EJEMPLO 5W1H
@@ -113,7 +113,7 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
 
   final List<double> alturaImagengrande = [
     300, // PLANTEAMIENTO DEL PROBLEMA
-    300, // DEFINICIÓN
+    325, // DEFINICIÓN
     300, // METODOLOGIAS
     350, // 5W1H
     400, // EJEMPLO 5W1H
@@ -417,11 +417,11 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                     if (!pestanasVistas.contains(_index + 1)) {
                       pestanasVistas.add(_index + 1);
                       ProgresoGlobal.marcarVisto(ID_BASE_PROGRESO + _index + 1);
-                      await guardarProgresoFinal(ID_BASE_PROGRESO);
+                      //await guardarProgresoFinal(ID_BASE_PROGRESO);
                     }
                   });
                 } else {
-                  await guardarProgresoFinal(2);
+                  //await guardarProgresoFinal(2);
                   Navigator.push(
                     context,
                     MaterialPageRoute(
