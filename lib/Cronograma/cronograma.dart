@@ -261,7 +261,7 @@ class _CronogramasState extends State<Cronogramas>
                               borderRadius: BorderRadius.circular(12),
                               child: Image.asset(
                                 imagenes[_index],
-                                height: alturaImagenPequena[_index],
+                                height: alturaImagengrande[_index],
                                 fit: BoxFit.contain,
                               ),
                             ),

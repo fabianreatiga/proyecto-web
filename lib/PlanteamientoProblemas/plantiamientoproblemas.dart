@@ -78,15 +78,15 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
   final List<String> imagenes = [
     'assets/PlanteamientoProblema/Planteamiento_del_Problema.png', // PLANTEAMIENTO DEL PROBLEMA
     'assets/PlanteamientoProblema/Planteamiento_del_Problema_Definicion.png', // DEFINICIÓN
-    'assets/Metodologias.png', // METODOLOGIAS
-    'assets/5W1H.png', // 5W1H
-    'assets/Ejemplo_5W1H.png', // EJEMPLO 5W1H
-    'assets/Ejemplo_2_5W1H.png', // EJEMPLO 2 5W1H
-    'assets/Ejemplo_3_5W1H.png', // EJEMPLO 3 5W1H
-    'assets/ESPINA_DE_PESCADO.png', // ESPINA DE PESCADO
-    'assets/Como_Hacer_Espina_Pescado.jpg', // COMO HACER ESPINA DE PESCADO
-    'assets/Ejemplo_espina.png', // EJEMPLO 1 ESPINA DE PESCADO
-    'assets/Ejemplo_espina_2.jpg', // EJEMPLO 2 ESPINA DE PESCADO
+    'assets/PlanteamientoProblema/Planteamiento_del_Problema_Metodologia.png', // METODOLOGIAS
+    'assets/PlanteamientoProblema/Planteamiento_del_Problema_5W1H.png', // 5W1H
+    'assets/PlanteamientoProblema/Planteamiento_del_Problema_Ejemplo_5W1H.png', // EJEMPLO 5W1H
+    'assets/PlanteamientoProblema/Planteamiento_del_Problema_Ejemplo_2_5W1H.png', // EJEMPLO 2 5W1H
+    'assets/PlanteamientoProblema/Planteamiento_del_Problema_Ejemplo_3_5W1H.png', // EJEMPLO 3 5W1H
+    'assets/PlanteamientoProblema/Planteamiento_del_Problema_Espina_De_Pescado.jpeg', // ESPINA DE PESCADO
+    'assets/PlanteamientoProblema/Planteamiento_del_Problema_Como_Hacer_Una_Espina_De_Pescado.png', // COMO HACER ESPINA DE PESCADO
+    'assets/PlanteamientoProblema/Planteamiento_del_Problema_Ejemplo_1_Espina_De_Pescado.png', // EJEMPLO 1 ESPINA DE PESCADO
+    'assets/PlanteamientoProblema/Planteamiento_del_Problema_Ejemplo_2_Espina_De_Pescado.png', // EJEMPLO 2 ESPINA DE PESCADO
     'assets/arbol.jpeg', // ÁRBOL DE PROBLEMAS
     'assets/arbol_problemas.jpeg', // COMO HACER EL ÁRBOL DE PROBLEMAS
     'assets/ejemplo_arbol.jpg', // EJEMPLO ÁRBOL DE PROBLEMAS
@@ -119,9 +119,9 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
     400, // EJEMPLO 5W1H
     400, // EJEMPLO 2 5W1H
     400, // EJEMPLO 3 5W1H
-    480, // ESPINA DE PESCADO
-    400, // COMO HACER ESPINA DE PESCADO
-    500, // EJEMPLO 1 ESPINA DE PESCADO
+    400, // ESPINA DE PESCADO
+    450, // COMO HACER ESPINA DE PESCADO
+    400, // EJEMPLO 1 ESPINA DE PESCADO
     400, // EJEMPLO 2 ESPINA DE PESCADO
     350, // ÁRBOL DE PROBLEMAS
     275, // COMO HACER EL ÁRBOL DE PROBLEMAS
@@ -340,12 +340,10 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                             _index == 13 ||
                             _index == 14)
                           Spacer(),
-                        if (_index == 8 ||
-                            _index == 9 ||
-                            _index == 10 ||
-                            _index == 12 ||
-                            _index == 13 ||
-                            _index == 14)
+                        if ( //_index == 8 ||
+                        //_index == 9 ||
+                        // _index == 10 ||
+                        _index == 12 || _index == 13 || _index == 14)
                           Spacer(),
                       ],
                     ),

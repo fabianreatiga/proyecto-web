@@ -60,7 +60,7 @@ class _MetodologiasState extends State<Metodologias>
   ];
   final List<String> imagenes = [
     'assets/metodologia.jpg', //METODOLOGÍA
-    'assets/tipo_metodologia.jpg', //TIPOS DE METODOLOGÍAS
+    'assets/Metodologia/Metodologia_Tipos_De_Metodologia.png', //TIPOS DE METODOLOGÍAS
     'assets/cualitativa.png', //CUALITATIVA
     'assets/cuantitativa.png', //CUANTITATIVA
     'assets/mixta.jpg', //MIXTA
@@ -83,7 +83,7 @@ class _MetodologiasState extends State<Metodologias>
 
   final List<double> alturaImagengrande = [
     150, //METODOLOGÍA
-    250, //TIPOS DE METODOLOGÍAS
+    450, //TIPOS DE METODOLOGÍAS
     500, //CUALITATIVA
     500, //CUANTITATIVA
     150, //MIXTA
@@ -289,14 +289,14 @@ class _MetodologiasState extends State<Metodologias>
                               borderRadius: BorderRadius.circular(12),
                               child: Image.asset(
                                 imagenes[_index],
-                                height: alturaImagenPequena[_index],
+                                height: alturaImagengrande[_index],
                                 fit: BoxFit.contain,
                               ),
                             ),
                           ),
                         ),
                         if (_index == 1 || _index == 5) Spacer(),
-                        if (_index == 1 || _index == 5) Spacer(),
+                        if (_index == 5) Spacer(),
                       ],
                     ),
               ],

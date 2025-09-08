@@ -262,7 +262,7 @@ class _ActividadState extends State<Actividad> with TickerProviderStateMixin {
                               borderRadius: BorderRadius.circular(12),
                               child: Image.asset(
                                 imagenes[_index],
-                                height: alturaImagenPequena[_index],
+                                height: alturaImagengrande[_index],
                                 fit: BoxFit.contain,
                               ),
                             ),

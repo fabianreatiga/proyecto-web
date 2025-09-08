@@ -52,6 +52,15 @@ flutter:
 
     - assets/PlanteamientoProblema/Planteamiento_del_Problema.png
     - assets/PlanteamientoProblema/Planteamiento_del_Problema_Definicion.png
+    - assets/PlanteamientoProblema/Planteamiento_del_Problema_Metodologia.png
+    - assets/PlanteamientoProblema/Planteamiento_del_Problema_5W1H.png
+    - assets/PlanteamientoProblema/Planteamiento_del_Problema_Ejemplo_5W1H.png
+    - assets/PlanteamientoProblema/Planteamiento_del_Problema_Ejemplo_2_5W1H.png
+    - assets/PlanteamientoProblema/Planteamiento_del_Problema_Ejemplo_3_5W1H.png
+    - assets/PlanteamientoProblema/Planteamiento_del_Problema_Espina_De_Pescado.jpeg
+    - assets/PlanteamientoProblema/Planteamiento_del_Problema_Como_Hacer_Una_Espina_De_Pescado.png
+    - assets/PlanteamientoProblema/Planteamiento_del_Problema_Ejemplo_1_Espina_De_Pescado.png
+    - assets/PlanteamientoProblema/Planteamiento_del_Problema_Ejemplo_2_Espina_De_Pescado.png
     
 
 #--------------- IMAGENES BIBLIOGRAFIA ----------------#
@@ -63,3 +72,5 @@ flutter:
     - assets/bibliografia/Bibliografia_Normas_APA.png
 
 #--------------- IMAGENES METODOLOGIA ----------------# 
+
+    - assets/Metodologia/Metodologia_Tipos_De_Metodologia.png
