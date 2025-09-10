@@ -26,6 +26,7 @@ class _EncuestasState extends State<Encuestas> {
       backgroundColor: obtenercolor('Color_Fondo'),
       appBar: Appbar2(nombre: '', progreso: 100, actions: []),
       drawer: Menu(currentScreen: 'Encuesta'),
+      body: Center(child: Text('hola')),
     );
   }
 }
