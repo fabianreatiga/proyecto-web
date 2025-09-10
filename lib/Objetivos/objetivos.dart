@@ -70,11 +70,11 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
 
   final List<String> imagenes = [
     'assets/Objetivos/Objetivos.png', //COMO CREAR LOS OBJETIVOS
-    'assets/Objetivos/Objetivos_Método_Smart_Titulo.png', //MÉTODO SMART
-    'assets/metodo_clear.png', //MÉTODO CLEAR
-    'assets/metodo_pure.jpg', //MÉTODO PURE
+    'assets/Objetivos/Objetivos_Método_Smart_Texto.png', //MÉTODO SMART
+    'assets/Objetivos/Objetivos_Método_Clear_Texto.png', //MÉTODO CLEAR
+    'assets/Objetivos/Objetivos_Método_Pure.png', //MÉTODO PURE
     'assets/metodo_grow.jpg', //MÉTODO GROW
-    'assets/metodo_dumb.png', //MÉTODO DUMB
+    'assets/Objetivos/Objetivos_Método_Dumb_texto.png', //MÉTODO DUMB
     'assets/metodo_arbol.jpg', //ÁRBOL DE OJETIVOS
   ];
 
@@ -95,11 +95,11 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
 
   final List<double> alturaImagengrande = [
     650, //COMO CREAR LOS OBJETIVOS
-    300, //MÉTODO SMART
-    500, //MÉTODO CLEAR
-    150, //MÉTODO PURE
+    250, //MÉTODO SMART
+    180, //MÉTODO CLEAR
+    350, //MÉTODO PURE
     150, //MÉTODO GROW
-    400, //MÉTODO DUMB
+    350, //MÉTODO DUMB
     400, //ÁRBOL DE OJETIVOS
   ];
 
@@ -240,54 +240,55 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
           elevation: 4, // se usa elvation para darle una sombra al card
           child: Padding(
             padding: const EdgeInsets.all(24),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              // se usa CrossAxisAlignment.start para alinear el texto a la izquierda
-              children: [
-                Text(
-                  secciones[_index],
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Calibri',
-                    fontSize: tamanotexto(1) - 10,
-                    color: obtenercolor('Color_Principal'),
-                  ),
+            child: Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/fondo_textura_2.png'),
+                  scale: 0.5,
+                  opacity: 0.2,
+                  alignment: Alignment.bottomLeft,
+                  fit: BoxFit.none,
                 ),
-                const SizedBox(height: 20),
-                esPantallaPequena
-                    ? Column(
-                      // se usa Column para mostrar el texto en dos filas
-                      children: [
-                        Text(
-                          textos[_index],
-                          style: TextStyle(
-                            fontSize: tamanotexto(2),
-                            fontFamily: 'Calibri',
-                            height: 1.5,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                // se usa CrossAxisAlignment.start para alinear el texto a la izquierda
+                children: [
+                  Text(
+                    secciones[_index],
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Calibri',
+                      fontSize: tamanotexto(1) - 10,
+                      color: obtenercolor('Color_Principal'),
+                      backgroundColor: Colors.white,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  esPantallaPequena
+                      ? Column(
+                        // se usa Column para mostrar el texto en dos filas
+                        children: [
+                          Text(
+                            textos[_index],
+                            style: TextStyle(
+                              fontSize: tamanotexto(2),
+                              fontFamily: 'Calibri',
+                              height: 1.5,
+                            ),
                           ),
-                        ),
-                        const SizedBox(height: 20),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(12),
-                          child: Image.asset(
-                            imagenes[_index],
-                            height: alturaImagenPequena[_index],
-                            fit: BoxFit.contain,
+                          const SizedBox(height: 20),
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(12),
+                            child: Image.asset(
+                              imagenes[_index],
+                              height: alturaImagenPequena[_index],
+                              fit: BoxFit.contain,
+                            ),
                           ),
-                        ),
-                      ],
-                    )
-                    : Container(
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('assets/fondo_textura_2.png'),
-                          scale: 0.5,
-                          opacity: 0.2,
-                          alignment: Alignment.bottomLeft,
-                          fit: BoxFit.none,
-                        ),
-                      ),
-                      child: Row(
+                        ],
+                      )
+                      : Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Expanded(
@@ -320,15 +321,30 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
                           ),
                         ],
                       ),
+
+                  if (_index == 1)
+                    Center(
+                      child: Image.asset(
+                        height: 250,
+                        'assets/Objetivos/Objetivos_Método_Smart_Titulo.png',
+                      ),
                     ),
-                if (_index == 1)
-                  Center(
-                    child: Image.asset(
-                      height: 300,
-                      'assets/Objetivos/Objetivos_Método_Smart_Texto.png',
+                  if (_index == 2)
+                    Center(
+                      child: Image.asset(
+                        height: 400,
+                        'assets/Objetivos/Objetivos_Método_Clear_Titulo.png',
+                      ),
                     ),
-                  ),
-              ],
+                  if (_index == 5)
+                    Center(
+                      child: Image.asset(
+                        height: 350,
+                        'assets/Objetivos/Objetivos_Método_Dumb_Titulo.png',
+                      ),
+                    ),
+                ],
+              ),
             ),
           ),
         );

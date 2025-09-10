@@ -76,6 +76,11 @@ flutter:
     - assets/Objetivos/Objetivos.png
     - assets/Objetivos/Objetivos_Método_Smart_Texto.png
     - assets/Objetivos/Objetivos_Método_Smart_Titulo.png
+    - assets/Objetivos/Objetivos_Método_Clear_Texto.png
+    - assets/Objetivos/Objetivos_Método_Clear_Titulo.png
+    - assets/Objetivos/Objetivos_Método_Dumb_texto.png
+    - assets/Objetivos/Objetivos_Método_Dumb_Titulo.png
+
 
 #--------------- IMAGENES BIBLIOGRAFIA ----------------#
 

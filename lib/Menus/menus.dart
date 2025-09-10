@@ -3,6 +3,7 @@ import 'package:nuevomockups/Actividades/actividades.dart';
 import 'package:nuevomockups/Bibliografia/bibliografia.dart';
 import 'package:nuevomockups/Color_texto/color_texto.dart';
 import 'package:nuevomockups/Cronograma/cronograma.dart';
+import 'package:nuevomockups/Encuesta/encuesta.dart';
 import 'package:nuevomockups/Justificacion/justificacion.dart';
 import 'package:nuevomockups/Metodologia/metodologia.dart';
 import 'package:nuevomockups/Objetivos/objetivos.dart';
@@ -280,6 +281,29 @@ class Menu extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const Bibliografia()),
+              );
+            },
+          ),
+          ListTile(
+            leading: Icon(
+              Icons.check_box,
+              color: currentScreen == 'Encuesta' ? Colors.white : Colors.black,
+            ),
+            title: Text(
+              'Encuesta',
+              style: TextStyle(
+                fontSize: texto + 4,
+                color:
+                    currentScreen == 'Encuesta' ? Colors.white : Colors.black,
+              ),
+            ),
+            selected: currentScreen == 'Encuesta',
+            selectedTileColor: obtenercolor('Color_Principal'),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Encuesta()),
               );
             },
           ),

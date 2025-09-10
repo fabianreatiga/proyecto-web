@@ -266,55 +266,55 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
           elevation: 4,
           child: Padding(
             padding: const EdgeInsets.all(24),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  secciones[_index],
-                  style: TextStyle(
-                    fontSize: tamanotexto(1) - 10,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Calibri',
-                    color: obtenercolor('Color_Principal'),
-                    backgroundColor: Colors.white,
-                  ),
+            child: Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/fondo_textura_2.png'),
+                  scale: 0.5,
+                  opacity: 0.2,
+                  alignment: Alignment.bottomLeft,
+                  fit: BoxFit.none,
                 ),
-                const SizedBox(height: 20),
-                esPantallaPequena
-                    ? Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          textos[_index],
-                          style: TextStyle(
-                            fontSize: tamanotexto(2),
-                            fontFamily: 'Calibri',
-                            height: 1.5,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    secciones[_index],
+                    style: TextStyle(
+                      fontSize: tamanotexto(1) - 10,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Calibri',
+                      color: obtenercolor('Color_Principal'),
+                      backgroundColor: Colors.white,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  esPantallaPequena
+                      ? Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            textos[_index],
+                            style: TextStyle(
+                              fontSize: tamanotexto(2),
+                              fontFamily: 'Calibri',
+                              height: 1.5,
+                            ),
+                            textAlign: TextAlign.center,
                           ),
-                          textAlign: TextAlign.center,
-                        ),
-                        const SizedBox(height: 20),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(12),
-                          child: Image.asset(
-                            imagenes[_index],
-                            height: alturaImagenPequena[_index],
-                            fit: BoxFit.contain,
+                          const SizedBox(height: 20),
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(12),
+                            child: Image.asset(
+                              imagenes[_index],
+                              height: alturaImagenPequena[_index],
+                              fit: BoxFit.contain,
+                            ),
                           ),
-                        ),
-                      ],
-                    )
-                    : Container(
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('assets/fondo_textura_2.png'),
-                          scale: 0.5,
-                          opacity: 0.2,
-                          alignment: Alignment.bottomLeft,
-                          fit: BoxFit.none,
-                        ),
-                      ),
-                      child: Row(
+                        ],
+                      )
+                      : Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Expanded(
@@ -359,8 +359,8 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                             Spacer(),
                         ],
                       ),
-                    ),
-              ],
+                ],
+              ),
             ),
           ),
         );

@@ -7,6 +7,7 @@ import 'package:nuevomockups/Appbar/appbar.dart';
 import 'package:nuevomockups/Color_texto/color_texto.dart';
 
 import 'package:nuevomockups/Menus/menus.dart';
+import 'package:nuevomockups/Metodologia/metodologia.dart';
 import 'package:nuevomockups/global.dart';
 
 class Cronograma extends StatelessWidget {
@@ -199,79 +200,91 @@ class _CronogramasState extends State<Cronogramas>
           elevation: 4, // se usa elvation para darle una sombra al card
           child: Padding(
             padding: const EdgeInsets.all(24),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              // se usa CrossAxisAlignment.start para alinear el texto a la izquierda
-              children: [
-                Text(
-                  secciones[_index],
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Calibri',
-                    fontSize: tamanotexto(1) - 10,
-                    color: obtenercolor('Color_Principal'),
-                  ),
+            child: Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/fondo_textura_2.png'),
+                  scale: 0.5,
+                  opacity: 0.2,
+                  alignment: Alignment.bottomLeft,
+                  fit: BoxFit.none,
                 ),
-                const SizedBox(height: 20),
-                esPantallaPequena
-                    ? Column(
-                      // se usa Column para mostrar el texto en dos filas
-                      children: [
-                        Text(
-                          textos[_index],
-                          style: TextStyle(
-                            fontSize: tamanotexto(2),
-                            fontFamily: 'Calibri',
-                            height: 1.5,
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(12),
-                          child: Image.asset(
-                            imagenes[_index],
-                            height: alturaImagenPequena[_index],
-                            fit: BoxFit.contain,
-                          ),
-                        ),
-                      ],
-                    )
-                    : Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          flex: 2,
-                          child: Padding(
-                            padding: EdgeInsets.only(right: 20),
-                            child: Text(
-                              textos[_index],
-                              style: TextStyle(
-                                fontSize: tamanotexto(2),
-                                fontFamily: 'calibri',
-                                height: 1.5,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Flexible(
-                          flex: 0,
-                          child: Align(
-                            alignment: Alignment.topRight,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(12),
-                              child: Image.asset(
-                                imagenes[_index],
-                                height: alturaImagengrande[_index],
-                                fit: BoxFit.contain,
-                              ),
-                            ),
-                          ),
-                        ),
-                        if (_index == 1 || _index == 2) Spacer(),
-                        if (_index == 1 || _index == 2) Spacer(),
-                      ],
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                // se usa CrossAxisAlignment.start para alinear el texto a la izquierda
+                children: [
+                  Text(
+                    secciones[_index],
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Calibri',
+                      fontSize: tamanotexto(1) - 10,
+                      color: obtenercolor('Color_Principal'),
+                      backgroundColor: Colors.white,
                     ),
-              ],
+                  ),
+                  const SizedBox(height: 20),
+                  esPantallaPequena
+                      ? Column(
+                        // se usa Column para mostrar el texto en dos filas
+                        children: [
+                          Text(
+                            textos[_index],
+                            style: TextStyle(
+                              fontSize: tamanotexto(2),
+                              fontFamily: 'Calibri',
+                              height: 1.5,
+                            ),
+                          ),
+                          const SizedBox(height: 20),
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(12),
+                            child: Image.asset(
+                              imagenes[_index],
+                              height: alturaImagenPequena[_index],
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                        ],
+                      )
+                      : Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            flex: 2,
+                            child: Padding(
+                              padding: EdgeInsets.only(right: 20),
+                              child: Text(
+                                textos[_index],
+                                style: TextStyle(
+                                  fontSize: tamanotexto(2),
+                                  fontFamily: 'calibri',
+                                  height: 1.5,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Flexible(
+                            flex: 0,
+                            child: Align(
+                              alignment: Alignment.topRight,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(12),
+                                child: Image.asset(
+                                  imagenes[_index],
+                                  height: alturaImagengrande[_index],
+                                  fit: BoxFit.contain,
+                                ),
+                              ),
+                            ),
+                          ),
+                          if (_index == 1 || _index == 2) Spacer(),
+                          if (_index == 1 || _index == 2) Spacer(),
+                        ],
+                      ),
+                ],
+              ),
             ),
           ),
         );
@@ -304,7 +317,9 @@ class _CronogramasState extends State<Cronogramas>
                 } else {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const Cronograma()),
+                    MaterialPageRoute(
+                      builder: (context) => const Metodologia(),
+                    ),
                   );
                 }
               },
