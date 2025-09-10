@@ -59,7 +59,7 @@ class _MetodologiasState extends State<Metodologias>
     '',
   ];
   final List<String> imagenes = [
-    'assets/metodologia.jpg', //METODOLOGÍA
+    'assets/Metodologia/Metodologia_Metodologia.png', //METODOLOGÍA
     'assets/Metodologia/Metodologia_Tipos_De_Metodologia.png', //TIPOS DE METODOLOGÍAS
     'assets/cualitativa.png', //CUALITATIVA
     'assets/cuantitativa.png', //CUANTITATIVA
@@ -82,7 +82,7 @@ class _MetodologiasState extends State<Metodologias>
   }*/
 
   final List<double> alturaImagengrande = [
-    150, //METODOLOGÍA
+    200, //METODOLOGÍA
     450, //TIPOS DE METODOLOGÍAS
     500, //CUALITATIVA
     500, //CUANTITATIVA

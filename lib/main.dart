@@ -12,7 +12,7 @@ import 'package:http/http.dart' as http;
 
 // Aquí defines SOLO una vez la URL base se debe de cambiar según la red local por el momento
 
-//quitarconst String baseApiUrl = "http://192.168.0.100:5000";
+//const String baseApiUrl = "http://192.168.0.100:5000"; quitar comentario
 
 void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized(); //en esta linea de codigo se asegura que los widgets esten inicializados antes de ejecutar la aplicacion

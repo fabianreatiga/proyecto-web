@@ -50,9 +50,9 @@ class _BibliografiasState extends State<Bibliografias>
     'assets/bibliografia/Bibliografia_ejemplo.png', //EJEMPLOS
     'assets/bibliografia/Bibliografia_Normas_APA.png', //NORMAS APA
     'assets/bibliografia/Bibliografia_Ejemplo_APA.png', //EJEMPLOS APA
-    'assets/normaieee.png', //NORMAS IEEE
+    'assets/bibliografia/Bibliografia_Normas_IEEE.png', //NORMAS IEEE
     'assets/bibliografia/BiblioGrafia_Ejemplo_IEEE.png', //EJEMPLOS IEEE
-    'assets/web.jpg', //SITIOS WEB RECOMENDADOS
+    'assets/bibliografia/Bibliografia_Sitios_Web_Recomendados.png', //SITIOS WEB RECOMENDADOS
   ];
 
   final List<String> secciones = [
@@ -75,9 +75,9 @@ class _BibliografiasState extends State<Bibliografias>
     500, //EJEMPLOS
     520, //NORMAS APA
     650, //EJEMPLOS APA
-    600, //NORMAS IEEE
+    500, //NORMAS IEEE
     650, //EJEMPLOS IEEE
-    400, //SITIOS WEB RECOMENDADOS
+    550, //SITIOS WEB RECOMENDADOS
   ];
 
   final List<double> alturaImagenPequena = [
@@ -299,7 +299,7 @@ class _BibliografiasState extends State<Bibliografias>
 
                         // Si index es 0 o 3, agregamos Spacer después para centrar
                         if (_index == 0 || _index == 3 || _index == 5) Spacer(),
-                        if (_index == 0 || _index == 3 || _index == 5) Spacer(),
+                        //if (_index == 0 /*|| _index == 3 || _index == 5*/ ) Spacer(),
                       ],
                     ),
               ],
@@ -360,9 +360,7 @@ class _BibliografiasState extends State<Bibliografias>
               ),
             ),
           ),
-          Text(
-            'Creado por Instructores Sennova CIDM 2022-2023, Developer Omar Chaparro, ©Copyright SENA',
-          ),
+          Text('©Copyright SENA'),
           SizedBox(
             width: 150,
             height: 45,

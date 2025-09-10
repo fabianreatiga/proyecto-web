@@ -45,9 +45,9 @@ class _ActividadState extends State<Actividad> with TickerProviderStateMixin {
         ' nivel social, medioambiental, de políticas públicas, etc.',
   ];
   final List<String> imagenes = [
-    'assets/actividades.jpg', //ACTIVIDADES
-    'assets/resultados_actividades.jpg', //RESULTADOS
-    'assets/formulacion.jpg', //FORMULACIÓN DE RESULTADOS
+    'assets/Actividades/Actividades.png', //ACTIVIDADES
+    'assets/Actividades/Actividades_Resultados.png', //RESULTADOS
+    'assets/Actividades/Actividades_Formulacion_De_Resultados.png', //FORMULACIÓN DE RESULTADOS
   ];
 
   final List<String> secciones = [

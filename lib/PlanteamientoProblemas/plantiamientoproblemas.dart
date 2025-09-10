@@ -87,7 +87,7 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
     'assets/PlanteamientoProblema/Planteamiento_del_Problema_Como_Hacer_Una_Espina_De_Pescado.png', // COMO HACER ESPINA DE PESCADO
     'assets/PlanteamientoProblema/Planteamiento_del_Problema_Ejemplo_1_Espina_De_Pescado.png', // EJEMPLO 1 ESPINA DE PESCADO
     'assets/PlanteamientoProblema/Planteamiento_del_Problema_Ejemplo_2_Espina_De_Pescado.png', // EJEMPLO 2 ESPINA DE PESCADO
-    'assets/arbol.jpeg', // ÁRBOL DE PROBLEMAS
+    'assets/PlanteamientoProblema/Planteamiento_del_Problema_Arbol_De_Problemas.png', // ÁRBOL DE PROBLEMAS
     'assets/arbol_problemas.jpeg', // COMO HACER EL ÁRBOL DE PROBLEMAS
     'assets/ejemplo_arbol.jpg', // EJEMPLO ÁRBOL DE PROBLEMAS
     'assets/esquemas.jpeg', // ESQUEMA DE REDACCIÓN
@@ -141,7 +141,7 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
     300, // EJEMPLO 1 ESPINA DE PESCADO
     300, // EJEMPLO 2 ESPINA DE PESCADO
     200, // ÁRBOL DE PROBLEMAS
-    300, // COMO HACER EL ÁRBOL DE PROBLEMAS
+    250, // COMO HACER EL ÁRBOL DE PROBLEMAS
     300, // EJEMPLO ÁRBOL DE PROBLEMAS
     300, // ESQUEMA DE REDACCIÓN
   ];
@@ -276,11 +276,13 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                     fontWeight: FontWeight.bold,
                     fontFamily: 'Calibri',
                     color: obtenercolor('Color_Principal'),
+                    backgroundColor: Colors.white,
                   ),
                 ),
                 const SizedBox(height: 20),
                 esPantallaPequena
                     ? Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
                           textos[_index],
@@ -302,50 +304,61 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                         ),
                       ],
                     )
-                    : Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          flex: 2,
-                          child: Padding(
-                            padding: const EdgeInsets.only(right: 20),
-                            child: Text(
-                              textos[_index],
-                              style: TextStyle(
-                                fontSize: tamanotexto(2),
-                                fontFamily: 'Calibri',
-                                height: 1.5,
+                    : Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/fondo_textura_2.png'),
+                          scale: 0.5,
+                          opacity: 0.2,
+                          alignment: Alignment.bottomLeft,
+                          fit: BoxFit.none,
+                        ),
+                      ),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            flex: 2,
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 20),
+                              child: Text(
+                                textos[_index],
+                                style: TextStyle(
+                                  fontSize: tamanotexto(2),
+                                  fontFamily: 'Calibri',
+                                  height: 1.5,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        Flexible(
-                          flex: 0,
-                          child: Align(
-                            alignment: Alignment.topRight,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(12),
-                              child: Image.asset(
-                                imagenes[_index],
-                                height: alturaImagengrande[_index],
-                                fit: BoxFit.contain,
+                          Flexible(
+                            flex: 0,
+                            child: Align(
+                              alignment: Alignment.topRight,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(12),
+                                child: Image.asset(
+                                  imagenes[_index],
+                                  height: alturaImagengrande[_index],
+                                  fit: BoxFit.contain,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        if (_index == 8 ||
-                            _index == 9 ||
-                            _index == 10 ||
-                            _index == 12 ||
-                            _index == 13 ||
-                            _index == 14)
-                          Spacer(),
-                        if ( //_index == 8 ||
-                        //_index == 9 ||
-                        // _index == 10 ||
-                        _index == 12 || _index == 13 || _index == 14)
-                          Spacer(),
-                      ],
+                          if (_index == 8 ||
+                              _index == 9 ||
+                              _index == 10 ||
+                              _index == 12 ||
+                              _index == 13 ||
+                              _index == 14)
+                            Spacer(),
+                          if ( //_index == 8 ||
+                          //_index == 9 ||
+                          // _index == 10 ||
+                          _index == 12 || _index == 13 || _index == 14)
+                            Spacer(),
+                        ],
+                      ),
                     ),
               ],
             ),

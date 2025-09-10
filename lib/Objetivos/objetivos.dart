@@ -69,8 +69,8 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
   ];
 
   final List<String> imagenes = [
-    'assets/objetivos.jpg', //COMO CREAR LOS OBJETIVOS
-    'assets/metodo_smart.png', //MÉTODO SMART
+    'assets/Objetivos/Objetivos.png', //COMO CREAR LOS OBJETIVOS
+    'assets/Objetivos/Objetivos_Método_Smart_Titulo.png', //MÉTODO SMART
     'assets/metodo_clear.png', //MÉTODO CLEAR
     'assets/metodo_pure.jpg', //MÉTODO PURE
     'assets/metodo_grow.jpg', //MÉTODO GROW
@@ -94,8 +94,8 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
   }*/
 
   final List<double> alturaImagengrande = [
-    350, //COMO CREAR LOS OBJETIVOS
-    500, //MÉTODO SMART
+    650, //COMO CREAR LOS OBJETIVOS
+    300, //MÉTODO SMART
     500, //MÉTODO CLEAR
     150, //MÉTODO PURE
     150, //MÉTODO GROW
@@ -104,7 +104,7 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
   ];
 
   final List<double> alturaImagenPequena = [
-    300, //COMO CREAR LOS OBJETIVOS
+    500, //COMO CREAR LOS OBJETIVOS
     300, //MÉTODO SMART
     300, //MÉTODO CLEAR
     300, //MÉTODO PURE
@@ -277,39 +277,57 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
                         ),
                       ],
                     )
-                    : Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          flex: 2,
-                          child: Padding(
-                            padding: EdgeInsets.only(right: 20),
-                            child: Text(
-                              textos[_index],
-                              style: TextStyle(
-                                fontSize: tamanotexto(2),
-                                fontFamily: 'calibri',
-                                height: 1.5,
+                    : Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/fondo_textura_2.png'),
+                          scale: 0.5,
+                          opacity: 0.2,
+                          alignment: Alignment.bottomLeft,
+                          fit: BoxFit.none,
+                        ),
+                      ),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            flex: 2,
+                            child: Padding(
+                              padding: EdgeInsets.only(right: 20),
+                              child: Text(
+                                textos[_index],
+                                style: TextStyle(
+                                  fontSize: tamanotexto(2),
+                                  fontFamily: 'calibri',
+                                  height: 1.5,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        Flexible(
-                          flex: 0,
-                          child: Align(
-                            alignment: Alignment.topRight,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(12),
-                              child: Image.asset(
-                                imagenes[_index],
-                                height: alturaImagenPequena[_index],
-                                fit: BoxFit.contain,
+                          Flexible(
+                            flex: 0,
+                            child: Align(
+                              alignment: Alignment.topRight,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(12),
+                                child: Image.asset(
+                                  imagenes[_index],
+                                  height: alturaImagengrande[_index],
+                                  fit: BoxFit.contain,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
+                if (_index == 1)
+                  Center(
+                    child: Image.asset(
+                      height: 300,
+                      'assets/Objetivos/Objetivos_Método_Smart_Texto.png',
+                    ),
+                  ),
               ],
             ),
           ),

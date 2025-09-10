@@ -79,8 +79,8 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
     450, //EJEMPLOS DE TITULOS
   ];
   final List<double> alturaImagenPequena = [
-    180, //TITULO
-    180, // CARACTERISTICAS DEL TITULO
+    200, //TITULO
+    200, // CARACTERISTICAS DEL TITULO
     200, //MAS CARACTERISTICAS DEL TITULO
     450, // PALABRAS UTILES PARA TITULO
     450, //EJEMPLOS DE TITULOS
@@ -138,38 +138,50 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
         ],
       ),
       drawer: const Menu(currentScreen: 'Titulo'),
-      body: Column(
-        children: [
-          Expanded(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.all(20),
-              child:
-                  esPantallaPequena
-                      ? InteractiveViewer(
-                        // 📌 Zoom solo en pantallas pequeñas
-                        constrained: true,
-                        minScale: 1.0,
-                        maxScale: 3.0,
-                        child: Column(
+      body: Container(
+        padding: EdgeInsets.all(0),
+        /*decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/fondo_textura_2.png'),
+            scale: 0.6,
+            opacity: 0.2,
+            alignment: Alignment.bottomLeft,
+            fit: BoxFit.none,
+          ),
+        ),*/
+        child: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.all(20),
+                child:
+                    esPantallaPequena
+                        ? InteractiveViewer(
+                          // 📌 Zoom solo en pantallas pequeñas
+                          constrained: true,
+                          minScale: 1.0,
+                          maxScale: 3.0,
+                          child: Column(
+                            children: [
+                              _buildHeader(),
+                              const SizedBox(height: 20),
+                              _buildTimelineCard(),
+                            ],
+                          ),
+                        )
+                        : Column(
+                          // 📌 Sin zoom en pantallas grandes
                           children: [
                             _buildHeader(),
                             const SizedBox(height: 20),
                             _buildTimelineCard(),
                           ],
                         ),
-                      )
-                      : Column(
-                        // 📌 Sin zoom en pantallas grandes
-                        children: [
-                          _buildHeader(),
-                          const SizedBox(height: 20),
-                          _buildTimelineCard(),
-                        ],
-                      ),
+              ),
             ),
-          ),
-          _buildNavigation(),
-        ],
+            _buildNavigation(),
+          ],
+        ),
       ),
     );
   }
@@ -210,83 +222,95 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
           elevation: 4, // se usa elevation para darle sombra al card
           child: Padding(
             padding: const EdgeInsets.all(24),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  secciones[_index],
-                  style: TextStyle(
-                    fontSize: tamanotexto(1) - 10,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Calibri',
-                    color: obtenercolor('Color_Principal'),
-                  ),
+            child: Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/fondo_textura_2.png'),
+                  scale: 0.5,
+                  opacity: 0.2,
+                  alignment: Alignment.bottomLeft,
+                  fit: BoxFit.none,
                 ),
-                const SizedBox(height: 20),
-                esPantallaPequena
-                    ? Column(
-                      // se usa ? como un operador ternario para saber si la pantalla es pequeña o grande
-                      children: [
-                        Text(
-                          textos[_index],
-                          style: TextStyle(
-                            fontSize: tamanotexto(2),
-                            fontFamily: 'Calibri',
-                            height: 1.5,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                        const SizedBox(height: 20),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(12),
-                          child: Image.asset(
-                            imagenes[_index],
-                            height: alturaImagenPequena[_index],
-                            fit: BoxFit.contain,
-                          ),
-                        ),
-                      ],
-                    )
-                    : Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          //se usa expanded para establecer el tamaño del texto
-                          flex: 2,
-                          //se usa flex para que la imagen ocupe el 2/3 de la pantalla
-                          child: Padding(
-                            padding: const EdgeInsets.only(right: 20),
-                            child: Text(
-                              textos[_index],
-                              style: TextStyle(
-                                fontSize: tamanotexto(2),
-                                fontFamily: 'Calibri',
-                                height: 1.5,
-                                //se usa height para aumentar la altura de la letra
-                              ),
-                            ),
-                          ),
-                        ),
-                        Flexible(
-                          flex: 0,
-                          child: Align(
-                            alignment: Alignment.topRight,
-                            // Alinear imagen a la derecha.
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(12),
-                              child: Image.asset(
-                                imagenes[_index], // Imagen dinámica.
-                                height: alturaImagengrande[_index],
-                                // Altura para pantallas grandes.
-                                fit: BoxFit.contain,
-                                // se usa fit para que la imagen se ajuste al tamaño del contenedor
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    secciones[_index],
+                    style: TextStyle(
+                      fontSize: tamanotexto(1) - 10,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Calibri',
+                      color: obtenercolor('Color_Principal'),
+                      backgroundColor: Colors.white,
                     ),
-              ],
+                  ),
+                  const SizedBox(height: 20),
+                  esPantallaPequena
+                      ? Column(
+                        // se usa ? como un operador ternario para saber si la pantalla es pequeña o grande
+                        children: [
+                          Text(
+                            textos[_index],
+                            style: TextStyle(
+                              fontSize: tamanotexto(2),
+                              fontFamily: 'Calibri',
+                              height: 1.5,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(height: 20),
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(12),
+                            child: Image.asset(
+                              imagenes[_index],
+                              height: alturaImagenPequena[_index],
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                        ],
+                      )
+                      : Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            //se usa expanded para establecer el tamaño del texto
+                            flex: 2,
+                            //se usa flex para que la imagen ocupe el 2/3 de la pantalla
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 20),
+                              child: Text(
+                                textos[_index],
+                                style: TextStyle(
+                                  fontSize: tamanotexto(2),
+                                  fontFamily: 'Calibri',
+                                  height: 1.5,
+                                  //se usa height para aumentar la altura de la letra
+                                ),
+                              ),
+                            ),
+                          ),
+                          Flexible(
+                            flex: 0,
+                            child: Align(
+                              alignment: Alignment.topRight,
+                              // Alinear imagen a la derecha.
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(12),
+                                child: Image.asset(
+                                  imagenes[_index], // Imagen dinámica.
+                                  height: alturaImagengrande[_index],
+                                  // Altura para pantallas grandes.
+                                  fit: BoxFit.contain,
+                                  // se usa fit para que la imagen se ajuste al tamaño del contenedor
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                ],
+              ),
             ),
           ),
         );

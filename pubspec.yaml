@@ -39,6 +39,7 @@ flutter:
     - assets/logoSena.png
     - assets/banner_superior.jpg
     - assets/fondo_textura.png
+    - assets/fondo_textura_2.png
 
 #------------------- IMAGENES TITULO ------------------#
 
@@ -61,16 +62,38 @@ flutter:
     - assets/PlanteamientoProblema/Planteamiento_del_Problema_Como_Hacer_Una_Espina_De_Pescado.png
     - assets/PlanteamientoProblema/Planteamiento_del_Problema_Ejemplo_1_Espina_De_Pescado.png
     - assets/PlanteamientoProblema/Planteamiento_del_Problema_Ejemplo_2_Espina_De_Pescado.png
+    - assets/PlanteamientoProblema/Planteamiento_del_Problema_Arbol_De_Problemas.png
     
+#--------------- IMagenes Justificacion ----------------#
+
+    - assets/Justificacion/Justificacion.png
+    - assets/Justificacion/Justificacion_Pasos.png
+    - assets/Justificacion/Justificacion_Consejos.png
+    - assets/Justificacion/Justificacion_Ejemplo.png
+
+#--------------- IMAGENES OBJETIVOS ----------------#
+
+    - assets/Objetivos/Objetivos.png
+    - assets/Objetivos/Objetivos_Método_Smart_Texto.png
+    - assets/Objetivos/Objetivos_Método_Smart_Titulo.png
 
 #--------------- IMAGENES BIBLIOGRAFIA ----------------#
 
     - assets/bibliografia/Bibliografia.png
     - assets/bibliografia/Bibliografia_Ejemplo.png
-    - assets/bibliografia/Bibliografia_Ejemplo_APA.png
-    - assets/bibliografia/BiblioGrafia_Ejemplo_IEEE.png
     - assets/bibliografia/Bibliografia_Normas_APA.png
+    - assets/bibliografia/Bibliografia_Ejemplo_APA.png
+    - assets/bibliografia/Bibliografia_Normas_IEEE.png
+    - assets/bibliografia/BiblioGrafia_Ejemplo_IEEE.png
+    - assets/bibliografia/Bibliografia_Sitios_Web_Recomendados.png
 
 #--------------- IMAGENES METODOLOGIA ----------------# 
 
     - assets/Metodologia/Metodologia_Tipos_De_Metodologia.png
+    - assets/Metodologia/Metodologia_Metodologia.png
+
+#--------------- IMAGENES ACTIVIDADES ----------------#
+
+    - assets/Actividades/Actividades.png
+    - assets/Actividades/Actividades_Resultados.png
+    - assets/Actividades/Actividades_Formulacion_De_Resultados.png
