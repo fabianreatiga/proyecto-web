@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:nuevomockups/Actividades/actividades.dart';
 import 'package:nuevomockups/Appbar/appbar.dart';
 import 'package:nuevomockups/Color_texto/color_texto.dart';
-import 'package:nuevomockups/Encuesta/encuesta.dart';
+import 'package:nuevomockups/Encuesta/Encuesta.dart';
 import 'package:nuevomockups/Menus/menus.dart';
 import 'package:nuevomockups/global.dart';
 

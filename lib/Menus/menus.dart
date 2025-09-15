@@ -3,7 +3,7 @@ import 'package:nuevomockups/Actividades/actividades.dart';
 import 'package:nuevomockups/Bibliografia/bibliografia.dart';
 import 'package:nuevomockups/Color_texto/color_texto.dart';
 import 'package:nuevomockups/Cronograma/cronograma.dart';
-import 'package:nuevomockups/Encuesta/encuesta.dart';
+import 'package:nuevomockups/Encuesta/Encuesta.dart';
 import 'package:nuevomockups/Justificacion/justificacion.dart';
 import 'package:nuevomockups/Metodologia/metodologia.dart';
 import 'package:nuevomockups/Objetivos/objetivos.dart';
@@ -284,6 +284,8 @@ class Menu extends StatelessWidget {
               );
             },
           ),
+
+          //======================= OPCIÓN ENCUESTA =======================\\
           ListTile(
             leading: Icon(
               Icons.check_box,
