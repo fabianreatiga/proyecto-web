@@ -12,7 +12,7 @@ import 'package:http/http.dart' as http;
 
 // Aquí defines SOLO una vez la URL base se debe de cambiar según la red local por el momento
 
-//const String baseApiUrl = "http://192.168.0.100:5000"; quitar comentario
+//const String baseApiUrl = "http://192.168.0.102:5000"; //Eliminar comentario
 
 void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized(); //en esta linea de codigo se asegura que los widgets esten inicializados antes de ejecutar la aplicacion
@@ -36,7 +36,8 @@ class Inicio extends StatelessWidget {
   final TextEditingController _NombreAprendiz = TextEditingController();
   // variable donde se obtiene el texto del campo Nombre Aprendiz
 
-  /*//quitar
+  /* Quitar
+
   Future<bool> usuarioRegistrado(String nombre, String ficha) async {
     try {
       final response = await http.get(Uri.parse("$baseApiUrl/items"));
@@ -70,7 +71,8 @@ class Inicio extends StatelessWidget {
       body: jsonEncode(data),
     );
   } // en este bloque de código se envían los datos a la API y se maneja la respuesta
-*/ //quitar
+
+*/ //Quitar
 
   void _mostrarcamposenblanco(BuildContext context, String mensaje) {
     showDialog(
@@ -105,18 +107,20 @@ class Inicio extends StatelessWidget {
     final programa = _NombrePrograma.text.trim();
     final ficha = _Nficha.text.trim();
 
-    /*//quitar
+    /* quitar
     if (nombre.isEmpty || programa.isEmpty || ficha.isEmpty) {
       _mostrarcamposenblanco(context, 'No puede haber campos en blanco');
       return;
     } // aca se verifica si hay campos en blanco y si los hay mustra un mensaje de error
+    
 */ //quitar
+
     setUsuarioGlobal(nombre); // aca guardamos el nombre en la variable global
     setFichaGlobal(ficha); // aca guardamos la ficha en la variable global
-
     setprogramaGlobal(programa);
 
     /* quitar
+
     await guardarProgresoFinal(0);
 
     await usuarioRegistrado(
@@ -124,7 +128,8 @@ class Inicio extends StatelessWidget {
       ficha,
     ); //aca se verifica si el usuario ya está registrado
     await _guardarEnAPI(context); // aca se envian los datos a la API
-*/ //quitar
+
+*/ // quitar
 
     Navigator.push(
       context,
@@ -271,14 +276,14 @@ class Inicio extends StatelessWidget {
             icon: Icons.person,
             hint: 'Escribe tu nombre',
             controller: _NombreAprendiz,
-          ),
+          ), // Campo de texto de nombre del aprendiz
           const SizedBox(height: 15),
           _campoTexto(
             label: 'Nombre Programa',
             icon: Icons.text_decrease,
             hint: 'Nombre Programa',
             controller: _NombrePrograma,
-          ),
+          ), // Campo de texto del nombre del programa
           const SizedBox(height: 15),
           SizedBox(
             width: 250,
@@ -311,8 +316,9 @@ class Inicio extends StatelessWidget {
               ],
             ),
           ),
+          // usamos estas lineas de codigo para darle estilo y limitar el tamaño del texto a 7
           const SizedBox(height: 30),
-          _botonIniciar(context),
+          _botonIniciar(context), // boton de iniciar
         ],
       ),
     );
@@ -332,6 +338,7 @@ class Inicio extends StatelessWidget {
               Stack(
                 children: [
                   Positioned.fill(
+                    // estamos usando positioned para colocar la textura en el fondo
                     child: Row(
                       children: [
                         Expanded(
@@ -343,6 +350,7 @@ class Inicio extends StatelessWidget {
                                 opacity: 0.3,
                               ),
                             ),
+                            // En esta linea de texto se esta agregando la textura en el fondo
                           ),
                         ),
                         Expanded(
@@ -354,6 +362,7 @@ class Inicio extends StatelessWidget {
                                 opacity: 0.3,
                               ),
                             ),
+                            // usamos 2 texturas para que no se amplie mucho la imagen
                           ),
                         ),
                       ],
@@ -482,6 +491,7 @@ class Inicio extends StatelessWidget {
                   ),
                 ),
 
+                // es este bloque de codigo se agrego el campo de texto del N° ficha y dar limitacion a 7 numeros
                 const SizedBox(height: 30),
                 _botonIniciar(context),
               ],
@@ -524,6 +534,7 @@ class Inicio extends StatelessWidget {
       ),
     );
   }
+  //en este bloque de codigo damos estilo al boton de iniciar
 
   static Widget _campoTexto({
     //se creo este widget para darle estilo a los campos de texto
@@ -554,7 +565,7 @@ class Inicio extends StatelessWidget {
       ),
     );
   }
-}
+} // en esta linea de codigo le damos etilo a los campos de texto
 
 const String aplicativo =
     'Aplicativo para la estructuración de proyectos de investigación';

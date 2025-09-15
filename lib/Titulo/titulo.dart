@@ -44,7 +44,7 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
     'Se recomienda usar entre 12-20 palabras, Ser limitativo: Si son fechas: Especificar el periodo de tiempo o la época, Si son personas: Edad, género, profesión, etc., Si son lugares: Colonia, localidad, municipio, estado, país, Si son teorías o corrientes: Especificar la ciencia que se aplica, Evitar la sobre explicación.',
     'Palabras útiles para estructurar el título.',
     'Ejemplos para la creación de un título:',
-  ];
+  ]; // lista de los textos que se van a mostrar
 
   final List<String> imagenes = [
     'assets/titulo/titulo.png',
@@ -52,7 +52,7 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
     'assets/titulo/Titulo_otras_caracteristicas.jpg',
     'assets/titulo/Titulo_palabras_utiles.png',
     'assets/titulo/Titulo_ejemplo.png',
-  ];
+  ]; // lista de las imagenes
 
   // ignore: unused_field
   int _currentseccion = 0;
@@ -63,13 +63,7 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
     'MÁS CARACTERÍSTICAS DEL TÍTULO',
     'PALABRAS ÚTILES PARA TÍTULO',
     'EJEMPLOS DE TÍTULO',
-  ];
-
-  /*int _progresoContador = 1;
-  // contador para el progreso, inicia en 1 porque la primera pestaña ya se ha visto
-  double get progreso {
-    return _progresoContador / secciones.length;
-  } // se usa el contador para calcular el progreso*/
+  ]; // lista de las secciones
 
   final List<double> alturaImagengrande = [
     220, //TITULO
@@ -77,15 +71,17 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
     260, //MAS CARACTERISTICAS DEL TITULO
     350, // PALABRAS UTILES PARA TITULO
     450, //EJEMPLOS DE TITULOS
-  ];
+  ]; // lista de las alturas de las imagenes para pantallas grandes
+
   final List<double> alturaImagenPequena = [
     200, //TITULO
     200, // CARACTERISTICAS DEL TITULO
     200, //MAS CARACTERISTICAS DEL TITULO
     450, // PALABRAS UTILES PARA TITULO
     450, //EJEMPLOS DE TITULOS
-  ];
-  static int ID_BASE_PROGRESO = 1;
+  ]; // lista de las alturas de las imagenes para pantallas pequenas
+
+  static int ID_BASE_PROGRESO = 1; // ID base para el progreso de este subtema
 
   @override
   void initState() {
@@ -105,7 +101,7 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
         }
       }
     });
-  }
+  } // es este bloque de codigo se usa para inicializar el estado del widget
 
   @override
   Widget build(BuildContext context) {
@@ -115,12 +111,14 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
     return Scaffold(
       backgroundColor: obtenercolor('Color_Fondo'),
       appBar: Appbar2(
-        nombre: '',
-        progreso: ProgresoGlobal.progreso,
+        nombre: '', // aca se mostrara el nombre del aprendiz
+        progreso:
+            ProgresoGlobal.progreso, // aca se muestra el progreso del aprendiz
         actions: [
           TextButton.icon(
             onPressed: () {
               modalmenu(context);
+              // aca llamamos a modal menu
             },
             icon: Icon(
               Icons.more_vert,
@@ -137,18 +135,11 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
           ),
         ],
       ),
+
+      // Een este bloque de codigo se usa para mostrar y navegar por el modal menu
       drawer: const Menu(currentScreen: 'Titulo'),
       body: Container(
         padding: EdgeInsets.all(0),
-        /*decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/fondo_textura_2.png'),
-            scale: 0.6,
-            opacity: 0.2,
-            alignment: Alignment.bottomLeft,
-            fit: BoxFit.none,
-          ),
-        ),*/
         child: Column(
           children: [
             Expanded(

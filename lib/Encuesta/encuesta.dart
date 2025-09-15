@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:nuevomockups/Appbar/appbar.dart';
 import 'package:nuevomockups/Color_texto/color_texto.dart';
@@ -19,12 +21,58 @@ class Encuestas extends StatefulWidget {
   State<Encuestas> createState() => _EncuestasState();
 }
 
+void _mostrarcamposenblanco(BuildContext context, String mensaje) {
+  showDialog(
+    context: context,
+    builder:
+        (ctx) => AlertDialog(
+          title: const Text('Error'),
+          content: Text(mensaje),
+          actions: [
+            Center(
+              child: SizedBox(
+                width: 100,
+                child: TextButton(
+                  onPressed: () => Navigator.of(ctx).pop(),
+                  style: TextButton.styleFrom(
+                    backgroundColor: obtenercolor('Color_Principal'),
+                    foregroundColor: obtenercolor('Color_Texto_Principal'),
+                  ),
+                  child: const Text('Aceptar'),
+                ),
+              ),
+            ),
+          ],
+        ),
+  );
+}
+
 class _EncuestasState extends State<Encuestas> {
-  // Variables de estado (sí/no) -> true = Sí, false = No
-  bool? _diseno;
-  bool? _facil;
-  bool? _util;
-  bool? _organizacion;
+  // Variables de estado
+  String? _diseno;
+  String? _facil;
+  String? _util;
+  String? _organizacion;
+
+  /// Widget para construir cada opción (Radio + Texto al lado alineados)
+  Widget _buildOpcion({
+    required String texto,
+    required String value,
+    required String? groupValue,
+    required Function(String?) onChanged,
+  }) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Radio<String>(
+          value: value,
+          groupValue: groupValue,
+          onChanged: onChanged,
+        ),
+        Expanded(child: Text(texto, style: const TextStyle(fontSize: 16))),
+      ],
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +83,7 @@ class _EncuestasState extends State<Encuestas> {
       body: SingleChildScrollView(
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.all(50),
+            padding: const EdgeInsets.all(30),
             child: Card(
               color: obtenercolor('Color_Fondo'),
               shape: RoundedRectangleBorder(
@@ -44,148 +92,248 @@ class _EncuestasState extends State<Encuestas> {
               elevation: 4,
               child: Padding(
                 padding: const EdgeInsets.all(30),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // Pregunta 1
-                    Center(child: const Text('1. ¿Le gustó el diseño?')),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Radio<bool>(
-                          value: true,
-                          groupValue: _diseno,
-                          onChanged: (value) {
-                            setState(() => _diseno = value);
-                          },
-                        ),
-                        const Text('Sí'),
-                        Radio<bool>(
-                          value: false,
-                          groupValue: _diseno,
-                          onChanged: (value) {
-                            setState(() => _diseno = value);
-                          },
-                        ),
-                        const Text('No'),
-                      ],
-                    ),
-                    const SizedBox(height: 20),
-
-                    // Pregunta 2
-                    Center(
-                      child: const Text(
-                        '2. ¿Le resultó fácil de entender la información presentada?',
+                child: Center(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('assets/fondo_textura_2.png'),
+                        scale: 0.5,
+                        opacity: 0.2,
+                        alignment: Alignment.bottomLeft,
+                        fit: BoxFit.none,
                       ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Radio<bool>(
-                          value: true,
-                          groupValue: _facil,
-                          onChanged: (value) {
-                            setState(() => _facil = value);
-                          },
+                        // Pregunta 1
+                        Text(
+                          '1. ¿Le gustó el diseño?',
+                          style: TextStyle(fontSize: tamanotexto(2)),
                         ),
-                        const Text('Sí'),
-                        Radio<bool>(
-                          value: false,
-                          groupValue: _facil,
-                          onChanged: (value) {
-                            setState(() => _facil = value);
-                          },
-                        ),
-                        const Text('No'),
-                      ],
-                    ),
-                    const SizedBox(height: 20),
-
-                    // Pregunta 3
-                    Center(
-                      child: const Text(
-                        '3. ¿Considera que el contenido es útil?',
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Radio<bool>(
-                          value: true,
-                          groupValue: _util,
-                          onChanged: (value) {
-                            setState(() => _util = value);
-                          },
-                        ),
-                        const Text('Sí'),
-                        Radio<bool>(
-                          value: false,
-                          groupValue: _util,
-                          onChanged: (value) {
-                            setState(() => _util = value);
-                          },
-                        ),
-                        const Text('No'),
-                      ],
-                    ),
-                    const SizedBox(height: 20),
-
-                    // Pregunta 4
-                    Center(
-                      child: const Text(
-                        '4. ¿La organización del material le pareció adecuada?',
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Radio<bool>(
-                          value: true,
-                          groupValue: _organizacion,
-                          onChanged: (value) {
-                            setState(() => _organizacion = value);
-                          },
-                        ),
-                        const Text('Sí'),
-                        Radio<bool>(
-                          value: false,
-                          groupValue: _organizacion,
-                          onChanged: (value) {
-                            setState(() => _organizacion = value);
-                          },
-                        ),
-                        const Text('No'),
-                      ],
-                    ),
-                    const SizedBox(height: 30),
-
-                    // Botón Enviar
-                    Center(
-                      child: SizedBox(
-                        height: 45,
-                        width: 150,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: obtenercolor('Color_Principal'),
-                            foregroundColor: obtenercolor(
-                              'Color_Texto_Principal',
+                        Center(
+                          child: SizedBox(
+                            width: double.infinity,
+                            child: Center(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  _buildOpcion(
+                                    texto: 'Muy satisfecho',
+                                    value: 'muy_satisfecho',
+                                    groupValue: _diseno,
+                                    onChanged:
+                                        (val) => setState(() => _diseno = val),
+                                  ),
+                                  _buildOpcion(
+                                    texto: 'Satisfecho',
+                                    value: 'satisfecho',
+                                    groupValue: _diseno,
+                                    onChanged:
+                                        (val) => setState(() => _diseno = val),
+                                  ),
+                                  _buildOpcion(
+                                    texto: 'Insatisfecho',
+                                    value: 'insatisfecho',
+                                    groupValue: _diseno,
+                                    onChanged:
+                                        (val) => setState(() => _diseno = val),
+                                  ),
+                                  _buildOpcion(
+                                    texto: 'Muy insatisfecho',
+                                    value: 'muy_insatisfecho',
+                                    groupValue: _diseno,
+                                    onChanged:
+                                        (val) => setState(() => _diseno = val),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                          onPressed: () {
-                            // Aquí recoges las respuestas
-                            print('Diseño: $_diseno');
-                            print('Fácil de entender: $_facil');
-                            print('Contenido útil: $_util');
-                            print('Organización: $_organizacion');
-                          },
-                          child: Text(
-                            'Enviar',
-                            style: TextStyle(fontSize: tamanotexto(2)),
+                        ),
+
+                        const SizedBox(height: 20),
+
+                        // Pregunta 2
+                        Text(
+                          '2. ¿Le resultó fácil de entender la información presentada?',
+                          style: TextStyle(fontSize: tamanotexto(2)),
+                        ),
+                        SizedBox(
+                          width: double.infinity,
+                          child: Column(
+                            children: [
+                              _buildOpcion(
+                                texto: 'Totalmente de acuerdo',
+                                value: 'Totalmente de acuerdo',
+                                groupValue: _facil,
+                                onChanged:
+                                    (val) => setState(() => _facil = val),
+                              ),
+                              _buildOpcion(
+                                texto: 'De acuerdo',
+                                value: 'De acuerdo',
+                                groupValue: _facil,
+                                onChanged:
+                                    (val) => setState(() => _facil = val),
+                              ),
+                              _buildOpcion(
+                                texto: 'En desacuerdo',
+                                value: 'En desacuerdo',
+                                groupValue: _facil,
+                                onChanged:
+                                    (val) => setState(() => _facil = val),
+                              ),
+                              _buildOpcion(
+                                texto: 'Totalmente en desacuerdo',
+                                value: 'Totalmente en desacuerdo',
+                                groupValue: _facil,
+                                onChanged:
+                                    (val) => setState(() => _facil = val),
+                              ),
+                            ],
                           ),
                         ),
-                      ),
+                        const SizedBox(height: 20),
+
+                        // Pregunta 3
+                        Text(
+                          '3. ¿Considera que el contenido es útil?',
+                          style: TextStyle(fontSize: tamanotexto(2)),
+                        ),
+                        SizedBox(
+                          width: double.infinity,
+                          child: Column(
+                            children: [
+                              _buildOpcion(
+                                texto: 'Totalmente de acuerdo',
+                                value: 'Totalmente de acuerdo',
+                                groupValue: _util,
+                                onChanged: (val) => setState(() => _util = val),
+                              ),
+                              _buildOpcion(
+                                texto: 'De acuerdo',
+                                value: 'De acuerdo',
+                                groupValue: _util,
+                                onChanged: (val) => setState(() => _util = val),
+                              ),
+                              _buildOpcion(
+                                texto: 'En desacuerdo',
+                                value: 'En desacuerdo',
+                                groupValue: _util,
+                                onChanged: (val) => setState(() => _util = val),
+                              ),
+                              _buildOpcion(
+                                texto: 'Totalmente en desacuerdo',
+                                value: 'Totalmente en desacuerdo',
+                                groupValue: _util,
+                                onChanged: (val) => setState(() => _util = val),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+
+                        // Pregunta 4
+                        Text(
+                          '4. ¿La organización del material le pareció adecuada?',
+                          style: TextStyle(fontSize: tamanotexto(2)),
+                        ),
+                        SizedBox(
+                          width: double.infinity,
+                          child: Column(
+                            children: [
+                              _buildOpcion(
+                                texto: 'Excelente',
+                                value: 'Excelente',
+                                groupValue: _organizacion,
+                                onChanged:
+                                    (val) =>
+                                        setState(() => _organizacion = val),
+                              ),
+                              _buildOpcion(
+                                texto: 'Bueno',
+                                value: 'Bueno',
+                                groupValue: _organizacion,
+                                onChanged:
+                                    (val) =>
+                                        setState(() => _organizacion = val),
+                              ),
+                              _buildOpcion(
+                                texto: 'Regular',
+                                value: 'Regular',
+                                groupValue: _organizacion,
+                                onChanged:
+                                    (val) =>
+                                        setState(() => _organizacion = val),
+                              ),
+                              _buildOpcion(
+                                texto: 'Malo',
+                                value: 'Malo',
+                                groupValue: _organizacion,
+                                onChanged:
+                                    (val) =>
+                                        setState(() => _organizacion = val),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 30),
+
+                        // Botón Enviar
+                        Center(
+                          child: SizedBox(
+                            height: 45,
+                            width: 150,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: obtenercolor(
+                                  'Color_Principal',
+                                ),
+                                foregroundColor: obtenercolor(
+                                  'Color_Texto_Principal',
+                                ),
+                              ),
+                              onPressed: () {
+                                if (_diseno == null ||
+                                    _facil == null ||
+                                    _util == null ||
+                                    _organizacion == null) {
+                                  _mostrarcamposenblanco(
+                                    context,
+                                    'No puede haber campos en blanco',
+                                  );
+                                  return;
+                                }
+
+                                setState(() {
+                                  _diseno = null;
+                                  _facil = null;
+                                  _util = null;
+                                  _organizacion = null;
+                                });
+
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: const Center(
+                                      child: Text("Respuestas enviadas"),
+                                    ),
+                                    backgroundColor: obtenercolor(
+                                      'Color_Principal',
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: Text(
+                                'Enviar',
+                                style: TextStyle(fontSize: tamanotexto(2)),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
               ),
             ),

@@ -500,6 +500,15 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
     // se usa kIsweb para saber si estamos en un dispositivo web
 
     final ScrollController scrollController = ScrollController();
+    final double itemWidth = esPantallaGrande ? 180 : 120;
+    final double itemSpacing = 24; // margen horizontal * 2 (12+12)
+    final double totalContentWidth =
+        (itemWidth + itemSpacing) * menuItems.length;
+
+    double sidePadding = 0;
+    if (totalContentWidth < screenWidth) {
+      sidePadding = (screenWidth - totalContentWidth) / 2;
+    }
 
     return SizedBox(
       height: 190, // un poco más para dar espacio a la barra
@@ -512,6 +521,7 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
           controller: scrollController,
           scrollDirection: Axis.horizontal,
           itemCount: menuItems.length,
+          padding: EdgeInsets.symmetric(horizontal: sidePadding),
           itemBuilder: (context, index) {
             final item = menuItems[index];
             final bool isVisited = pestanasVistas.contains(item['indice']);
@@ -532,7 +542,10 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                         _index = nuevoIndex;
                         if (!pestanasVistas.contains(nuevoIndex)) {
                           pestanasVistas.add(nuevoIndex);
-                          ProgresoGlobal.marcarVisto(item['id']);
+                          ProgresoGlobal.marcarVisto(
+                            menuItems[_index + 1]['id'],
+                          );
+
                           //_progresoContador++;
                         }
                       });
