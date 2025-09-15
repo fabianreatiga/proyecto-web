@@ -27,3 +27,5 @@ double tamanotexto(int valor) {
       return 18;
   }
 }
+
+// esta funcion es global y se usa en todo el aplicativo

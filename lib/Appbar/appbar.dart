@@ -13,7 +13,7 @@ class Appbar2 extends StatelessWidget implements PreferredSizeWidget {
     required this.actions,
     required this.progreso,
     required this.nombre, // 👈 requerido
-  });
+  }); // aca se recibe el nombre, progreso y las acciones
 
   @override
   Widget build(BuildContext context) {
@@ -100,10 +100,14 @@ class Appbar2 extends StatelessWidget implements PreferredSizeWidget {
             opacity: 0.15,
           ),
         ),
+        // aca tambien agregamos una textura
       ),
     );
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight + 15);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight + 15); // se usa para ajustar el tamaño del appbar
 }
+
+
+// el appbar.dart se esta usando en todas las ventanas del aplicativo
