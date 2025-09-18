@@ -23,13 +23,57 @@ mongoose.connect(process.env.MONGO_URI, {
 // =======================
 // MODELO
 // =======================
-const ItemSchema = new mongoose.Schema({
+/*const ItemSchema = new mongoose.Schema({
   nombre: { type: String, required: true, trim: true, lowercase: true },
   programa: { type: String, trim: true},
   ficha: { type: String, required: true, trim: true },
   progreso: { type: Number,},
   fecha: { type: Date }, 
 }, { timestamps: true });
+*/
+const ItemSchema = new mongoose.Schema({
+  nombre: { type: String, required: true, trim: true, lowercase: true },
+  programa: { type: String, trim: true },
+  ficha: { type: String, required: true, trim: true },
+  progreso: { type: Number },
+  fecha: { type: Date },
+
+  // 📌 Encuesta asociada directamente al aprendiz
+  encuesta: {
+    diseno: { type: String },
+    facil: { type: String },
+    util: { type: String },
+    organizacion: { type: String },
+    fecha: { type: Date, default: Date.now }
+  }
+
+}, { timestamps: true });
+
+app.post("/guardarTodo", async (req, res) => {
+  try {
+    const { nombre, ficha, diseno, facil, util, organizacion } = req.body;
+
+    let item = await Item.findOne({ nombre, ficha });
+
+    if (!item) {
+      item = new Item({
+        nombre,
+        ficha,
+        progreso: 2,
+        encuesta: { diseno, facil, util, organizacion }
+      });
+    } else {
+      item.progreso += 2;
+      item.encuesta = { diseno, facil, util, organizacion, fecha: new Date() };
+    }
+
+    await item.save();
+    res.json({ mensaje: "✅ Guardado con encuesta", item });
+  } catch (err) {
+    res.status(500).json({ mensaje: err.message });
+  }
+});
+
 
 ItemSchema.index(//nuevo
   { nombre: 1, ficha: 1 },
@@ -205,8 +249,50 @@ app.post("/guardarProgreso", async (req, res) => {
 });*/
 
 
+// =======================
+// MODELO ENCUESTA
+// =======================
+/*const EncuestaSchema = new mongoose.Schema({
+  diseno: { type: String, required: true },
+  facil: { type: String, required: true },
+  util: { type: String, required: true },
+  organizacion: { type: String, required: true },
+  fecha: { type: Date, default: Date.now }
+}, { timestamps: true });
+
+const Encuesta = mongoose.model("Encuesta", EncuestaSchema);
 
 
+// =======================
+// RUTA ENCUESTA
+// =======================
+app.post("/encuestas", async (req, res) => {
+  try {
+    const { diseno, facil, util, organizacion } = req.body;
+
+    if (!diseno || !facil || !util || !organizacion) {
+      return res.status(400).json({ mensaje: "Todos los campos son requeridos" });
+    }
+
+    const nuevaEncuesta = new Encuesta({ diseno, facil, util, organizacion });
+    await nuevaEncuesta.save();
+
+    res.status(201).json({ mensaje: "✅ Encuesta guardada", encuesta: nuevaEncuesta });
+  } catch (err) {
+    res.status(500).json({ mensaje: err.message });
+  }
+});
+
+// Obtener todas las encuestas
+app.get("/encuestas", async (req, res) => {
+  try {
+    const encuestas = await Encuesta.find().sort({ createdAt: -1 });
+    res.json(encuestas);
+  } catch (err) {
+    res.status(500).json({ mensaje: err.message });
+  }
+});
+*/
 
 
 // =======================

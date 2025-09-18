@@ -5,6 +5,40 @@ import 'package:nuevomockups/Appbar/appbar.dart';
 import 'package:nuevomockups/Color_texto/color_texto.dart';
 import 'package:nuevomockups/Menus/menus.dart';
 
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+import 'package:nuevomockups/global.dart';
+
+// Ahora enviamos nombre y ficha también
+Future<void> enviarEncuesta({
+  required String diseno,
+  required String facil,
+  required String util,
+  required String organizacion,
+  required String nombre,
+  required String ficha,
+}) async {
+  final url = Uri.parse("http://192.168.0.102:5000/guardarTodo");
+
+  final respuesta = await http.post(
+    url,
+    headers: {"Content-Type": "application/json"},
+    body: jsonEncode({
+      "diseno": diseno,
+      "facil": facil,
+      "util": util,
+      "organizacion": organizacion,
+      "nombre": nombre,
+      "ficha": ficha,
+      "fecha": DateTime.now().toIso8601String(),
+    }),
+  );
+
+  if (respuesta.statusCode != 201) {
+    throw Exception("Error al enviar encuesta: ${respuesta.body}");
+  }
+}
+
 class Encuesta extends StatelessWidget {
   const Encuesta({super.key});
 
@@ -48,13 +82,11 @@ void _mostrarcamposenblanco(BuildContext context, String mensaje) {
 }
 
 class _EncuestasState extends State<Encuestas> {
-  // Variables de estado
   String? _diseno;
   String? _facil;
   String? _util;
   String? _organizacion;
 
-  /// Widget para construir cada opción (Radio + Texto al lado alineados)
   Widget _buildOpcion({
     required String texto,
     required String value,
@@ -106,7 +138,7 @@ class _EncuestasState extends State<Encuestas> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // Pregunta 1
+                        // Preguntas (1 a 4) siguen igual
                         Text(
                           '1. ¿Le gustó el diseño?',
                           style: TextStyle(fontSize: tamanotexto(2)),
@@ -151,10 +183,7 @@ class _EncuestasState extends State<Encuestas> {
                             ),
                           ),
                         ),
-
                         const SizedBox(height: 20),
-
-                        // Pregunta 2
                         Text(
                           '2. ¿Le resultó fácil de entender la información presentada?',
                           style: TextStyle(fontSize: tamanotexto(2)),
@@ -195,8 +224,6 @@ class _EncuestasState extends State<Encuestas> {
                           ),
                         ),
                         const SizedBox(height: 20),
-
-                        // Pregunta 3
                         Text(
                           '3. ¿Considera que el contenido es útil?',
                           style: TextStyle(fontSize: tamanotexto(2)),
@@ -233,8 +260,6 @@ class _EncuestasState extends State<Encuestas> {
                           ),
                         ),
                         const SizedBox(height: 20),
-
-                        // Pregunta 4
                         Text(
                           '4. ¿La organización del material le pareció adecuada?',
                           style: TextStyle(fontSize: tamanotexto(2)),
@@ -294,7 +319,7 @@ class _EncuestasState extends State<Encuestas> {
                                   'Color_Texto_Principal',
                                 ),
                               ),
-                              onPressed: () {
+                              onPressed: () async {
                                 if (_diseno == null ||
                                     _facil == null ||
                                     _util == null ||
@@ -304,25 +329,25 @@ class _EncuestasState extends State<Encuestas> {
                                     'No puede haber campos en blanco',
                                   );
                                   return;
+                                } else {
+                                  // Aquí pasamos nombre y ficha al enviar
+                                  await enviarEncuesta(
+                                    diseno: _diseno!,
+                                    facil: _facil!,
+                                    util: _util!,
+                                    organizacion: _organizacion!,
+                                    nombre: usuarioglobal,
+                                    ficha: fichaglobal,
+                                    // asegúrate de tener esta variable
+                                  );
+
+                                  setState(() {
+                                    _diseno = null;
+                                    _facil = null;
+                                    _util = null;
+                                    _organizacion = null;
+                                  });
                                 }
-
-                                setState(() {
-                                  _diseno = null;
-                                  _facil = null;
-                                  _util = null;
-                                  _organizacion = null;
-                                });
-
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: const Center(
-                                      child: Text("Respuestas enviadas"),
-                                    ),
-                                    backgroundColor: obtenercolor(
-                                      'Color_Principal',
-                                    ),
-                                  ),
-                                );
                               },
                               child: Text(
                                 'Enviar',
