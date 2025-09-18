@@ -64,7 +64,7 @@ class _ActividadState extends State<Actividad> with TickerProviderStateMixin {
   final List<double> alturaImagengrande = [
     450, //ACTIVIDADES
     350, //RESULTADOS
-    250, //FORMULACIÓN DE RESULTADOS
+    450, //FORMULACIÓN DE RESULTADOS
   ];
 
   final List<double> alturaImagenPequena = [

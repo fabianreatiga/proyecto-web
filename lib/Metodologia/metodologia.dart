@@ -382,7 +382,7 @@ class _MetodologiasState extends State<Metodologias>
                     }
                   });
                 } else {
-                  // await guardarProgresoFinal(2);
+                  //await guardarProgresoFinal(2);
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const Cronograma()),

@@ -40,18 +40,22 @@ const ItemSchema = new mongoose.Schema({
 
   // 📌 Encuesta asociada directamente al aprendiz
   encuesta: {
-    diseno: { type: String },
-    facil: { type: String },
-    util: { type: String },
-    organizacion: { type: String },
-    fecha: { type: Date, default: Date.now }
+    titulo: { type: String },
+    planteamientoproblema: { type: String },
+    justificacion: { type: String },
+    objetivos: { type: String },
+    metodologia: { type: String},
+    cronograma: { type: String},
+    actividadesresultados: { type: String},
+    bibliografia: { type: String},
+    //fecha: { type: Date, default: Date.now }
   }
 
 }, { timestamps: true });
 
 app.post("/guardarTodo", async (req, res) => {
   try {
-    const { nombre, ficha, diseno, facil, util, organizacion } = req.body;
+    const { nombre, ficha, titulo, planteamientoproblema, justificacion, objetivos, metodologia, cronograma, actividadesresultados, bibliografia } = req.body;
 
     let item = await Item.findOne({ nombre, ficha });
 
@@ -59,12 +63,12 @@ app.post("/guardarTodo", async (req, res) => {
       item = new Item({
         nombre,
         ficha,
-        progreso: 2,
-        encuesta: { diseno, facil, util, organizacion }
+       // progreso: 2,
+        encuesta: { titulo, planteamientoproblema, justificacion, objetivos,metodologia,cronograma, actividadesresultados, bibliografia }
       });
     } else {
-      item.progreso += 2;
-      item.encuesta = { diseno, facil, util, organizacion, fecha: new Date() };
+      //item.progreso += 2;
+      item.encuesta = { titulo, planteamientoproblema, justificacion, objetivos,metodologia, cronograma, actividadesresultados, bibliografia, fecha: new Date() };
     }
 
     await item.save();

@@ -10,34 +10,34 @@ import 'package:http/http.dart' as http;
 import 'package:nuevomockups/global.dart';
 
 // Ahora enviamos nombre y ficha también
+
+//quitar
 Future<void> enviarEncuesta({
-  required String diseno,
-  required String facil,
-  required String util,
-  required String organizacion,
+  required String bibliografia,
   required String nombre,
   required String ficha,
 }) async {
-  final url = Uri.parse("http://192.168.0.102:5000/guardarTodo");
+  final url = Uri.parse("http://192.168.0.103:5000/guardarTodo");
 
   final respuesta = await http.post(
     url,
     headers: {"Content-Type": "application/json"},
-    body: jsonEncode({
-      "diseno": diseno,
-      "facil": facil,
-      "util": util,
-      "organizacion": organizacion,
+    body: jsonEncode({     
+      "bibliografia": bibliografia,
       "nombre": nombre,
       "ficha": ficha,
-      "fecha": DateTime.now().toIso8601String(),
+      //"fecha": DateTime.now().toIso8601String(),
     }),
   );
 
-  if (respuesta.statusCode != 201) {
+  if (respuesta.statusCode != 200 && respuesta.statusCode != 201) {
     throw Exception("Error al enviar encuesta: ${respuesta.body}");
   }
+  debugPrint(
+    "📤 Enviando: ${jsonEncode({"bibliografia": bibliografia, "nombre": nombre, "ficha": ficha})}",
+  );
 }
+//Quitar
 
 class Encuesta extends StatelessWidget {
   const Encuesta({super.key});
@@ -82,10 +82,14 @@ void _mostrarcamposenblanco(BuildContext context, String mensaje) {
 }
 
 class _EncuestasState extends State<Encuestas> {
-  String? _diseno;
-  String? _facil;
-  String? _util;
-  String? _organizacion;
+  String? _titulo;
+  String? _planteamientoproblema;
+  String? _justificacion;
+  String? _objetivos;
+  String? _metodologia;
+  String? _cronograma;
+  String? _actividadesresultados;
+  String? _bibliografia;
 
   Widget _buildOpcion({
     required String texto,
@@ -140,7 +144,184 @@ class _EncuestasState extends State<Encuestas> {
                       children: [
                         // Preguntas (1 a 4) siguen igual
                         Text(
-                          '1. ¿Le gustó el diseño?',
+                          '1. ¿El contenido de Título le fue útil como apoyo en la estructuración de su proyecto de investigación?',
+                          style: TextStyle(fontSize: tamanotexto(2)),
+                        ),
+                        Center(
+                          child: SizedBox(
+                            width: double.infinity,
+                            child: Center(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  _buildOpcion(
+                                    texto: 'Muy útil',
+                                    value: 'Muy útil',
+                                    groupValue: _titulo,
+                                    onChanged:
+                                        (val) => setState(() => _titulo = val),
+                                  ),
+                                  _buildOpcion(
+                                    texto: 'Útil',
+                                    value: 'Útil',
+                                    groupValue: _titulo,
+                                    onChanged:
+                                        (val) => setState(() => _titulo = val),
+                                  ),
+                                  _buildOpcion(
+                                    texto: 'Poco útil',
+                                    value: 'Poco útil',
+                                    groupValue: _titulo,
+                                    onChanged:
+                                        (val) => setState(() => _titulo = val),
+                                  ),
+                                  _buildOpcion(
+                                    texto: 'Nada útil',
+                                    value: 'Nada útil',
+                                    groupValue: _titulo,
+                                    onChanged:
+                                        (val) => setState(() => _titulo = val),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        Text(
+                          '2. ¿Considera que las orientaciones en la sección Planteamiento del problema fueron claras y útiles para su proyecto?',
+                          style: TextStyle(fontSize: tamanotexto(2)),
+                        ),
+                        SizedBox(
+                          width: double.infinity,
+                          child: Column(
+                            children: [
+                              _buildOpcion(
+                                texto: 'Totalmente de acuerdo',
+                                value: 'Totalmente de acuerdo',
+                                groupValue: _planteamientoproblema,
+                                onChanged:
+                                    (val) => setState(
+                                      () => _planteamientoproblema = val,
+                                    ),
+                              ),
+                              _buildOpcion(
+                                texto: 'De acuerdo',
+                                value: 'De acuerdo',
+                                groupValue: _planteamientoproblema,
+                                onChanged:
+                                    (val) => setState(
+                                      () => _planteamientoproblema = val,
+                                    ),
+                              ),
+                              _buildOpcion(
+                                texto: 'En desacuerdo',
+                                value: 'En desacuerdo',
+                                groupValue: _planteamientoproblema,
+                                onChanged:
+                                    (val) => setState(
+                                      () => _planteamientoproblema = val,
+                                    ),
+                              ),
+                              _buildOpcion(
+                                texto: 'Totalmente en desacuerdo',
+                                value: 'Totalmente en desacuerdo',
+                                groupValue: _planteamientoproblema,
+                                onChanged:
+                                    (val) => setState(
+                                      () => _planteamientoproblema = val,
+                                    ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        Text(
+                          '3. ¿La justificación logra demostrar el impacto positivo que tendría el proyecto?',
+                          style: TextStyle(fontSize: tamanotexto(2)),
+                        ),
+                        SizedBox(
+                          width: double.infinity,
+                          child: Column(
+                            children: [
+                              _buildOpcion(
+                                texto: 'Totalmente de acuerdo',
+                                value: 'Totalmente de acuerdo',
+                                groupValue: _justificacion,
+                                onChanged:
+                                    (val) =>
+                                        setState(() => _justificacion = val),
+                              ),
+                              _buildOpcion(
+                                texto: 'De acuerdo',
+                                value: 'De acuerdo',
+                                groupValue: _justificacion,
+                                onChanged:
+                                    (val) =>
+                                        setState(() => _justificacion = val),
+                              ),
+                              _buildOpcion(
+                                texto: 'En desacuerdo',
+                                value: 'En desacuerdo',
+                                groupValue: _justificacion,
+                                onChanged:
+                                    (val) =>
+                                        setState(() => _justificacion = val),
+                              ),
+                              _buildOpcion(
+                                texto: 'Totalmente en desacuerdo',
+                                value: 'Totalmente en desacuerdo',
+                                groupValue: _justificacion,
+                                onChanged:
+                                    (val) =>
+                                        setState(() => _justificacion = val),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        Text(
+                          '4. ¿Los objetivos están redactados de manera clara y fácil de comprender?',
+                          style: TextStyle(fontSize: tamanotexto(2)),
+                        ),
+                        SizedBox(
+                          width: double.infinity,
+                          child: Column(
+                            children: [
+                              _buildOpcion(
+                                texto: 'Excelente',
+                                value: 'Excelente',
+                                groupValue: _objetivos,
+                                onChanged:
+                                    (val) => setState(() => _objetivos = val),
+                              ),
+                              _buildOpcion(
+                                texto: 'Bueno',
+                                value: 'Bueno',
+                                groupValue: _objetivos,
+                                onChanged:
+                                    (val) => setState(() => _objetivos = val),
+                              ),
+                              _buildOpcion(
+                                texto: 'Regular',
+                                value: 'Regular',
+                                groupValue: _objetivos,
+                                onChanged:
+                                    (val) => setState(() => _objetivos = val),
+                              ),
+                              _buildOpcion(
+                                texto: 'Malo',
+                                value: 'Malo',
+                                groupValue: _objetivos,
+                                onChanged:
+                                    (val) => setState(() => _objetivos = val),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        Text(
+                          '5. ¿La metodología propuesta es clara en cuanto a los pasos o etapas que se seguirán?',
                           style: TextStyle(fontSize: tamanotexto(2)),
                         ),
                         Center(
@@ -152,31 +333,35 @@ class _EncuestasState extends State<Encuestas> {
                                 children: [
                                   _buildOpcion(
                                     texto: 'Muy satisfecho',
-                                    value: 'muy_satisfecho',
-                                    groupValue: _diseno,
+                                    value: 'Muy satisfecho',
+                                    groupValue: _metodologia,
                                     onChanged:
-                                        (val) => setState(() => _diseno = val),
+                                        (val) =>
+                                            setState(() => _metodologia = val),
                                   ),
                                   _buildOpcion(
                                     texto: 'Satisfecho',
-                                    value: 'satisfecho',
-                                    groupValue: _diseno,
+                                    value: 'Satisfecho',
+                                    groupValue: _metodologia,
                                     onChanged:
-                                        (val) => setState(() => _diseno = val),
+                                        (val) =>
+                                            setState(() => _metodologia = val),
                                   ),
                                   _buildOpcion(
                                     texto: 'Insatisfecho',
-                                    value: 'insatisfecho',
-                                    groupValue: _diseno,
+                                    value: 'Insatisfecho',
+                                    groupValue: _metodologia,
                                     onChanged:
-                                        (val) => setState(() => _diseno = val),
+                                        (val) =>
+                                            setState(() => _metodologia = val),
                                   ),
                                   _buildOpcion(
                                     texto: 'Muy insatisfecho',
-                                    value: 'muy_insatisfecho',
-                                    groupValue: _diseno,
+                                    value: 'Muy insatisfecho',
+                                    groupValue: _metodologia,
                                     onChanged:
-                                        (val) => setState(() => _diseno = val),
+                                        (val) =>
+                                            setState(() => _metodologia = val),
                                   ),
                                 ],
                               ),
@@ -185,7 +370,7 @@ class _EncuestasState extends State<Encuestas> {
                         ),
                         const SizedBox(height: 20),
                         Text(
-                          '2. ¿Le resultó fácil de entender la información presentada?',
+                          '6. ¿El cronograma refleja un uso eficiente del tiempo para cumplir con las actividades?',
                           style: TextStyle(fontSize: tamanotexto(2)),
                         ),
                         SizedBox(
@@ -195,37 +380,37 @@ class _EncuestasState extends State<Encuestas> {
                               _buildOpcion(
                                 texto: 'Totalmente de acuerdo',
                                 value: 'Totalmente de acuerdo',
-                                groupValue: _facil,
+                                groupValue: _cronograma,
                                 onChanged:
-                                    (val) => setState(() => _facil = val),
+                                    (val) => setState(() => _cronograma = val),
                               ),
                               _buildOpcion(
                                 texto: 'De acuerdo',
                                 value: 'De acuerdo',
-                                groupValue: _facil,
+                                groupValue: _cronograma,
                                 onChanged:
-                                    (val) => setState(() => _facil = val),
+                                    (val) => setState(() => _cronograma = val),
                               ),
                               _buildOpcion(
                                 texto: 'En desacuerdo',
                                 value: 'En desacuerdo',
-                                groupValue: _facil,
+                                groupValue: _cronograma,
                                 onChanged:
-                                    (val) => setState(() => _facil = val),
+                                    (val) => setState(() => _cronograma = val),
                               ),
                               _buildOpcion(
                                 texto: 'Totalmente en desacuerdo',
                                 value: 'Totalmente en desacuerdo',
-                                groupValue: _facil,
+                                groupValue: _cronograma,
                                 onChanged:
-                                    (val) => setState(() => _facil = val),
+                                    (val) => setState(() => _cronograma = val),
                               ),
                             ],
                           ),
                         ),
                         const SizedBox(height: 20),
                         Text(
-                          '3. ¿Considera que el contenido es útil?',
+                          '7. ¿Los resultados esperados le parecen útiles y aplicables en la práctica?',
                           style: TextStyle(fontSize: tamanotexto(2)),
                         ),
                         SizedBox(
@@ -235,33 +420,45 @@ class _EncuestasState extends State<Encuestas> {
                               _buildOpcion(
                                 texto: 'Totalmente de acuerdo',
                                 value: 'Totalmente de acuerdo',
-                                groupValue: _util,
-                                onChanged: (val) => setState(() => _util = val),
+                                groupValue: _actividadesresultados,
+                                onChanged:
+                                    (val) => setState(
+                                      () => _actividadesresultados = val,
+                                    ),
                               ),
                               _buildOpcion(
                                 texto: 'De acuerdo',
                                 value: 'De acuerdo',
-                                groupValue: _util,
-                                onChanged: (val) => setState(() => _util = val),
+                                groupValue: _actividadesresultados,
+                                onChanged:
+                                    (val) => setState(
+                                      () => _actividadesresultados = val,
+                                    ),
                               ),
                               _buildOpcion(
                                 texto: 'En desacuerdo',
                                 value: 'En desacuerdo',
-                                groupValue: _util,
-                                onChanged: (val) => setState(() => _util = val),
+                                groupValue: _actividadesresultados,
+                                onChanged:
+                                    (val) => setState(
+                                      () => _actividadesresultados = val,
+                                    ),
                               ),
                               _buildOpcion(
                                 texto: 'Totalmente en desacuerdo',
                                 value: 'Totalmente en desacuerdo',
-                                groupValue: _util,
-                                onChanged: (val) => setState(() => _util = val),
+                                groupValue: _actividadesresultados,
+                                onChanged:
+                                    (val) => setState(
+                                      () => _actividadesresultados = val,
+                                    ),
                               ),
                             ],
                           ),
                         ),
                         const SizedBox(height: 20),
                         Text(
-                          '4. ¿La organización del material le pareció adecuada?',
+                          '8. ¿La bibliografía citada contribuye de forma clara a sustentar los contenidos del proyecto?',
                           style: TextStyle(fontSize: tamanotexto(2)),
                         ),
                         SizedBox(
@@ -271,34 +468,34 @@ class _EncuestasState extends State<Encuestas> {
                               _buildOpcion(
                                 texto: 'Excelente',
                                 value: 'Excelente',
-                                groupValue: _organizacion,
+                                groupValue: _bibliografia,
                                 onChanged:
                                     (val) =>
-                                        setState(() => _organizacion = val),
+                                        setState(() => _bibliografia = val),
                               ),
                               _buildOpcion(
                                 texto: 'Bueno',
                                 value: 'Bueno',
-                                groupValue: _organizacion,
+                                groupValue: _bibliografia,
                                 onChanged:
                                     (val) =>
-                                        setState(() => _organizacion = val),
+                                        setState(() => _bibliografia = val),
                               ),
                               _buildOpcion(
                                 texto: 'Regular',
                                 value: 'Regular',
-                                groupValue: _organizacion,
+                                groupValue: _bibliografia,
                                 onChanged:
                                     (val) =>
-                                        setState(() => _organizacion = val),
+                                        setState(() => _bibliografia = val),
                               ),
                               _buildOpcion(
                                 texto: 'Malo',
                                 value: 'Malo',
-                                groupValue: _organizacion,
+                                groupValue: _bibliografia,
                                 onChanged:
                                     (val) =>
-                                        setState(() => _organizacion = val),
+                                        setState(() => _bibliografia = val),
                               ),
                             ],
                           ),
@@ -320,32 +517,52 @@ class _EncuestasState extends State<Encuestas> {
                                 ),
                               ),
                               onPressed: () async {
-                                if (_diseno == null ||
-                                    _facil == null ||
-                                    _util == null ||
-                                    _organizacion == null) {
+                                if (_titulo == null ||
+                                    _planteamientoproblema == null ||
+                                    _justificacion == null ||
+                                    _objetivos == null ||
+                                    _metodologia == null ||
+                                    _cronograma == null ||
+                                    _actividadesresultados == null ||
+                                    _bibliografia == null) {
                                   _mostrarcamposenblanco(
                                     context,
                                     'No puede haber campos en blanco',
                                   );
                                   return;
-                                } else {
-                                  // Aquí pasamos nombre y ficha al enviar
+                                }
+
+                                {
+                                  //qiotar
                                   await enviarEncuesta(
-                                    diseno: _diseno!,
-                                    facil: _facil!,
-                                    util: _util!,
-                                    organizacion: _organizacion!,
+                                    
+                                    bibliografia: _bibliografia!,
                                     nombre: usuarioglobal,
                                     ficha: fichaglobal,
-                                    // asegúrate de tener esta variable
+                                  ); //quitar
+
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Center(
+                                        child: Text(
+                                          "Encuesta enviada correctamente",
+                                        ),
+                                      ),
+                                      backgroundColor: obtenercolor(
+                                        'Color_Principal',
+                                      ),
+                                    ),
                                   );
 
                                   setState(() {
-                                    _diseno = null;
-                                    _facil = null;
-                                    _util = null;
-                                    _organizacion = null;
+                                    _titulo = null;
+                                    _planteamientoproblema = null;
+                                    _justificacion = null;
+                                    _objetivos = null;
+                                    _metodologia = null;
+                                    _cronograma = null;
+                                    _actividadesresultados = null;
+                                    _bibliografia = null;
                                   });
                                 }
                               },

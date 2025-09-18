@@ -12,7 +12,7 @@ import 'package:http/http.dart' as http;
 
 // Aquí defines SOLO una vez la URL base se debe de cambiar según la red local por el momento
 
-//const String baseApiUrl = "http://192.168.0.102:5000"; //Eliminar comentario
+//const String baseApiUrl = "http://192.168.0.103:5000"; //Eliminar comentario
 
 void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized(); //en esta linea de codigo se asegura que los widgets esten inicializados antes de ejecutar la aplicacion
@@ -36,8 +36,7 @@ class Inicio extends StatelessWidget {
   final TextEditingController _NombreAprendiz = TextEditingController();
   // variable donde se obtiene el texto del campo Nombre Aprendiz
 
-  /* Quitar
-
+  /*  //quitar
   Future<bool> usuarioRegistrado(String nombre, String ficha) async {
     try {
       final response = await http.get(Uri.parse("$baseApiUrl/items"));
@@ -107,19 +106,20 @@ class Inicio extends StatelessWidget {
     final programa = _NombrePrograma.text.trim();
     final ficha = _Nficha.text.trim();
 
-    /* quitar
+    /*    //quitar
+
     if (nombre.isEmpty || programa.isEmpty || ficha.isEmpty) {
       _mostrarcamposenblanco(context, 'No puede haber campos en blanco');
       return;
     } // aca se verifica si hay campos en blanco y si los hay mustra un mensaje de error
-    
-*/ //quitar
+
+ */ //quitar
 
     setUsuarioGlobal(nombre); // aca guardamos el nombre en la variable global
     setFichaGlobal(ficha); // aca guardamos la ficha en la variable global
     setprogramaGlobal(programa);
 
-    /* quitar
+    /*    //quitar
 
     await guardarProgresoFinal(0);
 
@@ -129,7 +129,7 @@ class Inicio extends StatelessWidget {
     ); //aca se verifica si el usuario ya está registrado
     await _guardarEnAPI(context); // aca se envian los datos a la API
 
-*/ // quitar
+ */ // quitar
 
     Navigator.push(
       context,
