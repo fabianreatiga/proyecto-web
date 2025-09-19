@@ -100,7 +100,7 @@ String getprogramaGlobal() {
   );
 } */ // en este bloque de codigo se obtine el progreso y se guarda en la base de datos
 
-/* //quitar
+/*//quitar
 Future<void> guardarProgresoFinal(int id) async {
   final url = Uri.parse("http://192.168.0.103:5000/guardarProgreso");
   // Ojo: cambia la IP según tu red local

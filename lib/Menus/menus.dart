@@ -292,7 +292,7 @@ class Menu extends StatelessWidget {
               color: currentScreen == 'Encuesta' ? Colors.white : Colors.black,
             ),
             title: Text(
-              'Encuesta',
+              'Cuestionario',
               style: TextStyle(
                 fontSize: texto + 4,
                 color:

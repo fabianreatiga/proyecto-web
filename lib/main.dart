@@ -36,7 +36,7 @@ class Inicio extends StatelessWidget {
   final TextEditingController _NombreAprendiz = TextEditingController();
   // variable donde se obtiene el texto del campo Nombre Aprendiz
 
-  /*  //quitar
+  /* //quitar
   Future<bool> usuarioRegistrado(String nombre, String ficha) async {
     try {
       final response = await http.get(Uri.parse("$baseApiUrl/items"));
@@ -113,13 +113,13 @@ class Inicio extends StatelessWidget {
       return;
     } // aca se verifica si hay campos en blanco y si los hay mustra un mensaje de error
 
- */ //quitar
+*/ //quitar
 
     setUsuarioGlobal(nombre); // aca guardamos el nombre en la variable global
     setFichaGlobal(ficha); // aca guardamos la ficha en la variable global
     setprogramaGlobal(programa);
 
-    /*    //quitar
+    /*   //quitar
 
     await guardarProgresoFinal(0);
 
@@ -129,7 +129,7 @@ class Inicio extends StatelessWidget {
     ); //aca se verifica si el usuario ya está registrado
     await _guardarEnAPI(context); // aca se envian los datos a la API
 
- */ // quitar
+*/ // quitar
 
     Navigator.push(
       context,
@@ -290,6 +290,7 @@ class Inicio extends StatelessWidget {
             child: TextField(
               controller: _Nficha,
               decoration: InputDecoration(
+                labelStyle: TextStyle(color: Colors.black),
                 filled: true,
                 fillColor: obtenercolor('Color_Fondo'),
                 labelText: 'N° Ficha',
@@ -468,6 +469,7 @@ class Inicio extends StatelessWidget {
                       fillColor: obtenercolor('Color_Fondo'),
                       labelText: 'N° Ficha',
                       hintText: 'Escribe tu N° ficha',
+                      labelStyle: TextStyle(color: Colors.black),
                       prefixIcon: Icon(
                         Icons.numbers,
                         color: obtenercolor('Color_Principal'),
@@ -551,6 +553,7 @@ class Inicio extends StatelessWidget {
           filled: true,
           fillColor: obtenercolor('Color_Fondo'),
           labelText: label,
+          labelStyle: TextStyle(color: Colors.black),
           hintText: hint,
           prefixIcon: Icon(icon, color: obtenercolor('Color_Principal')),
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
