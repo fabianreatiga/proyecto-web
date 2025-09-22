@@ -24,7 +24,7 @@ class Menu extends StatelessWidget {
     const double texto = 14; // Tamaño base para el texto del menú
 
     return Drawer(
-      backgroundColor: obtenercolor('Color_Fondo'),
+      backgroundColor: obtenercolor('Color_principal'),
       child: ListView(
         children: [
           //======================= ENCABEZADO MENÚ =======================\\

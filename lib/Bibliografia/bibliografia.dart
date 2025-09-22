@@ -372,7 +372,7 @@ class _BibliografiasState extends State<Bibliografias>
               ),
             ),
           ),
-          Text('©Copyright SENA'),
+          // Text('©Copyright SENA'),
           SizedBox(
             width: 150,
             height: 45,
