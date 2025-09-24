@@ -16,7 +16,7 @@ Future<void> enviarEncuesta({
   required String nombre,
   required String ficha,
 }) async {
-  final url = Uri.parse("http://192.168.0.101:5000/guardarTodo");
+  final url = Uri.parse("https://proyecto-api-1vjo.onrender.com/guardarTodo");
 
   final respuesta = await http.post(
     url,
