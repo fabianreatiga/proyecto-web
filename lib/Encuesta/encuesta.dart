@@ -16,7 +16,7 @@ Future<void> enviarEncuesta({
   required String nombre,
   required String ficha,
 }) async {
-  final url = Uri.parse("http://192.168.0.103:5000/guardarTodo");
+  final url = Uri.parse("http://192.168.0.101:5000/guardarTodo");
 
   final respuesta = await http.post(
     url,
@@ -187,7 +187,7 @@ class _EncuestasState extends State<Encuestas> {
                                     _buildOpcion(
                                       texto:
                                           'C) El título es importante porque identifica el proyecto.',
-                                      value: 'C Correcto', //correcta
+                                      value: 'correcto', //correcta
                                       groupValue: _titulopregunta1,
                                       onChanged:
                                           (val) => setState(
@@ -219,7 +219,7 @@ class _EncuestasState extends State<Encuestas> {
                               children: [
                                 _buildOpcion(
                                   texto: 'A) En promedio de 12 a 20 palabras.',
-                                  value: 'A correcto',
+                                  value: 'correcto',
                                   groupValue: _titulopregunta2,
                                   onChanged:
                                       (val) => setState(
@@ -294,7 +294,7 @@ class _EncuestasState extends State<Encuestas> {
                                 ),
                                 _buildOpcion(
                                   texto: 'D) 3.',
-                                  value: 'D correcto',
+                                  value: 'correcto',
                                   groupValue: _titulopregunta3,
                                   onChanged:
                                       (val) => setState(
@@ -325,7 +325,7 @@ class _EncuestasState extends State<Encuestas> {
                                 _buildOpcion(
                                   texto:
                                       'B) 5WIH, Espina de pesacado, Árbol de problemas, Esquema de redacción.',
-                                  value: 'B correcto',
+                                  value: 'correcto',
                                   groupValue: _plnateamientopregunta1,
                                   onChanged:
                                       (val) => setState(
@@ -394,7 +394,7 @@ class _EncuestasState extends State<Encuestas> {
                                     ),
                                     _buildOpcion(
                                       texto: 'D) 6.',
-                                      value: 'D correcto',
+                                      value: 'correcto',
                                       groupValue: _plnateamientopregunta2,
                                       onChanged:
                                           (val) => setState(
@@ -428,7 +428,7 @@ class _EncuestasState extends State<Encuestas> {
                                 _buildOpcion(
                                   texto:
                                       'B) Máquinaria, mano de obra, materiales, métodos, medio ambiente y medición.',
-                                  value: 'B correcto',
+                                  value: 'correcto',
                                   groupValue: _plnateamientopregunta3,
                                   onChanged:
                                       (val) => setState(
@@ -471,7 +471,7 @@ class _EncuestasState extends State<Encuestas> {
                                   texto:
                                       'A) Presentar solo los resultados finales.',
                                   value: 'A incorrecto',
-                                  groupValue: _justificacionpregunta2,
+                                  groupValue: _justificacionpregunta1,
                                   onChanged:
                                       (val) => setState(
                                         () => _justificacionpregunta1 = val,
@@ -480,7 +480,7 @@ class _EncuestasState extends State<Encuestas> {
                                 _buildOpcion(
                                   texto:
                                       'B) Argumentar la problemática y describir la conveniencia.',
-                                  value: 'B correcto',
+                                  value: 'correcto',
                                   groupValue: _justificacionpregunta1,
                                   onChanged:
                                       (val) => setState(
@@ -531,7 +531,7 @@ class _EncuestasState extends State<Encuestas> {
                                 ),
                                 _buildOpcion(
                                   texto: 'B) 5',
-                                  value: 'B correcto',
+                                  value: 'correcto',
                                   groupValue: _justificacionpregunta2,
                                   onChanged:
                                       (val) => setState(
@@ -601,7 +601,7 @@ class _EncuestasState extends State<Encuestas> {
                                 _buildOpcion(
                                   texto:
                                       'D) En tercera persona, para dar mayor seriedad e imparcialidad.',
-                                  value: 'D correcto',
+                                  value: 'correcto',
                                   groupValue: _justificacionpregunta3,
                                   onChanged:
                                       (val) => setState(
@@ -640,7 +640,7 @@ class _EncuestasState extends State<Encuestas> {
                                 ),
                                 _buildOpcion(
                                   texto: 'C) SMART.',
-                                  value: 'C correcto',
+                                  value: 'correcto',
                                   groupValue: _objetivospregunta1,
                                   onChanged:
                                       (val) => setState(
@@ -681,7 +681,7 @@ class _EncuestasState extends State<Encuestas> {
                                 _buildOpcion(
                                   texto:
                                       'B) Específico, Medible, Alcanzable, Relevante y en Tiempo.',
-                                  value: 'B correcto',
+                                  value: 'correcto',
                                   groupValue: _objetivospregunta2,
                                   onChanged:
                                       (val) => setState(
@@ -723,7 +723,7 @@ class _EncuestasState extends State<Encuestas> {
                                 _buildOpcion(
                                   texto:
                                       'A) Reunir medios y alternativas para solucionar el problema principal, logrando una visión positiva.',
-                                  value: 'A correcto',
+                                  value: 'correcto',
                                   groupValue: _objetivospregunta3,
                                   onChanged:
                                       (val) => setState(
@@ -805,7 +805,7 @@ class _EncuestasState extends State<Encuestas> {
                                 _buildOpcion(
                                   texto:
                                       'D) Porque determina todo el rumbo de la investigación.',
-                                  value: 'D correcto',
+                                  value: 'correcto',
                                   groupValue: _metodologiapregunta1,
                                   onChanged:
                                       (val) => setState(
@@ -844,7 +844,7 @@ class _EncuestasState extends State<Encuestas> {
                                 ),
                                 _buildOpcion(
                                   texto: 'C) 3.',
-                                  value: 'C correcto',
+                                  value: 'correcto',
                                   groupValue: _metodologiapregunta2,
                                   onChanged:
                                       (val) => setState(
@@ -885,7 +885,7 @@ class _EncuestasState extends State<Encuestas> {
                                 _buildOpcion(
                                   texto:
                                       'B) Los factores que influyen en la decisión, las metodologías que existen y los pasos para elegir la adecuada.',
-                                  value: 'B correcto',
+                                  value: 'correcto',
                                   groupValue: _metodologiapregunta3,
                                   onChanged:
                                       (val) => setState(
@@ -957,7 +957,7 @@ class _EncuestasState extends State<Encuestas> {
                                 _buildOpcion(
                                   texto:
                                       'D) Que permite visualizar el trabajo en un cronograma de actividades en lugar de una lista desorganizada.',
-                                  value: 'D correcto',
+                                  value: 'correcto',
                                   groupValue: _cronogramapregunta1,
                                   onChanged:
                                       (val) => setState(
@@ -989,7 +989,7 @@ class _EncuestasState extends State<Encuestas> {
                                 _buildOpcion(
                                   texto:
                                       'B) Una idea clara de cómo encajan todas las piezas del plan.',
-                                  value: 'B correcto',
+                                  value: 'correcto',
                                   groupValue: _cronogramapregunta2,
                                   onChanged:
                                       (val) => setState(
@@ -1061,7 +1061,7 @@ class _EncuestasState extends State<Encuestas> {
                                 _buildOpcion(
                                   texto:
                                       'D) Porque se necesita la tecnología adecuada.',
-                                  value: 'D correcto',
+                                  value: 'correcto',
                                   groupValue: _cronogramapregunta3,
                                   onChanged:
                                       (val) => setState(
@@ -1071,11 +1071,309 @@ class _EncuestasState extends State<Encuestas> {
                               ],
                             ),
                           ),
+                          SizedBox(height: 20),
+                          Text(
+                            '19 ¿Con qué fin se crean las actividades del proyecto en cada una de las fases?',
+                            style: TextStyle(fontSize: tamanotexto(2)),
+                          ),
+                          SizedBox(
+                            width: double.infinity,
+                            child: Column(
+                              children: [
+                                _buildOpcion(
+                                  texto:
+                                      'A) Con el fin de alcanzar los objetivos propuestos.',
+                                  value: 'correcto',
+                                  groupValue: _actiivadadespregunta1,
+                                  onChanged:
+                                      (val) => setState(
+                                        () => _actiivadadespregunta1 = val,
+                                      ),
+                                ),
+                                _buildOpcion(
+                                  texto:
+                                      'B) Con el fin de registrar únicamente los costos.',
+                                  value: 'B incorrecto',
+                                  groupValue: _actiivadadespregunta1,
+                                  onChanged:
+                                      (val) => setState(
+                                        () => _actiivadadespregunta1 = val,
+                                      ),
+                                ),
+                                _buildOpcion(
+                                  texto:
+                                      'C) Con el fin de reemplazar el cronograma.',
+                                  value: 'C incorrecto',
+                                  groupValue: _actiivadadespregunta1,
+                                  onChanged:
+                                      (val) => setState(
+                                        () => _actiivadadespregunta1 = val,
+                                      ),
+                                ),
+                                _buildOpcion(
+                                  texto:
+                                      'D) Con el fin de eliminar los roles de ejecución.',
+                                  value: 'D incorrecto',
+                                  groupValue: _actiivadadespregunta1,
+                                  onChanged:
+                                      (val) => setState(
+                                        () => _actiivadadespregunta1 = val,
+                                      ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 20),
+                          Text(
+                            '20. ¿Cuántos resultados esperados debe tener como mínimo cada objetivo de un proyecto?',
+                            style: TextStyle(fontSize: tamanotexto(2)),
+                          ),
+                          SizedBox(
+                            width: double.infinity,
+                            child: Column(
+                              children: [
+                                _buildOpcion(
+                                  texto: 'A) Ninguno.',
+                                  value: 'A incorrecto',
+                                  groupValue: _actiivadadespregunta2,
+                                  onChanged:
+                                      (val) => setState(
+                                        () => _actiivadadespregunta2 = val,
+                                      ),
+                                ),
+                                _buildOpcion(
+                                  texto: 'B) Uno.',
+                                  value: 'correcto',
+                                  groupValue: _actiivadadespregunta2,
+                                  onChanged:
+                                      (val) => setState(
+                                        () => _actiivadadespregunta2 = val,
+                                      ),
+                                ),
+                                _buildOpcion(
+                                  texto: 'C) Dos.',
+                                  value: 'C incorrecto',
+                                  groupValue: _actiivadadespregunta2,
+                                  onChanged:
+                                      (val) => setState(
+                                        () => _actiivadadespregunta2 = val,
+                                      ),
+                                ),
+                                _buildOpcion(
+                                  texto: 'D) Varios sin limites.',
+                                  value: 'D incorrecto',
+                                  groupValue: _actiivadadespregunta2,
+                                  onChanged:
+                                      (val) => setState(
+                                        () => _actiivadadespregunta2 = val,
+                                      ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 20),
+                          Text(
+                            '21.¿Cómo deben especificarse los resultados esperados en un proyecto?',
+                            style: TextStyle(fontSize: tamanotexto(2)),
+                          ),
+                          SizedBox(
+                            width: double.infinity,
+                            child: Column(
+                              children: [
+                                _buildOpcion(
+                                  texto: 'A) Según lo decida el patrocinador.',
+                                  value: 'A incorrecto',
+                                  groupValue: _actiivadadespregunta3,
+                                  onChanged:
+                                      (val) => setState(
+                                        () => _actiivadadespregunta3 = val,
+                                      ),
+                                ),
+                                _buildOpcion(
+                                  texto: 'B) Únicamente al final del proyecto.',
+                                  value: 'B incorrecto',
+                                  groupValue: _actiivadadespregunta3,
+                                  onChanged:
+                                      (val) => setState(
+                                        () => _actiivadadespregunta3 = val,
+                                      ),
+                                ),
+                                _buildOpcion(
+                                  texto:
+                                      'C) En cualquier orden y sin límite de tiempo.',
+                                  value: 'C incorrecto',
+                                  groupValue: _actiivadadespregunta3,
+                                  onChanged:
+                                      (val) => setState(
+                                        () => _actiivadadespregunta3 = val,
+                                      ),
+                                ),
+                                _buildOpcion(
+                                  texto:
+                                      'D) En el orden y período de tiempo en el cual se pretenden alcanzar.',
+                                  value: 'correcto',
+                                  groupValue: _actiivadadespregunta3,
+                                  onChanged:
+                                      (val) => setState(
+                                        () => _actiivadadespregunta3 = val,
+                                      ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 20),
+                          Text(
+                            '22. ¿Para qué sirve la citación de un autor en un trabajo de investigación?',
+                            style: TextStyle(fontSize: tamanotexto(2)),
+                          ),
+                          SizedBox(
+                            width: double.infinity,
+                            child: Column(
+                              children: [
+                                _buildOpcion(
+                                  texto: 'A) Para evitar el plagio',
+                                  value: 'correcto',
+                                  groupValue: _bibliografiapregunta1,
+                                  onChanged:
+                                      (val) => setState(
+                                        () => _bibliografiapregunta1 = val,
+                                      ),
+                                ),
+                                _buildOpcion(
+                                  texto: 'B) Para llenar espacio.',
+                                  value: 'B incorrecto',
+                                  groupValue: _bibliografiapregunta1,
+                                  onChanged:
+                                      (val) => setState(
+                                        () => _bibliografiapregunta1 = val,
+                                      ),
+                                ),
+                                _buildOpcion(
+                                  texto: 'C) Para confundir al lector.',
+                                  value: 'C incorrecto',
+                                  groupValue: _bibliografiapregunta1,
+                                  onChanged:
+                                      (val) => setState(
+                                        () => _bibliografiapregunta1 = val,
+                                      ),
+                                ),
+                                _buildOpcion(
+                                  texto: 'D) Para cambiar la información.',
+                                  value: 'D incorrecto',
+                                  groupValue: _bibliografiapregunta1,
+                                  onChanged:
+                                      (val) => setState(
+                                        () => _bibliografiapregunta1 = val,
+                                      ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 20),
+                          Text(
+                            '23. ¿Cuáles son las dos normas de citación que se mencionan en bibliografía?',
+                            style: TextStyle(fontSize: tamanotexto(2)),
+                          ),
+                          SizedBox(
+                            width: double.infinity,
+                            child: Column(
+                              children: [
+                                _buildOpcion(
+                                  texto: 'A) Normas ICONTEC y Normas ISO 9001.',
+                                  value: 'A incorrecto',
+                                  groupValue: _bibliografiapregunta2,
+                                  onChanged:
+                                      (val) => setState(
+                                        () => _bibliografiapregunta2 = val,
+                                      ),
+                                ),
+                                _buildOpcion(
+                                  texto: 'B) Normas Vancouver y Normas MLA.',
+                                  value: 'B incorrecto',
+                                  groupValue: _bibliografiapregunta2,
+                                  onChanged:
+                                      (val) => setState(
+                                        () => _bibliografiapregunta2 = val,
+                                      ),
+                                ),
+                                _buildOpcion(
+                                  texto: 'C) Normas APA y Normas IEEE.',
+                                  value: 'correcto',
+                                  groupValue: _bibliografiapregunta2,
+                                  onChanged:
+                                      (val) => setState(
+                                        () => _bibliografiapregunta2 = val,
+                                      ),
+                                ),
+                                _buildOpcion(
+                                  texto:
+                                      'D) Normas ISO 14000 y Normas ICONTEC.',
+                                  value: 'D incorrecto',
+                                  groupValue: _bibliografiapregunta2,
+                                  onChanged:
+                                      (val) => setState(
+                                        () => _bibliografiapregunta2 = val,
+                                      ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 20),
+                          Text(
+                            '24. ¿qué elementos deben incluirse al citar un autor en el cuerpo del texto?',
+                            style: TextStyle(fontSize: tamanotexto(2)),
+                          ),
+                          SizedBox(
+                            width: double.infinity,
+                            child: Column(
+                              children: [
+                                _buildOpcion(
+                                  texto: 'A) El número de página y el editor.',
+                                  value: 'A incorrecto',
+                                  groupValue: _bibliografiapregunta3,
+                                  onChanged:
+                                      (val) => setState(
+                                        () => _bibliografiapregunta3 = val,
+                                      ),
+                                ),
+                                _buildOpcion(
+                                  texto: 'B) Únicamente el año de publicación.',
+                                  value: 'B incorrecto',
+                                  groupValue: _bibliografiapregunta3,
+                                  onChanged:
+                                      (val) => setState(
+                                        () => _bibliografiapregunta3 = val,
+                                      ),
+                                ),
+                                _buildOpcion(
+                                  texto:
+                                      'C) Su nombre y el año de publicación.',
+                                  value: 'correcto',
+                                  groupValue: _bibliografiapregunta3,
+                                  onChanged:
+                                      (val) => setState(
+                                        () => _bibliografiapregunta3 = val,
+                                      ),
+                                ),
+                                _buildOpcion(
+                                  texto: 'D) Solo el título de la obra.',
+                                  value: 'D incorrecto',
+                                  groupValue: _bibliografiapregunta3,
+                                  onChanged:
+                                      (val) => setState(
+                                        () => _bibliografiapregunta3 = val,
+                                      ),
+                                ),
+                              ],
+                            ),
+                          ),
 
                           if (_titulopregunta1 != null &&
                               _plnateamientopregunta2 != null &&
                               _objetivospregunta1 != null &&
-                              _metodologiapregunta3 != null)
+                              _metodologiapregunta3 != null &&
+                              _actiivadadespregunta2 != null &&
+                              _bibliografiapregunta3 != null)
                             Center(
                               child: SizedBox(
                                 height: 45,
@@ -1185,81 +1483,6 @@ class _EncuestasState extends State<Encuestas> {
     );
   }
 
-  void _funcionboton(BuildContext context) async {
-    if (_titulopregunta1 == null ||
-        _titulopregunta2 == null ||
-        _titulopregunta3 == null ||
-        _plnateamientopregunta1 == null ||
-        _plnateamientopregunta2 == null ||
-        _plnateamientopregunta3 == null ||
-        _justificacionpregunta1 == null ||
-        _justificacionpregunta1 == null ||
-        _justificacionpregunta2 == null ||
-        _objetivospregunta1 == null ||
-        _objetivospregunta2 == null ||
-        _objetivospregunta3 == null ||
-        _metodologiapregunta1 == null ||
-        _metodologiapregunta2 == null ||
-        _metodologiapregunta3 == null ||
-        _cronogramapregunta1 == null ||
-        _cronogramapregunta2 == null ||
-        _cronogramapregunta3 == null ||
-        _actiivadadespregunta1 == null ||
-        _actiivadadespregunta2 == null ||
-        _actiivadadespregunta3 == null ||
-        _bibliografiapregunta1 == null ||
-        _bibliografiapregunta2 == null ||
-        _bibliografiapregunta3 == null) {
-      _mostrarcamposenblanco(context, 'No puede haber campos en blanco');
-      return;
-    }
-
-    {
-      /*      //qiotar
-      await enviarEncuesta(
-        bibliografia: _bibliografia!,
-        nombre: usuarioglobal,
-        ficha: fichaglobal,
-      );*/ //quitar
-
-      _mostrarcamposenblanco2(context, 'Muy bien');
-    }
-  }
-
-  void _mostrarcamposenblanco2(BuildContext context, String mensaje) {
-    showDialog(
-      context: context,
-      builder:
-          (ctx) => AlertDialog(
-            title: const Text('Resultado'),
-            content: Column(
-              children: [
-                if (_titulopregunta1 == 'C Correcto') Text('ok'),
-                if (_titulopregunta2 == 'Totalmente de acuerdo') Text('ok'),
-              ],
-            ),
-            actions: [
-              Center(
-                child: SizedBox(
-                  width: 100,
-                  child: TextButton(
-                    onPressed: () {
-                      _eliminarrespuesta(context);
-                      Navigator.of(ctx).pop();
-                    },
-                    style: TextButton.styleFrom(
-                      backgroundColor: obtenercolor('Color_Principal'),
-                      foregroundColor: obtenercolor('Color_Texto_Principal'),
-                    ),
-                    child: const Text('Aceptar'),
-                  ),
-                ),
-              ),
-            ],
-          ),
-    );
-  }
-
   void _eliminarrespuesta(BuildContext context) {
     setState(() {
       _titulopregunta1 = null;
@@ -1270,6 +1493,8 @@ class _EncuestasState extends State<Encuestas> {
       _plnateamientopregunta3 = null;
       _justificacionpregunta1 = null;
       _justificacionpregunta2 = null;
+      _justificacionpregunta3 = null;
+      _objetivospregunta1 = null;
       _objetivospregunta2 = null;
       _objetivospregunta3 = null;
       _metodologiapregunta1 = null;
@@ -1285,5 +1510,268 @@ class _EncuestasState extends State<Encuestas> {
       _bibliografiapregunta2 = null;
       _bibliografiapregunta3 = null;
     });
+  }
+
+  void _funcionboton(BuildContext context) {
+    int totalCorrectas = 0;
+    List<String> resultados = [];
+
+    // --- Título ---
+    if (_titulopregunta1 == "correcto") {
+      totalCorrectas++;
+      resultados.add("Pregunta 1 (Título): ✅ Correcta");
+    } else {
+      resultados.add("Pregunta 1 (Título): ❌ Incorrecta");
+    }
+
+    if (_titulopregunta2 == "correcto") {
+      totalCorrectas++;
+      resultados.add("Pregunta 2 (Título): ✅ Correcta");
+    } else {
+      resultados.add("Pregunta 2 (Título): ❌ Incorrecta");
+    }
+
+    if (_titulopregunta3 == "correcto") {
+      totalCorrectas++;
+      resultados.add("Pregunta 3 (Título): ✅ Correcta");
+    } else {
+      resultados.add("Pregunta 3 (Título): ❌ Incorrecta");
+    }
+
+    // --- Planteamiento ---
+    if (_plnateamientopregunta1 == "correcto") {
+      totalCorrectas++;
+      resultados.add("Pregunta 4 (Planteamiento): ✅ Correcta");
+    } else {
+      resultados.add("Pregunta 4 (Planteamiento): ❌ Incorrecta");
+    }
+
+    if (_plnateamientopregunta2 == "correcto") {
+      totalCorrectas++;
+      resultados.add("Pregunta 5 (Planteamiento): ✅ Correcta");
+    } else {
+      resultados.add("Pregunta 5 (Planteamiento): ❌ Incorrecta");
+    }
+
+    if (_plnateamientopregunta3 == "correcto") {
+      totalCorrectas++;
+      resultados.add("Pregunta 6 (Planteamiento): ✅ Correcta");
+    } else {
+      resultados.add("Pregunta 6 (Planteamiento): ❌ Incorrecta");
+    }
+
+    // --- Justificación ---
+    if (_justificacionpregunta1 == "correcto") {
+      totalCorrectas++;
+      resultados.add("Pregunta 7 (Justificación): ✅ Correcta");
+    } else {
+      resultados.add("Pregunta 7 (Justificación): ❌ Incorrecta");
+    }
+
+    if (_justificacionpregunta2 == "correcto") {
+      totalCorrectas++;
+      resultados.add("Pregunta 8 (Justificación): ✅ Correcta");
+    } else {
+      resultados.add("Pregunta 8 (Justificación): ❌ Incorrecta");
+    }
+
+    if (_justificacionpregunta3 == "correcto") {
+      totalCorrectas++;
+      resultados.add("Pregunta 9 (Justificación): ✅ Correcta");
+    } else {
+      resultados.add("Pregunta 9 (Justificación): ❌ Incorrecta");
+    }
+
+    // --- Objetivos ---
+    if (_objetivospregunta1 == "correcto") {
+      totalCorrectas++;
+      resultados.add("Pregunta 10 (Objetivos): ✅ Correcta");
+    } else {
+      resultados.add("Pregunta 10 (Objetivos): ❌ Incorrecta");
+    }
+
+    if (_objetivospregunta2 == "correcto") {
+      totalCorrectas++;
+      resultados.add("Pregunta 11 (Objetivos): ✅ Correcta");
+    } else {
+      resultados.add("Pregunta 11 (Objetivos): ❌ Incorrecta");
+    }
+
+    if (_objetivospregunta3 == "correcto") {
+      totalCorrectas++;
+      resultados.add("Pregunta 12 (Objetivos): ✅ Correcta");
+    } else {
+      resultados.add("Pregunta 12 (Objetivos): ❌ Incorrecta");
+    }
+
+    // --- Metodología ---
+    if (_metodologiapregunta1 == "correcto") {
+      totalCorrectas++;
+      resultados.add("Pregunta 13 (Metodología): ✅ Correcta");
+    } else {
+      resultados.add("Pregunta 13 (Metodología): ❌ Incorrecta");
+    }
+
+    if (_metodologiapregunta2 == "correcto") {
+      totalCorrectas++;
+      resultados.add("Pregunta 14 (Metodología): ✅ Correcta");
+    } else {
+      resultados.add("Pregunta 14 (Metodología): ❌ Incorrecta");
+    }
+
+    if (_metodologiapregunta3 == "correcto") {
+      totalCorrectas++;
+      resultados.add("Pregunta 15 (Metodología): ✅ Correcta");
+    } else {
+      resultados.add("Pregunta 15 (Metodología): ❌ Incorrecta");
+    }
+
+    // --- Cronograma ---
+    if (_cronogramapregunta1 == "correcto") {
+      totalCorrectas++;
+      resultados.add("Pregunta 16 (Cronograma): ✅ Correcta");
+    } else {
+      resultados.add("Pregunta 16 (Cronograma): ❌ Incorrecta");
+    }
+
+    if (_cronogramapregunta2 == "correcto") {
+      totalCorrectas++;
+      resultados.add("Pregunta 17 (Cronograma): ✅ Correcta");
+    } else {
+      resultados.add("Pregunta 17 (Cronograma): ❌ Incorrecta");
+    }
+
+    if (_cronogramapregunta3 == "correcto") {
+      totalCorrectas++;
+      resultados.add("Pregunta 18 (Cronograma): ✅ Correcta");
+    } else {
+      resultados.add("Pregunta 18 (Cronograma): ❌ Incorrecta");
+    }
+
+    // --- Actividades ---
+    if (_actiivadadespregunta1 == "correcto") {
+      totalCorrectas++;
+      resultados.add("Pregunta 19 (Actividades): ✅ Correcta");
+    } else {
+      resultados.add("Pregunta 19 (Actividades): ❌ Incorrecta");
+    }
+
+    if (_actiivadadespregunta2 == "correcto") {
+      totalCorrectas++;
+      resultados.add("Pregunta 20 (Actividades): ✅ Correcta");
+    } else {
+      resultados.add("Pregunta 20 (Actividades): ❌ Incorrecta");
+    }
+
+    if (_actiivadadespregunta3 == "correcto") {
+      totalCorrectas++;
+      resultados.add("Pregunta 21 (Actividades): ✅ Correcta");
+    } else {
+      resultados.add("Pregunta 21 (Actividades): ❌ Incorrecta");
+    }
+
+    // --- Bibliografía ---
+    if (_bibliografiapregunta1 == "correcto") {
+      totalCorrectas++;
+      resultados.add("Pregunta 22 (Bibliografía): ✅ Correcta");
+    } else {
+      resultados.add("Pregunta 22 (Bibliografía): ❌ Incorrecta");
+    }
+
+    if (_bibliografiapregunta2 == "correcto") {
+      totalCorrectas++;
+      resultados.add("Pregunta 23 (Bibliografía): ✅ Correcta");
+    } else {
+      resultados.add("Pregunta 23 (Bibliografía): ❌ Incorrecta");
+    }
+
+    if (_bibliografiapregunta3 == "correcto") {
+      totalCorrectas++;
+      resultados.add("Pregunta 24 (Bibliografía): ✅ Correcta");
+    } else {
+      resultados.add("Pregunta 24 (Bibliografía): ❌ Incorrecta");
+    }
+
+    // --- Calcular nota sobre 100 ---
+    double nota = (totalCorrectas / 24) * 100;
+
+    // --- Mostrar resultados ---
+    showDialog(
+      context: context,
+      builder:
+          (ctx) => AlertDialog(
+            backgroundColor: Colors.white,
+            title: const Text("Resultados del Cuestionario"),
+            content: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Puntaje final: ${nota.toStringAsFixed(1)} / 100",
+                    style: TextStyle(fontSize: tamanotexto(3)),
+                  ),
+                  if (nota == 100.0)
+                    Text(
+                      "Respuestas correctas: $totalCorrectas de 24",
+                      style: TextStyle(
+                        fontSize: tamanotexto(3) - 6,
+                        color: obtenercolor('Color_Principal'),
+                      ),
+                    ),
+                  if (nota != 100.0)
+                    Text(
+                      "Respuestas correctas: $totalCorrectas de 24",
+                      style: TextStyle(
+                        fontSize: tamanotexto(3) - 6,
+                        color: Colors.red,
+                      ),
+                    ),
+                  const SizedBox(height: 10),
+                  Text("Detalle de preguntas:"),
+                  const SizedBox(height: 10),
+                  ...resultados
+                      .map(
+                        (r) => Text(
+                          r,
+                          style: TextStyle(fontSize: tamanotexto(2) - 3),
+                        ),
+                      )
+                      .toList(),
+                ],
+              ),
+            ),
+            actions: [
+              Row(
+                mainAxisAlignment:
+                    MainAxisAlignment.spaceBetween, // uno izq, otro der
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      _eliminarrespuesta(context);
+                      Navigator.of(ctx).pop();
+                    },
+                    style: TextButton.styleFrom(
+                      backgroundColor: obtenercolor('Color_Principal'),
+                      foregroundColor: obtenercolor('Color_Texto_Principal'),
+                    ),
+                    child: const Text("Aceptar"),
+                  ),
+                  if (nota <= 99.9)
+                    TextButton(
+                      onPressed: () {
+                        _eliminarrespuesta(context);
+                        Navigator.of(ctx).pop();
+                      },
+                      style: TextButton.styleFrom(
+                        backgroundColor: obtenercolor('Color_Principal'),
+                        foregroundColor: obtenercolor('Color_Texto_Principal'),
+                      ),
+                      child: const Text('Intentar Nuevamente'),
+                    ),
+                ],
+              ),
+            ],
+          ),
+    );
   }
 }
