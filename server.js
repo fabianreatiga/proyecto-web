@@ -164,7 +164,7 @@ app.get('/items/:id', async (req, res) => {
 
 app.post("/guardarProgreso", async (req, res) => {
   try {
-    const { nombre, ficha } = req.body;
+    const { nombre, ficha, sumar } = req.body;
 
     if (!nombre || !ficha) {
       return res.status(400).json({ mensaje: "nombre y ficha son requeridos" });
@@ -173,18 +173,16 @@ app.post("/guardarProgreso", async (req, res) => {
     let item = await Item.findOne({ nombre, ficha });
 
     if (!item) {
-      // Si no existe lo creamos con progreso inicial en 2
       item = new Item({ nombre, ficha, progreso: 0 });
-    } else {
-      // 👉 Validar que no pase de 100
-      if (item.progreso < 100) {
-        item.progreso = Math.min(item.progreso + 2, 100); // nunca mayor a 100
-      }
+    } else if (sumar && item.progreso < 100) {
+      item.progreso = Math.min(item.progreso + 2, 100);
     }
 
     await item.save();
     res.json({
-      mensaje: "✅ Progreso actualizado",
+      mensaje: item.progreso >= 100
+        ? "🎉 Progreso completado"
+        : "✅ Progreso actualizado",
       progreso: item.progreso,
       completado: item.progreso >= 100
     });
@@ -192,6 +190,7 @@ app.post("/guardarProgreso", async (req, res) => {
     res.status(500).json({ mensaje: err.message });
   }
 });
+
 
 
 
