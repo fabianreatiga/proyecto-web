@@ -54,7 +54,7 @@ class Encuestas extends StatefulWidget {
   State<Encuestas> createState() => _EncuestasState();
 }
 
-void _mostrarcamposenblanco(BuildContext context, String mensaje) {
+/*void _mostrarcamposenblanco(BuildContext context, String mensaje) {
   showDialog(
     context: context,
     builder:
@@ -78,7 +78,7 @@ void _mostrarcamposenblanco(BuildContext context, String mensaje) {
           ],
         ),
   );
-}
+}*/
 
 class _EncuestasState extends State<Encuestas> {
   String? _titulopregunta1; // en esta variable se guarda el titulo

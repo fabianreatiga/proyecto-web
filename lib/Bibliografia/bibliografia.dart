@@ -385,11 +385,11 @@ class _BibliografiasState extends State<Bibliografias>
                     if (!pestanasVistas.contains(_index + 1)) {
                       pestanasVistas.add(_index + 1);
                       ProgresoGlobal.marcarVisto(ID_BASE_PROGRESO + _index + 1);
-                      //await guardarProgresoFinal(ID_BASE_PROGRESO);
+                      await guardarProgresoFinal(ID_BASE_PROGRESO);
                     }
                   });
                 } else {
-                  //await guardarProgresoFinal(2);
+                  await guardarProgresoFinal(2);
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const Encuesta()),

@@ -170,23 +170,29 @@ app.post("/guardarProgreso", async (req, res) => {
       return res.status(400).json({ mensaje: "nombre y ficha son requeridos" });
     }
 
-    // Buscar registro
     let item = await Item.findOne({ nombre, ficha });
 
     if (!item) {
-      // Si no existe, lo creamos con progreso = 2
-      item = new Item({ nombre, ficha, progreso: 2 });
+      // Si no existe lo creamos con progreso inicial en 2
+      item = new Item({ nombre, ficha, progreso: 0 });
     } else {
-      // Si ya existe, sumamos +2
-      item.progreso += 2;
+      // 👉 Validar que no pase de 100
+      if (item.progreso < 100) {
+        item.progreso = Math.min(item.progreso + 2, 100); // nunca mayor a 100
+      }
     }
 
     await item.save();
-    res.json({ mensaje: "✅ Progreso actualizado", progreso: item.progreso });
+    res.json({
+      mensaje: "✅ Progreso actualizado",
+      progreso: item.progreso,
+      completado: item.progreso >= 100
+    });
   } catch (err) {
     res.status(500).json({ mensaje: err.message });
   }
 });
+
 
 
 // Guardar progreso (+2 cada vez)
