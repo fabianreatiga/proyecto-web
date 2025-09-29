@@ -4,8 +4,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:nuevomockups/Actividades/actividades.dart';
 import 'package:nuevomockups/Appbar/appbar.dart';
+import 'package:nuevomockups/Busqueda/busqueda.dart';
 import 'package:nuevomockups/Color_texto/color_texto.dart';
-import 'package:nuevomockups/Encuesta/Encuesta.dart';
 import 'package:nuevomockups/Menus/menus.dart';
 import 'package:nuevomockups/global.dart';
 
@@ -249,7 +249,7 @@ class _BibliografiasState extends State<Bibliografias>
                           Text(
                             textos[_index],
                             style: TextStyle(
-                              fontSize: tamanotexto(2),
+                              fontSize: tamanotexto(2) + 4,
                               fontFamily: 'Calibri',
                               height: 1.5,
                             ),
@@ -281,7 +281,7 @@ class _BibliografiasState extends State<Bibliografias>
                               child: Text(
                                 textos[_index],
                                 style: TextStyle(
-                                  fontSize: tamanotexto(2),
+                                  fontSize: tamanotexto(2) + 4,
                                   fontFamily: 'Calibri',
                                   height: 1.5,
                                   //se usa height para aumentar la altura de la letra
@@ -392,7 +392,7 @@ class _BibliografiasState extends State<Bibliografias>
                   await guardarProgresoFinal(2);
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const Encuesta()),
+                    MaterialPageRoute(builder: (context) => const Busqueda()),
                   );
                 }
               },

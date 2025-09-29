@@ -12,8 +12,7 @@ import 'package:http/http.dart' as http;
 
 // Aquí defines SOLO una vez la URL base se debe de cambiar según la red local por el momento
 
-const String baseApiUrl =
-    "https://proyecto-api-1vjo.onrender.com"; //Eliminar comentario
+//const String baseApiUrl = "https://proyecto-api-1vjo.onrender.com"; //Eliminar comentario
 
 void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized(); //en esta linea de codigo se asegura que los widgets esten inicializados antes de ejecutar la aplicacion
@@ -37,7 +36,7 @@ class Inicio extends StatelessWidget {
   final TextEditingController _NombreAprendiz = TextEditingController();
   // variable donde se obtiene el texto del campo Nombre Aprendiz
 
-  //quitar
+  /*  //quitar
   Future<bool> usuarioRegistrado(String nombre, String ficha) async {
     try {
       final response = await http.get(Uri.parse("$baseApiUrl/items"));
@@ -72,7 +71,7 @@ class Inicio extends StatelessWidget {
     );
   } // en este bloque de código se envían los datos a la API y se maneja la respuesta
 
-  //Quitar
+*/ //Quitar
 
   void _mostrarcamposenblanco(BuildContext context, String mensaje) {
     showDialog(
@@ -107,20 +106,20 @@ class Inicio extends StatelessWidget {
     final programa = _NombrePrograma.text.trim();
     final ficha = _Nficha.text.trim();
 
-    //quitar
+    /*    //quitar
 
     if (nombre.isEmpty || programa.isEmpty || ficha.isEmpty) {
       _mostrarcamposenblanco(context, 'No puede haber campos en blanco');
       return;
     } // aca se verifica si hay campos en blanco y si los hay mustra un mensaje de error
 
-    //quitar
+*/ //quitar
 
     setUsuarioGlobal(nombre); // aca guardamos el nombre en la variable global
     setFichaGlobal(ficha); // aca guardamos la ficha en la variable global
     setprogramaGlobal(programa);
 
-    //quitar
+    /*    //quitar
 
     await guardarProgresoFinal(0);
 
@@ -130,7 +129,7 @@ class Inicio extends StatelessWidget {
     ); //aca se verifica si el usuario ya está registrado
     await _guardarEnAPI(context); // aca se envian los datos a la API
 
-    // quitar
+*/ // quitar
 
     Navigator.push(
       context,
@@ -148,10 +147,17 @@ class Inicio extends StatelessWidget {
   Widget build(BuildContext context) {
     //este es el widget principal
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: obtenercolor('Color_Fondo'),
       //se usa obtenercolor para la funcion que tienen los colores ya definidos
       body: Center(
         child: SingleChildScrollView(
+          /* padding: EdgeInsets.only(
+            bottom:
+                MediaQuery.of(
+                  context,
+                ).viewInsets.bottom, // 👈 se ajusta al teclado
+          ),*/
           //se esta usando singlechildscrollview para activar la función de scroll para no tener problemas con desbordamientos en pantallas pequeñas
           child: Column(
             children: [

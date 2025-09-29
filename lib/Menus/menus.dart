@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nuevomockups/Actividades/actividades.dart';
+import 'package:nuevomockups/Bases_Datos/bases_datos.dart';
 import 'package:nuevomockups/Bibliografia/bibliografia.dart';
+import 'package:nuevomockups/Busqueda/busqueda.dart';
 import 'package:nuevomockups/Color_texto/color_texto.dart';
 import 'package:nuevomockups/Cronograma/cronograma.dart';
 import 'package:nuevomockups/Encuesta/Encuesta.dart';
@@ -285,10 +287,63 @@ class Menu extends StatelessWidget {
             },
           ),
 
+          //========================== BUSQUEDA  =========================\\
+          ListTile(
+            leading: Icon(
+              Icons.search,
+              color: currentScreen == 'Busqueda' ? Colors.white : Colors.black,
+            ),
+            title: Text(
+              'Busqueda',
+              style: TextStyle(
+                fontSize: texto + 4,
+                color:
+                    currentScreen == 'Busqueda' ? Colors.white : Colors.black,
+              ),
+            ),
+            selected: currentScreen == 'Busqueda',
+            selectedTileColor: obtenercolor('Color_Principal'),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const Busqueda()),
+              );
+            },
+          ),
+
+          //======================= BASES DE DATOS =======================\\
+          ListTile(
+            leading: Icon(
+              Icons.storage,
+              color:
+                  currentScreen == 'BaseDeDatos' ? Colors.white : Colors.black,
+            ),
+            title: Text(
+              'Base de Datos',
+              style: TextStyle(
+                fontSize: texto + 4,
+                color:
+                    currentScreen == 'BaseDeDatos'
+                        ? Colors.white
+                        : Colors.black,
+              ),
+            ),
+            selected: currentScreen == 'BaseDeDatos',
+            selectedTileColor: obtenercolor('Color_Principal'),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const BasesDatos()),
+              );
+            },
+          ),
+
           //======================= OPCIÓN ENCUESTA =======================\\
           ListTile(
             leading: Icon(
-              Icons.check_box,
+              Icons.check_circle,
               color: currentScreen == 'Encuesta' ? Colors.white : Colors.black,
             ),
             title: Text(

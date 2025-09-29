@@ -263,7 +263,7 @@ class _JustificacionesState extends State<Justificaciones>
                               child: Text(
                                 textos[_index],
                                 style: TextStyle(
-                                  fontSize: tamanotexto(2),
+                                  fontSize: tamanotexto(2) + 4,
                                   fontFamily: 'Calibri',
                                   height: 1.5,
                                 ),

@@ -1,79 +1,74 @@
-// ignore_for_file: unused_field, deprecated_member_use, non_constant_identifier_names
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:nuevomockups/Actividades/actividades.dart';
 import 'package:nuevomockups/Appbar/appbar.dart';
+import 'package:nuevomockups/Bibliografia/bibliografia.dart';
 import 'package:nuevomockups/Color_texto/color_texto.dart';
-
 import 'package:nuevomockups/Menus/menus.dart';
-import 'package:nuevomockups/Metodologia/metodologia.dart';
 import 'package:nuevomockups/global.dart';
 
-class Cronograma extends StatelessWidget {
-  const Cronograma({super.key});
+class Busqueda extends StatelessWidget {
+  const Busqueda({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Investigación',
-      debugShowCheckedModeBanner: false,
-      home: Cronogramas(),
-    );
+    return Busquedas();
   }
 }
 
-class Cronogramas extends StatefulWidget {
-  const Cronogramas({super.key});
+class Busquedas extends StatefulWidget {
+  const Busquedas({super.key});
 
   @override
-  State<Cronogramas> createState() => _CronogramasState();
+  State<Busquedas> createState() => _BusquedasState();
 }
 
-class _CronogramasState extends State<Cronogramas>
-    with TickerProviderStateMixin {
-  int _index = 0;
-  late TabController _tabController;
-  final List<int> pestanasVistas = [];
+class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
+  // ID único del subtema
+
+  int _index = 0; //indica que las secciones inicia en la primera
+  late TabController
+  _tabController; //se usa un TabController para controlar las pestañas
+  final List<int> pestanasVistas =
+      []; // en esta variable se guarda las pestañas ya vistas
 
   final List<String> textos = [
-    'Una de las grandes ventajas de la gestión de proyectos es que te permite visualizar tu trabajo en un cronograma'
-        ' de actividades y no en una hoja de cálculo o lista de pendientes desorganizada. Con un cronograma de actividades,'
-        ' tienes una idea clara de cómo encajan todas las piezas de tu plan. Entonces, ¿por qué no tienes uno aún? Sin la tecnología'
-        ' adecuada, crear un cronograma de actividades de tu proyecto puede ser muy complicado..',
+    '',
+    '',
+    '',
+    '',
+    '',
+  ]; // lista de los textos que se van a mostrar
 
-    '',
-    '',
-  ];
-  final List<String> imagenes = [
-    'assets/creacion_cronograma.jpg', //COMO CREAR UN CRONOGRAMA
-    'assets/Cronograma/Cronograma_Pasos.png', //PASOS
-    'assets/ejemplo_cronograma.jpg', //EJEMPLO
-  ];
+  final List<String> imagenes = ['', '', '', '', '']; // lista de las imagenes
+
+  // ignore: unused_field
+  int _currentseccion = 0;
 
   final List<String> secciones = [
-    'COMO CREAR UN CRONOGRAMA',
-    'PASOS',
-    'EJEMPLO',
-  ];
-
-  //int _progresoContador = 1;
-  //double get progreso {  return _progresoContador / secciones.length;}
+    'OBJETIVO',
+    'BUSQUEDA EN GOOGLE CON OPERADORES LOGICOS Y PALABRAS CLAVE',
+    'GOOGLE ACADéMICO (SCHOLAR)',
+    'ALETAS DE GOOGLE',
+    'GOOGLE TENDENCIAS (TRENDS)',
+  ]; // lista de las secciones
 
   final List<double> alturaImagengrande = [
-    300, //COMO CREAR UN CRONOGRAMA
-    300, //PASOS
-    450, //EJEMPLO
-  ];
+    220, //TITULO
+    240, // CARACTERISTICAS DEL TITULO
+    260, //MAS CARACTERISTICAS DEL TITULO
+    350, // PALABRAS UTILES PARA TITULO
+    450, //EJEMPLOS DE TITULOS
+  ]; // lista de las alturas de las imagenes para pantallas grandes
 
   final List<double> alturaImagenPequena = [
-    200, //COMO CREAR UN CRONOGRAMA
-    200, //PASOS
-    200, //EJEMPLO
-  ];
+    200, //TITULO
+    200, // CARACTERISTICAS DEL TITULO
+    200, //MAS CARACTERISTICAS DEL TITULO
+    450, // PALABRAS UTILES PARA TITULO
+    450, //EJEMPLOS DE TITULOS
+  ]; // lista de las alturas de las imagenes para pantallas pequenas
 
-  static int ID_BASE_PROGRESO = 38;
-  int _currentseccion = 0;
+  static int ID_BASE_PROGRESO = 100; // ID base para el progreso de este subtema
 
   @override
   void initState() {
@@ -93,7 +88,7 @@ class _CronogramasState extends State<Cronogramas>
         }
       }
     });
-  }
+  } // es este bloque de codigo se usa para inicializar el estado del widget
 
   @override
   Widget build(BuildContext context) {
@@ -103,12 +98,14 @@ class _CronogramasState extends State<Cronogramas>
     return Scaffold(
       backgroundColor: obtenercolor('Color_Fondo'),
       appBar: Appbar2(
-        nombre: '',
-        progreso: ProgresoGlobal.progreso,
+        nombre: '', // aca se mostrara el nombre del aprendiz
+        progreso:
+            ProgresoGlobal.progreso, // aca se muestra el progreso del aprendiz
         actions: [
           TextButton.icon(
             onPressed: () {
               modalmenu(context);
+              // aca llamamos a modal menu
             },
             icon: Icon(
               Icons.more_vert,
@@ -118,47 +115,51 @@ class _CronogramasState extends State<Cronogramas>
             label: Text(
               'Ver más',
               style: TextStyle(
-                color: obtenercolor('Color_Tetxto_Principal'),
-                fontWeight: FontWeight.bold,
+                color: obtenercolor('Color_Texto_Principal'),
                 fontSize: tamanotexto(2),
               ),
             ),
           ),
         ],
       ),
-      drawer: const Menu(currentScreen: 'Cronograma'),
-      body: Column(
-        children: [
-          Expanded(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.all(20),
-              child:
-                  esPantallaPequena
-                      ? InteractiveViewer(
-                        // 📌 Zoom solo en pantallas pequeñas
-                        constrained: true,
-                        minScale: 1.0,
-                        maxScale: 3.0,
-                        child: Column(
+
+      // Een este bloque de codigo se usa para mostrar y navegar por el modal menu
+      drawer: const Menu(currentScreen: 'Titulo'),
+      body: Container(
+        padding: EdgeInsets.all(0),
+        child: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.all(20),
+                child:
+                    esPantallaPequena
+                        ? InteractiveViewer(
+                          // 📌 Zoom solo en pantallas pequeñas
+                          constrained: true,
+                          minScale: 1.0,
+                          maxScale: 3.0,
+                          child: Column(
+                            children: [
+                              _buildHeader(),
+                              const SizedBox(height: 20),
+                              _buildTimelineCard(),
+                            ],
+                          ),
+                        )
+                        : Column(
+                          // 📌 Sin zoom en pantallas grandes
                           children: [
                             _buildHeader(),
                             const SizedBox(height: 20),
-                            _buildercard(),
+                            _buildTimelineCard(),
                           ],
                         ),
-                      )
-                      : Column(
-                        // 📌 Sin zoom en pantallas grandes
-                        children: [
-                          _buildHeader(),
-                          const SizedBox(height: 20),
-                          _buildercard(),
-                        ],
-                      ),
+              ),
             ),
-          ),
-          _buildNavigation(),
-        ],
+            _buildNavigation(),
+          ],
+        ),
       ),
     );
   }
@@ -170,14 +171,13 @@ class _CronogramasState extends State<Cronogramas>
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
       child: FittedBox(
         fit: BoxFit.scaleDown,
-        // se usa BoxFit.scaleDown para que el texto se ajuste al tamaño del contenedor
         child: Text(
-          '¿Sabes como crear un Cronograma?',
+          'Guía paso a paso: Explorando herramientas de google para la investigación y el aprendizaje',
           style: TextStyle(
-            color: Colors.black,
             fontSize: tamanotexto(1) + 5,
-            fontWeight: FontWeight.bold,
             fontFamily: 'Calibri',
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
           ),
           textAlign: TextAlign.center,
         ),
@@ -185,19 +185,19 @@ class _CronogramasState extends State<Cronogramas>
     );
   }
 
-  Widget _buildercard() {
+  Widget _buildTimelineCard() {
     return LayoutBuilder(
-      // se usa LayoutBuilder para obtener el tamaño de la pantalla
-      builder: (context, Constraints) {
-        bool esPantallaPequena = Constraints.maxWidth < 1000;
-        // se usa bool para saber si la pantalla es pequena
+      //se usa LayoutBuilder para adaptar el tamaño de la pantalla
+      builder: (context, constraints) {
+        bool esPantallaPequena = constraints.maxWidth < 1000;
+        //se bool para saber si la pantalla es pequena
         return Card(
           color: obtenercolor('Color_Fondo'),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30),
-            // se usa shape para darle un borde redondeado al card
+            //se usa shape para redondear los bordes del card
           ),
-          elevation: 4, // se usa elvation para darle una sombra al card
+          elevation: 4, // se usa elevation para darle sombra al card
           child: Padding(
             padding: const EdgeInsets.all(24),
             child: Container(
@@ -212,14 +212,13 @@ class _CronogramasState extends State<Cronogramas>
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                // se usa CrossAxisAlignment.start para alinear el texto a la izquierda
                 children: [
                   Text(
                     secciones[_index],
                     style: TextStyle(
+                      fontSize: tamanotexto(1) - 10,
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Calibri',
-                      fontSize: tamanotexto(1) - 10,
                       color: obtenercolor('Color_Principal'),
                       backgroundColor: Colors.white,
                     ),
@@ -227,15 +226,16 @@ class _CronogramasState extends State<Cronogramas>
                   const SizedBox(height: 20),
                   esPantallaPequena
                       ? Column(
-                        // se usa Column para mostrar el texto en dos filas
+                        // se usa ? como un operador ternario para saber si la pantalla es pequeña o grande
                         children: [
                           Text(
                             textos[_index],
                             style: TextStyle(
-                              fontSize: tamanotexto(2),
+                              fontSize: tamanotexto(2) + 4,
                               fontFamily: 'Calibri',
                               height: 1.5,
                             ),
+                            textAlign: TextAlign.center,
                           ),
                           const SizedBox(height: 20),
                           ClipRRect(
@@ -252,15 +252,18 @@ class _CronogramasState extends State<Cronogramas>
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Expanded(
+                            //se usa expanded para establecer el tamaño del texto
                             flex: 2,
+                            //se usa flex para que la imagen ocupe el 2/3 de la pantalla
                             child: Padding(
-                              padding: EdgeInsets.only(right: 20),
+                              padding: const EdgeInsets.only(right: 20),
                               child: Text(
                                 textos[_index],
                                 style: TextStyle(
                                   fontSize: tamanotexto(2) + 4,
-                                  fontFamily: 'calibri',
+                                  fontFamily: 'Calibri',
                                   height: 1.5,
+                                  //se usa height para aumentar la altura de la letra
                                 ),
                               ),
                             ),
@@ -269,18 +272,20 @@ class _CronogramasState extends State<Cronogramas>
                             flex: 0,
                             child: Align(
                               alignment: Alignment.topRight,
+                              // Alinear imagen a la derecha.
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(12),
                                 child: Image.asset(
-                                  imagenes[_index],
+                                  imagenes[_index], // Imagen dinámica.
                                   height: alturaImagengrande[_index],
+                                  // Altura para pantallas grandes.
                                   fit: BoxFit.contain,
+                                  // se usa fit para que la imagen se ajuste al tamaño del contenedor
                                 ),
                               ),
                             ),
                           ),
-                          if (_index == 1 || _index == 2) Spacer(),
-                          if (_index == 1 || _index == 2) Spacer(),
+                          if (_index == 3 || _index == 4) Spacer(),
                         ],
                       ),
                 ],
@@ -299,49 +304,51 @@ class _CronogramasState extends State<Cronogramas>
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          SizedBox(
-            width: 150,
-            height: 45,
-            child: ElevatedButton.icon(
-              onPressed: () {
-                if (_index > 0) {
-                  final anterior = _index - 1;
-                  _tabController.animateTo(anterior);
-                  setState(() {
-                    _index = anterior;
-                    if (!pestanasVistas.contains(anterior)) {
-                      pestanasVistas.add(anterior);
-                      ProgresoGlobal.marcarVisto(ID_BASE_PROGRESO + anterior);
-                    }
-                  });
-                } else {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const Metodologia(),
-                    ),
-                  );
-                }
-              },
-              icon: Icon(
-                Icons.arrow_back,
-                size: tamanotexto(2),
-                color: obtenercolor('Color_Texto'),
-              ),
-              label: Text(
-                'Anterior',
-                style: TextStyle(
-                  color: obtenercolor('Color_Texto'),
-                  fontFamily: 'Calibri',
-                  fontSize: tamanotexto(2),
+          if (_index > 0)
+            SizedBox(
+              width: 150,
+              height: 45,
+              child: ElevatedButton.icon(
+                onPressed: () {
+                  if (_index > 0) {
+                    final anterior = _index - 1;
+                    _tabController.animateTo(anterior);
+                    setState(() {
+                      _index = anterior;
+                      if (!pestanasVistas.contains(anterior)) {
+                        pestanasVistas.add(anterior);
+                        ProgresoGlobal.marcarVisto(ID_BASE_PROGRESO + anterior);
+                      }
+                    });
+                  } else {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const Bibliografia(),
+                      ),
+                    );
+                  }
+                },
+                icon: Icon(
+                  Icons.arrow_back,
+                  color: obtenercolor('Color_Texto_Principal'),
+                  size: tamanotexto(2),
+                ),
+                label: Text(
+                  'Anterior',
+                  style: TextStyle(
+                    color: obtenercolor('Color_texto_principal'),
+                    fontSize: tamanotexto(2),
+                  ),
+                ),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: obtenercolor('Color_Principal'),
+                  padding: EdgeInsets.zero,
                 ),
               ),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: obtenercolor('Color_Principal'),
-                padding: EdgeInsets.zero,
-              ),
-            ),
-          ),
+            )
+          else
+            const SizedBox(),
           SizedBox(
             width: 150,
             height: 45,
@@ -359,25 +366,18 @@ class _CronogramasState extends State<Cronogramas>
                   });
                 } else {
                   await guardarProgresoFinal(2);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const Actividades(),
-                    ),
-                  );
                 }
               },
+
               icon: Icon(
                 Icons.arrow_forward,
+                color: obtenercolor('Color_Texto_Principal'),
                 size: tamanotexto(2),
-                color: obtenercolor('Color_Texto'),
               ),
               label: Text(
                 _index < secciones.length - 1 ? 'Siguiente' : 'Adelante',
-                //si el index es menor que la longitud de la lista de secciones, se muestra 'Siguiente', de lo contrario se muestra 'Adelante'
                 style: TextStyle(
-                  color: obtenercolor('Color_Texto'),
-                  fontFamily: 'Calibri',
+                  color: obtenercolor('Color_Texto_Principal'),
                   fontSize: tamanotexto(2),
                 ),
               ),
@@ -408,7 +408,7 @@ class _CronogramasState extends State<Cronogramas>
       backgroundColor: Colors.transparent,
       builder: (x) {
         return Align(
-          alignment: AlignmentDirectional.bottomStart,
+          alignment: Alignment.bottomCenter,
           child: Container(
             decoration: BoxDecoration(
               color: obtenercolor('Color_Fondo'),
@@ -423,7 +423,6 @@ class _CronogramasState extends State<Cronogramas>
 
   Widget _buildGridMenu(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
-    // en esta linea de codigo se obtiene el ancho de la pantalla
     final bool esPantallaGrande = kIsWeb || screenWidth > 600;
 
     final ScrollController scrollController = ScrollController();
@@ -436,13 +435,14 @@ class _CronogramasState extends State<Cronogramas>
     if (totalContentWidth < screenWidth) {
       sidePadding = (screenWidth - totalContentWidth) / 2;
     }
+
     return SizedBox(
-      height: 190, // un poco más para dar espacio a la barra
+      height: 190,
       child: Scrollbar(
         controller: scrollController,
-        thumbVisibility: true, //esta linea es para mostrar la barra
+        thumbVisibility: true,
         trackVisibility: true,
-        interactive: true, //esta linea es para habilitar click & drag
+        interactive: true,
         child: ListView.builder(
           controller: scrollController,
           scrollDirection: Axis.horizontal,
@@ -454,11 +454,10 @@ class _CronogramasState extends State<Cronogramas>
             final bool isSelected = _tabController.index == item['indice'];
 
             return SizedBox(
-              width: esPantallaGrande ? 180 : 120,
+              width: itemWidth,
               child: Container(
                 margin: const EdgeInsets.symmetric(horizontal: 12),
                 child: GestureDetector(
-                  //se usa GestureDetector para detectar el click
                   onTap: () {
                     Navigator.pop(context);
                     final nuevoIndex = item['indice'];
@@ -468,7 +467,8 @@ class _CronogramasState extends State<Cronogramas>
                         _index = nuevoIndex;
                         if (!pestanasVistas.contains(nuevoIndex)) {
                           pestanasVistas.add(nuevoIndex);
-                          // _progresoContador++;
+                          ProgresoGlobal.marcarVisto(item['id']);
+                          //_progresoContador++;
                         }
                       });
                     }
@@ -516,24 +516,38 @@ class _CronogramasState extends State<Cronogramas>
   final List<Map<String, dynamic>> menuItems = [
     {
       'id': 2,
-      'text': 'Como crear un Cronograma',
-      'icon': Icons.calendar_today,
+      'text': 'Objetivo',
+      'icon': Icons.data_object,
       'color': obtenercolor('Color_Secundario'),
       'indice': 0,
     },
     {
       'id': 3,
-      'text': 'Pasos',
-      'icon': Icons.directions_walk,
+      'text': 'Búsqueda en Google',
+      'icon': Icons.info,
       'color': obtenercolor('Color_Secundario'),
       'indice': 1,
     },
     {
       'id': 4,
-      'text': 'Ejemplo',
-      'icon': Icons.check_circle_outline,
+      'text': 'Google Académico (Scholar)',
+      'icon': Icons.list_alt,
       'color': obtenercolor('Color_Secundario'),
       'indice': 2,
+    },
+    {
+      'id': 5,
+      'text': 'Aletas de Google',
+      'icon': Icons.text_fields,
+      'color': obtenercolor('Color_Secundario'),
+      'indice': 3,
+    },
+    {
+      'id': 6,
+      'text': 'Google Tendencias (Trends)',
+      'icon': Icons.book,
+      'color': obtenercolor('Color_Secundario'),
+      'indice': 4,
     },
   ];
 }

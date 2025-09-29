@@ -258,7 +258,7 @@ class _MetodologiasState extends State<Metodologias>
                           Text(
                             textos[_index],
                             style: TextStyle(
-                              fontSize: tamanotexto(2),
+                              fontSize: tamanotexto(2) + 4,
                               fontFamily: 'Calibri',
                               height: 1.5,
                             ),
@@ -284,7 +284,7 @@ class _MetodologiasState extends State<Metodologias>
                               child: Text(
                                 textos[_index],
                                 style: TextStyle(
-                                  fontSize: tamanotexto(2),
+                                  fontSize: tamanotexto(2) + 4,
                                   fontFamily: 'calibri',
                                   height: 1.5,
                                 ),

@@ -130,6 +130,7 @@ class _EncuestasState extends State<Encuestas> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: obtenercolor('Color_Fondo'),
       appBar: Appbar2(nombre: '', progreso: 100, actions: []),
       drawer: Menu(currentScreen: 'Encuesta'),

@@ -297,7 +297,7 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                           Text(
                             textos[_index],
                             style: TextStyle(
-                              fontSize: tamanotexto(2),
+                              fontSize: tamanotexto(2) + 4,
                               fontFamily: 'Calibri',
                               height: 1.5,
                             ),
@@ -324,7 +324,7 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                               child: Text(
                                 textos[_index],
                                 style: TextStyle(
-                                  fontSize: tamanotexto(2),
+                                  fontSize: tamanotexto(2) + 4,
                                   fontFamily: 'Calibri',
                                   height: 1.5,
                                 ),

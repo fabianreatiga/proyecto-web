@@ -97,6 +97,10 @@ flutter:
     - assets/Metodologia/Metodologia_Tipos_De_Metodologia.png
     - assets/Metodologia/Metodologia_Metodologia.png
 
+#--------------- IMAGENES CRONOGRAMA -----------------#
+
+    - assets/Cronograma/Cronograma_Pasos.png
+
 #--------------- IMAGENES ACTIVIDADES ----------------#
 
     - assets/Actividades/Actividades.png
