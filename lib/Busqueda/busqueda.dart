@@ -141,7 +141,16 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                           maxScale: 3.0,
                           child: Column(
                             children: [
-                              _buildHeader(),
+                              Text(
+                                '¿Sabes cómo hacer una búsqueda?',
+                                style: TextStyle(
+                                  fontSize: tamanotexto(1) + 5,
+                                  fontFamily: 'Calibri',
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
                               const SizedBox(height: 20),
                               _buildTimelineCard(),
                             ],
@@ -150,7 +159,16 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                         : Column(
                           // 📌 Sin zoom en pantallas grandes
                           children: [
-                            _buildHeader(),
+                            Text(
+                              '¿Sabes cómo hacer una búsqueda?',
+                              style: TextStyle(
+                                fontSize: tamanotexto(1) + 5,
+                                fontFamily: 'Calibri',
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
                             const SizedBox(height: 20),
                             _buildTimelineCard(),
                           ],
@@ -159,27 +177,6 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
             ),
             _buildNavigation(),
           ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildHeader() {
-    return Container(
-      width: double.infinity,
-      color: obtenercolor('Color_Fondo'),
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-      child: FittedBox(
-        fit: BoxFit.scaleDown,
-        child: Text(
-          'Guía paso a paso: Explorando herramientas de google para la investigación y el aprendizaje',
-          style: TextStyle(
-            fontSize: tamanotexto(1) + 5,
-            fontFamily: 'Calibri',
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-          ),
-          textAlign: TextAlign.center,
         ),
       ),
     );

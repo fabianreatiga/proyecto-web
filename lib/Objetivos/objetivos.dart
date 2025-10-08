@@ -73,9 +73,9 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
     'assets/Objetivos/Objetivos_Método_Smart_Texto.png', //MÉTODO SMART
     'assets/Objetivos/Objetivos_Método_Clear_Texto.png', //MÉTODO CLEAR
     'assets/Objetivos/Objetivos_Método_Pure.png', //MÉTODO PURE
-    'assets/metodo_grow.jpg', //MÉTODO GROW
+    'assets/Objetivos/Objetivos_Método_Grow.png', //MÉTODO GROW
     'assets/Objetivos/Objetivos_Método_Dumb_texto.png', //MÉTODO DUMB
-    'assets/metodo_arbol.jpg', //ÁRBOL DE OJETIVOS
+    'assets/Objetivos/Objetivos_Arbol_de_Objetivos.png', //ÁRBOL DE OJETIVOS
   ];
 
   final List<String> secciones = [
@@ -98,17 +98,17 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
     250, //MÉTODO SMART
     180, //MÉTODO CLEAR
     350, //MÉTODO PURE
-    150, //MÉTODO GROW
+    350, //MÉTODO GROW
     350, //MÉTODO DUMB
-    400, //ÁRBOL DE OJETIVOS
+    500, //ÁRBOL DE OJETIVOS
   ];
 
   final List<double> alturaImagenPequena = [
     500, //COMO CREAR LOS OBJETIVOS
-    300, //MÉTODO SMART
-    300, //MÉTODO CLEAR
-    300, //MÉTODO PURE
-    300, //MÉTODO GROW
+    350, //MÉTODO SMART
+    350, //MÉTODO CLEAR
+    350, //MÉTODO PURE
+    350, //MÉTODO GROW
     300, //MÉTODO DUMB
     300, //ÁRBOL DE OJETIVOS
   ];
@@ -181,7 +181,16 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
                         maxScale: 3.0,
                         child: Column(
                           children: [
-                            _buildHeader(),
+                            Text(
+                              '¿Sabes cómo crear los Objetivos?',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: tamanotexto(1) + 5,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'Calibri',
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
                             const SizedBox(height: 20),
                             _buildercard(),
                           ],
@@ -190,7 +199,16 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
                       : Column(
                         // 📌 Sin zoom en pantallas grandes
                         children: [
-                          _buildHeader(),
+                          Text(
+                            '¿Sabes cómo crear los Objetivos?',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: tamanotexto(1) + 5,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Calibri',
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
                           const SizedBox(height: 20),
                           _buildercard(),
                         ],
@@ -199,28 +217,6 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
           ),
           _buildNavigation(),
         ],
-      ),
-    );
-  }
-
-  Widget _buildHeader() {
-    return Container(
-      width: double.infinity,
-      color: obtenercolor('Color_Fondo'),
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-      child: FittedBox(
-        fit: BoxFit.scaleDown,
-        // se usa BoxFit.scaleDown para que el texto se ajuste al tamaño del contenedor
-        child: Text(
-          '¿Sabes cómo crear los Objetivos?',
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: tamanotexto(1) + 5,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'Calibri',
-          ),
-          textAlign: TextAlign.center,
-        ),
       ),
     );
   }

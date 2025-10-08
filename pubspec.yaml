@@ -63,6 +63,8 @@ flutter:
     - assets/PlanteamientoProblema/Planteamiento_del_Problema_Ejemplo_1_Espina_De_Pescado.png
     - assets/PlanteamientoProblema/Planteamiento_del_Problema_Ejemplo_2_Espina_De_Pescado.png
     - assets/PlanteamientoProblema/Planteamiento_del_Problema_Arbol_De_Problemas.png
+    - assets/PlanteamientoProblema/Planteamiento_del_Problema_Esquema_de_Redaccion_Parte_1.png
+    - assets/PlanteamientoProblema/Planteamiento_del_Problema_Esquema_de_Redaccion_Parte_2.png
     
 #--------------- IMagenes Justificacion ----------------#
 
@@ -80,6 +82,9 @@ flutter:
     - assets/Objetivos/Objetivos_Método_Clear_Titulo.png
     - assets/Objetivos/Objetivos_Método_Dumb_texto.png
     - assets/Objetivos/Objetivos_Método_Dumb_Titulo.png
+    - assets/Objetivos/Objetivos_Método_Grow.png
+    - assets/Objetivos/Objetivos_Método_Pure.png
+    - assets/Objetivos/Objetivos_Arbol_de_Objetivos.png
 
 
 #--------------- IMAGENES BIBLIOGRAFIA ----------------#
@@ -99,7 +104,9 @@ flutter:
 
 #--------------- IMAGENES CRONOGRAMA -----------------#
 
+    - assets/Cronograma/Cronograma_como_crear_un_Cronograma.png
     - assets/Cronograma/Cronograma_Pasos.png
+    - assets/Cronograma/Cronograma_Ejemplo.png
 
 #--------------- IMAGENES ACTIVIDADES ----------------#
 

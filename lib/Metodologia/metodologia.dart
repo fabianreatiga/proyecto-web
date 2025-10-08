@@ -168,7 +168,16 @@ class _MetodologiasState extends State<Metodologias>
                         maxScale: 3.0,
                         child: Column(
                           children: [
-                            _buildHeader(),
+                            Text(
+                              '¿Sabes como crear una buena Metodología?',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: tamanotexto(1) + 5,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'Calibri',
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
                             const SizedBox(height: 20),
                             _buildercard(),
                           ],
@@ -177,7 +186,16 @@ class _MetodologiasState extends State<Metodologias>
                       : Column(
                         // 📌 Sin zoom en pantallas grandes
                         children: [
-                          _buildHeader(),
+                          Text(
+                            '¿Sabes como crear una buena Metodología?',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: tamanotexto(1) + 5,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Calibri',
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
                           const SizedBox(height: 20),
                           _buildercard(),
                         ],
@@ -186,28 +204,6 @@ class _MetodologiasState extends State<Metodologias>
           ),
           _buildNavigation(),
         ],
-      ),
-    );
-  }
-
-  Widget _buildHeader() {
-    return Container(
-      width: double.infinity,
-      color: obtenercolor('Color_Fondo'),
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-      child: FittedBox(
-        fit: BoxFit.scaleDown,
-        // se usa BoxFit.scaleDown para que el texto se ajuste al tamaño del contenedor
-        child: Text(
-          '¿Sabes como crear una buena Metodología?',
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: tamanotexto(1) + 5,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'Calibri',
-          ),
-          textAlign: TextAlign.center,
-        ),
       ),
     );
   }

@@ -4,8 +4,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:nuevomockups/Actividades/actividades.dart';
 import 'package:nuevomockups/Appbar/appbar.dart';
-import 'package:nuevomockups/Busqueda/busqueda.dart';
 import 'package:nuevomockups/Color_texto/color_texto.dart';
+import 'package:nuevomockups/Encuesta/encuesta.dart';
 import 'package:nuevomockups/Menus/menus.dart';
 import 'package:nuevomockups/global.dart';
 
@@ -158,7 +158,16 @@ class _BibliografiasState extends State<Bibliografias>
                         maxScale: 3.0,
                         child: Column(
                           children: [
-                            _buildHeader(),
+                            Text(
+                              '¿Sabes que es una Bibliografía?',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: tamanotexto(1) + 5,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'Calibri',
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
                             const SizedBox(height: 20),
                             _buildercard(),
                           ],
@@ -167,7 +176,16 @@ class _BibliografiasState extends State<Bibliografias>
                       : Column(
                         // 📌 Sin zoom en pantallas grandes
                         children: [
-                          _buildHeader(),
+                          Text(
+                            '¿Sabes que es una Bibliografía?',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: tamanotexto(1) + 5,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Calibri',
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
                           const SizedBox(height: 20),
                           _buildercard(),
                         ],
@@ -176,28 +194,6 @@ class _BibliografiasState extends State<Bibliografias>
           ),
           _buildNavigation(),
         ],
-      ),
-    );
-  }
-
-  Widget _buildHeader() {
-    return Container(
-      width: double.infinity,
-      color: obtenercolor('Color_Fondo'),
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-      child: FittedBox(
-        fit: BoxFit.scaleDown,
-        // se usa BoxFit.scaleDown para que el texto se ajuste al tamaño del contenedor
-        child: Text(
-          '¿Sabes que es una Bibliografía?',
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: tamanotexto(1) + 5,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'Calibri',
-          ),
-          textAlign: TextAlign.center,
-        ),
       ),
     );
   }
@@ -392,7 +388,7 @@ class _BibliografiasState extends State<Bibliografias>
                   await guardarProgresoFinal(2);
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const Busqueda()),
+                    MaterialPageRoute(builder: (context) => const Encuesta()),
                   );
                 }
               },

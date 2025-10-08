@@ -46,9 +46,9 @@ class _CronogramasState extends State<Cronogramas>
     '',
   ];
   final List<String> imagenes = [
-    'assets/creacion_cronograma.jpg', //COMO CREAR UN CRONOGRAMA
+    'assets/Cronograma/Cronograma_como_crear_un_Cronograma.png', //COMO CREAR UN CRONOGRAMA
     'assets/Cronograma/Cronograma_Pasos.png', //PASOS
-    'assets/ejemplo_cronograma.jpg', //EJEMPLO
+    'assets/Cronograma/Cronograma_Ejemplo.png', //EJEMPLO
   ];
 
   final List<String> secciones = [
@@ -62,8 +62,8 @@ class _CronogramasState extends State<Cronogramas>
 
   final List<double> alturaImagengrande = [
     300, //COMO CREAR UN CRONOGRAMA
-    300, //PASOS
-    450, //EJEMPLO
+    500, //PASOS
+    500, //EJEMPLO
   ];
 
   final List<double> alturaImagenPequena = [
@@ -141,7 +141,16 @@ class _CronogramasState extends State<Cronogramas>
                         maxScale: 3.0,
                         child: Column(
                           children: [
-                            _buildHeader(),
+                            Text(
+                              '¿Sabes como crear un Cronograma?',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: tamanotexto(1) + 5,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'Calibri',
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
                             const SizedBox(height: 20),
                             _buildercard(),
                           ],
@@ -150,7 +159,16 @@ class _CronogramasState extends State<Cronogramas>
                       : Column(
                         // 📌 Sin zoom en pantallas grandes
                         children: [
-                          _buildHeader(),
+                          Text(
+                            '¿Sabes como crear un Cronograma?',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: tamanotexto(1) + 5,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Calibri',
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
                           const SizedBox(height: 20),
                           _buildercard(),
                         ],
@@ -159,28 +177,6 @@ class _CronogramasState extends State<Cronogramas>
           ),
           _buildNavigation(),
         ],
-      ),
-    );
-  }
-
-  Widget _buildHeader() {
-    return Container(
-      width: double.infinity,
-      color: obtenercolor('Color_Fondo'),
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-      child: FittedBox(
-        fit: BoxFit.scaleDown,
-        // se usa BoxFit.scaleDown para que el texto se ajuste al tamaño del contenedor
-        child: Text(
-          '¿Sabes como crear un Cronograma?',
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: tamanotexto(1) + 5,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'Calibri',
-          ),
-          textAlign: TextAlign.center,
-        ),
       ),
     );
   }

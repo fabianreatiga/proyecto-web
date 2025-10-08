@@ -90,7 +90,7 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
     'assets/PlanteamientoProblema/Planteamiento_del_Problema_Arbol_De_Problemas.png', // ÁRBOL DE PROBLEMAS
     'assets/arbol_problemas.jpeg', // COMO HACER EL ÁRBOL DE PROBLEMAS
     'assets/ejemplo_arbol.jpg', // EJEMPLO ÁRBOL DE PROBLEMAS
-    'assets/esquemas.jpeg', // ESQUEMA DE REDACCIÓN
+    'assets/PlanteamientoProblema/Planteamiento_del_Problema_Esquema_de_Redaccion_Parte_1.png', // ESQUEMA DE REDACCIÓN
   ];
 
   final List<String> secciones = [
@@ -114,11 +114,11 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
   final List<double> alturaImagengrande = [
     300, // PLANTEAMIENTO DEL PROBLEMA
     325, // DEFINICIÓN
-    300, // METODOLOGIAS
+    400, // METODOLOGIAS
     350, // 5W1H
-    400, // EJEMPLO 5W1H
-    400, // EJEMPLO 2 5W1H
-    400, // EJEMPLO 3 5W1H
+    500, // EJEMPLO 5W1H
+    500, // EJEMPLO 2 5W1H
+    450, // EJEMPLO 3 5W1H
     400, // ESPINA DE PESCADO
     450, // COMO HACER ESPINA DE PESCADO
     400, // EJEMPLO 1 ESPINA DE PESCADO
@@ -126,7 +126,7 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
     350, // ÁRBOL DE PROBLEMAS
     275, // COMO HACER EL ÁRBOL DE PROBLEMAS
     450, // EJEMPLO ÁRBOL DE PROBLEMAS
-    280, // ESQUEMA DE REDACCIÓN
+    400, // ESQUEMA DE REDACCIÓN
   ];
   final List<double> alturaImagenPequena = [
     300, // PLANTEAMIENTO DEL PROBLEMA
@@ -212,7 +212,16 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                         maxScale: 3.0,
                         child: Column(
                           children: [
-                            _buildHeader(),
+                            Text(
+                              '¿Sabes cómo crear un Planteamiento del Problema?',
+                              style: TextStyle(
+                                fontSize: tamanotexto(1) + 5,
+                                fontFamily: 'Calibri',
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
                             const SizedBox(height: 20),
                             _buildTimelineCard(),
                           ],
@@ -220,7 +229,16 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                       )
                       : Column(
                         children: [
-                          _buildHeader(),
+                          Text(
+                            '¿Sabes cómo crear un Planteamiento del Problema?',
+                            style: TextStyle(
+                              fontSize: tamanotexto(1) + 5,
+                              fontFamily: 'Calibri',
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
                           const SizedBox(height: 20),
                           _buildTimelineCard(),
                         ],
@@ -233,31 +251,10 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
     );
   }
 
-  Widget _buildHeader() {
-    return Container(
-      width: double.infinity,
-      color: obtenercolor('Color_Fondo'),
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-      child: FittedBox(
-        fit: BoxFit.scaleDown,
-        child: Text(
-          '¿Sabes cómo crear un Planteamiento del Problema?',
-          style: TextStyle(
-            fontSize: tamanotexto(1) + 5,
-            fontFamily: 'Calibri',
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-          ),
-          textAlign: TextAlign.center,
-        ),
-      ),
-    );
-  }
-
   Widget _buildTimelineCard() {
     return LayoutBuilder(
       builder: (context, constraints) {
-        bool esPantallaPequena = constraints.maxWidth < 1000;
+        bool esPantallaPequena = constraints.maxWidth < 1400;
         return Card(
           color: obtenercolor('Color_Fondo'),
           shape: RoundedRectangleBorder(
@@ -312,6 +309,13 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                               fit: BoxFit.contain,
                             ),
                           ),
+                          if (_index == 14)
+                            SizedBox(
+                              height: 380,
+                              child: Image.asset(
+                                'assets/PlanteamientoProblema/Planteamiento_del_Problema_Esquema_de_Redaccion_Parte_2.png',
+                              ),
+                            ),
                         ],
                       )
                       : Row(
@@ -349,14 +353,20 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                               _index == 9 ||
                               _index == 10 ||
                               _index == 12 ||
-                              _index == 13 ||
-                              _index == 14)
+                              _index == 13)
                             Spacer(),
                           if ( //_index == 8 ||
                           //_index == 9 ||
                           // _index == 10 ||
-                          _index == 12 || _index == 13 || _index == 14)
+                          _index == 12 || _index == 13)
                             Spacer(),
+                          if (_index == 14)
+                            SizedBox(
+                              height: 380,
+                              child: Image.asset(
+                                'assets/PlanteamientoProblema/Planteamiento_del_Problema_Esquema_de_Redaccion_Parte_2.png',
+                              ),
+                            ),
                         ],
                       ),
                 ],
