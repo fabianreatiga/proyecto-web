@@ -36,6 +36,30 @@ Future<void> enviarEncuesta({
     "📤 Enviando: ${jsonEncode({"observacion": observacion, "nombre": nombre, "ficha": ficha})}",
   );
 }
+
+Future<void> enviarintentos({
+  required String nombre,
+  required String ficha,
+  required int intentos,
+}) async {
+  final url = Uri.parse("https://proyecto-api-1vjo.onrender.com/guardarTodo");
+
+  final respuesta = await http.post(
+    url,
+    headers: {"Content-Type": "application/json"},
+    body: jsonEncode({
+      "intentos": intentos,
+      "nombre": nombre,
+      "ficha": ficha,
+      //"fecha": DateTime.now().toIso8601String(),
+    }),
+  );
+
+  if (respuesta.statusCode != 200 && respuesta.statusCode != 201) {
+    throw Exception("Error al enviar encuesta: ${respuesta.body}");
+  }
+  debugPrint("📤 Enviando: ${jsonEncode({"nombre": nombre, "ficha": ficha})}");
+}
 //Quitar
 
 class Encuesta extends StatelessWidget {
@@ -1791,7 +1815,12 @@ class _EncuestasState extends State<Encuestas> {
                       ),
                     if (nota <= 99.9)
                       TextButton(
-                        onPressed: () {
+                        onPressed: () async {
+                          await enviarintentos(
+                            nombre: usuarioglobal,
+                            ficha: fichaglobal,
+                            intentos: 1,
+                          );
                           _eliminarrespuesta(context);
                           Navigator.of(ctx).pop();
                         },

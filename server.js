@@ -48,7 +48,7 @@ const ItemSchema = new mongoose.Schema({
 
 app.post("/guardarTodo", async (req, res) => {
   try {
-    const { nombre, ficha, intentos, observacion } = req.body;
+    const { nombre, ficha,  observacion } = req.body;
 
     let item = await Item.findOne({ nombre, ficha });
 
@@ -57,11 +57,36 @@ app.post("/guardarTodo", async (req, res) => {
         nombre,
         ficha,
        // progreso: 2,
-        encuesta: {intentos, observacion }
+        encuesta: { observacion }
       });
     } else {
       //item.progreso += 2;
-      item.encuesta = {intentos, observacion, fecha: new Date() };
+      item.encuesta = { observacion, fecha: new Date() };
+    }
+
+    await item.save();
+    res.json({ mensaje: "✅ Guardado con encuesta", item });
+  } catch (err) {
+    res.status(500).json({ mensaje: err.message });
+  }
+});
+
+app.post("/guardarintentos", async (req, res) => {
+  try {
+    const { nombre, ficha,  intentos } = req.body;
+
+    let item = await Item.findOne({ nombre, ficha });
+
+    if (!item) {
+      item = new Item({
+        nombre,
+        ficha,
+       // progreso: 2,
+        encuesta: { intentos }
+      });
+    } else {
+      //item.progreso += 2;
+      item.encuesta = { observacion, fecha: new Date() };
     }
 
     await item.save();
