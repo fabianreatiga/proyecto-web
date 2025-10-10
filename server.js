@@ -40,6 +40,7 @@ const ItemSchema = new mongoose.Schema({
 
   // 📌 Encuesta asociada directamente al aprendiz
   encuesta: {
+    intentos: { type: Number },
     observacion: { type: String },  
   }
 
@@ -47,7 +48,7 @@ const ItemSchema = new mongoose.Schema({
 
 app.post("/guardarTodo", async (req, res) => {
   try {
-    const { nombre, ficha,  observacion } = req.body;
+    const { nombre, ficha, intentos, observacion } = req.body;
 
     let item = await Item.findOne({ nombre, ficha });
 
@@ -56,11 +57,11 @@ app.post("/guardarTodo", async (req, res) => {
         nombre,
         ficha,
        // progreso: 2,
-        encuesta: { observacion }
+        encuesta: {intentos, observacion }
       });
     } else {
       //item.progreso += 2;
-      item.encuesta = { observacion, fecha: new Date() };
+      item.encuesta = {intentos, observacion, fecha: new Date() };
     }
 
     await item.save();
