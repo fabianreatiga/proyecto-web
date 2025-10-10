@@ -381,7 +381,7 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
   Widget _buildNavigation() {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-      color: obtenercolor('Color_Fondo'),
+      color: Colors.transparent,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -403,7 +403,7 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                 } else {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const Titulo()),
+                    MaterialPageRoute(builder: (context) => Titulo()),
                   );
                 }
               },

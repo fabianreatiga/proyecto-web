@@ -54,7 +54,7 @@ class Encuestas extends StatefulWidget {
   State<Encuestas> createState() => _EncuestasState();
 }
 
-/*void _mostrarcamposenblanco(BuildContext context, String mensaje) {
+void _mostrarcamposenblanco(BuildContext context, String mensaje) {
   showDialog(
     context: context,
     builder:
@@ -78,7 +78,7 @@ class Encuestas extends StatefulWidget {
           ],
         ),
   );
-}*/
+}
 
 class _EncuestasState extends State<Encuestas> {
   String? _titulopregunta1; // en esta variable se guarda el titulo
@@ -1478,7 +1478,35 @@ class _EncuestasState extends State<Encuestas> {
         foregroundColor: obtenercolor('Color_Texto_Principal'),
       ),
       onPressed: () {
-        _funcionboton(context);
+        if (_titulopregunta1 == null ||
+            _titulopregunta2 == null ||
+            _titulopregunta3 == null ||
+            _plnateamientopregunta1 == null ||
+            _plnateamientopregunta2 == null ||
+            _plnateamientopregunta3 == null ||
+            _justificacionpregunta1 == null ||
+            _justificacionpregunta2 == null ||
+            _justificacionpregunta3 == null ||
+            _objetivospregunta1 == null ||
+            _objetivospregunta2 == null ||
+            _objetivospregunta3 == null ||
+            _metodologiapregunta1 == null ||
+            _metodologiapregunta2 == null ||
+            _metodologiapregunta3 == null ||
+            _cronogramapregunta1 == null ||
+            _cronogramapregunta2 == null ||
+            _cronogramapregunta3 == null ||
+            _actiivadadespregunta1 == null ||
+            _actiivadadespregunta2 == null ||
+            _actiivadadespregunta3 == null ||
+            _bibliografiapregunta1 == null ||
+            _bibliografiapregunta2 == null ||
+            _bibliografiapregunta3 == null) {
+          _mostrarcamposenblanco(context, 'No puede haber campos en blanco');
+          return;
+        } else {
+          _funcionboton(context);
+        }
       },
       child: Text('Finalizar', style: TextStyle(fontSize: tamanotexto(2))),
     );
@@ -1742,34 +1770,41 @@ class _EncuestasState extends State<Encuestas> {
               ),
             ),
             actions: [
-              Row(
-                mainAxisAlignment:
-                    MainAxisAlignment.spaceBetween, // uno izq, otro der
-                children: [
-                  TextButton(
-                    onPressed: () {
-                      _eliminarrespuesta(context);
-                      Navigator.of(ctx).pop();
-                    },
-                    style: TextButton.styleFrom(
-                      backgroundColor: obtenercolor('Color_Principal'),
-                      foregroundColor: obtenercolor('Color_Texto_Principal'),
-                    ),
-                    child: const Text("Aceptar"),
-                  ),
-                  if (nota <= 99.9)
-                    TextButton(
-                      onPressed: () {
-                        _eliminarrespuesta(context);
-                        Navigator.of(ctx).pop();
-                      },
-                      style: TextButton.styleFrom(
-                        backgroundColor: obtenercolor('Color_Principal'),
-                        foregroundColor: obtenercolor('Color_Texto_Principal'),
+              Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  // uno izq, otro der
+                  children: [
+                    if (nota == 100)
+                      TextButton(
+                        onPressed: () {
+                          _eliminarrespuesta(context);
+                          Navigator.of(ctx).pop();
+                        },
+                        style: TextButton.styleFrom(
+                          backgroundColor: obtenercolor('Color_Principal'),
+                          foregroundColor: obtenercolor(
+                            'Color_Texto_Principal',
+                          ),
+                        ),
+                        child: const Text("Aceptar"),
                       ),
-                      child: const Text('Intentar Nuevamente'),
-                    ),
-                ],
+                    if (nota <= 99.9)
+                      TextButton(
+                        onPressed: () {
+                          _eliminarrespuesta(context);
+                          Navigator.of(ctx).pop();
+                        },
+                        style: TextButton.styleFrom(
+                          backgroundColor: obtenercolor('Color_Principal'),
+                          foregroundColor: obtenercolor(
+                            'Color_Texto_Principal',
+                          ),
+                        ),
+                        child: const Text('Intentar Nuevamente'),
+                      ),
+                  ],
+                ),
               ),
             ],
           ),

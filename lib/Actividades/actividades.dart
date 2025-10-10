@@ -288,7 +288,7 @@ class _ActividadState extends State<Actividad> with TickerProviderStateMixin {
   Widget _buildNavigation() {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-      color: obtenercolor('Color_Fondo'),
+      color: Colors.transparent,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

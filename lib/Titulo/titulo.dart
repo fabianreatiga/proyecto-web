@@ -10,8 +10,6 @@ import 'package:nuevomockups/PlanteamientoProblemas/plantiamientoproblemas.dart'
 import 'package:nuevomockups/global.dart';
 
 class Titulo extends StatelessWidget {
-  const Titulo({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -310,7 +308,7 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
   Widget _buildNavigation() {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-      color: obtenercolor('Color_Fondo'),
+      color: Colors.transparent,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

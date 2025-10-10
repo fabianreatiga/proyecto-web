@@ -93,7 +93,7 @@ class Menu extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const Titulo()),
+                MaterialPageRoute(builder: (context) => Titulo()),
               );
             },
           ),
@@ -288,6 +288,7 @@ class Menu extends StatelessWidget {
           ),
 
           //========================== BUSQUEDA  =========================\\
+          /*
           ListTile(
             leading: Icon(
               Icons.search,
@@ -338,7 +339,7 @@ class Menu extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => const BasesDatos()),
               );
             },
-          ),
+          ),*/
 
           //======================= OPCIÓN ENCUESTA =======================\\
           ListTile(

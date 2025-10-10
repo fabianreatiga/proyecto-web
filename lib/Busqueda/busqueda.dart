@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:nuevomockups/Appbar/appbar.dart';
+import 'package:nuevomockups/Bases_Datos/bases_datos.dart';
 import 'package:nuevomockups/Bibliografia/bibliografia.dart';
 import 'package:nuevomockups/Color_texto/color_texto.dart';
 import 'package:nuevomockups/Menus/menus.dart';
@@ -124,7 +125,7 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
       ),
 
       // Een este bloque de codigo se usa para mostrar y navegar por el modal menu
-      drawer: const Menu(currentScreen: 'Titulo'),
+      drawer: const Menu(currentScreen: 'Busqueda'),
       body: Container(
         padding: EdgeInsets.all(0),
         child: Column(
@@ -297,55 +298,51 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
   Widget _buildNavigation() {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-      color: obtenercolor('Color_Fondo'),
+      color: Colors.transparent,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          if (_index > 0)
-            SizedBox(
-              width: 150,
-              height: 45,
-              child: ElevatedButton.icon(
-                onPressed: () {
-                  if (_index > 0) {
-                    final anterior = _index - 1;
-                    _tabController.animateTo(anterior);
-                    setState(() {
-                      _index = anterior;
-                      if (!pestanasVistas.contains(anterior)) {
-                        pestanasVistas.add(anterior);
-                        ProgresoGlobal.marcarVisto(ID_BASE_PROGRESO + anterior);
-                      }
-                    });
-                  } else {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const Bibliografia(),
-                      ),
-                    );
-                  }
-                },
-                icon: Icon(
-                  Icons.arrow_back,
-                  color: obtenercolor('Color_Texto_Principal'),
-                  size: tamanotexto(2),
-                ),
-                label: Text(
-                  'Anterior',
-                  style: TextStyle(
-                    color: obtenercolor('Color_texto_principal'),
-                    fontSize: tamanotexto(2),
-                  ),
-                ),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: obtenercolor('Color_Principal'),
-                  padding: EdgeInsets.zero,
+          SizedBox(
+            width: 150,
+            height: 45,
+            child: ElevatedButton.icon(
+              onPressed: () {
+                if (_index > 0) {
+                  final anterior = _index - 1;
+                  _tabController.animateTo(anterior);
+                  setState(() {
+                    _index = anterior;
+                    if (!pestanasVistas.contains(anterior)) {
+                      pestanasVistas.add(anterior);
+                      ProgresoGlobal.marcarVisto(ID_BASE_PROGRESO + anterior);
+                    }
+                  });
+                } else {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Bibliografia()),
+                  );
+                }
+              },
+              icon: Icon(
+                Icons.arrow_back,
+                size: tamanotexto(2),
+                color: obtenercolor('Color_Texto'),
+              ),
+              label: Text(
+                'Anterior',
+                style: TextStyle(
+                  color: obtenercolor('Color_Texto'),
+                  fontSize: tamanotexto(2),
+                  fontFamily: 'Calibri',
                 ),
               ),
-            )
-          else
-            const SizedBox(),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: obtenercolor('Color_Principal'),
+                padding: EdgeInsets.zero,
+              ),
+            ),
+          ),
           SizedBox(
             width: 150,
             height: 45,
@@ -363,6 +360,10 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                   });
                 } else {
                   await guardarProgresoFinal(2);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => BasesDato()),
+                  );
                 }
               },
 

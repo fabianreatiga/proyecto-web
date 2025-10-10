@@ -134,7 +134,7 @@ class Inicio extends StatelessWidget {
 
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const Titulo()),
+      MaterialPageRoute(builder: (context) => Titulo()),
     ); // aca se navega a la pantalla de Titulo
 
     _NombreAprendiz.clear();
@@ -211,7 +211,7 @@ class Inicio extends StatelessWidget {
   }
 
   Widget _buildColumnLayout(BuildContext context) {
-    //este es el widget que es usa para cuando las pantallas
+    //este es el widget que es usa para cuando las pantallas pequeñas
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
@@ -328,6 +328,7 @@ class Inicio extends StatelessWidget {
           // usamos estas lineas de codigo para darle estilo y limitar el tamaño del texto a 7
           const SizedBox(height: 30),
           _botonIniciar(context), // boton de iniciar
+          SizedBox(height: 50),
         ],
       ),
     );
