@@ -86,7 +86,7 @@ app.post("/guardarintentos", async (req, res) => {
       });
     } else {
       //item.progreso += 2;
-      item.encuesta = { intentos, fecha: new Date() };
+     item.encuesta.intentos = intentos;
     }
 
     await item.save();
