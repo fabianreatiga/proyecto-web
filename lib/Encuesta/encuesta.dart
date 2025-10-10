@@ -42,7 +42,9 @@ Future<void> enviarintentos({
   required String ficha,
   required int intentos,
 }) async {
-  final url = Uri.parse("https://proyecto-api-1vjo.onrender.com/guardarTodo");
+  final url = Uri.parse(
+    "https://proyecto-api-1vjo.onrender.com/guardarintentos",
+  );
 
   final respuesta = await http.post(
     url,
@@ -58,7 +60,9 @@ Future<void> enviarintentos({
   if (respuesta.statusCode != 200 && respuesta.statusCode != 201) {
     throw Exception("Error al enviar encuesta: ${respuesta.body}");
   }
-  debugPrint("📤 Enviando: ${jsonEncode({"nombre": nombre, "ficha": ficha})}");
+  debugPrint(
+    "📤 Enviando: ${jsonEncode({"intentos": intentos, "nombre": nombre, "ficha": ficha})}",
+  );
 }
 //Quitar
 
@@ -105,6 +109,7 @@ void _mostrarcamposenblanco(BuildContext context, String mensaje) {
 }
 
 class _EncuestasState extends State<Encuestas> {
+  int _intentos = 1;
   String? _titulopregunta1; // en esta variable se guarda el titulo
   String? _titulopregunta2;
   String? _titulopregunta3;
@@ -1816,13 +1821,16 @@ class _EncuestasState extends State<Encuestas> {
                     if (nota <= 99.9)
                       TextButton(
                         onPressed: () async {
+                          setState(() {
+                            _intentos += 1;
+                          });
+                          _eliminarrespuesta(context);
+                          Navigator.of(ctx).pop();
                           await enviarintentos(
                             nombre: usuarioglobal,
                             ficha: fichaglobal,
-                            intentos: 1,
+                            intentos: _intentos, // Envía el valor real
                           );
-                          _eliminarrespuesta(context);
-                          Navigator.of(ctx).pop();
                         },
                         style: TextButton.styleFrom(
                           backgroundColor: obtenercolor('Color_Principal'),
