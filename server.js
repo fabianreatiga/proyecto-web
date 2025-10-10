@@ -48,7 +48,7 @@ const ItemSchema = new mongoose.Schema({
 
 app.post("/guardarTodo", async (req, res) => {
   try {
-    const { nombre, ficha,  observacion } = req.body;
+    const { nombre, ficha, observacion } = req.body;
 
     let item = await Item.findOne({ nombre, ficha });
 
@@ -56,24 +56,26 @@ app.post("/guardarTodo", async (req, res) => {
       item = new Item({
         nombre,
         ficha,
-       // progreso: 2,
         encuesta: { observacion }
       });
     } else {
-      //item.progreso += 2;
-      item.encuesta = { observacion, fecha: new Date() };
+      // ✅ Solo actualiza el campo observacion
+      if (!item.encuesta) item.encuesta = {};
+      item.encuesta.observacion = observacion;
+      item.encuesta.fecha = new Date();
     }
 
     await item.save();
-    res.json({ mensaje: "✅ Guardado con encuesta", item });
+    res.json({ mensaje: "✅ Guardado con encuesta (observación)", item });
   } catch (err) {
     res.status(500).json({ mensaje: err.message });
   }
 });
 
+
 app.post("/guardarintentos", async (req, res) => {
   try {
-    const { nombre, ficha,  intentos } = req.body;
+    const { nombre, ficha, intentos } = req.body;
 
     let item = await Item.findOne({ nombre, ficha });
 
@@ -81,20 +83,22 @@ app.post("/guardarintentos", async (req, res) => {
       item = new Item({
         nombre,
         ficha,
-       // progreso: 2,
         encuesta: { intentos }
       });
     } else {
-      //item.progreso += 2;
-     item.encuesta.intentos = intentos;
+      // ✅ Solo actualiza el campo intentos
+      if (!item.encuesta) item.encuesta = {};
+      item.encuesta.intentos = intentos;
+      item.encuesta.fecha = new Date();
     }
 
     await item.save();
-    res.json({ mensaje: "✅ Guardado con encuesta", item });
+    res.json({ mensaje: "✅ Intentos guardados correctamente", item });
   } catch (err) {
     res.status(500).json({ mensaje: err.message });
   }
 });
+
 
 
 ItemSchema.index(//nuevo
