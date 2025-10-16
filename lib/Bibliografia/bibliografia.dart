@@ -80,13 +80,13 @@ class _BibliografiasState extends State<Bibliografias>
   ];
 
   final List<double> alturaImagenPequena = [
-    300, //BIBLIOGRAFÍA
+    500, //BIBLIOGRAFÍA
     300, //EJEMPLOS
     400, //NORMAS APA
     350, //EJEMPLOS APA
     400, //NORMAS IEEE
     300, //EJEMPLOS IEEE
-    300, //SITIOS WEB RECOMENDADOS
+    500, //SITIOS WEB RECOMENDADOS
   ];
 
   static int ID_BASE_PROGRESO = 44;
@@ -115,7 +115,7 @@ class _BibliografiasState extends State<Bibliografias>
   @override
   Widget build(BuildContext context) {
     // 📌 Ahora el nombre refleja la condición real
-    final bool esPantallaPequena = MediaQuery.of(context).size.width < 850;
+    final bool esPantallaPequena = MediaQuery.of(context).size.width < 1000;
 
     return Scaffold(
       backgroundColor: obtenercolor('Color_Fondo'),
@@ -148,7 +148,7 @@ class _BibliografiasState extends State<Bibliografias>
         children: [
           Expanded(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
               child:
                   esPantallaPequena
                       ? InteractiveViewer(
@@ -212,7 +212,7 @@ class _BibliografiasState extends State<Bibliografias>
           ),
           elevation: 4, // se usa elvation para darle una sombra al card
           child: Padding(
-            padding: const EdgeInsets.all(24),
+            padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
             child: Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
@@ -320,6 +320,7 @@ class _BibliografiasState extends State<Bibliografias>
 
   Widget _buildNavigation() {
     return Container(
+      height: 85,
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
       color: Colors.transparent,
       child: Row(

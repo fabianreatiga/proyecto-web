@@ -94,7 +94,7 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     // 📌 Ahora el nombre refleja la condición real
-    final bool esPantallaPequena = MediaQuery.of(context).size.width < 850;
+    final bool esPantallaPequena = MediaQuery.of(context).size.width < 1000;
 
     return Scaffold(
       backgroundColor: obtenercolor('Color_Fondo'),
@@ -197,7 +197,7 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
           ),
           elevation: 4, // se usa elevation para darle sombra al card
           child: Padding(
-            padding: const EdgeInsets.all(24),
+            padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
             child: Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
@@ -297,6 +297,7 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
 
   Widget _buildNavigation() {
     return Container(
+      height: 85,
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
       color: Colors.transparent,
       child: Row(

@@ -98,7 +98,7 @@ class _CronogramasState extends State<Cronogramas>
   @override
   Widget build(BuildContext context) {
     // 📌 Ahora el nombre refleja la condición real
-    final bool esPantallaPequena = MediaQuery.of(context).size.width < 850;
+    final bool esPantallaPequena = MediaQuery.of(context).size.width < 1000;
 
     return Scaffold(
       backgroundColor: obtenercolor('Color_Fondo'),
@@ -131,7 +131,7 @@ class _CronogramasState extends State<Cronogramas>
         children: [
           Expanded(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
               child:
                   esPantallaPequena
                       ? InteractiveViewer(
@@ -290,6 +290,7 @@ class _CronogramasState extends State<Cronogramas>
 
   Widget _buildNavigation() {
     return Container(
+      height: 85,
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
       color: Colors.transparent,
       child: Row(

@@ -111,7 +111,7 @@ class _JustificacionesState extends State<Justificaciones>
 
   @override
   Widget build(BuildContext context) {
-    final bool esPantallaPequena = MediaQuery.of(context).size.width < 850;
+    final bool esPantallaPequena = MediaQuery.of(context).size.width < 1000;
 
     return Scaffold(
       backgroundColor: obtenercolor('Color_Fondo'),
@@ -143,7 +143,7 @@ class _JustificacionesState extends State<Justificaciones>
         children: [
           Expanded(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
               child:
                   esPantallaPequena
                       ? InteractiveViewer(
@@ -296,6 +296,7 @@ class _JustificacionesState extends State<Justificaciones>
 
   Widget _buildNavigation() {
     return Container(
+      height: 85,
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
       color: Colors.transparent,
       child: Row(

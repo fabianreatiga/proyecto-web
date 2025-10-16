@@ -27,15 +27,22 @@ void main(List<String> args) async {
   );
 } // en este bloque de código se esta iniciando la aplicación
 
-class Inicio extends StatelessWidget {
+class Inicio extends StatefulWidget {
   Inicio({super.key});
 
+  @override
+  State<Inicio> createState() => _InicioState();
+}
+
+class _InicioState extends State<Inicio> {
   final TextEditingController _Nficha = TextEditingController();
   // variable donde se obtiene el texto del campo N° ficha
   final TextEditingController _NombrePrograma = TextEditingController();
   // variable donde se obtiene el texto del campo Nombre Programa
   final TextEditingController _NombreAprendiz = TextEditingController();
   // variable donde se obtiene el texto del campo Nombre Aprendiz
+
+  bool _isLoading = false; // 🔥 Variable para controlar el icono de carga
 
   //quitar
   Future<bool> usuarioRegistrado(String nombre, String ficha) async {
@@ -102,7 +109,7 @@ class Inicio extends StatelessWidget {
     );
   } // en este bloque de código se muestra un mensaje de error si hay campos en blanco
 
-  void _boton(BuildContext context) async {
+  Future<void> _boton(BuildContext context) async {
     final nombre = _NombreAprendiz.text.trim();
     final programa = _NombrePrograma.text.trim();
     final ficha = _Nficha.text.trim();
@@ -116,97 +123,106 @@ class Inicio extends StatelessWidget {
 
     //quitar
 
-    setUsuarioGlobal(nombre); // aca guardamos el nombre en la variable global
-    setFichaGlobal(ficha); // aca guardamos la ficha en la variable global
-    setprogramaGlobal(programa);
+    setState(() => _isLoading = true); // 🔥 Muestra el icono de carga
 
-    //quitar
+    try {
+      setUsuarioGlobal(nombre); // aca guardamos el nombre en la variable global
+      setFichaGlobal(ficha); // aca guardamos la ficha en la variable global
+      setprogramaGlobal(programa);
 
-    await guardarProgresoFinal(0);
+      await guardarProgresoFinal(0);
 
-    await usuarioRegistrado(
-      nombre,
-      ficha,
-    ); //aca se verifica si el usuario ya está registrado
-    await _guardarEnAPI(context); // aca se envian los datos a la API
+      await usuarioRegistrado(
+        nombre,
+        ficha,
+      ); //aca se verifica si el usuario ya está registrado
+      await _guardarEnAPI(context); // aca se envian los datos a la API
 
-    // quitar
+      // quitar
 
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => Titulo()),
-    ); // aca se navega a la pantalla de Titulo
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Titulo()),
+      ); // aca se navega a la pantalla de Titulo
 
-    _NombreAprendiz.clear();
-    _NombrePrograma.clear();
-    _Nficha.clear();
-    // Limpia los campos después de navegar
+      _NombreAprendiz.clear();
+      _NombrePrograma.clear();
+      _Nficha.clear();
+      // Limpia los campos después de navegar
+    } catch (e) {
+      print("⚠️ Error al procesar datos: $e");
+    } finally {
+      setState(() => _isLoading = false); // 🔥 Oculta el icono de carga
+    }
   }
   // en este bloque de código se verifica si el usuario ya está registrado, si no lo está se envían los datos a la API y se navega a la pantalla de Titulo
 
   @override
   Widget build(BuildContext context) {
     //este es el widget principal
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      backgroundColor: obtenercolor('Color_Fondo'),
-      //se usa obtenercolor para la funcion que tienen los colores ya definidos
-      body: Center(
-        child: SingleChildScrollView(
-          /* padding: EdgeInsets.only(
-            bottom:
-                MediaQuery.of(
-                  context,
-                ).viewInsets.bottom, // 👈 se ajusta al teclado
-          ),*/
-          //se esta usando singlechildscrollview para activar la función de scroll para no tener problemas con desbordamientos en pantallas pequeñas
-          child: Column(
-            children: [
-              LayoutBuilder(
-                builder: (context, constraints) {
-                  double screenWidth = constraints.maxWidth;
-                  // aca se esta determinando el ancho de la pantallas
-                  return Container(
-                    child: Image.asset(
-                      'assets/banner_superior.jpg',
-                      //aca se carga la imagen del banner superior
-                      width: screenWidth,
-                      height:
-                          screenWidth < 1000
-                              ? MediaQuery.of(context).size.height * 0.1
-                              : MediaQuery.of(context).size.height * 0.3,
-                      // se esta usando el operador ternario para determinar la altura del banner
-                      // si el ancho de la pantalla es menor a 600, la altura será 150 de lo contrario será 200
-                      fit: BoxFit.cover,
-                      // se usa BoxFit.cover para que la imagen se ajuste al tamaño de la pantalla
-                    ),
-                  );
-                },
-              ),
-              Padding(
-                padding: const EdgeInsets.all(20),
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 1300),
-                  // se usa BoxConstraints para limitar el ancho de la pantalla  del conteido
-                  child: Padding(
-                    padding: const EdgeInsets.all(25),
-                    child: LayoutBuilder(
-                      builder: (context, constraints) {
-                        bool isSmallScreen = constraints.maxWidth < 1000;
-                        return isSmallScreen
-                            ? _buildColumnLayout(context)
-                            : _buildRowLayout(context);
-                        //estamos usando el operador ternario y isSmallScreen, si la pantalla es menor a 1000 se modifica
-                        // si es menor a 1000 llama al widget _buildColumnLayout y de lo contrario llama al widget _buildRowLayout
-                      },
+    return Stack(
+      children: [
+        Scaffold(
+          resizeToAvoidBottomInset: false,
+          backgroundColor: obtenercolor('Color_Fondo'),
+          //se usa obtenercolor para la funcion que tienen los colores ya definidos
+          body: Center(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  LayoutBuilder(
+                    builder: (context, constraints) {
+                      double screenWidth = constraints.maxWidth;
+                      // aca se esta determinando el ancho de la pantallas
+                      return Container(
+                        child: Image.asset(
+                          'assets/banner_superior.jpg',
+                          //aca se carga la imagen del banner superior
+                          width: screenWidth,
+                          height:
+                              screenWidth < 1000
+                                  ? MediaQuery.of(context).size.height * 0.1
+                                  : MediaQuery.of(context).size.height * 0.3,
+                          fit: BoxFit.cover,
+                        ),
+                      );
+                    },
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: 1300),
+                      child: Padding(
+                        padding: const EdgeInsets.all(25),
+                        child: LayoutBuilder(
+                          builder: (context, constraints) {
+                            bool isSmallScreen = constraints.maxWidth < 1000;
+                            return isSmallScreen
+                                ? _buildColumnLayout(context)
+                                : _buildRowLayout(context);
+                          },
+                        ),
+                      ),
                     ),
                   ),
-                ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
-      ),
+
+        // 🔥 Overlay del icono de carga
+        if (_isLoading)
+          Container(
+            color: Colors.black54,
+            child: const Center(
+              child: CircularProgressIndicator(
+                color: Colors.white,
+                strokeWidth: 5,
+              ),
+            ),
+          ),
+      ],
     );
   }
 
@@ -216,12 +232,10 @@ class Inicio extends StatelessWidget {
       decoration: BoxDecoration(
         image: DecorationImage(
           image: AssetImage('assets/fondo_textura.png'),
-          //aca cargamas la imagen con la textura de fondo
-          repeat: ImageRepeat.repeat, // 🔥 Se repite en todo el fondo
+          repeat: ImageRepeat.repeat,
           opacity: MediaQuery.of(context).size.width < 600 ? 0.3 : 0.2,
         ),
       ),
-      //usamos un boxdecoration para decorar el contenedor con color, con borde, en este caso es con una imagen
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -230,9 +244,7 @@ class Inicio extends StatelessWidget {
             borderRadius: BorderRadius.circular(16),
             child: Image.asset(
               'assets/logoSena.png',
-              //aca cargamos la imagen del logo del sena
               width: MediaQuery.of(context).size.width < 600 ? 100 : 150,
-              //con este operador ternario se determina el tamaño del logo dependiendo del tamaño de la pantalla
               fit: BoxFit.contain,
             ),
           ),
@@ -241,11 +253,9 @@ class Inicio extends StatelessWidget {
             padding: EdgeInsets.all(35),
             child: Text.rich(
               TextSpan(
-                //se esta usando textspan para dar formato a diferentes partes del texto
                 children: [
                   TextSpan(
                     text: aplicativo,
-                    // aplicativo es una variable que contiene un texto
                     style: TextStyle(
                       fontSize: tamanotexto(3),
                       fontWeight: FontWeight.bold,
@@ -266,7 +276,6 @@ class Inicio extends StatelessWidget {
                         ' hacer uso de las TIC y de una plataforma interactiva que incentive el pensamiento crítico y la creatividad.',
                     style: TextStyle(
                       fontSize: tamanotexto(2),
-                      //se esta usando tamanotexto para determinar el tamaño del texto mediante una función
                       height: 1.4,
                       fontFamily: 'Calibri',
                       color: Colors.black,
@@ -275,7 +284,6 @@ class Inicio extends StatelessWidget {
                 ],
               ),
               textAlign: TextAlign.center,
-              //se esta usando textalign para centrar el texto en el contenedor
             ),
           ),
           const SizedBox(height: 20),
@@ -284,14 +292,14 @@ class Inicio extends StatelessWidget {
             icon: Icons.person,
             hint: 'Escribe tu nombre',
             controller: _NombreAprendiz,
-          ), // Campo de texto de nombre del aprendiz
+          ),
           const SizedBox(height: 15),
           _campoTexto(
             label: 'Nombre Programa',
             icon: Icons.text_decrease,
             hint: 'Nombre Programa',
             controller: _NombrePrograma,
-          ), // Campo de texto del nombre del programa
+          ),
           const SizedBox(height: 15),
           SizedBox(
             width: 250,
@@ -318,16 +326,15 @@ class Inicio extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
-              keyboardType: TextInputType.number, // Abre teclado numérico
+              keyboardType: TextInputType.number,
               inputFormatters: [
-                FilteringTextInputFormatter.digitsOnly, // Solo dígitos
+                FilteringTextInputFormatter.digitsOnly,
                 LengthLimitingTextInputFormatter(7),
               ],
             ),
           ),
-          // usamos estas lineas de codigo para darle estilo y limitar el tamaño del texto a 7
           const SizedBox(height: 30),
-          _botonIniciar(context), // boton de iniciar
+          _botonIniciar(context),
           SizedBox(height: 50),
         ],
       ),
@@ -335,7 +342,6 @@ class Inicio extends StatelessWidget {
   }
 
   Widget _buildRowLayout(BuildContext context) {
-    // este es el widget que se usa para cuando las pantallas son grandes
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -348,7 +354,6 @@ class Inicio extends StatelessWidget {
               Stack(
                 children: [
                   Positioned.fill(
-                    // estamos usando positioned para colocar la textura en el fondo
                     child: Row(
                       children: [
                         Expanded(
@@ -360,7 +365,6 @@ class Inicio extends StatelessWidget {
                                 opacity: 0.3,
                               ),
                             ),
-                            // En esta linea de texto se esta agregando la textura en el fondo
                           ),
                         ),
                         Expanded(
@@ -372,13 +376,11 @@ class Inicio extends StatelessWidget {
                                 opacity: 0.3,
                               ),
                             ),
-                            // usamos 2 texturas para que no se amplie mucho la imagen
                           ),
                         ),
                       ],
                     ),
                   ),
-
                   Padding(
                     padding: EdgeInsets.all(35),
                     child: Text.rich(
@@ -434,7 +436,6 @@ class Inicio extends StatelessWidget {
               ),
               borderRadius: BorderRadius.circular(20),
               boxShadow: [
-                //usamos boxshadow para darle sombra al contenedor
                 BoxShadow(
                   color: Colors.transparent,
                   blurRadius: 10,
@@ -469,7 +470,6 @@ class Inicio extends StatelessWidget {
                 ),
                 const SizedBox(height: 15),
                 SizedBox(
-                  // se agrego este SizedBox para integrar el campo de texto del N° ficha
                   width: 250,
                   child: TextField(
                     controller: _Nficha,
@@ -494,15 +494,13 @@ class Inicio extends StatelessWidget {
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
-                    keyboardType: TextInputType.number, // Abre teclado numérico
+                    keyboardType: TextInputType.number,
                     inputFormatters: [
-                      FilteringTextInputFormatter.digitsOnly, // Solo dígitos
+                      FilteringTextInputFormatter.digitsOnly,
                       LengthLimitingTextInputFormatter(7),
                     ],
                   ),
                 ),
-
-                // es este bloque de codigo se agrego el campo de texto del N° ficha y dar limitacion a 7 numeros
                 const SizedBox(height: 30),
                 _botonIniciar(context),
               ],
@@ -514,7 +512,6 @@ class Inicio extends StatelessWidget {
   }
 
   Widget _botonIniciar(BuildContext context) {
-    //se creo este widget para derle estilo al boton de iniciar
     return SizedBox(
       width: 180,
       height: 45,
@@ -526,9 +523,8 @@ class Inicio extends StatelessWidget {
           ),
           elevation: 5,
         ),
-        onPressed: () {
-          _boton(context);
-        },
+        onPressed:
+            _isLoading ? null : () => _boton(context), // 🔥 Evita doble clic
         icon: Icon(
           Icons.arrow_forward,
           color: obtenercolor('Color_Texto_Principal'),
@@ -545,10 +541,8 @@ class Inicio extends StatelessWidget {
       ),
     );
   }
-  //en este bloque de codigo damos estilo al boton de iniciar
 
   static Widget _campoTexto({
-    //se creo este widget para darle estilo a los campos de texto
     required String label,
     required IconData icon,
     required String hint,
@@ -557,7 +551,7 @@ class Inicio extends StatelessWidget {
     return SizedBox(
       width: 250,
       child: TextField(
-        controller: controller, // <-- agregado
+        controller: controller,
         decoration: InputDecoration(
           filled: true,
           fillColor: obtenercolor('Color_Fondo'),
@@ -581,4 +575,3 @@ class Inicio extends StatelessWidget {
 
 const String aplicativo =
     'Aplicativo para la estructuración de proyectos de investigación';
-//se esta usando esta variable para guardar un texto, se esta uasndo en 2 partes del codigo

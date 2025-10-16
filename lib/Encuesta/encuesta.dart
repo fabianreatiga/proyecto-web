@@ -1506,7 +1506,7 @@ class _EncuestasState extends State<Encuestas> {
         backgroundColor: obtenercolor('Color_Principal'),
         foregroundColor: obtenercolor('Color_Texto_Principal'),
       ),
-      onPressed: () {
+      onPressed: () async {
         if (_titulopregunta1 == null ||
             _titulopregunta2 == null ||
             _titulopregunta3 == null ||
@@ -1535,6 +1535,11 @@ class _EncuestasState extends State<Encuestas> {
           return;
         } else {
           _funcionboton(context);
+          await enviarintentos(
+            nombre: usuarioglobal,
+            ficha: fichaglobal,
+            intentos: _intentos, // Envía el valor real
+          );
         }
       },
       child: Text('Finalizar', style: TextStyle(fontSize: tamanotexto(2))),
@@ -1821,16 +1826,16 @@ class _EncuestasState extends State<Encuestas> {
                     if (nota <= 99.9)
                       TextButton(
                         onPressed: () async {
-                          setState(() {
+                          /*setState(() {
                             _intentos += 1;
-                          });
+                          });*/
                           _eliminarrespuesta(context);
                           Navigator.of(ctx).pop();
-                          await enviarintentos(
+                          /*await enviarintentos(
                             nombre: usuarioglobal,
                             ficha: fichaglobal,
                             intentos: _intentos, // Envía el valor real
-                          );
+                          );*/
                         },
                         style: TextButton.styleFrom(
                           backgroundColor: obtenercolor('Color_Principal'),

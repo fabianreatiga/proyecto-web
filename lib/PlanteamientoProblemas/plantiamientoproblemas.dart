@@ -88,8 +88,8 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
     'assets/PlanteamientoProblema/Planteamiento_del_Problema_Ejemplo_1_Espina_De_Pescado.png', // EJEMPLO 1 ESPINA DE PESCADO
     'assets/PlanteamientoProblema/Planteamiento_del_Problema_Ejemplo_2_Espina_De_Pescado.png', // EJEMPLO 2 ESPINA DE PESCADO
     'assets/PlanteamientoProblema/Planteamiento_del_Problema_Arbol_De_Problemas.png', // ÁRBOL DE PROBLEMAS
-    'assets/arbol_problemas.jpeg', // COMO HACER EL ÁRBOL DE PROBLEMAS
-    'assets/ejemplo_arbol.jpg', // EJEMPLO ÁRBOL DE PROBLEMAS
+    'assets/PlanteamientoProblema/Planteamiento_del_Problema_Como_Hacer_Arbol_De_Problemas.png', // COMO HACER EL ÁRBOL DE PROBLEMAS
+    'assets/PlanteamientoProblema/Planteamiento_del_Problema_Ejemplo_Arbol_De_Problemas.png', // EJEMPLO ÁRBOL DE PROBLEMAS
     'assets/PlanteamientoProblema/Planteamiento_del_Problema_Esquema_de_Redaccion_Parte_1.png', // ESQUEMA DE REDACCIÓN
   ];
 
@@ -121,11 +121,11 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
     450, // EJEMPLO 3 5W1H
     400, // ESPINA DE PESCADO
     450, // COMO HACER ESPINA DE PESCADO
-    400, // EJEMPLO 1 ESPINA DE PESCADO
-    400, // EJEMPLO 2 ESPINA DE PESCADO
-    350, // ÁRBOL DE PROBLEMAS
-    275, // COMO HACER EL ÁRBOL DE PROBLEMAS
-    450, // EJEMPLO ÁRBOL DE PROBLEMAS
+    450, // EJEMPLO 1 ESPINA DE PESCADO
+    450, // EJEMPLO 2 ESPINA DE PESCADO
+    450, // ÁRBOL DE PROBLEMAS
+    500, // COMO HACER EL ÁRBOL DE PROBLEMAS
+    500, // EJEMPLO ÁRBOL DE PROBLEMAS
     400, // ESQUEMA DE REDACCIÓN
   ];
   final List<double> alturaImagenPequena = [
@@ -171,7 +171,7 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
 
   @override
   Widget build(BuildContext context) {
-    final bool esPantallaPequena = MediaQuery.of(context).size.width < 850;
+    final bool esPantallaPequena = MediaQuery.of(context).size.width < 1000;
 
     return Scaffold(
       backgroundColor: obtenercolor('Color_Fondo'),
@@ -203,7 +203,7 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
         children: [
           Expanded(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
               child:
                   esPantallaPequena
                       ? InteractiveViewer(
@@ -350,15 +350,15 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                             ),
                           ),
                           if (_index == 8 ||
-                              _index == 9 ||
-                              _index == 10 ||
+                              /* _index == 9 || _index == 10 ||*/
                               _index == 12 ||
                               _index == 13)
                             Spacer(),
+                          if (_index == 9 || _index == 10) SizedBox(width: 100),
                           if ( //_index == 8 ||
                           //_index == 9 ||
                           // _index == 10 ||
-                          _index == 12 || _index == 13)
+                          _index == 12)
                             Spacer(),
                           if (_index == 14)
                             SizedBox(
@@ -380,6 +380,7 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
 
   Widget _buildNavigation() {
     return Container(
+      height: 85,
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
       color: Colors.transparent,
       child: Row(

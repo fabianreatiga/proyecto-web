@@ -65,6 +65,8 @@ flutter:
     - assets/PlanteamientoProblema/Planteamiento_del_Problema_Arbol_De_Problemas.png
     - assets/PlanteamientoProblema/Planteamiento_del_Problema_Esquema_de_Redaccion_Parte_1.png
     - assets/PlanteamientoProblema/Planteamiento_del_Problema_Esquema_de_Redaccion_Parte_2.png
+    - assets/PlanteamientoProblema/Planteamiento_del_Problema_Como_Hacer_Arbol_De_Problemas.png
+    - assets/PlanteamientoProblema/Planteamiento_del_Problema_Ejemplo_Arbol_De_Problemas.png
     
 #--------------- IMagenes Justificacion ----------------#
 
@@ -101,6 +103,9 @@ flutter:
 
     - assets/Metodologia/Metodologia_Tipos_De_Metodologia.png
     - assets/Metodologia/Metodologia_Metodologia.png
+    - assets/Metodologia/Metodologia_Tipos_De_Metodologia_Cualitativa.png
+    - assets/Metodologia/Metodologia_Tipos_De_Metodologia_Cuantitativa.png  
+    - assets/Metodologia/Metodologia_Tipos_De_Metodologia_Mixta.png
 
 #--------------- IMAGENES CRONOGRAMA -----------------#
 

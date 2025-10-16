@@ -51,30 +51,6 @@ class Menu extends StatelessWidget {
               ),
             ),
           ),
-
-          //======================= OPCIÓN INICIO =======================\\
-          ListTile(
-            leading: Icon(
-              Icons.home,
-              color: currentScreen == 'Inicio' ? Colors.white : Colors.black,
-            ),
-            title: Text(
-              'Inicio',
-              style: TextStyle(
-                fontSize: texto + 4,
-                color: currentScreen == 'Inicio' ? Colors.white : Colors.black,
-              ),
-            ),
-            selected: currentScreen == 'Inicio',
-            selectedTileColor: obtenercolor('Color_Principal'),
-            onTap: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => Inicio()),
-                //MaterialPageRoute(builder: (context) => Inicio(db: db)),
-              );
-            },
-          ),
           //======================= OPCIÓN TITULO =======================\\
           ListTile(
             leading: Icon(
@@ -362,6 +338,29 @@ class Menu extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const Encuesta()),
+              );
+            },
+          ),
+          //======================= OPCIÓN INICIO =======================\\
+          ListTile(
+            leading: Icon(
+              Icons.exit_to_app,
+              color: currentScreen == 'Inicio' ? Colors.white : Colors.black,
+            ),
+            title: Text(
+              'Cerrar Sesión',
+              style: TextStyle(
+                fontSize: texto + 4,
+                color: currentScreen == 'Inicio' ? Colors.white : Colors.black,
+              ),
+            ),
+            selected: currentScreen == 'Inicio',
+            selectedTileColor: obtenercolor('Color_Principal'),
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => Inicio()),
+                //MaterialPageRoute(builder: (context) => Inicio(db: db)),
               );
             },
           ),

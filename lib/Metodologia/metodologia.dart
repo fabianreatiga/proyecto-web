@@ -61,9 +61,9 @@ class _MetodologiasState extends State<Metodologias>
   final List<String> imagenes = [
     'assets/Metodologia/Metodologia_Metodologia.png', //METODOLOGÍA
     'assets/Metodologia/Metodologia_Tipos_De_Metodologia.png', //TIPOS DE METODOLOGÍAS
-    'assets/cualitativa.png', //CUALITATIVA
-    'assets/cuantitativa.png', //CUANTITATIVA
-    'assets/mixta.jpg', //MIXTA
+    'assets/Metodologia/Metodologia_Tipos_De_Metodologia_Cualitativa.png', //CUALITATIVA
+    'assets/Metodologia/Metodologia_Tipos_De_Metodologia_Cuantitativa.png', //CUANTITATIVA
+    'assets/Metodologia/Metodologia_Tipos_De_Metodologia_Mixta.png', //MIXTA
     'assets/metodologia_pasos.png', //PASOS PARA CREAR
   ];
 
@@ -83,10 +83,10 @@ class _MetodologiasState extends State<Metodologias>
 
   final List<double> alturaImagengrande = [
     200, //METODOLOGÍA
-    450, //TIPOS DE METODOLOGÍAS
-    500, //CUALITATIVA
-    500, //CUANTITATIVA
-    150, //MIXTA
+    250, //TIPOS DE METODOLOGÍAS
+    300, //CUALITATIVA
+    300, //CUANTITATIVA
+    300, //MIXTA
     450, //PASOS PARA CREAR
   ];
 
@@ -95,7 +95,7 @@ class _MetodologiasState extends State<Metodologias>
     300, //TIPOS DE METODOLOGÍAS
     300, //CUALITATIVA
     300, //CUANTITATIVA
-    150, //MIXTA
+    300, //MIXTA
     300, //PASOS PARA CREAR
   ];
 
@@ -125,7 +125,7 @@ class _MetodologiasState extends State<Metodologias>
   @override
   Widget build(BuildContext context) {
     // 📌 Ahora el nombre refleja la condición real
-    final bool esPantallaPequena = MediaQuery.of(context).size.width < 850;
+    final bool esPantallaPequena = MediaQuery.of(context).size.width < 1000;
 
     return Scaffold(
       backgroundColor: obtenercolor('Color_Fondo'),
@@ -158,7 +158,7 @@ class _MetodologiasState extends State<Metodologias>
         children: [
           Expanded(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
               child:
                   esPantallaPequena
                       ? InteractiveViewer(
@@ -301,7 +301,8 @@ class _MetodologiasState extends State<Metodologias>
                               ),
                             ),
                           ),
-                          if (_index == 1 || _index == 5) Spacer(),
+                          if (_index == 5) Spacer(),
+                          if (_index == 1) SizedBox(width: 150),
                           if (_index == 5) Spacer(),
                         ],
                       ),
@@ -316,6 +317,7 @@ class _MetodologiasState extends State<Metodologias>
 
   Widget _buildNavigation() {
     return Container(
+      height: 85,
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
       color: Colors.transparent,
       child: Row(
