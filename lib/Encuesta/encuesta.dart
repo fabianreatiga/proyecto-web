@@ -1,4 +1,4 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, use_build_context_synchronously
 import 'package:flutter/material.dart';
 import 'package:nuevomockups/Appbar/appbar.dart';
 import 'package:nuevomockups/Color_texto/color_texto.dart';
@@ -1398,7 +1398,7 @@ class _EncuestasState extends State<Encuestas> {
                             ),
                           ),
 
-                          if (_titulopregunta1 != null &&
+                          /* if (_titulopregunta1 != null &&
                               _plnateamientopregunta2 != null &&
                               _objetivospregunta1 != null &&
                               _metodologiapregunta3 != null &&
@@ -1410,7 +1410,14 @@ class _EncuestasState extends State<Encuestas> {
                                 width: 150,
                                 child: _bonton(context),
                               ),
+                            ),*/
+                          Center(
+                            child: SizedBox(
+                              height: 45,
+                              width: 150,
+                              child: _bonton(context),
                             ),
+                          ),
 
                           const SizedBox(height: 30),
 
@@ -1799,6 +1806,7 @@ class _EncuestasState extends State<Encuestas> {
                           style: TextStyle(fontSize: tamanotexto(2) - 3),
                         ),
                       )
+                      // ignore: unnecessary_to_list_in_spreads
                       .toList(),
                 ],
               ),
@@ -1826,16 +1834,16 @@ class _EncuestasState extends State<Encuestas> {
                     if (nota <= 99.9)
                       TextButton(
                         onPressed: () async {
-                          /*setState(() {
+                          setState(() {
                             _intentos += 1;
-                          });*/
+                          });
                           _eliminarrespuesta(context);
                           Navigator.of(ctx).pop();
-                          /*await enviarintentos(
+                          await enviarintentos(
                             nombre: usuarioglobal,
                             ficha: fichaglobal,
                             intentos: _intentos, // Envía el valor real
-                          );*/
+                          );
                         },
                         style: TextButton.styleFrom(
                           backgroundColor: obtenercolor('Color_Principal'),

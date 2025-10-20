@@ -64,7 +64,7 @@ class _MetodologiasState extends State<Metodologias>
     'assets/Metodologia/Metodologia_Tipos_De_Metodologia_Cualitativa.png', //CUALITATIVA
     'assets/Metodologia/Metodologia_Tipos_De_Metodologia_Cuantitativa.png', //CUANTITATIVA
     'assets/Metodologia/Metodologia_Tipos_De_Metodologia_Mixta.png', //MIXTA
-    'assets/metodologia_pasos.png', //PASOS PARA CREAR
+    'assets/Metodologia/Metodologia_Pasos_Crear.png', //PASOS PARA CREAR
   ];
 
   final List<String> secciones = [
@@ -87,7 +87,7 @@ class _MetodologiasState extends State<Metodologias>
     300, //CUALITATIVA
     300, //CUANTITATIVA
     300, //MIXTA
-    450, //PASOS PARA CREAR
+    550, //PASOS PARA CREAR
   ];
 
   final List<double> alturaImagenPequena = [
