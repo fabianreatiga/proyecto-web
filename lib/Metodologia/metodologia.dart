@@ -376,7 +376,7 @@ class _MetodologiasState extends State<Metodologias>
                     if (!pestanasVistas.contains(_index + 1)) {
                       pestanasVistas.add(_index + 1);
                       ProgresoGlobal.marcarVisto(ID_BASE_PROGRESO + _index + 1);
-                      await guardarProgresoFinal(ID_BASE_PROGRESO);
+                      //  await guardarProgresoFinal(ID_BASE_PROGRESO);
                     }
                   });
                 } else {
@@ -384,7 +384,7 @@ class _MetodologiasState extends State<Metodologias>
                     context,
                     MaterialPageRoute(builder: (context) => const Cronograma()),
                   );
-                  await guardarProgresoFinal(2);
+                  // await guardarProgresoFinal(2);
                 }
               },
               icon: Icon(

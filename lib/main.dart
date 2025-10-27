@@ -8,13 +8,15 @@ import 'package:nuevomockups/Titulo/titulo.dart';
 import 'package:nuevomockups/global.dart';
 import 'package:http/http.dart' as http;
 
+import 'package:connectivity_plus/connectivity_plus.dart';
+
 //obtenercolor, tamanotexto es una funcion global y se encuentra en el archivo color_texto.dart//
 
 // Aquí defines SOLO una vez la URL base se debe de cambiar según la red local por el momento
 
-const String baseApiUrl =
+/*const String baseApiUrl =
     "https://proyecto-api-1vjo.onrender.com"; //Eliminar comentario
-
+*/
 void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized(); //en esta linea de codigo se asegura que los widgets esten inicializados antes de ejecutar la aplicacion
 
@@ -44,7 +46,16 @@ class _InicioState extends State<Inicio> {
 
   bool _isLoading = false; // 🔥 Variable para controlar el icono de carga
 
-  //quitar
+  Future<bool> verificarConexion() async {
+    var conectividad = await Connectivity().checkConnectivity();
+
+    if (conectividad == ConnectivityResult.none) {
+      return false; // No hay conexión
+    }
+    return true; // Hay conexión
+  }
+
+  /*  //quitar
   Future<bool> usuarioRegistrado(String nombre, String ficha) async {
     try {
       final response = await http.get(Uri.parse("$baseApiUrl/items"));
@@ -79,7 +90,7 @@ class _InicioState extends State<Inicio> {
     );
   } // en este bloque de código se envían los datos a la API y se maneja la respuesta
 
-  //Quitar
+*/ //Quitar
 
   void _mostrarcamposenblanco(BuildContext context, String mensaje) {
     showDialog(
@@ -109,52 +120,81 @@ class _InicioState extends State<Inicio> {
     );
   } // en este bloque de código se muestra un mensaje de error si hay campos en blanco
 
+  void _mostrarSinConexion(BuildContext context) {
+    showDialog(
+      context: context,
+      builder:
+          (ctx) => AlertDialog(
+            title: const Text('Sin conexión'),
+            content: const Text(
+              'No tienes conexión a Internet. Intenta nuevamente.',
+            ),
+            actions: [
+              Center(
+                child: Container(
+                  width: 100,
+                  child: TextButton(
+                    onPressed: () => Navigator.of(ctx).pop(),
+                    style: TextButton.styleFrom(
+                      backgroundColor: obtenercolor('Color_Principal'),
+                      foregroundColor: obtenercolor('Color_Texto_Principal'),
+                    ),
+                    child: const Text('Aceptar'),
+                  ),
+                ),
+              ),
+            ],
+          ),
+    );
+  }
+
   Future<void> _boton(BuildContext context) async {
     final nombre = _NombreAprendiz.text.trim();
     final programa = _NombrePrograma.text.trim();
     final ficha = _Nficha.text.trim();
 
-    //quitar
-
+    // 1️⃣ Verificar campos vacíos
     if (nombre.isEmpty || programa.isEmpty || ficha.isEmpty) {
       _mostrarcamposenblanco(context, 'No puede haber campos en blanco');
       return;
-    } // aca se verifica si hay campos en blanco y si los hay mustra un mensaje de error
+    }
 
-    //quitar
+    // 2️⃣ Verificar conexión antes de mostrar el ícono de carga
+    bool conectado = await verificarConexion();
+    if (!conectado) {
+      _mostrarSinConexion(context);
+      return;
+    }
 
-    setState(() => _isLoading = true); // 🔥 Muestra el icono de carga
+    // 3️⃣ Si todo está bien, mostrar el ícono de carga
+    setState(() => _isLoading = true);
 
     try {
-      setUsuarioGlobal(nombre); // aca guardamos el nombre en la variable global
-      setFichaGlobal(ficha); // aca guardamos la ficha en la variable global
+      setUsuarioGlobal(nombre);
+      setFichaGlobal(ficha);
       setprogramaGlobal(programa);
 
-      await guardarProgresoFinal(0);
+      //  await guardarProgresoFinal(0);
 
-      await usuarioRegistrado(
-        nombre,
-        ficha,
-      ); //aca se verifica si el usuario ya está registrado
-      await _guardarEnAPI(context); // aca se envian los datos a la API
-
-      // quitar
+      //  await usuarioRegistrado(nombre, ficha);
+      //  await _guardarEnAPI(context);
 
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => Titulo()),
-      ); // aca se navega a la pantalla de Titulo
+      );
 
       _NombreAprendiz.clear();
       _NombrePrograma.clear();
       _Nficha.clear();
-      // Limpia los campos después de navegar
     } catch (e) {
       print("⚠️ Error al procesar datos: $e");
     } finally {
-      setState(() => _isLoading = false); // 🔥 Oculta el icono de carga
+      // 4️⃣ Siempre ocultar el ícono, incluso si ocurre un error
+      setState(() => _isLoading = false);
     }
   }
+
   // en este bloque de código se verifica si el usuario ya está registrado, si no lo está se envían los datos a la API y se navega a la pantalla de Titulo
 
   @override

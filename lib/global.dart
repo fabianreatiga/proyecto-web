@@ -100,7 +100,7 @@ String getprogramaGlobal() {
   );
 } */ // en este bloque de codigo se obtine el progreso y se guarda en la base de datos
 
-//quitar
+/*//quitar
 Future<void> guardarProgresoFinal(int id) async {
   final url = Uri.parse(
     "https://proyecto-api-1vjo.onrender.com/guardarProgreso",
@@ -118,4 +118,4 @@ Future<void> guardarProgresoFinal(int id) async {
   );
 }
 
-//quitar
+*/ //quitar
