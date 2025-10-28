@@ -2,9 +2,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:nuevomockups/Appbar/appbar.dart';
-import 'package:nuevomockups/Bases_Datos/bases_datos.dart';
 import 'package:nuevomockups/Bibliografia/bibliografia.dart';
 import 'package:nuevomockups/Color_texto/color_texto.dart';
+import 'package:nuevomockups/Encuesta/encuesta.dart';
 import 'package:nuevomockups/Menus/menus.dart';
 import 'package:nuevomockups/global.dart';
 
@@ -651,7 +651,7 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                   //  await guardarProgresoFinal(2);
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => BasesDato()),
+                    MaterialPageRoute(builder: (context) => Encuesta()),
                   );
                 }
               },
