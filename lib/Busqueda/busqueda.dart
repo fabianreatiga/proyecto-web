@@ -226,6 +226,20 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
   }
 
   Widget _buildTimelineCard() {
+    // Función para abrir links correctamente en web y móvil
+    Future<void> abrirLink(String url) async {
+      final Uri uri = Uri.parse(url);
+      if (!await launchUrl(
+        uri,
+        mode:
+            kIsWeb
+                ? LaunchMode.externalApplication
+                : LaunchMode.platformDefault,
+      )) {
+        throw 'No se pudo abrir $url';
+      }
+    }
+
     return LayoutBuilder(
       //se usa LayoutBuilder para adaptar el tamaño de la pantalla
       builder: (context, constraints) {
@@ -296,14 +310,9 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                                     recognizer:
                                         TapGestureRecognizer()
                                           ..onTap = () async {
-                                            final Uri url = Uri.parse(
+                                            await abrirLink(
                                               'https://www.google.com/alerts',
                                             );
-                                            if (await canLaunchUrl(url)) {
-                                              await launchUrl(url);
-                                            } else {
-                                              throw 'No se pudo abrir el link';
-                                            }
                                           },
                                   ),
                                   TextSpan(
@@ -313,7 +322,6 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                                 ],
                               ),
                             ),
-
                           Text(
                             textos[_index],
                             style: TextStyle(
@@ -336,7 +344,7 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                                 children: [
                                   TextSpan(
                                     text:
-                                        'Puedes acceder a la herramienta aquí:',
+                                        'Puedes acceder a la herramienta aquí: ',
                                   ),
                                   TextSpan(
                                     text: 'https://trends.google.com',
@@ -347,14 +355,9 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                                     recognizer:
                                         TapGestureRecognizer()
                                           ..onTap = () async {
-                                            final Uri url = Uri.parse(
+                                            await abrirLink(
                                               'https://trends.google.com',
                                             );
-                                            if (await canLaunchUrl(url)) {
-                                              await launchUrl(url);
-                                            } else {
-                                              throw 'No se pudo abrir el link';
-                                            }
                                           },
                                   ),
                                 ],
@@ -373,7 +376,7 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                                 children: [
                                   TextSpan(
                                     text:
-                                        'Puedes acceder a la herramienta aquí:',
+                                        'Puedes acceder a la herramienta aquí: ',
                                   ),
                                   TextSpan(
                                     text: 'https://scholar.google.com',
@@ -384,14 +387,9 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                                     recognizer:
                                         TapGestureRecognizer()
                                           ..onTap = () async {
-                                            final Uri url = Uri.parse(
+                                            await abrirLink(
                                               'https://scholar.google.com',
                                             );
-                                            if (await canLaunchUrl(url)) {
-                                              await launchUrl(url);
-                                            } else {
-                                              throw 'No se pudo abrir el link';
-                                            }
                                           },
                                   ),
                                 ],
@@ -443,16 +441,9 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                                             recognizer:
                                                 TapGestureRecognizer()
                                                   ..onTap = () async {
-                                                    final Uri url = Uri.parse(
+                                                    await abrirLink(
                                                       'https://www.google.com/alerts',
                                                     );
-                                                    if (await canLaunchUrl(
-                                                      url,
-                                                    )) {
-                                                      await launchUrl(url);
-                                                    } else {
-                                                      throw 'No se pudo abrir el link';
-                                                    }
                                                   },
                                           ),
                                           TextSpan(
@@ -483,7 +474,7 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                                         children: [
                                           TextSpan(
                                             text:
-                                                'Puedes acceder a la herramienta aquí:',
+                                                'Puedes acceder a la herramienta aquí: ',
                                           ),
                                           TextSpan(
                                             text: 'https://trends.google.com',
@@ -495,16 +486,9 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                                             recognizer:
                                                 TapGestureRecognizer()
                                                   ..onTap = () async {
-                                                    final Uri url = Uri.parse(
+                                                    await abrirLink(
                                                       'https://trends.google.com',
                                                     );
-                                                    if (await canLaunchUrl(
-                                                      url,
-                                                    )) {
-                                                      await launchUrl(url);
-                                                    } else {
-                                                      throw 'No se pudo abrir el link';
-                                                    }
                                                   },
                                           ),
                                         ],
@@ -523,7 +507,7 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                                         children: [
                                           TextSpan(
                                             text:
-                                                'Puedes acceder a la herramienta aquí:',
+                                                'Puedes acceder a la herramienta aquí: ',
                                           ),
                                           TextSpan(
                                             text: 'https://scholar.google.com',
@@ -535,16 +519,9 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                                             recognizer:
                                                 TapGestureRecognizer()
                                                   ..onTap = () async {
-                                                    final Uri url = Uri.parse(
+                                                    await abrirLink(
                                                       'https://scholar.google.com',
                                                     );
-                                                    if (await canLaunchUrl(
-                                                      url,
-                                                    )) {
-                                                      await launchUrl(url);
-                                                    } else {
-                                                      throw 'No se pudo abrir el link';
-                                                    }
                                                   },
                                           ),
                                         ],
@@ -564,14 +541,11 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                                 child: Image.asset(
                                   imagenes[_index], // Imagen dinámica.
                                   height: alturaImagengrande[_index],
-                                  // Altura para pantallas grandes.
                                   fit: BoxFit.contain,
-                                  // se usa fit para que la imagen se ajuste al tamaño del contenedor
                                 ),
                               ),
                             ),
                           ),
-                          //if (_index == 3 || _index == 4) Spacer(),
                         ],
                       ),
                 ],

@@ -415,7 +415,7 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
                     }
                   });
                 } else {
-                  //   await guardarProgresoFinal(2);
+                  await guardarProgresoFinal(2);
                   Navigator.push(
                     context,
                     MaterialPageRoute(

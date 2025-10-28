@@ -443,7 +443,7 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                     }
                   });
                 } else {
-                  //  await guardarProgresoFinal(2);
+                  await guardarProgresoFinal(2);
                   Navigator.push(
                     context,
                     MaterialPageRoute(

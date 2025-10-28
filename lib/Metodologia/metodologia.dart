@@ -384,7 +384,7 @@ class _MetodologiasState extends State<Metodologias>
                     context,
                     MaterialPageRoute(builder: (context) => const Cronograma()),
                   );
-                  // await guardarProgresoFinal(2);
+                  await guardarProgresoFinal(2);
                 }
               },
               icon: Icon(

@@ -360,7 +360,7 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
                     }
                   });
                 } else {
-                  //  await guardarProgresoFinal(2);
+                  await guardarProgresoFinal(2);
                   Navigator.push(
                     context,
                     MaterialPageRoute(

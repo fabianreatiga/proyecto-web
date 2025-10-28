@@ -10,16 +10,10 @@ import 'package:http/http.dart' as http;
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 
-//obtenercolor, tamanotexto es una funcion global y se encuentra en el archivo color_texto.dart//
-
-// Aquí defines SOLO una vez la URL base se debe de cambiar según la red local por el momento
-
-const String baseApiUrl =
-    "https://proyecto-api-1vjo.onrender.com"; //Eliminar comentario
+const String baseApiUrl = "https://proyecto-api-1vjo.onrender.com";
 
 void main(List<String> args) async {
-  WidgetsFlutterBinding.ensureInitialized(); //en esta linea de codigo se asegura que los widgets esten inicializados antes de ejecutar la aplicacion
-
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(
     MaterialApp(
       title: 'Investigación',
@@ -27,7 +21,7 @@ void main(List<String> args) async {
       home: Inicio(),
     ),
   );
-} // en este bloque de código se esta iniciando la aplicación
+}
 
 class Inicio extends StatefulWidget {
   Inicio({super.key});
@@ -38,30 +32,22 @@ class Inicio extends StatefulWidget {
 
 class _InicioState extends State<Inicio> {
   final TextEditingController _Nficha = TextEditingController();
-  // variable donde se obtiene el texto del campo N° ficha
   final TextEditingController _NombrePrograma = TextEditingController();
-  // variable donde se obtiene el texto del campo Nombre Programa
   final TextEditingController _NombreAprendiz = TextEditingController();
-  // variable donde se obtiene el texto del campo Nombre Aprendiz
 
-  bool _isLoading = false; // 🔥 Variable para controlar el icono de carga
+  bool _isLoading = false;
 
   Future<bool> verificarConexion() async {
     var conectividad = await Connectivity().checkConnectivity();
-
-    if (conectividad == ConnectivityResult.none) {
-      return false; // No hay conexión
-    }
-    return true; // Hay conexión
+    return conectividad != ConnectivityResult.none;
   }
 
-  //quitar
   Future<bool> usuarioRegistrado(String nombre, String ficha) async {
     try {
       final response = await http.get(Uri.parse("$baseApiUrl/items"));
       if (response.statusCode == 200) {
-        final List items = jsonDecode(response.body);
-        // Retorna true si existe un item con ese nombre Y ficha
+        final Map<String, dynamic> decoded = jsonDecode(response.body);
+        final List items = decoded['items'] ?? [];
         return items.any(
           (item) => item['nombre'] == nombre && item['ficha'] == ficha,
         );
@@ -70,34 +56,57 @@ class _InicioState extends State<Inicio> {
       print("⚠️ Error al verificar usuario: $e");
     }
     return false;
-  } // en este blloque de código se verifica si el usuario ya está registrado
-
-  // Función para guardar en API
+  }
 
   Future<void> _guardarEnAPI(BuildContext context) async {
     final data = {
       "nombre": _NombreAprendiz.text,
       "programa": _NombrePrograma.text,
       "ficha": _Nficha.text,
-      //"progreso": 0,
       "fecha": DateTime.now().toIso8601String(),
-    }; // en este bloque de código se crea un mapa con los datos que se van a enviar a la API
+    };
 
-    await http.post(
-      Uri.parse("$baseApiUrl/items"),
-      headers: {"Content-Type": "application/json"},
-      body: jsonEncode(data),
-    );
-  } // en este bloque de código se envían los datos a la API y se maneja la respuesta
+    try {
+      final response = await http.post(
+        Uri.parse("$baseApiUrl/items"),
+        headers: {"Content-Type": "application/json"},
+        body: jsonEncode(data),
+      );
 
-  //Quitar
+      if (response.statusCode != 200 && response.statusCode != 201) {
+        print("Error al guardar en API: ${response.body}");
+      }
+    } catch (e) {
+      print("Error HTTP: $e");
+    }
+  }
+
+  Future<void> guardarProgresoFinal(int incremento) async {
+    try {
+      final data = {"nombre": _NombreAprendiz.text, "ficha": _Nficha.text};
+
+      final response = await http.post(
+        Uri.parse("$baseApiUrl/guardarProgreso"),
+        headers: {"Content-Type": "application/json"},
+        body: jsonEncode(data),
+      );
+
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> json = jsonDecode(response.body);
+        print("Progreso actualizado: ${json['progreso']}");
+      } else {
+        print("Error al guardar progreso: ${response.body}");
+      }
+    } catch (e) {
+      print("Error al procesar datos: $e");
+    }
+  }
 
   void _mostrarcamposenblanco(BuildContext context, String mensaje) {
     showDialog(
       context: context,
       builder:
           (ctx) => AlertDialog(
-            //title: Center(child: const Text('Error')),
             title: const Text('Error'),
             content: Text(mensaje),
             actions: [
@@ -118,34 +127,6 @@ class _InicioState extends State<Inicio> {
             ],
           ),
     );
-  } // en este bloque de código se muestra un mensaje de error si hay campos en blanco
-
-  void _mostrarSinConexion(BuildContext context) {
-    showDialog(
-      context: context,
-      builder:
-          (ctx) => AlertDialog(
-            title: const Text('Sin conexión'),
-            content: const Text(
-              'No tienes conexión a Internet. Intenta nuevamente.',
-            ),
-            actions: [
-              Center(
-                child: Container(
-                  width: 100,
-                  child: TextButton(
-                    onPressed: () => Navigator.of(ctx).pop(),
-                    style: TextButton.styleFrom(
-                      backgroundColor: obtenercolor('Color_Principal'),
-                      foregroundColor: obtenercolor('Color_Texto_Principal'),
-                    ),
-                    child: const Text('Aceptar'),
-                  ),
-                ),
-              ),
-            ],
-          ),
-    );
   }
 
   Future<void> _boton(BuildContext context) async {
@@ -153,20 +134,11 @@ class _InicioState extends State<Inicio> {
     final programa = _NombrePrograma.text.trim();
     final ficha = _Nficha.text.trim();
 
-    // 1️⃣ Verificar campos vacíos
     if (nombre.isEmpty || programa.isEmpty || ficha.isEmpty) {
       _mostrarcamposenblanco(context, 'No puede haber campos en blanco');
       return;
     }
 
-    // 2️⃣ Verificar conexión antes de mostrar el ícono de carga
-    bool conectado = await verificarConexion();
-    if (!conectado) {
-      _mostrarSinConexion(context);
-      return;
-    }
-
-    // 3️⃣ Si todo está bien, mostrar el ícono de carga
     setState(() => _isLoading = true);
 
     try {
@@ -175,7 +147,6 @@ class _InicioState extends State<Inicio> {
       setprogramaGlobal(programa);
 
       await guardarProgresoFinal(0);
-
       await usuarioRegistrado(nombre, ficha);
       await _guardarEnAPI(context);
 
@@ -190,22 +161,17 @@ class _InicioState extends State<Inicio> {
     } catch (e) {
       print("⚠️ Error al procesar datos: $e");
     } finally {
-      // 4️⃣ Siempre ocultar el ícono, incluso si ocurre un error
       setState(() => _isLoading = false);
     }
   }
 
-  // en este bloque de código se verifica si el usuario ya está registrado, si no lo está se envían los datos a la API y se navega a la pantalla de Titulo
-
   @override
   Widget build(BuildContext context) {
-    //este es el widget principal
     return Stack(
       children: [
         Scaffold(
           resizeToAvoidBottomInset: false,
           backgroundColor: obtenercolor('Color_Fondo'),
-          //se usa obtenercolor para la funcion que tienen los colores ya definidos
           body: Center(
             child: SingleChildScrollView(
               child: Column(
@@ -213,11 +179,9 @@ class _InicioState extends State<Inicio> {
                   LayoutBuilder(
                     builder: (context, constraints) {
                       double screenWidth = constraints.maxWidth;
-                      // aca se esta determinando el ancho de la pantallas
                       return Container(
                         child: Image.asset(
                           'assets/banner_superior.jpg',
-                          //aca se carga la imagen del banner superior
                           width: screenWidth,
                           height:
                               screenWidth < 1000
@@ -250,8 +214,6 @@ class _InicioState extends State<Inicio> {
             ),
           ),
         ),
-
-        // 🔥 Overlay del icono de carga
         if (_isLoading)
           Container(
             color: Colors.black54,
@@ -267,15 +229,17 @@ class _InicioState extends State<Inicio> {
   }
 
   Widget _buildColumnLayout(BuildContext context) {
-    //este es el widget que es usa para cuando las pantallas pequeñas
+    //este es el widget que es usa para cuando las pantallas
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
           image: AssetImage('assets/fondo_textura.png'),
-          repeat: ImageRepeat.repeat,
+          //aca cargamas la imagen con la textura de fondo
+          repeat: ImageRepeat.repeat, // 🔥 Se repite en todo el fondo
           opacity: MediaQuery.of(context).size.width < 600 ? 0.3 : 0.2,
         ),
       ),
+      //usamos un boxdecoration para decorar el contenedor con color, con borde, en este caso es con una imagen
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -284,7 +248,9 @@ class _InicioState extends State<Inicio> {
             borderRadius: BorderRadius.circular(16),
             child: Image.asset(
               'assets/logoSena.png',
+              //aca cargamos la imagen del logo del sena
               width: MediaQuery.of(context).size.width < 600 ? 100 : 150,
+              //con este operador ternario se determina el tamaño del logo dependiendo del tamaño de la pantalla
               fit: BoxFit.contain,
             ),
           ),
@@ -293,9 +259,11 @@ class _InicioState extends State<Inicio> {
             padding: EdgeInsets.all(35),
             child: Text.rich(
               TextSpan(
+                //se esta usando textspan para dar formato a diferentes partes del texto
                 children: [
                   TextSpan(
                     text: aplicativo,
+                    // aplicativo es una variable que contiene un texto
                     style: TextStyle(
                       fontSize: tamanotexto(3),
                       fontWeight: FontWeight.bold,
@@ -316,6 +284,7 @@ class _InicioState extends State<Inicio> {
                         ' hacer uso de las TIC y de una plataforma interactiva que incentive el pensamiento crítico y la creatividad.',
                     style: TextStyle(
                       fontSize: tamanotexto(2),
+                      //se esta usando tamanotexto para determinar el tamaño del texto mediante una función
                       height: 1.4,
                       fontFamily: 'Calibri',
                       color: Colors.black,
@@ -324,6 +293,7 @@ class _InicioState extends State<Inicio> {
                 ],
               ),
               textAlign: TextAlign.center,
+              //se esta usando textalign para centrar el texto en el contenedor
             ),
           ),
           const SizedBox(height: 20),
@@ -346,7 +316,6 @@ class _InicioState extends State<Inicio> {
             child: TextField(
               controller: _Nficha,
               decoration: InputDecoration(
-                labelStyle: TextStyle(color: Colors.black),
                 filled: true,
                 fillColor: obtenercolor('Color_Fondo'),
                 labelText: 'N° Ficha',
@@ -366,22 +335,22 @@ class _InicioState extends State<Inicio> {
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
-              keyboardType: TextInputType.number,
+              keyboardType: TextInputType.number, // Abre teclado numérico
               inputFormatters: [
-                FilteringTextInputFormatter.digitsOnly,
+                FilteringTextInputFormatter.digitsOnly, // Solo dígitos
                 LengthLimitingTextInputFormatter(7),
               ],
             ),
           ),
           const SizedBox(height: 30),
           _botonIniciar(context),
-          SizedBox(height: 50),
         ],
       ),
     );
   }
 
   Widget _buildRowLayout(BuildContext context) {
+    // este es el widget que se usa para cuando las pantallas son grandes
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -421,6 +390,7 @@ class _InicioState extends State<Inicio> {
                       ],
                     ),
                   ),
+
                   Padding(
                     padding: EdgeInsets.all(35),
                     child: Text.rich(
@@ -476,6 +446,7 @@ class _InicioState extends State<Inicio> {
               ),
               borderRadius: BorderRadius.circular(20),
               boxShadow: [
+                //usamos boxshadow para darle sombra al contenedor
                 BoxShadow(
                   color: Colors.transparent,
                   blurRadius: 10,
@@ -510,6 +481,7 @@ class _InicioState extends State<Inicio> {
                 ),
                 const SizedBox(height: 15),
                 SizedBox(
+                  // se agrego este SizedBox para integrar el campo de texto del N° ficha
                   width: 250,
                   child: TextField(
                     controller: _Nficha,
@@ -518,7 +490,6 @@ class _InicioState extends State<Inicio> {
                       fillColor: obtenercolor('Color_Fondo'),
                       labelText: 'N° Ficha',
                       hintText: 'Escribe tu N° ficha',
-                      labelStyle: TextStyle(color: Colors.black),
                       prefixIcon: Icon(
                         Icons.numbers,
                         color: obtenercolor('Color_Principal'),
@@ -534,13 +505,14 @@ class _InicioState extends State<Inicio> {
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
-                    keyboardType: TextInputType.number,
+                    keyboardType: TextInputType.number, // Abre teclado numérico
                     inputFormatters: [
-                      FilteringTextInputFormatter.digitsOnly,
+                      FilteringTextInputFormatter.digitsOnly, // Solo dígitos
                       LengthLimitingTextInputFormatter(7),
                     ],
                   ),
                 ),
+
                 const SizedBox(height: 30),
                 _botonIniciar(context),
               ],
@@ -552,6 +524,7 @@ class _InicioState extends State<Inicio> {
   }
 
   Widget _botonIniciar(BuildContext context) {
+    //se creo este widget para derle estilo al boton de iniciar
     return SizedBox(
       width: 180,
       height: 45,
@@ -563,8 +536,9 @@ class _InicioState extends State<Inicio> {
           ),
           elevation: 5,
         ),
-        onPressed:
-            _isLoading ? null : () => _boton(context), // 🔥 Evita doble clic
+        onPressed: () {
+          _boton(context);
+        },
         icon: Icon(
           Icons.arrow_forward,
           color: obtenercolor('Color_Texto_Principal'),
@@ -583,6 +557,7 @@ class _InicioState extends State<Inicio> {
   }
 
   static Widget _campoTexto({
+    //se creo este widget para darle estilo a los campos de texto
     required String label,
     required IconData icon,
     required String hint,
@@ -591,12 +566,11 @@ class _InicioState extends State<Inicio> {
     return SizedBox(
       width: 250,
       child: TextField(
-        controller: controller,
+        controller: controller, // <-- agregado
         decoration: InputDecoration(
           filled: true,
           fillColor: obtenercolor('Color_Fondo'),
           labelText: label,
-          labelStyle: TextStyle(color: Colors.black),
           hintText: hint,
           prefixIcon: Icon(icon, color: obtenercolor('Color_Principal')),
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
@@ -611,7 +585,8 @@ class _InicioState extends State<Inicio> {
       ),
     );
   }
-} // en esta linea de codigo le damos etilo a los campos de texto
+}
 
 const String aplicativo =
     'Aplicativo para la estructuración de proyectos de investigación';
+//se esta usando esta variable para guardar un texto, se esta uasndo en 2 partes del codigo

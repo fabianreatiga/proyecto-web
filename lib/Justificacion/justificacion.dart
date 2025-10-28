@@ -361,7 +361,7 @@ class _JustificacionesState extends State<Justificaciones>
                     }
                   });
                 } else {
-                  //  await guardarProgresoFinal(2);
+                  await guardarProgresoFinal(2);
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const Objetivos()),

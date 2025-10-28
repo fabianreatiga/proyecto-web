@@ -4,45 +4,44 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ProgresoGlobal {
-  static final Set<int> subtemasVistos = {};
-  static final Set<int> todosLosSubtemasIDs = {
-    ...List.generate(5, (i) => i + 1),
-    ...List.generate(15, (i) => i + 6),
-    ...List.generate(4, (i) => i + 21),
-    ...List.generate(7, (i) => i + 25),
-    ...List.generate(6, (i) => i + 32),
-    ...List.generate(3, (i) => i + 38),
-    ...List.generate(3, (i) => i + 41),
-    ...List.generate(7, (i) => i + 44),
-    ...List.generate(5, (i) => i + 51),
+  static final Set<int> pestanasVistas = {};
+  static final Set<int> todosLosIDs = {
+    ...List.generate(5, (i) => i + 1), // Título
+    ...List.generate(15, (i) => i + 6), // Planteamiento
+    ...List.generate(4, (i) => i + 21), // Justificación
+    ...List.generate(7, (i) => i + 25), // Objetivos
+    ...List.generate(6, (i) => i + 32), // Metodología
+    ...List.generate(3, (i) => i + 38), // Cronograma
+    ...List.generate(3, (i) => i + 41), // Actividades
+    ...List.generate(7, (i) => i + 44), // Bibliografía
+    ...List.generate(5, (i) => i + 51), // Conclusiones
   };
 
-  static double get progreso =>
-      subtemasVistos.length / todosLosSubtemasIDs.length;
+  static double get progreso => pestanasVistas.length / todosLosIDs.length;
 
   static Future<void> cargarProgreso() async {
     final prefs = await SharedPreferences.getInstance();
     final lista = prefs.getStringList('progreso_visto') ?? [];
-    subtemasVistos
+    pestanasVistas
       ..clear()
-      ..addAll(lista.map((e) => int.tryParse(e)).whereType<int>());
+      ..addAll(lista.map(int.parse));
   }
 
   static Future<void> marcarVisto(int id) async {
-    if (todosLosSubtemasIDs.contains(id)) {
-      subtemasVistos.add(id);
+    if (todosLosIDs.contains(id)) {
+      pestanasVistas.add(id);
       final prefs = await SharedPreferences.getInstance();
-      await prefs.setStringList(
+      prefs.setStringList(
         'progreso_visto',
-        subtemasVistos.map((e) => e.toString()).toList(),
+        pestanasVistas.map((e) => e.toString()).toList(),
       );
     }
   }
 
   static Future<void> reiniciar() async {
-    subtemasVistos.clear();
+    pestanasVistas.clear();
     final prefs = await SharedPreferences.getInstance();
-    await prefs.remove('progreso_visto');
+    prefs.remove('progreso_visto');
   }
 }
 //en esta bariable de progeso se esta mostrando el progreso de cada tema

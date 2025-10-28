@@ -386,7 +386,7 @@ class _BibliografiasState extends State<Bibliografias>
                     }
                   });
                 } else {
-                  //  await guardarProgresoFinal(2);
+                  await guardarProgresoFinal(2);
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const Busqueda()),
