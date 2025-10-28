@@ -14,9 +14,9 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 
 // Aquí defines SOLO una vez la URL base se debe de cambiar según la red local por el momento
 
-/*const String baseApiUrl =
+const String baseApiUrl =
     "https://proyecto-api-1vjo.onrender.com"; //Eliminar comentario
-*/
+
 void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized(); //en esta linea de codigo se asegura que los widgets esten inicializados antes de ejecutar la aplicacion
 
@@ -55,7 +55,7 @@ class _InicioState extends State<Inicio> {
     return true; // Hay conexión
   }
 
-  /*  //quitar
+  //quitar
   Future<bool> usuarioRegistrado(String nombre, String ficha) async {
     try {
       final response = await http.get(Uri.parse("$baseApiUrl/items"));
@@ -90,7 +90,7 @@ class _InicioState extends State<Inicio> {
     );
   } // en este bloque de código se envían los datos a la API y se maneja la respuesta
 
-*/ //Quitar
+  //Quitar
 
   void _mostrarcamposenblanco(BuildContext context, String mensaje) {
     showDialog(
@@ -174,10 +174,10 @@ class _InicioState extends State<Inicio> {
       setFichaGlobal(ficha);
       setprogramaGlobal(programa);
 
-      //  await guardarProgresoFinal(0);
+      await guardarProgresoFinal(0);
 
-      //  await usuarioRegistrado(nombre, ficha);
-      //  await _guardarEnAPI(context);
+      await usuarioRegistrado(nombre, ficha);
+      await _guardarEnAPI(context);
 
       Navigator.push(
         context,

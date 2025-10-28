@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:nuevomockups/Appbar/appbar.dart';
 import 'package:nuevomockups/Bases_Datos/bases_datos.dart';
@@ -6,6 +7,8 @@ import 'package:nuevomockups/Bibliografia/bibliografia.dart';
 import 'package:nuevomockups/Color_texto/color_texto.dart';
 import 'package:nuevomockups/Menus/menus.dart';
 import 'package:nuevomockups/global.dart';
+
+import 'package:url_launcher/url_launcher.dart';
 
 class Busqueda extends StatelessWidget {
   const Busqueda({super.key});
@@ -33,14 +36,51 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
       []; // en esta variable se guarda las pestañas ya vistas
 
   final List<String> textos = [
+    'El objetivo de una búsqueda es obtener información relevante, verídica y útil que permita dar respuesta a una pregunta, resolver un problema o profundizar en un tema específico. Mediante este proceso, se pretende reunir y analizar datos, ideas o evidencias que ayuden a comprender mejor una situación y a tomar decisiones fundamentadas.'
+        'Además, la búsqueda tiene como propósito fomentar el pensamiento crítico y el aprendizaje autónomo, ya que impulsa a comparar diferentes fuentes, identificar la más confiable y seleccionar la información que mejor se adapte al propósito planteado.'
+        'En contextos académicos, profesionales o personales, la búsqueda permite ampliar el conocimiento, generar nuevas ideas y fortalecer la capacidad de análisis, convirtiéndose en una herramienta esencial para el desarrollo intelectual y la solución de problemas.',
+
+    'La búsqueda en Google con operadores lógicos y palabras clave permite obtener información más precisa y relevante, ya que ayuda a filtrar o combinar términos para mejorar los resultados. Las palabras clave son los términos principales del tema que se desea investigar, y su correcta elección facilita encontrar exactamente la información necesaria.'
+        'Por otro lado, los operadores lógicos o operadores booleanos son símbolos o palabras especiales que permiten modificar la búsqueda para hacerla más específica. Los más utilizados son: '
+        '• AND (Y) → sirve para incluir todos los términos en los resultados. '
+        'Ejemplo: educación AND tecnología (muestra resultados que contengan ambos términos). '
+        '• OR (O) → permite buscar cualquiera de los términos.'
+        'Ejemplo: adolescentes OR jóvenes (muestra resultados que contengan uno u otro).'
+        '• NOT o el signo menos (-) → sirve para excluir palabras no deseadas. '
+        'Ejemplo: reciclaje -plástico (muestra resultados sobre reciclaje, pero sin incluir el plástico). '
+        '• Comillas (“ ”) → se usan para buscar una frase exacta.'
+        'Ejemplo: "energías renovables en Colombia". '
+        '• Asterisco (*) → actúa como un comodín para reemplazar una palabra desconocida. '
+        'Ejemplo: "el cambio * afecta al medio ambiente". '
+        '• site: → limita la búsqueda a un sitio web específico. '
+        'Ejemplo: site:unesco.org educación. '
+        'Estos operadores permiten refinar los resultados y encontrar con mayor rapidez información confiable y relacionada directamente con el tema de interés.'
+        'En resumen, usar palabras clave junto con operadores lógicos convierte la búsqueda en Google en una herramienta más eficiente, exacta y profesional, especialmente útil para trabajos académicos, investigaciones o consultas especializadas.',
+
+    'Google Scholar, también llamado Google Académico, es una herramienta gratuita de Google que permite buscar información científica y académica de manera sencilla. Está diseñada para encontrar artículos, libros, tesis, resúmenes, informes y publicaciones de revistas especializadas en diferentes áreas del conocimiento.'
+        'A diferencia del buscador común, Google Scholar se enfoca únicamente en fuentes confiables y de carácter académico, lo que garantiza resultados más precisos y útiles para la investigación, el estudio o el trabajo universitario.'
+        'Además, muestra cuántas veces ha sido citado un documento, quién lo ha citado y en qué otros trabajos se ha utilizado, lo cual ayuda a evaluar la relevancia y credibilidad de las fuentes.'
+        'En resumen, Google Scholar es una plataforma de búsqueda académica que facilita el acceso a información verificada, actualizada y proveniente de instituciones educativas, científicas y profesionales.',
+
     '',
-    '',
-    '',
-    '',
-    '',
+
+    'Google Tendencias (o Google Trends) es una herramienta gratuita de Google que permite analizar la popularidad y el comportamiento de búsqueda de palabras o temas específicos en Internet. Con esta herramienta, los usuarios pueden conocer qué términos son más buscados, comparar su relevancia a lo largo del tiempo y ver cómo varía su popularidad según la región, el país o la ciudad.'
+        'Además, Google Tendencias permite: '
+        '• Identificar temas emergentes y tendencias recientes en distintas áreas. '
+        '• Comparar varias palabras clave para ver cuál es más popular en un período determinado. '
+        '• Filtrar los resultados por categorías, como noticias, tecnología, deportes, salud o entretenimiento. '
+        '• Analizar datos históricos para estudiar patrones y comportamientos de búsqueda. '
+        'Esta herramienta es especialmente útil para investigadores, estudiantes, profesionales del marketing y medios de comunicación, ya que ofrece información valiosa sobre intereses y demandas actuales de los usuarios.'
+        'En resumen, Google Tendencias es una plataforma que permite entender mejor los intereses de las personas, detectar oportunidades y tomar decisiones informadas basadas en la información de búsqueda real de los usuarios.',
   ]; // lista de los textos que se van a mostrar
 
-  final List<String> imagenes = ['', '', '', '', '']; // lista de las imagenes
+  final List<String> imagenes = [
+    'assets/Busqueda/Busqueda_Objetivos.png', // OBJETIVO
+    'assets/Busqueda/Busqueda_Operadores_Booleanos.jpg', // BUSQUEDA EN GOOGLE CON OPERADORES LOGICOS Y PALABRAS CLAVE
+    'assets/Busqueda/Busqueda_Google_Academico.png', // GOOGLE ACADÉMICO (SCHOLAR)
+    'assets/Busqueda/Busqueda_Google_Alertas.png', // ALERTAS DE GOOGLE
+    'assets/Busqueda/Busqueda_Google_Tendencias.png', // GOOGLE TENDENCIAS (TRENDS)
+  ]; // lista de las imagenes
 
   // ignore: unused_field
   int _currentseccion = 0;
@@ -48,28 +88,28 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
   final List<String> secciones = [
     'OBJETIVO',
     'BUSQUEDA EN GOOGLE CON OPERADORES LOGICOS Y PALABRAS CLAVE',
-    'GOOGLE ACADéMICO (SCHOLAR)',
-    'ALETAS DE GOOGLE',
+    'GOOGLE ACADÉMICO (SCHOLAR)',
+    'ALERTAS DE GOOGLE',
     'GOOGLE TENDENCIAS (TRENDS)',
   ]; // lista de las secciones
 
   final List<double> alturaImagengrande = [
-    220, //TITULO
-    240, // CARACTERISTICAS DEL TITULO
-    260, //MAS CARACTERISTICAS DEL TITULO
-    350, // PALABRAS UTILES PARA TITULO
-    450, //EJEMPLOS DE TITULOS
+    300, // OBJETIVO
+    350, // BUSQUEDA EN GOOGLE CON OPERADORES LOGICOS Y PALABRAS CLAVE
+    450, // GOOGLE ACADÉMICO (SCHOLAR)
+    250, // ALERTAS DE GOOGLE
+    350, // GOOGLE TENDENCIAS (TRENDS)
   ]; // lista de las alturas de las imagenes para pantallas grandes
 
   final List<double> alturaImagenPequena = [
-    200, //TITULO
-    200, // CARACTERISTICAS DEL TITULO
-    200, //MAS CARACTERISTICAS DEL TITULO
-    450, // PALABRAS UTILES PARA TITULO
-    450, //EJEMPLOS DE TITULOS
+    250, //OBJETIVO
+    300, // BUSQUEDA EN GOOGLE CON OPERADORES LOGICOS Y PALABRAS CLAVE
+    300, // GOOGLE ACADÉMICO (SCHOLAR)
+    150, // ALERTAS DE GOOGLE
+    250, // GOOGLE TENDENCIAS (TRENDS)
   ]; // lista de las alturas de las imagenes para pantallas pequenas
 
-  static int ID_BASE_PROGRESO = 100; // ID base para el progreso de este subtema
+  static int ID_BASE_PROGRESO = 51; // ID base para el progreso de este subtema
 
   @override
   void initState() {
@@ -82,11 +122,13 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
     _tabController = TabController(length: secciones.length, vsync: this);
     _tabController.addListener(() {
       if (!_tabController.indexIsChanging) {
-        setState(() => _index = _tabController.index);
-        if (!pestanasVistas.contains(_tabController.index)) {
-          pestanasVistas.add(_tabController.index);
-          ProgresoGlobal.marcarVisto(ID_BASE_PROGRESO + _tabController.index);
-        }
+        setState(() {
+          _index = _tabController.index;
+          if (!pestanasVistas.contains(_index)) {
+            pestanasVistas.add(_index);
+            ProgresoGlobal.marcarVisto(ID_BASE_PROGRESO + _index);
+          }
+        });
       }
     });
   } // es este bloque de codigo se usa para inicializar el estado del widget
@@ -94,7 +136,7 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     // 📌 Ahora el nombre refleja la condición real
-    final bool esPantallaPequena = MediaQuery.of(context).size.width < 1000;
+    final bool esPantallaPequena = MediaQuery.of(context).size.width < 2000;
 
     return Scaffold(
       backgroundColor: obtenercolor('Color_Fondo'),
@@ -197,7 +239,12 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
           ),
           elevation: 4, // se usa elevation para darle sombra al card
           child: Padding(
-            padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
+            padding: const EdgeInsets.only(
+              top: 20,
+              left: 20,
+              right: 20,
+              bottom: 30,
+            ),
             child: Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
@@ -224,8 +271,49 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                   const SizedBox(height: 20),
                   esPantallaPequena
                       ? Column(
-                        // se usa ? como un operador ternario para saber si la pantalla es pequeña o grande
                         children: [
+                          if (_index == 3)
+                            RichText(
+                              textAlign: TextAlign.justify,
+                              text: TextSpan(
+                                style: TextStyle(
+                                  fontSize: tamanotexto(2) + 4,
+                                  fontFamily: 'Calibri',
+                                  height: 1.5,
+                                  color: Colors.black,
+                                ),
+                                children: [
+                                  TextSpan(
+                                    text:
+                                        'Las alertas de Google son una herramienta gratuita que envía notificaciones al correo electrónico cuando aparece nueva información relacionada con un tema o palabra clave elegida. Para activarlas, se ingresa a ',
+                                  ),
+                                  TextSpan(
+                                    text: 'google.com/alerts',
+                                    style: TextStyle(
+                                      color: Colors.blue,
+                                      decoration: TextDecoration.underline,
+                                    ),
+                                    recognizer:
+                                        TapGestureRecognizer()
+                                          ..onTap = () async {
+                                            final Uri url = Uri.parse(
+                                              'https://www.google.com/alerts',
+                                            );
+                                            if (await canLaunchUrl(url)) {
+                                              await launchUrl(url);
+                                            } else {
+                                              throw 'No se pudo abrir el link';
+                                            }
+                                          },
+                                  ),
+                                  TextSpan(
+                                    text:
+                                        ', se escribe el tema de interés, se ajustan las opciones (frecuencia, idioma, fuentes) y se presiona “Crear alerta”. Sirven para mantenerse informado automáticamente sobre noticias, investigaciones o temas específicos sin tener que buscarlos manualmente.',
+                                  ),
+                                ],
+                              ),
+                            ),
+
                           Text(
                             textos[_index],
                             style: TextStyle(
@@ -235,6 +323,80 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                             ),
                             textAlign: TextAlign.center,
                           ),
+                          if (_index == 4)
+                            RichText(
+                              textAlign: TextAlign.justify,
+                              text: TextSpan(
+                                style: TextStyle(
+                                  fontSize: tamanotexto(2) + 4,
+                                  fontFamily: 'Calibri',
+                                  height: 1.5,
+                                  color: Colors.black,
+                                ),
+                                children: [
+                                  TextSpan(
+                                    text:
+                                        'Puedes acceder a la herramienta aquí:',
+                                  ),
+                                  TextSpan(
+                                    text: 'https://trends.google.com',
+                                    style: TextStyle(
+                                      color: Colors.blue,
+                                      decoration: TextDecoration.underline,
+                                    ),
+                                    recognizer:
+                                        TapGestureRecognizer()
+                                          ..onTap = () async {
+                                            final Uri url = Uri.parse(
+                                              'https://trends.google.com',
+                                            );
+                                            if (await canLaunchUrl(url)) {
+                                              await launchUrl(url);
+                                            } else {
+                                              throw 'No se pudo abrir el link';
+                                            }
+                                          },
+                                  ),
+                                ],
+                              ),
+                            ),
+                          if (_index == 2)
+                            RichText(
+                              textAlign: TextAlign.justify,
+                              text: TextSpan(
+                                style: TextStyle(
+                                  fontSize: tamanotexto(2) + 4,
+                                  fontFamily: 'Calibri',
+                                  height: 1.5,
+                                  color: Colors.black,
+                                ),
+                                children: [
+                                  TextSpan(
+                                    text:
+                                        'Puedes acceder a la herramienta aquí:',
+                                  ),
+                                  TextSpan(
+                                    text: 'https://scholar.google.com',
+                                    style: TextStyle(
+                                      color: Colors.blue,
+                                      decoration: TextDecoration.underline,
+                                    ),
+                                    recognizer:
+                                        TapGestureRecognizer()
+                                          ..onTap = () async {
+                                            final Uri url = Uri.parse(
+                                              'https://scholar.google.com',
+                                            );
+                                            if (await canLaunchUrl(url)) {
+                                              await launchUrl(url);
+                                            } else {
+                                              throw 'No se pudo abrir el link';
+                                            }
+                                          },
+                                  ),
+                                ],
+                              ),
+                            ),
                           const SizedBox(height: 20),
                           ClipRRect(
                             borderRadius: BorderRadius.circular(12),
@@ -250,19 +412,145 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Expanded(
-                            //se usa expanded para establecer el tamaño del texto
                             flex: 2,
-                            //se usa flex para que la imagen ocupe el 2/3 de la pantalla
                             child: Padding(
                               padding: const EdgeInsets.only(right: 20),
-                              child: Text(
-                                textos[_index],
-                                style: TextStyle(
-                                  fontSize: tamanotexto(2) + 4,
-                                  fontFamily: 'Calibri',
-                                  height: 1.5,
-                                  //se usa height para aumentar la altura de la letra
-                                ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  if (_index == 3)
+                                    RichText(
+                                      textAlign: TextAlign.justify,
+                                      text: TextSpan(
+                                        style: TextStyle(
+                                          fontSize: tamanotexto(2) + 4,
+                                          fontFamily: 'Calibri',
+                                          height: 1.5,
+                                          color: Colors.black,
+                                        ),
+                                        children: [
+                                          TextSpan(
+                                            text:
+                                                'Las alertas de Google son una herramienta gratuita que envía notificaciones al correo electrónico cuando aparece nueva información relacionada con un tema o palabra clave elegida. Para activarlas, se ingresa a ',
+                                          ),
+                                          TextSpan(
+                                            text: 'google.com/alerts',
+                                            style: TextStyle(
+                                              color: Colors.blue,
+                                              decoration:
+                                                  TextDecoration.underline,
+                                            ),
+                                            recognizer:
+                                                TapGestureRecognizer()
+                                                  ..onTap = () async {
+                                                    final Uri url = Uri.parse(
+                                                      'https://www.google.com/alerts',
+                                                    );
+                                                    if (await canLaunchUrl(
+                                                      url,
+                                                    )) {
+                                                      await launchUrl(url);
+                                                    } else {
+                                                      throw 'No se pudo abrir el link';
+                                                    }
+                                                  },
+                                          ),
+                                          TextSpan(
+                                            text:
+                                                ', se escribe el tema de interés, se ajustan las opciones (frecuencia, idioma, fuentes) y se presiona “Crear alerta”. Sirven para mantenerse informado automáticamente sobre noticias, investigaciones o temas específicos sin tener que buscarlos manualmente.',
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  Text(
+                                    textos[_index],
+                                    style: TextStyle(
+                                      fontSize: tamanotexto(2) + 4,
+                                      fontFamily: 'Calibri',
+                                      height: 1.5,
+                                    ),
+                                  ),
+                                  if (_index == 4)
+                                    RichText(
+                                      textAlign: TextAlign.justify,
+                                      text: TextSpan(
+                                        style: TextStyle(
+                                          fontSize: tamanotexto(2) + 4,
+                                          fontFamily: 'Calibri',
+                                          height: 1.5,
+                                          color: Colors.black,
+                                        ),
+                                        children: [
+                                          TextSpan(
+                                            text:
+                                                'Puedes acceder a la herramienta aquí:',
+                                          ),
+                                          TextSpan(
+                                            text: 'https://trends.google.com',
+                                            style: TextStyle(
+                                              color: Colors.blue,
+                                              decoration:
+                                                  TextDecoration.underline,
+                                            ),
+                                            recognizer:
+                                                TapGestureRecognizer()
+                                                  ..onTap = () async {
+                                                    final Uri url = Uri.parse(
+                                                      'https://trends.google.com',
+                                                    );
+                                                    if (await canLaunchUrl(
+                                                      url,
+                                                    )) {
+                                                      await launchUrl(url);
+                                                    } else {
+                                                      throw 'No se pudo abrir el link';
+                                                    }
+                                                  },
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  if (_index == 2)
+                                    RichText(
+                                      textAlign: TextAlign.justify,
+                                      text: TextSpan(
+                                        style: TextStyle(
+                                          fontSize: tamanotexto(2) + 4,
+                                          fontFamily: 'Calibri',
+                                          height: 1.5,
+                                          color: Colors.black,
+                                        ),
+                                        children: [
+                                          TextSpan(
+                                            text:
+                                                'Puedes acceder a la herramienta aquí:',
+                                          ),
+                                          TextSpan(
+                                            text: 'https://scholar.google.com',
+                                            style: TextStyle(
+                                              color: Colors.blue,
+                                              decoration:
+                                                  TextDecoration.underline,
+                                            ),
+                                            recognizer:
+                                                TapGestureRecognizer()
+                                                  ..onTap = () async {
+                                                    final Uri url = Uri.parse(
+                                                      'https://scholar.google.com',
+                                                    );
+                                                    if (await canLaunchUrl(
+                                                      url,
+                                                    )) {
+                                                      await launchUrl(url);
+                                                    } else {
+                                                      throw 'No se pudo abrir el link';
+                                                    }
+                                                  },
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                ],
                               ),
                             ),
                           ),
@@ -283,7 +571,7 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                               ),
                             ),
                           ),
-                          if (_index == 3 || _index == 4) Spacer(),
+                          //if (_index == 3 || _index == 4) Spacer(),
                         ],
                       ),
                 ],
@@ -356,7 +644,7 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                     if (!pestanasVistas.contains(_index + 1)) {
                       pestanasVistas.add(_index + 1);
                       ProgresoGlobal.marcarVisto(ID_BASE_PROGRESO + _index + 1);
-                      //  await guardarProgresoFinal(ID_BASE_PROGRESO);
+                      await guardarProgresoFinal(ID_BASE_PROGRESO);
                     }
                   });
                 } else {

@@ -264,7 +264,6 @@ class Menu extends StatelessWidget {
           ),
 
           //========================== BUSQUEDA  =========================\\
-          /*
           ListTile(
             leading: Icon(
               Icons.search,
@@ -290,6 +289,7 @@ class Menu extends StatelessWidget {
           ),
 
           //======================= BASES DE DATOS =======================\\
+          /*
           ListTile(
             leading: Icon(
               Icons.storage,

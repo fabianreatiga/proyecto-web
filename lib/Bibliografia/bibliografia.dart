@@ -4,8 +4,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:nuevomockups/Actividades/actividades.dart';
 import 'package:nuevomockups/Appbar/appbar.dart';
+import 'package:nuevomockups/Busqueda/busqueda.dart';
 import 'package:nuevomockups/Color_texto/color_texto.dart';
-import 'package:nuevomockups/Encuesta/encuesta.dart';
 import 'package:nuevomockups/Menus/menus.dart';
 import 'package:nuevomockups/global.dart';
 
@@ -382,14 +382,14 @@ class _BibliografiasState extends State<Bibliografias>
                     if (!pestanasVistas.contains(_index + 1)) {
                       pestanasVistas.add(_index + 1);
                       ProgresoGlobal.marcarVisto(ID_BASE_PROGRESO + _index + 1);
-                      //  await guardarProgresoFinal(ID_BASE_PROGRESO);
+                      await guardarProgresoFinal(ID_BASE_PROGRESO);
                     }
                   });
                 } else {
                   //  await guardarProgresoFinal(2);
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const Encuesta()),
+                    MaterialPageRoute(builder: (context) => const Busqueda()),
                   );
                 }
               },

@@ -13,6 +13,7 @@ dependencies:
     sdk: flutter
   shared_preferences: ^2.2.2
   connectivity_plus: ^6.0.3
+  url_launcher: ^6.1.10
   mongo_dart: ^0.10.0
   http: ^1.1.0
   cupertino_icons: ^1.0.8
@@ -120,3 +121,11 @@ flutter:
     - assets/Actividades/Actividades.png
     - assets/Actividades/Actividades_Resultados.png
     - assets/Actividades/Actividades_Formulacion_De_Resultados.png
+
+#--------------- IMAGENES BUSQUEDA ----------------#
+
+    - assets/Busqueda/Busqueda_Google_Academico.png
+    - assets/Busqueda/Busqueda_Operadores_Booleanos.jpg
+    - assets/Busqueda/Busqueda_Google_Alertas.png
+    - assets/Busqueda/Busqueda_Google_Tendencias.png
+    - assets/Busqueda/Busqueda_Objetivos.png
