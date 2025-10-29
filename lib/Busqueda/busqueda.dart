@@ -281,6 +281,7 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                       color: obtenercolor('Color_Principal'),
                       backgroundColor: Colors.white,
                     ),
+                    textAlign: TextAlign.justify,
                   ),
                   const SizedBox(height: 20),
                   esPantallaPequena
@@ -329,7 +330,7 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                               fontFamily: 'Calibri',
                               height: 1.5,
                             ),
-                            textAlign: TextAlign.center,
+                            textAlign: TextAlign.justify,
                           ),
                           if (_index == 4)
                             RichText(
@@ -460,6 +461,7 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                                       fontFamily: 'Calibri',
                                       height: 1.5,
                                     ),
+                                    textAlign: TextAlign.justify,
                                   ),
                                   if (_index == 4)
                                     RichText(

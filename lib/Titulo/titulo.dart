@@ -104,7 +104,7 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     // 📌 Ahora el nombre refleja la condición real
-    final bool esPantallaPequena = MediaQuery.of(context).size.width < 1000;
+    final bool esPantallaPequena = MediaQuery.of(context).size.width < 2000;
 
     return Scaffold(
       backgroundColor: obtenercolor('Color_Fondo'),
@@ -243,7 +243,7 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
                               fontFamily: 'Calibri',
                               height: 1.5,
                             ),
-                            textAlign: TextAlign.center,
+                            textAlign: TextAlign.justify,
                           ),
                           const SizedBox(height: 20),
                           ClipRRect(
@@ -273,6 +273,7 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
                                   height: 1.5,
                                   //se usa height para aumentar la altura de la letra
                                 ),
+                                textAlign: TextAlign.justify,
                               ),
                             ),
                           ),

@@ -98,7 +98,7 @@ class _ActividadState extends State<Actividad> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     // 📌 Ahora el nombre refleja la condición real
-    final bool esPantallaPequena = MediaQuery.of(context).size.width < 1000;
+    final bool esPantallaPequena = MediaQuery.of(context).size.width < 2000;
 
     return Scaffold(
       backgroundColor: obtenercolor('Color_Fondo'),
@@ -231,6 +231,7 @@ class _ActividadState extends State<Actividad> with TickerProviderStateMixin {
                               fontFamily: 'Calibri',
                               height: 1.5,
                             ),
+                            textAlign: TextAlign.justify,
                           ),
                           const SizedBox(height: 20),
                           ClipRRect(
@@ -257,6 +258,7 @@ class _ActividadState extends State<Actividad> with TickerProviderStateMixin {
                                   fontFamily: 'calibri',
                                   height: 1.5,
                                 ),
+                                textAlign: TextAlign.justify,
                               ),
                             ),
                           ),

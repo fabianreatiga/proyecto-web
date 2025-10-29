@@ -171,7 +171,7 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
 
   @override
   Widget build(BuildContext context) {
-    final bool esPantallaPequena = MediaQuery.of(context).size.width < 1000;
+    final bool esPantallaPequena = MediaQuery.of(context).size.width < 2000;
 
     return Scaffold(
       backgroundColor: obtenercolor('Color_Fondo'),
@@ -254,7 +254,7 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
   Widget _buildTimelineCard() {
     return LayoutBuilder(
       builder: (context, constraints) {
-        bool esPantallaPequena = constraints.maxWidth < 1400;
+        bool esPantallaPequena = constraints.maxWidth < 1000;
         return Card(
           color: obtenercolor('Color_Fondo'),
           shape: RoundedRectangleBorder(
@@ -285,6 +285,7 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                       color: obtenercolor('Color_Principal'),
                       backgroundColor: Colors.white,
                     ),
+                    textAlign: TextAlign.justify,
                   ),
                   const SizedBox(height: 20),
                   esPantallaPequena
@@ -298,7 +299,7 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                               fontFamily: 'Calibri',
                               height: 1.5,
                             ),
-                            textAlign: TextAlign.center,
+                            textAlign: TextAlign.justify,
                           ),
                           const SizedBox(height: 20),
                           ClipRRect(
@@ -332,6 +333,7 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                                   fontFamily: 'Calibri',
                                   height: 1.5,
                                 ),
+                                textAlign: TextAlign.justify,
                               ),
                             ),
                           ),

@@ -115,7 +115,7 @@ class _BibliografiasState extends State<Bibliografias>
   @override
   Widget build(BuildContext context) {
     // 📌 Ahora el nombre refleja la condición real
-    final bool esPantallaPequena = MediaQuery.of(context).size.width < 1000;
+    final bool esPantallaPequena = MediaQuery.of(context).size.width < 2000;
 
     return Scaffold(
       backgroundColor: obtenercolor('Color_Fondo'),
@@ -202,7 +202,7 @@ class _BibliografiasState extends State<Bibliografias>
     return LayoutBuilder(
       // se usa LayoutBuilder para obtener el tamaño de la pantalla
       builder: (context, Constraints) {
-        bool esPantallaPequena = Constraints.maxWidth < 1000;
+        bool esPantallaPequena = Constraints.maxWidth < 1200;
         // se usa bool para saber si la pantalla es pequena
         return Card(
           color: obtenercolor('Color_Fondo'),
@@ -249,6 +249,7 @@ class _BibliografiasState extends State<Bibliografias>
                               fontFamily: 'Calibri',
                               height: 1.5,
                             ),
+                            textAlign: TextAlign.justify,
                           ),
                           const SizedBox(height: 20),
                           ClipRRect(
@@ -282,6 +283,7 @@ class _BibliografiasState extends State<Bibliografias>
                                   height: 1.5,
                                   //se usa height para aumentar la altura de la letra
                                 ),
+                                textAlign: TextAlign.justify,
                               ),
                             ),
                           ),

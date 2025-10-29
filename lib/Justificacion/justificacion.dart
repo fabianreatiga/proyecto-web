@@ -111,7 +111,7 @@ class _JustificacionesState extends State<Justificaciones>
 
   @override
   Widget build(BuildContext context) {
-    final bool esPantallaPequena = MediaQuery.of(context).size.width < 1000;
+    final bool esPantallaPequena = MediaQuery.of(context).size.width < 2000;
 
     return Scaffold(
       backgroundColor: obtenercolor('Color_Fondo'),
@@ -237,7 +237,7 @@ class _JustificacionesState extends State<Justificaciones>
                               fontFamily: 'Calibri',
                               height: 1.5,
                             ),
-                            textAlign: TextAlign.center,
+                            textAlign: TextAlign.justify,
                           ),
                           const SizedBox(height: 20),
                           ClipRRect(
@@ -264,6 +264,7 @@ class _JustificacionesState extends State<Justificaciones>
                                   fontFamily: 'Calibri',
                                   height: 1.5,
                                 ),
+                                textAlign: TextAlign.justify,
                               ),
                             ),
                           ),

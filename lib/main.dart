@@ -278,10 +278,11 @@ class _InicioState extends State<Inicio> {
                         'problemáticas o necesidades que enfrenta la sociedad y los sectores productivos. De esta forma se tendrán egresados con mejores'
                         ' capacidades para investigar que aporten a la productividad y competitividad de la región y el país. Por tanto, este proyecto'
                         ' busca desarrollar un software interactivo que facilite el aprendizaje en la estructuración de proyectos de investigación y'
-                        ' está dirigido a aprendices en programas tecnológicos, técnicos y operarios, además de instructores interesados en mejorar'
-                        ' sus conocimientos en la temática de investigación. Igualmente, la herramienta se implementará en semilleros y el grupo de'
+                        ' está dirigido a aprendices en programas tecnológicos, técnicos y operarios, además de instructores interesados en mejora'
+                        'sus conocimientos en la temática de investigación. Igualmente, la herramienta se implementará en semilleros y el grupo de'
                         ' investigación del centro de formación. Se proyecta que esta herramienta estimule el aprendizaje hacia la investigación al'
                         ' hacer uso de las TIC y de una plataforma interactiva que incentive el pensamiento crítico y la creatividad.',
+
                     style: TextStyle(
                       fontSize: tamanotexto(2),
                       //se esta usando tamanotexto para determinar el tamaño del texto mediante una función
@@ -292,7 +293,7 @@ class _InicioState extends State<Inicio> {
                   ),
                 ],
               ),
-              textAlign: TextAlign.center,
+              textAlign: TextAlign.justify,
               //se esta usando textalign para centrar el texto en el contenedor
             ),
           ),
@@ -425,7 +426,7 @@ class _InicioState extends State<Inicio> {
                           ),
                         ],
                       ),
-                      textAlign: TextAlign.center,
+                      textAlign: TextAlign.justify,
                     ),
                   ),
                 ],
