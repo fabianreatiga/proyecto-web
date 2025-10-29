@@ -508,9 +508,7 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
 
   Widget _buildGridMenu(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
-    // en esta linea de codigo se obtiene el ancho de la pantalla
     final bool esPantallaGrande = kIsWeb || screenWidth > 600;
-    // se usa kIsweb para saber si estamos en un dispositivo web
 
     final ScrollController scrollController = ScrollController();
     final double itemWidth = esPantallaGrande ? 180 : 120;
@@ -524,12 +522,12 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
     }
 
     return SizedBox(
-      height: 190, // un poco más para dar espacio a la barra
+      height: 190,
       child: Scrollbar(
         controller: scrollController,
-        thumbVisibility: true, // <- importante para mostrar la barra
+        thumbVisibility: true,
         trackVisibility: true,
-        interactive: true, // <- habilita click & drag
+        interactive: true,
         child: ListView.builder(
           controller: scrollController,
           scrollDirection: Axis.horizontal,
@@ -541,11 +539,10 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
             final bool isSelected = _tabController.index == item['indice'];
 
             return SizedBox(
-              width: esPantallaGrande ? 190 : 140,
+              width: itemWidth,
               child: Container(
                 margin: const EdgeInsets.symmetric(horizontal: 12),
                 child: GestureDetector(
-                  //se usa GestureDetector para detectar el click
                   onTap: () {
                     Navigator.pop(context);
                     final nuevoIndex = item['indice'];
@@ -555,10 +552,7 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                         _index = nuevoIndex;
                         if (!pestanasVistas.contains(nuevoIndex)) {
                           pestanasVistas.add(nuevoIndex);
-                          ProgresoGlobal.marcarVisto(
-                            menuItems[_index + 1]['id'],
-                          );
-
+                          ProgresoGlobal.marcarVisto(item['id']);
                           //_progresoContador++;
                         }
                       });

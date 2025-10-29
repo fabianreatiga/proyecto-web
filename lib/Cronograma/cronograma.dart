@@ -422,7 +422,6 @@ class _CronogramasState extends State<Cronogramas>
 
   Widget _buildGridMenu(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
-    // en esta linea de codigo se obtiene el ancho de la pantalla
     final bool esPantallaGrande = kIsWeb || screenWidth > 600;
 
     final ScrollController scrollController = ScrollController();
@@ -435,13 +434,14 @@ class _CronogramasState extends State<Cronogramas>
     if (totalContentWidth < screenWidth) {
       sidePadding = (screenWidth - totalContentWidth) / 2;
     }
+
     return SizedBox(
-      height: 190, // un poco más para dar espacio a la barra
+      height: 190,
       child: Scrollbar(
         controller: scrollController,
-        thumbVisibility: true, //esta linea es para mostrar la barra
+        thumbVisibility: true,
         trackVisibility: true,
-        interactive: true, //esta linea es para habilitar click & drag
+        interactive: true,
         child: ListView.builder(
           controller: scrollController,
           scrollDirection: Axis.horizontal,
@@ -453,11 +453,10 @@ class _CronogramasState extends State<Cronogramas>
             final bool isSelected = _tabController.index == item['indice'];
 
             return SizedBox(
-              width: esPantallaGrande ? 180 : 120,
+              width: itemWidth,
               child: Container(
                 margin: const EdgeInsets.symmetric(horizontal: 12),
                 child: GestureDetector(
-                  //se usa GestureDetector para detectar el click
                   onTap: () {
                     Navigator.pop(context);
                     final nuevoIndex = item['indice'];
@@ -467,7 +466,8 @@ class _CronogramasState extends State<Cronogramas>
                         _index = nuevoIndex;
                         if (!pestanasVistas.contains(nuevoIndex)) {
                           pestanasVistas.add(nuevoIndex);
-                          // _progresoContador++;
+                          ProgresoGlobal.marcarVisto(item['id']);
+                          //_progresoContador++;
                         }
                       });
                     }

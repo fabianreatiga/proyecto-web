@@ -437,8 +437,9 @@ class _JustificacionesState extends State<Justificaciones>
     if (totalContentWidth < screenWidth) {
       sidePadding = (screenWidth - totalContentWidth) / 2;
     }
+
     return SizedBox(
-      height: 190, // un poco más para dar espacio a la barra
+      height: 190,
       child: Scrollbar(
         controller: scrollController,
         thumbVisibility: true,
@@ -468,7 +469,8 @@ class _JustificacionesState extends State<Justificaciones>
                         _index = nuevoIndex;
                         if (!pestanasVistas.contains(nuevoIndex)) {
                           pestanasVistas.add(nuevoIndex);
-                          ProgresoGlobal.marcarVisto(nuevoIndex + 4);
+                          ProgresoGlobal.marcarVisto(item['id']);
+                          //_progresoContador++;
                         }
                       });
                     }
