@@ -254,49 +254,40 @@ class _InicioState extends State<Inicio> {
               fit: BoxFit.contain,
             ),
           ),
-          const SizedBox(height: 20),
           Padding(
             padding: EdgeInsets.all(35),
-            child: Text.rich(
-              TextSpan(
-                //se esta usando textspan para dar formato a diferentes partes del texto
-                children: [
-                  TextSpan(
-                    text: aplicativo,
-                    // aplicativo es una variable que contiene un texto
-                    style: TextStyle(
-                      fontSize: tamanotexto(3),
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                      fontFamily: 'Calibri',
-                    ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  aplicativo,
+                  style: TextStyle(
+                    fontSize: tamanotexto(3),
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                    fontFamily: 'Calibri',
                   ),
-                  TextSpan(
-                    text:
-                        '\n\nCon este aplicativo busca Establecer estrategias y herramientas para el fomento de la investigación en'
-                        ' el Sena permitirá al aprendiz, adquirir habilidades que se plasmen en resultados que brinden soluciones a las diferentes '
-                        'problemáticas o necesidades que enfrenta la sociedad y los sectores productivos. De esta forma se tendrán egresados con mejores'
-                        ' capacidades para investigar que aporten a la productividad y competitividad de la región y el país. Por tanto, este proyecto'
-                        ' busca desarrollar un software interactivo que facilite el aprendizaje en la estructuración de proyectos de investigación y'
-                        ' está dirigido a aprendices en programas tecnológicos, técnicos y operarios, además de instructores interesados en mejora'
-                        'sus conocimientos en la temática de investigación. Igualmente, la herramienta se implementará en semilleros y el grupo de'
-                        ' investigación del centro de formación. Se proyecta que esta herramienta estimule el aprendizaje hacia la investigación al'
-                        ' hacer uso de las TIC y de una plataforma interactiva que incentive el pensamiento crítico y la creatividad.',
-
-                    style: TextStyle(
-                      fontSize: tamanotexto(2),
-                      //se esta usando tamanotexto para determinar el tamaño del texto mediante una función
-                      height: 1.4,
-                      fontFamily: 'Calibri',
-                      color: Colors.black,
-                    ),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 20),
+                Text(
+                  'Con este aplicativo busca establecer estrategias y herramientas para el fomento de la investigación en el Sena permitirá al aprendiz, adquirir habilidades que se plasmen en resultados que brinden soluciones a las diferentes problemáticas o necesidades que enfrenta la sociedad y los sectores productivos. '
+                  'De esta forma se tendrán egresados con mejores capacidades para investigar que aporten a la productividad y competitividad de la región y el país. '
+                  'Por tanto, este proyecto busca desarrollar un software interactivo que facilite el aprendizaje en la estructuración de proyectos de investigación y está dirigido a aprendices en programas tecnológicos, técnicos y operarios, además de instructores interesados en mejorar sus conocimientos en la temática de investigación. '
+                  'Igualmente, la herramienta se implementará en semilleros y el grupo de investigación del centro de formación. '
+                  'Se proyecta que esta herramienta estimule el aprendizaje hacia la investigación al hacer uso de las TIC y de una plataforma interactiva que incentive el pensamiento crítico y la creatividad.',
+                  style: TextStyle(
+                    fontSize: tamanotexto(2),
+                    height: 1.4,
+                    fontFamily: 'Calibri',
+                    color: Colors.black,
                   ),
-                ],
-              ),
-              textAlign: TextAlign.justify,
-              //se esta usando textalign para centrar el texto en el contenedor
+                  textAlign: TextAlign.justify,
+                ),
+              ],
             ),
           ),
+
           const SizedBox(height: 20),
           _campoTexto(
             label: 'Nombre',
@@ -394,39 +385,35 @@ class _InicioState extends State<Inicio> {
 
                   Padding(
                     padding: EdgeInsets.all(35),
-                    child: Text.rich(
-                      TextSpan(
-                        children: [
-                          TextSpan(
-                            text: aplicativo,
-                            style: TextStyle(
-                              fontSize: tamanotexto(3),
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                              fontFamily: 'Calibri',
-                            ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          aplicativo,
+                          style: TextStyle(
+                            fontSize: tamanotexto(3),
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                            fontFamily: 'Calibri',
                           ),
-                          TextSpan(
-                            text:
-                                '\n\nCon este aplicativo busca Establecer estrategias y herramientas para el fomento de la investigación en'
-                                ' el Sena permitirá al aprendiz, adquirir habilidades que se plasmen en resultados que brinden soluciones a las diferentes '
-                                'problemáticas o necesidades que enfrenta la sociedad y los sectores productivos. De esta forma se tendrán egresados con mejores'
-                                ' capacidades para investigar que aporten a la productividad y competitividad de la región y el país. Por tanto, este proyecto'
-                                ' busca desarrollar un software interactivo que facilite el aprendizaje en la estructuración de proyectos de investigación y'
-                                ' está dirigido a aprendices en programas tecnológicos, técnicos y operarios, además de instructores interesados en mejorar'
-                                ' sus conocimientos en la temática de investigación. Igualmente, la herramienta se implementará en semilleros y el grupo de'
-                                ' investigación del centro de formación. Se proyecta que esta herramienta estimule el aprendizaje hacia la investigación al'
-                                ' hacer uso de las TIC y de una plataforma interactiva que incentive el pensamiento crítico y la creatividad.',
-                            style: TextStyle(
-                              fontSize: tamanotexto(2),
-                              height: 1.4,
-                              fontFamily: 'Calibri',
-                              color: Colors.black,
-                            ),
+                          textAlign: TextAlign.center,
+                        ),
+                        SizedBox(height: 20),
+                        Text(
+                          'Con este aplicativo busca establecer estrategias y herramientas para el fomento de la investigación en el Sena permitirá al aprendiz, adquirir habilidades que se plasmen en resultados que brinden soluciones a las diferentes problemáticas o necesidades que enfrenta la sociedad y los sectores productivos. '
+                          'De esta forma se tendrán egresados con mejores capacidades para investigar que aporten a la productividad y competitividad de la región y el país. '
+                          'Por tanto, este proyecto busca desarrollar un software interactivo que facilite el aprendizaje en la estructuración de proyectos de investigación y está dirigido a aprendices en programas tecnológicos, técnicos y operarios, además de instructores interesados en mejorar sus conocimientos en la temática de investigación. '
+                          'Igualmente, la herramienta se implementará en semilleros y el grupo de investigación del centro de formación. '
+                          'Se proyecta que esta herramienta estimule el aprendizaje hacia la investigación al hacer uso de las TIC y de una plataforma interactiva que incentive el pensamiento crítico y la creatividad.',
+                          style: TextStyle(
+                            fontSize: tamanotexto(2),
+                            height: 1.4,
+                            fontFamily: 'Calibri',
+                            color: Colors.black,
                           ),
-                        ],
-                      ),
-                      textAlign: TextAlign.justify,
+                          textAlign: TextAlign.justify,
+                        ),
+                      ],
                     ),
                   ),
                 ],
