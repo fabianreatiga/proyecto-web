@@ -285,7 +285,6 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                       color: obtenercolor('Color_Principal'),
                       backgroundColor: Colors.white,
                     ),
-                    textAlign: TextAlign.justify,
                   ),
                   const SizedBox(height: 20),
                   esPantallaPequena

@@ -1,10 +1,10 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:nuevomockups/Appbar/appbar.dart';
-import 'package:nuevomockups/Bibliografia/bibliografia.dart';
 import 'package:nuevomockups/Color_texto/color_texto.dart';
-import 'package:nuevomockups/Encuesta/encuesta.dart';
 import 'package:nuevomockups/Menus/menus.dart';
 import 'package:nuevomockups/global.dart';
 
@@ -66,6 +66,7 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
     250, // GOOGLE TENDENCIAS (TRENDS)
   ]; // lista de las alturas de las imagenes para pantallas pequenas
 
+  // ignore: non_constant_identifier_names
   static int ID_BASE_PROGRESO = 51; // ID base para el progreso de este subtema
 
   @override
@@ -123,8 +124,8 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
         ],
       ),
 
-      // Een este bloque de codigo se usa para mostrar y navegar por el modal menu
-      drawer: const Menu(currentScreen: 'Busqueda'),
+      // En este bloque de codigo se usa para mostrar y navegar por el modal menu
+      drawer: const Menu(currentScreen: 'BaseDeDatos'),
       body: Container(
         padding: EdgeInsets.all(0),
         child: Column(
@@ -142,7 +143,7 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
                           child: Column(
                             children: [
                               Text(
-                                '¿Sabes cómo hacer una búsqueda?',
+                                '¿Sabes qué es una base de datos científica?',
                                 style: TextStyle(
                                   fontSize: tamanotexto(1) + 5,
                                   fontFamily: 'Calibri',
@@ -160,7 +161,7 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
                           // 📌 Sin zoom en pantallas grandes
                           children: [
                             Text(
-                              '¿Sabes cómo hacer una búsqueda?',
+                              '¿Sabes qué es una base de datos científica?',
                               style: TextStyle(
                                 fontSize: tamanotexto(1) + 5,
                                 fontFamily: 'Calibri',
@@ -238,7 +239,6 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
                       color: obtenercolor('Color_Principal'),
                       backgroundColor: Colors.white,
                     ),
-                    textAlign: TextAlign.justify,
                   ),
                   const SizedBox(height: 20),
                   esPantallaPequena
@@ -255,12 +255,9 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
                                   color: Colors.black,
                                 ),
                                 children: [
+                                  TextSpan(text: ''),
                                   TextSpan(
-                                    text:
-                                        'Las alertas de Google son una herramienta gratuita que envía notificaciones al correo electrónico cuando aparece nueva información relacionada con un tema o palabra clave elegida. Para activarlas, se ingresa a ',
-                                  ),
-                                  TextSpan(
-                                    text: 'google.com/alerts',
+                                    text: '',
                                     style: TextStyle(
                                       color: Colors.blue,
                                       decoration: TextDecoration.underline,
@@ -268,15 +265,10 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
                                     recognizer:
                                         TapGestureRecognizer()
                                           ..onTap = () async {
-                                            await abrirLink(
-                                              'https://www.google.com/alerts',
-                                            );
+                                            await abrirLink('');
                                           },
                                   ),
-                                  TextSpan(
-                                    text:
-                                        ', se escribe el tema de interés, se ajustan las opciones (frecuencia, idioma, fuentes) y se presiona “Crear alerta”. Sirven para mantenerse informado automáticamente sobre noticias, investigaciones o temas específicos sin tener que buscarlos manualmente.',
-                                  ),
+                                  TextSpan(text: ''),
                                 ],
                               ),
                             ),
@@ -300,12 +292,9 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
                                   color: Colors.black,
                                 ),
                                 children: [
+                                  TextSpan(text: ''),
                                   TextSpan(
-                                    text:
-                                        'Puedes acceder a la herramienta aquí: ',
-                                  ),
-                                  TextSpan(
-                                    text: 'https://trends.google.com',
+                                    text: '',
                                     style: TextStyle(
                                       color: Colors.blue,
                                       decoration: TextDecoration.underline,
@@ -313,9 +302,7 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
                                     recognizer:
                                         TapGestureRecognizer()
                                           ..onTap = () async {
-                                            await abrirLink(
-                                              'https://trends.google.com',
-                                            );
+                                            await abrirLink('');
                                           },
                                   ),
                                 ],
@@ -332,12 +319,9 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
                                   color: Colors.black,
                                 ),
                                 children: [
+                                  TextSpan(text: ''),
                                   TextSpan(
-                                    text:
-                                        'Puedes acceder a la herramienta aquí: ',
-                                  ),
-                                  TextSpan(
-                                    text: 'https://scholar.google.com',
+                                    text: '',
                                     style: TextStyle(
                                       color: Colors.blue,
                                       decoration: TextDecoration.underline,
@@ -345,9 +329,7 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
                                     recognizer:
                                         TapGestureRecognizer()
                                           ..onTap = () async {
-                                            await abrirLink(
-                                              'https://scholar.google.com',
-                                            );
+                                            await abrirLink('');
                                           },
                                   ),
                                 ],
@@ -385,12 +367,9 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
                                           color: Colors.black,
                                         ),
                                         children: [
+                                          TextSpan(text: ''),
                                           TextSpan(
-                                            text:
-                                                'Las alertas de Google son una herramienta gratuita que envía notificaciones al correo electrónico cuando aparece nueva información relacionada con un tema o palabra clave elegida. Para activarlas, se ingresa a ',
-                                          ),
-                                          TextSpan(
-                                            text: 'google.com/alerts',
+                                            text: '',
                                             style: TextStyle(
                                               color: Colors.blue,
                                               decoration:
@@ -399,15 +378,10 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
                                             recognizer:
                                                 TapGestureRecognizer()
                                                   ..onTap = () async {
-                                                    await abrirLink(
-                                                      'https://www.google.com/alerts',
-                                                    );
+                                                    await abrirLink('');
                                                   },
                                           ),
-                                          TextSpan(
-                                            text:
-                                                ', se escribe el tema de interés, se ajustan las opciones (frecuencia, idioma, fuentes) y se presiona “Crear alerta”. Sirven para mantenerse informado automáticamente sobre noticias, investigaciones o temas específicos sin tener que buscarlos manualmente.',
-                                          ),
+                                          TextSpan(text: ''),
                                         ],
                                       ),
                                     ),
@@ -431,12 +405,9 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
                                           color: Colors.black,
                                         ),
                                         children: [
+                                          TextSpan(text: ''),
                                           TextSpan(
-                                            text:
-                                                'Puedes acceder a la herramienta aquí: ',
-                                          ),
-                                          TextSpan(
-                                            text: 'https://trends.google.com',
+                                            text: '',
                                             style: TextStyle(
                                               color: Colors.blue,
                                               decoration:
@@ -445,9 +416,7 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
                                             recognizer:
                                                 TapGestureRecognizer()
                                                   ..onTap = () async {
-                                                    await abrirLink(
-                                                      'https://trends.google.com',
-                                                    );
+                                                    await abrirLink('');
                                                   },
                                           ),
                                         ],
@@ -464,12 +433,9 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
                                           color: Colors.black,
                                         ),
                                         children: [
+                                          TextSpan(text: ''),
                                           TextSpan(
-                                            text:
-                                                'Puedes acceder a la herramienta aquí: ',
-                                          ),
-                                          TextSpan(
-                                            text: 'https://scholar.google.com',
+                                            text: '',
                                             style: TextStyle(
                                               color: Colors.blue,
                                               decoration:
@@ -478,9 +444,7 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
                                             recognizer:
                                                 TapGestureRecognizer()
                                                   ..onTap = () async {
-                                                    await abrirLink(
-                                                      'https://scholar.google.com',
-                                                    );
+                                                    await abrirLink('');
                                                   },
                                           ),
                                         ],

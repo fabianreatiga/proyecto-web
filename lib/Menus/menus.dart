@@ -289,7 +289,6 @@ class Menu extends StatelessWidget {
           ),
 
           //======================= BASES DE DATOS =======================\\
-          /*
           ListTile(
             leading: Icon(
               Icons.storage,
@@ -297,7 +296,7 @@ class Menu extends StatelessWidget {
                   currentScreen == 'BaseDeDatos' ? Colors.white : Colors.black,
             ),
             title: Text(
-              'Base de Datos',
+              'Base de Datos Científica',
               style: TextStyle(
                 fontSize: texto + 4,
                 color:
@@ -312,10 +311,10 @@ class Menu extends StatelessWidget {
               Navigator.pop(context);
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => const BasesDatos()),
+                MaterialPageRoute(builder: (context) => const Basesdatos()),
               );
             },
-          ),*/
+          ),
 
           //======================= OPCIÓN ENCUESTA =======================\\
           ListTile(

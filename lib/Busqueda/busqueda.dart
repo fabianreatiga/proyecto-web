@@ -136,7 +136,7 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     // 📌 Ahora el nombre refleja la condición real
-    final bool esPantallaPequena = MediaQuery.of(context).size.width < 2000;
+    final bool esPantallaPequena = MediaQuery.of(context).size.width < 850;
 
     return Scaffold(
       backgroundColor: obtenercolor('Color_Fondo'),
@@ -281,7 +281,6 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                       color: obtenercolor('Color_Principal'),
                       backgroundColor: Colors.white,
                     ),
-                    textAlign: TextAlign.justify,
                   ),
                   const SizedBox(height: 20),
                   esPantallaPequena
@@ -550,6 +549,67 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                           ),
                         ],
                       ),
+                  if (_index == 2)
+                    Center(
+                      child: SingleChildScrollView(
+                        child: SizedBox(
+                          child: Column(
+                            children: [
+                              /*Text(
+                                'Ejemplo',
+                                style: TextStyle(
+                                  fontSize: tamanotexto(1),
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: 'Calibri',
+                                  color: obtenercolor('Color_Principal'),
+                                  backgroundColor: Colors.white,
+                                ),
+                                textAlign: TextAlign.left,
+                              ),*/
+                              SizedBox(height: 20),
+                              Image.asset(
+                                'assets/Busqueda/Busqueda_Ejemplo_Google_Academico1.png',
+                              ),
+                              Image.asset(
+                                'assets/Busqueda/Busqueda_Ejemplo_Google_Academico2.png',
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  if (_index == 3)
+                    Center(
+                      child: SingleChildScrollView(
+                        child: SizedBox(
+                          child: Column(
+                            children: [
+                              Image.asset(
+                                'assets/Busqueda/Busqueda_Ejemplo_Google_Alertas1.png',
+                              ),
+                              Image.asset(
+                                'assets/Busqueda/Busqueda_Ejemplo_Google_Alertas2.png',
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  if (_index == 4)
+                    Center(
+                      child: SizedBox(
+                        child: Column(
+                          children: [
+                            Image.asset(
+                              'assets/Busqueda/Busqueda_Ejemplo_Google_Tendencias1.png',
+                            ),
+                            Image.asset(
+                              'assets/Busqueda/Busqueda_Ejemplo_Google_Tendencias2.png',
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                 ],
               ),
             ),

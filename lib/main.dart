@@ -229,7 +229,7 @@ class _InicioState extends State<Inicio> {
   }
 
   Widget _buildColumnLayout(BuildContext context) {
-    //este es el widget que es usa para cuando las pantallas
+    //este es el widget que es usa para cuando las pantallas son pequeñas
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
@@ -255,7 +255,7 @@ class _InicioState extends State<Inicio> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.all(35),
+            padding: EdgeInsets.all(5),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
