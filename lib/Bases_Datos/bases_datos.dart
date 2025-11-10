@@ -4,11 +4,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:nuevomockups/Appbar/appbar.dart';
+import 'package:nuevomockups/Busqueda/busqueda.dart';
 import 'package:nuevomockups/Color_texto/color_texto.dart';
+import 'package:nuevomockups/Encuesta/encuesta.dart';
+import 'package:nuevomockups/Links/links.dart';
 import 'package:nuevomockups/Menus/menus.dart';
 import 'package:nuevomockups/global.dart';
-
-import 'package:url_launcher/url_launcher.dart';
 
 class Basesdatos extends StatelessWidget {
   const Basesdatos({super.key});
@@ -36,9 +37,16 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
       []; // en esta variable se guarda las pestañas ya vistas
 
   final List<String> textos = [
-    '',
-    '',
-    '',
+    'Una base de datos científica es una plataforma digital que almacena, organiza y permite acceder a información validada de investigaciones, como artículos, tesis y revistas especializadas. Facilita la búsqueda, consulta y citación de fuentes confiables, garantizando la calidad y veracidad del conocimiento científico.',
+
+    'Una base de datos científica sirve para:\n'
+        '🔍 Buscar información confiable: Permite encontrar artículos, investigaciones y documentos revisados por expertos.\n'
+        '🧠 Consultar antecedentes y estado del arte: Ayuda a conocer lo que ya se ha investigado sobre un tema.\n'
+        '📝 Citar correctamente: Facilita la obtención de datos bibliográficos para evitar el plagio.\n'
+        '📊 Analizar tendencias científicas: Permite ver qué temas son más estudiados o citados.\n'
+        '🎓 Apoyar trabajos académicos y tesis: Brinda información actualizada y verificada para sustentar investigaciones.',
+
+    'El SENA ofrece una Biblioteca Virtual donde todos los aprendices e instructores pueden acceder a bases de datos académicas y científicas. Estas bases contienen libros digitales, revistas, artículos, normas técnicas, investigaciones y otros recursos confiables para apoyar la formación y los proyectos.',
     '',
     '',
   ]; // lista de los textos que se van a mostrar
@@ -48,7 +56,13 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
   // ignore: unused_field
   int _currentseccion = 0;
 
-  final List<String> secciones = ['', '', '', '', '']; // lista de las secciones
+  final List<String> secciones = [
+    'DEFINICIÓN',
+    '¿PARA QUE SIRVE?',
+    '¿Dónde puedes encontrar las bases de datos científicas?',
+    '¿QUE ES EL ESTADO DEL ARTE?',
+    'eJEMPLOS',
+  ]; // lista de las secciones
 
   final List<double> alturaImagengrande = [
     300, // OBJETIVO
@@ -67,7 +81,7 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
   ]; // lista de las alturas de las imagenes para pantallas pequenas
 
   // ignore: non_constant_identifier_names
-  static int ID_BASE_PROGRESO = 51; // ID base para el progreso de este subtema
+  static int ID_BASE_PROGRESO = 56; // ID base para el progreso de este subtema
 
   @override
   void initState() {
@@ -185,18 +199,6 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
 
   Widget _buildTimelineCard() {
     // Función para abrir links correctamente en web y móvil
-    Future<void> abrirLink(String url) async {
-      final Uri uri = Uri.parse(url);
-      if (!await launchUrl(
-        uri,
-        mode:
-            kIsWeb
-                ? LaunchMode.externalApplication
-                : LaunchMode.platformDefault,
-      )) {
-        throw 'No se pudo abrir $url';
-      }
-    }
 
     return LayoutBuilder(
       //se usa LayoutBuilder para adaptar el tamaño de la pantalla
@@ -244,34 +246,6 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
                   esPantallaPequena
                       ? Column(
                         children: [
-                          if (_index == 3)
-                            RichText(
-                              textAlign: TextAlign.justify,
-                              text: TextSpan(
-                                style: TextStyle(
-                                  fontSize: tamanotexto(2) + 4,
-                                  fontFamily: 'Calibri',
-                                  height: 1.5,
-                                  color: Colors.black,
-                                ),
-                                children: [
-                                  TextSpan(text: ''),
-                                  TextSpan(
-                                    text: '',
-                                    style: TextStyle(
-                                      color: Colors.blue,
-                                      decoration: TextDecoration.underline,
-                                    ),
-                                    recognizer:
-                                        TapGestureRecognizer()
-                                          ..onTap = () async {
-                                            await abrirLink('');
-                                          },
-                                  ),
-                                  TextSpan(text: ''),
-                                ],
-                              ),
-                            ),
                           Text(
                             textos[_index],
                             style: TextStyle(
@@ -281,7 +255,8 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
                             ),
                             textAlign: TextAlign.justify,
                           ),
-                          if (_index == 4)
+                          const SizedBox(height: 10),
+                          /*if (_index == 4)
                             RichText(
                               textAlign: TextAlign.justify,
                               text: TextSpan(
@@ -307,7 +282,7 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
                                   ),
                                 ],
                               ),
-                            ),
+                            ),*/
                           if (_index == 2)
                             RichText(
                               textAlign: TextAlign.justify,
@@ -316,21 +291,53 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
                                   fontSize: tamanotexto(2) + 4,
                                   fontFamily: 'Calibri',
                                   height: 1.5,
-                                  color: Colors.black,
+                                  //color: Colors.black,
                                 ),
                                 children: [
-                                  TextSpan(text: ''),
                                   TextSpan(
-                                    text: '',
+                                    text: 'Para acceder:\n',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: obtenercolor('Color_Principal'),
+                                      fontSize: tamanotexto(1) - 10,
+                                    ),
+                                  ),
+                                  TextSpan(text: 'Ingresa a 👉'),
+                                  TextSpan(
+                                    text:
+                                        ' https://biblioteca.sena.edu.co/paginas/bases.html\n',
                                     style: TextStyle(
                                       color: Colors.blue,
-                                      decoration: TextDecoration.underline,
+                                      //decoration: TextDecoration.underline,
                                     ),
                                     recognizer:
                                         TapGestureRecognizer()
-                                          ..onTap = () async {
-                                            await abrirLink('');
+                                          ..onTap = () {
+                                            abrirLink(
+                                              'https://biblioteca.sena.edu.co/paginas/bases.html',
+                                            );
                                           },
+                                  ),
+                                  TextSpan(text: 'Allí verás dos tipos:.\n'),
+                                  TextSpan(
+                                    text: 'Bases suscritas: ',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text:
+                                        'el SENA paga la licencia y puedes entrar con usuario institucional.\n',
+                                  ),
+                                  TextSpan(
+                                    text: 'Bases libres: ',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text:
+                                        'disponibles para todos sin registro.',
                                   ),
                                 ],
                               ),
@@ -356,35 +363,6 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  if (_index == 3)
-                                    RichText(
-                                      textAlign: TextAlign.justify,
-                                      text: TextSpan(
-                                        style: TextStyle(
-                                          fontSize: tamanotexto(2) + 4,
-                                          fontFamily: 'Calibri',
-                                          height: 1.5,
-                                          color: Colors.black,
-                                        ),
-                                        children: [
-                                          TextSpan(text: ''),
-                                          TextSpan(
-                                            text: '',
-                                            style: TextStyle(
-                                              color: Colors.blue,
-                                              decoration:
-                                                  TextDecoration.underline,
-                                            ),
-                                            recognizer:
-                                                TapGestureRecognizer()
-                                                  ..onTap = () async {
-                                                    await abrirLink('');
-                                                  },
-                                          ),
-                                          TextSpan(text: ''),
-                                        ],
-                                      ),
-                                    ),
                                   Text(
                                     textos[_index],
                                     style: TextStyle(
@@ -394,7 +372,8 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
                                     ),
                                     textAlign: TextAlign.justify,
                                   ),
-                                  if (_index == 4)
+                                  const SizedBox(height: 10),
+                                  /*if (_index == 4)
                                     RichText(
                                       textAlign: TextAlign.justify,
                                       text: TextSpan(
@@ -421,7 +400,7 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
                                           ),
                                         ],
                                       ),
-                                    ),
+                                    ),*/
                                   if (_index == 2)
                                     RichText(
                                       textAlign: TextAlign.justify,
@@ -433,19 +412,54 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
                                           color: Colors.black,
                                         ),
                                         children: [
-                                          TextSpan(text: ''),
                                           TextSpan(
-                                            text: '',
+                                            text: 'Para acceder:\n',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              color: obtenercolor(
+                                                'Color_Principal',
+                                              ),
+                                              fontSize: tamanotexto(1) - 10,
+                                            ),
+                                          ),
+                                          TextSpan(text: 'Ingresa a 👉'),
+                                          TextSpan(
+                                            text:
+                                                ' https://biblioteca.sena.edu.co/paginas/bases.html\n',
                                             style: TextStyle(
                                               color: Colors.blue,
-                                              decoration:
-                                                  TextDecoration.underline,
+                                              //decoration: TextDecoration.underline,
                                             ),
                                             recognizer:
                                                 TapGestureRecognizer()
-                                                  ..onTap = () async {
-                                                    await abrirLink('');
+                                                  ..onTap = () {
+                                                    abrirLink(
+                                                      'https://biblioteca.sena.edu.co/paginas/bases.html',
+                                                    );
                                                   },
+                                          ),
+                                          TextSpan(
+                                            text: 'Allí verás dos tipos:.\n',
+                                          ),
+                                          TextSpan(
+                                            text: 'Bases suscritas: ',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          TextSpan(
+                                            text:
+                                                'el SENA paga la licencia y puedes entrar con usuario institucional.\n',
+                                          ),
+                                          TextSpan(
+                                            text: 'Bases libres: ',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          TextSpan(
+                                            text:
+                                                'disponibles para todos sin registro.',
                                           ),
                                         ],
                                       ),
@@ -504,10 +518,10 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
                     }
                   });
                 } else {
-                  /* Navigator.push(
+                  Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Bibliografia()),
-                  );*/
+                    MaterialPageRoute(builder: (context) => Busqueda()),
+                  );
                 }
               },
               icon: Icon(
@@ -546,10 +560,10 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
                   });
                 } else {
                   //  await guardarProgresoFinal(2);
-                  /* Navigator.push(
+                  Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => Encuesta()),
-                  );*/
+                  );
                 }
               },
 
@@ -700,36 +714,36 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
   final List<Map<String, dynamic>> menuItems = [
     {
       'id': 2,
-      'text': 'Objetivo',
-      'icon': Icons.data_object,
+      'text': 'Definición',
+      'icon': Icons.info,
       'color': obtenercolor('Color_Secundario'),
       'indice': 0,
     },
     {
       'id': 3,
-      'text': 'Búsqueda en Google',
-      'icon': Icons.info,
+      'text': '¿Para qué sirve?',
+      'icon': Icons.question_mark,
       'color': obtenercolor('Color_Secundario'),
       'indice': 1,
     },
     {
       'id': 4,
-      'text': 'Google Académico (Scholar)',
-      'icon': Icons.list_alt,
+      'text': 'Ejemplos',
+      'icon': Icons.storage,
       'color': obtenercolor('Color_Secundario'),
       'indice': 2,
     },
     {
       'id': 5,
-      'text': 'Aletas de Google',
-      'icon': Icons.text_fields,
+      'text': 'Estado del arte',
+      'icon': Icons.book,
       'color': obtenercolor('Color_Secundario'),
       'indice': 3,
     },
     {
       'id': 6,
-      'text': 'Google Tendencias (Trends)',
-      'icon': Icons.book,
+      'text': 'Ejemplo',
+      'icon': Icons.text_fields,
       'color': obtenercolor('Color_Secundario'),
       'indice': 4,
     },

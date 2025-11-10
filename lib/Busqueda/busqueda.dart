@@ -2,13 +2,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:nuevomockups/Appbar/appbar.dart';
+import 'package:nuevomockups/Bases_Datos/bases_datos.dart';
 import 'package:nuevomockups/Bibliografia/bibliografia.dart';
 import 'package:nuevomockups/Color_texto/color_texto.dart';
-import 'package:nuevomockups/Encuesta/encuesta.dart';
+import 'package:nuevomockups/Links/links.dart';
 import 'package:nuevomockups/Menus/menus.dart';
 import 'package:nuevomockups/global.dart';
 
-import 'package:url_launcher/url_launcher.dart';
+// Solo se usa en web
 
 class Busqueda extends StatelessWidget {
   const Busqueda({super.key});
@@ -40,22 +41,15 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
         'Además, la búsqueda tiene como propósito fomentar el pensamiento crítico y el aprendizaje autónomo, ya que impulsa a comparar diferentes fuentes, identificar la más confiable y seleccionar la información que mejor se adapte al propósito planteado.'
         'En contextos académicos, profesionales o personales, la búsqueda permite ampliar el conocimiento, generar nuevas ideas y fortalecer la capacidad de análisis, convirtiéndose en una herramienta esencial para el desarrollo intelectual y la solución de problemas.',
 
-    'La búsqueda en Google con operadores lógicos y palabras clave permite obtener información más precisa y relevante, ya que ayuda a filtrar o combinar términos para mejorar los resultados. Las palabras clave son los términos principales del tema que se desea investigar, y su correcta elección facilita encontrar exactamente la información necesaria.'
-        'Por otro lado, los operadores lógicos o operadores booleanos son símbolos o palabras especiales que permiten modificar la búsqueda para hacerla más específica. Los más utilizados son: '
-        '• AND (Y) → sirve para incluir todos los términos en los resultados. '
-        'Ejemplo: educación AND tecnología (muestra resultados que contengan ambos términos). '
-        '• OR (O) → permite buscar cualquiera de los términos.'
-        'Ejemplo: adolescentes OR jóvenes (muestra resultados que contengan uno u otro).'
-        '• NOT o el signo menos (-) → sirve para excluir palabras no deseadas. '
-        'Ejemplo: reciclaje -plástico (muestra resultados sobre reciclaje, pero sin incluir el plástico). '
-        '• Comillas (“ ”) → se usan para buscar una frase exacta.'
-        'Ejemplo: "energías renovables en Colombia". '
-        '• Asterisco (*) → actúa como un comodín para reemplazar una palabra desconocida. '
-        'Ejemplo: "el cambio * afecta al medio ambiente". '
-        '• site: → limita la búsqueda a un sitio web específico. '
-        'Ejemplo: site:unesco.org educación. '
-        'Estos operadores permiten refinar los resultados y encontrar con mayor rapidez información confiable y relacionada directamente con el tema de interés.'
-        'En resumen, usar palabras clave junto con operadores lógicos convierte la búsqueda en Google en una herramienta más eficiente, exacta y profesional, especialmente útil para trabajos académicos, investigaciones o consultas especializadas.',
+    'Utilizar palabras clave y operadores lógicos permite obtener resultados más precisos y relevantes al buscar en Google. '
+        'Los operadores más comunes son:\n'
+        '• AND (Y): incluye todos los términos. \n'
+        '• OR (O): busca cualquiera de los términos.\n'
+        '• NOT (-): excluye palabras no deseadas.\n'
+        '• Comillas (“ ”): buscan una frase exacta.\n'
+        '• Asterisco (*): reemplaza una palabra desconocida.\n'
+        '• site: limita la búsqueda a un sitio web específico.\n'
+        'En conjunto, estos operadores ayudan a filtrar y combinar términos para encontrar información confiable, facilitando una búsqueda más profesional y eficiente para trabajos académicos o investigaciones.',
 
     'Google Scholar, también llamado Google Académico, es una herramienta gratuita de Google que permite buscar información científica y académica de manera sencilla. Está diseñada para encontrar artículos, libros, tesis, resúmenes, informes y publicaciones de revistas especializadas en diferentes áreas del conocimiento.'
         'A diferencia del buscador común, Google Scholar se enfoca únicamente en fuentes confiables y de carácter académico, lo que garantiza resultados más precisos y útiles para la investigación, el estudio o el trabajo universitario.'
@@ -64,14 +58,8 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
 
     '',
 
-    'Google Tendencias (o Google Trends) es una herramienta gratuita de Google que permite analizar la popularidad y el comportamiento de búsqueda de palabras o temas específicos en Internet. Con esta herramienta, los usuarios pueden conocer qué términos son más buscados, comparar su relevancia a lo largo del tiempo y ver cómo varía su popularidad según la región, el país o la ciudad.'
-        'Además, Google Tendencias permite: '
-        '• Identificar temas emergentes y tendencias recientes en distintas áreas. '
-        '• Comparar varias palabras clave para ver cuál es más popular en un período determinado. '
-        '• Filtrar los resultados por categorías, como noticias, tecnología, deportes, salud o entretenimiento. '
-        '• Analizar datos históricos para estudiar patrones y comportamientos de búsqueda. '
-        'Esta herramienta es especialmente útil para investigadores, estudiantes, profesionales del marketing y medios de comunicación, ya que ofrece información valiosa sobre intereses y demandas actuales de los usuarios.'
-        'En resumen, Google Tendencias es una plataforma que permite entender mejor los intereses de las personas, detectar oportunidades y tomar decisiones informadas basadas en la información de búsqueda real de los usuarios.',
+    'Google Tendencias (Google Trends) es una herramienta gratuita de Google que permite analizar qué temas o palabras son más buscados en Internet. Muestra cómo cambia el interés por un término a lo largo del tiempo y en diferentes regiones, además de permitir comparar varios temas o categorías como educación, salud o tecnología.'
+        'También ayuda a identificar tendencias, estudiar patrones de búsqueda y conocer los intereses actuales de las personas. Es especialmente útil para estudiantes, investigadores y profesionales que necesitan información confiable sobre lo que la gente busca en la web.',
   ]; // lista de los textos que se van a mostrar
 
   final List<String> imagenes = [
@@ -227,18 +215,6 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
 
   Widget _buildTimelineCard() {
     // Función para abrir links correctamente en web y móvil
-    Future<void> abrirLink(String url) async {
-      final Uri uri = Uri.parse(url);
-      if (!await launchUrl(
-        uri,
-        mode:
-            kIsWeb
-                ? LaunchMode.externalApplication
-                : LaunchMode.platformDefault,
-      )) {
-        throw 'No se pudo abrir $url';
-      }
-    }
 
     return LayoutBuilder(
       //se usa LayoutBuilder para adaptar el tamaño de la pantalla
@@ -272,7 +248,7 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  SelectableText(
                     secciones[_index],
                     style: TextStyle(
                       fontSize: tamanotexto(1) - 10,
@@ -287,9 +263,8 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                       ? Column(
                         children: [
                           if (_index == 3)
-                            RichText(
-                              textAlign: TextAlign.justify,
-                              text: TextSpan(
+                            SelectableText.rich(
+                              TextSpan(
                                 style: TextStyle(
                                   fontSize: tamanotexto(2) + 4,
                                   fontFamily: 'Calibri',
@@ -305,12 +280,12 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                                     text: 'google.com/alerts',
                                     style: TextStyle(
                                       color: Colors.blue,
-                                      decoration: TextDecoration.underline,
+                                      //decoration: TextDecoration.underline,
                                     ),
                                     recognizer:
                                         TapGestureRecognizer()
-                                          ..onTap = () async {
-                                            await abrirLink(
+                                          ..onTap = () {
+                                            abrirLink(
                                               'https://www.google.com/alerts',
                                             );
                                           },
@@ -321,6 +296,7 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                                   ),
                                 ],
                               ),
+                              textAlign: TextAlign.justify,
                             ),
                           Text(
                             textos[_index],
@@ -350,12 +326,12 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                                     text: 'https://trends.google.com',
                                     style: TextStyle(
                                       color: Colors.blue,
-                                      decoration: TextDecoration.underline,
+                                      //decoration: TextDecoration.underline,
                                     ),
                                     recognizer:
                                         TapGestureRecognizer()
-                                          ..onTap = () async {
-                                            await abrirLink(
+                                          ..onTap = () {
+                                            abrirLink(
                                               'https://trends.google.com',
                                             );
                                           },
@@ -382,12 +358,12 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                                     text: 'https://scholar.google.com',
                                     style: TextStyle(
                                       color: Colors.blue,
-                                      decoration: TextDecoration.underline,
+                                      //decoration: TextDecoration.underline,
                                     ),
                                     recognizer:
                                         TapGestureRecognizer()
-                                          ..onTap = () async {
-                                            await abrirLink(
+                                          ..onTap = () {
+                                            abrirLink(
                                               'https://scholar.google.com',
                                             );
                                           },
@@ -435,13 +411,12 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                                             text: 'google.com/alerts',
                                             style: TextStyle(
                                               color: Colors.blue,
-                                              decoration:
-                                                  TextDecoration.underline,
+                                              //decoration: TextDecoration.underline,
                                             ),
                                             recognizer:
                                                 TapGestureRecognizer()
-                                                  ..onTap = () async {
-                                                    await abrirLink(
+                                                  ..onTap = () {
+                                                    abrirLink(
                                                       'https://www.google.com/alerts',
                                                     );
                                                   },
@@ -481,13 +456,12 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                                             text: 'https://trends.google.com',
                                             style: TextStyle(
                                               color: Colors.blue,
-                                              decoration:
-                                                  TextDecoration.underline,
+                                              //decoration: TextDecoration.underline,
                                             ),
                                             recognizer:
                                                 TapGestureRecognizer()
-                                                  ..onTap = () async {
-                                                    await abrirLink(
+                                                  ..onTap = () {
+                                                    abrirLink(
                                                       'https://trends.google.com',
                                                     );
                                                   },
@@ -514,13 +488,12 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                                             text: 'https://scholar.google.com',
                                             style: TextStyle(
                                               color: Colors.blue,
-                                              decoration:
-                                                  TextDecoration.underline,
+                                              //decoration: TextDecoration.underline,
                                             ),
                                             recognizer:
                                                 TapGestureRecognizer()
-                                                  ..onTap = () async {
-                                                    await abrirLink(
+                                                  ..onTap = () {
+                                                    abrirLink(
                                                       'https://scholar.google.com',
                                                     );
                                                   },
@@ -684,11 +657,11 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                     }
                   });
                 } else {
-                  //  await guardarProgresoFinal(2);
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Encuesta()),
+                    MaterialPageRoute(builder: (context) => Basesdatos()),
                   );
+                  await guardarProgresoFinal(2);
                 }
               },
 
