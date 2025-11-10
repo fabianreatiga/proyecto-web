@@ -47,11 +47,38 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
         '🎓 Apoyar trabajos académicos y tesis: Brinda información actualizada y verificada para sustentar investigaciones.',
 
     'El SENA ofrece una Biblioteca Virtual donde todos los aprendices e instructores pueden acceder a bases de datos académicas y científicas. Estas bases contienen libros digitales, revistas, artículos, normas técnicas, investigaciones y otros recursos confiables para apoyar la formación y los proyectos.',
-    '',
-    '',
+
+    'El estado del arte es una parte esencial de toda investigación científica, técnica o académica. Consiste en revisar,'
+        ' analizar y describir los conocimientos, teorías, métodos, avances y resultados que otros investigadores han desarrollado'
+        ' previamente sobre el mismo tema o uno relacionado. Su objetivo principal es mostrar cómo está el conocimiento actual'
+        ' sobre un tema y cuál ha sido su evolución a lo largo del tiempo. Es decir, permite entender qué se sabe, cómo se ha estudiado '
+        'y qué falta por investigar. El término “estado del arte” proviene del inglés state of the art, que significa literalmente'
+        ' “nivel más avanzado del conocimiento en un campo determinado”. En investigación, se utiliza para referirse a la recopilación'
+        ' y análisis de la información más actualizada y relevante disponible.',
+
+    'Imagina que quieres investigar sobre el uso de software educativo en los colegios. '
+        'Antes de empezar tu investigación, necesitas saber qué se ha estudiado y descubierto sobre ese tema. '
+        'Para hacerlo, puedes seguir estos pasos: '
+        '• Empieza buscando información en fuentes confiables, como Google Académico, Scielo, Redalyc o Dialnet. '
+        'Escribe palabras clave como: '
+        '👉 “software educativo”, “herramientas digitales para el aprendizaje”, o “uso de aplicaciones en la educación”. '
+        '• Revisa qué estudios ya existen. '
+        'Por ejemplo, encuentras un trabajo que analiza el uso de programas como Kahoot o Duolingo para reforzar el aprendizaje. '
+        '• Observa qué métodos usaron otros investigadores. '
+        'Algunos aplicaron encuestas a docentes y estudiantes, otros midieron el rendimiento académico antes y después de usar software educativo. '
+        '• Anota los resultados más importantes. '
+        'La mayoría de estudios coinciden en que el uso de software mejora la motivación y participación de los estudiantes, aunque algunos autores mencionan que depende mucho de la capacitación del docente. '
+        '•Identifica qué aspectos no se han estudiado mucho. '
+        'Descubres que casi no hay investigaciones sobre el uso de software educativo en zonas rurales o con acceso limitado a internet.',
   ]; // lista de los textos que se van a mostrar
 
-  final List<String> imagenes = ['', '', '', '', '']; // lista de las imagenes
+  final List<String> imagenes = [
+    'assets/BasesDatos/Bases_De_Datos_Definicion.png', //DEFINICIÓN
+    'assets/BasesDatos/Bases_De_Datos_Que_Es.png', //¿PARA QUE SIRVE?
+    'assets/BasesDatos/Bases_De_Datos_Biblioteca_Sena.jpg', //¿DÓNDE PUEDES ENCONTRAR LAS BASES DE DATOS CIENTÍFICAS?
+    'assets/BasesDatos/Bases_De_Datos_Estado_Del_Arte.png', //¿QUÉ ES EL ESTADO DEL ARTE?
+    'assets/BasesDatos/Bases_De_Datos_Estado_Del_Arte_Ejemplo.png', //EJEMPLOS
+  ]; // lista de las imagenes
 
   // ignore: unused_field
   int _currentseccion = 0;
@@ -59,25 +86,25 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
   final List<String> secciones = [
     'DEFINICIÓN',
     '¿PARA QUE SIRVE?',
-    '¿Dónde puedes encontrar las bases de datos científicas?',
-    '¿QUE ES EL ESTADO DEL ARTE?',
-    'eJEMPLOS',
+    '¿DÓNDE PUEDES ENCONTRAR LAS BASES DE DATOS CIENTÍFICAS?',
+    '¿QUÉ ES EL ESTADO DEL ARTE?',
+    'EJEMPLO',
   ]; // lista de las secciones
 
   final List<double> alturaImagengrande = [
-    300, // OBJETIVO
-    350, // BUSQUEDA EN GOOGLE CON OPERADORES LOGICOS Y PALABRAS CLAVE
-    450, // GOOGLE ACADÉMICO (SCHOLAR)
-    250, // ALERTAS DE GOOGLE
-    350, // GOOGLE TENDENCIAS (TRENDS)
+    250, // DEFINICIÓN
+    250, // ¿PARA QUE SIRVE?
+    130, // ¿DÓNDE PUEDES ENCONTRAR LAS BASES DE DATOS CIENTÍFICAS?
+    250, // ¿QUÉ ES EL ESTADO DEL ARTE?
+    350, // EJEMPLOS
   ]; // lista de las alturas de las imagenes para pantallas grandes
 
   final List<double> alturaImagenPequena = [
-    250, //OBJETIVO
-    300, // BUSQUEDA EN GOOGLE CON OPERADORES LOGICOS Y PALABRAS CLAVE
-    300, // GOOGLE ACADÉMICO (SCHOLAR)
-    150, // ALERTAS DE GOOGLE
-    250, // GOOGLE TENDENCIAS (TRENDS)
+    250, // DEFINICIÓN
+    250, // ¿PARA QUE SIRVE?
+    130, // ¿DÓNDE PUEDES ENCONTRAR LAS BASES DE DATOS CIENTÍFICAS?
+    150, // ¿QUÉ ES EL ESTADO DEL ARTE?
+    250, // EJEMPLOS
   ]; // lista de las alturas de las imagenes para pantallas pequenas
 
   // ignore: non_constant_identifier_names
@@ -108,7 +135,7 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     // 📌 Ahora el nombre refleja la condición real
-    final bool esPantallaPequena = MediaQuery.of(context).size.width < 2000;
+    final bool esPantallaPequena = MediaQuery.of(context).size.width < 850;
 
     return Scaffold(
       backgroundColor: obtenercolor('Color_Fondo'),

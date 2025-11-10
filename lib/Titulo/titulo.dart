@@ -104,7 +104,7 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     // 📌 Ahora el nombre refleja la condición real
-    final bool esPantallaPequena = MediaQuery.of(context).size.width < 2000;
+    final bool esPantallaPequena = MediaQuery.of(context).size.width < 850;
 
     return Scaffold(
       backgroundColor: obtenercolor('Color_Fondo'),
@@ -134,61 +134,123 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
         ],
       ),
 
-      // Een este bloque de codigo se usa para mostrar y navegar por el modal menu
-      drawer: const Menu(currentScreen: 'Titulo'),
-      body: Container(
-        padding: EdgeInsets.all(0),
-        child: Column(
-          children: [
-            Expanded(
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
-                child:
-                    esPantallaPequena
-                        ? InteractiveViewer(
-                          // 📌 Zoom solo en pantallas pequeñas
-                          constrained: true,
-                          minScale: 1.0,
-                          maxScale: 3.0,
-                          child: Column(
-                            children: [
-                              Text(
-                                '¿Sabes cómo crear un Título?',
-                                style: TextStyle(
-                                  fontSize: tamanotexto(1) + 5,
-                                  fontFamily: 'Calibri',
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
+      drawer: Menu(
+        currentScreen: 'Titulo',
+      ), // Een este bloque de codigo se usa para mostrar y navegar por el modal menu
+      body: Stack(
+        children: [
+          // 🌄 Fondo superior izquierda decorativo
+          Positioned(
+            top: 0,
+            left: 0,
+            child: Image.asset(
+              'assets/titulo/Fondo_Supeior_Izquierda.png',
+              width: esPantallaPequena ? 120 : 250,
+              //MediaQuery.of(context).size.width * 0.18,
+              fit: BoxFit.contain,
+            ),
+          ),
+
+          // 🌄 Fondo superior derecha decorativo
+          Positioned(
+            top: 0,
+            right: 0,
+            child: Image.asset(
+              'assets/titulo/Fondo_Supeior_Derecha.png',
+              width: esPantallaPequena ? 120 : 250,
+              //height: MediaQuery.of(context).size.width * 0.18,
+              fit: BoxFit.contain,
+            ),
+          ),
+
+          // 🌄 Fondo inferior izquierda
+          Positioned(
+            bottom: 90,
+            left: 0,
+            child: Image.asset(
+              'assets/titulo/Fondo_Inferior_Izquierda.png',
+              width: esPantallaPequena ? 120 : 250,
+              //height: MediaQuery.of(context).size.width * 0.18,
+              fit: BoxFit.contain,
+            ),
+          ),
+
+          // 🌄 Fondo inferior derecha
+          Positioned(
+            bottom: 90,
+            right: 0,
+            child: Image.asset(
+              'assets/titulo/Fondo_Inferior_Derecha.png',
+              width: esPantallaPequena ? 120 : 250,
+              //height: MediaQuery.of(context).size.width * 0.18,
+              fit: BoxFit.contain,
+            ),
+          ),
+
+          // 📜 Contenido principal
+          SafeArea(
+            child: Container(
+              padding: EdgeInsets.zero,
+              child: Column(
+                children: [
+                  // Scroll del contenido
+                  Expanded(
+                    child: SingleChildScrollView(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 20,
+                      ),
+                      child:
+                          esPantallaPequena
+                              ? InteractiveViewer(
+                                // 🔍 Zoom solo en pantallas pequeñas
+                                constrained: true,
+                                minScale: 1.0,
+                                maxScale: 5.0,
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      '¿Sabes cómo crear un Título?',
+                                      style: TextStyle(
+                                        fontSize: tamanotexto(1) + 5,
+                                        fontFamily: 'Calibri',
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    const SizedBox(height: 20),
+                                    _buildTimelineCard(),
+                                  ],
                                 ),
-                                textAlign: TextAlign.center,
+                              )
+                              : Column(
+                                // 💻 En pantallas grandes sin zoom
+                                children: [
+                                  Text(
+                                    '¿Sabes cómo crear un Título?',
+                                    style: TextStyle(
+                                      fontSize: tamanotexto(1) + 5,
+                                      fontFamily: 'Calibri',
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  const SizedBox(height: 20),
+                                  _buildTimelineCard(),
+                                ],
                               ),
-                              const SizedBox(height: 20),
-                              _buildTimelineCard(),
-                            ],
-                          ),
-                        )
-                        : Column(
-                          // 📌 Sin zoom en pantallas grandes
-                          children: [
-                            Text(
-                              '¿Sabes cómo crear un Título?',
-                              style: TextStyle(
-                                fontSize: tamanotexto(1) + 5,
-                                fontFamily: 'Calibri',
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                            const SizedBox(height: 20),
-                            _buildTimelineCard(),
-                          ],
-                        ),
+                    ),
+                  ),
+
+                  // 🔘 Navegación inferior
+                  _buildNavigation(),
+                ],
               ),
             ),
-            _buildNavigation(),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

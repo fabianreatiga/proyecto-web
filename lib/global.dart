@@ -15,7 +15,7 @@ class ProgresoGlobal {
     ...List.generate(3, (i) => i + 41), // Actividades
     ...List.generate(7, (i) => i + 44), // Bibliografía
     ...List.generate(5, (i) => i + 51), // Busqueda
-    ...List.generate(3, (i) => i + 56), // Bases de datos
+    ...List.generate(5, (i) => i + 56), // Bases de datos
   };
 
   static double get progreso => pestanasVistas.length / todosLosIDs.length;

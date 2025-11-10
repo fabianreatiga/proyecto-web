@@ -51,6 +51,11 @@ flutter:
     - assets/titulo/Titulo_palabras_utiles.png
     - assets/titulo/Titulo_ejemplo.png
 
+    - assets/titulo/Fondo_Supeior_Izquierda.png
+    - assets/titulo/Fondo_Supeior_Derecha.png
+    - assets/titulo/Fondo_Inferior_Derecha.png
+    - assets/titulo/Fondo_Inferior_Izquierda.png
+
 #---------- IMAGENES PlateamientonoProblemas ----------#
 
     - assets/PlanteamientoProblema/Planteamiento_del_Problema.png
@@ -135,3 +140,11 @@ flutter:
     - assets/Busqueda/Busqueda_Ejemplo_Google_Alertas2.png
     - assets/Busqueda/Busqueda_Ejemplo_Google_Tendencias1.png
     - assets/Busqueda/Busqueda_Ejemplo_Google_Tendencias2.png
+
+#--------------- IMAGENES BASESDATOS ----------------#
+
+    - assets/BasesDatos/Bases_De_Datos_Definicion.png
+    - assets/BasesDatos/Bases_De_Datos_Que_Es.png
+    - assets/BasesDatos/Bases_De_Datos_Biblioteca_Sena.jpg
+    - assets/BasesDatos/Bases_De_Datos_Estado_Del_Arte.png
+    - assets/BasesDatos/Bases_De_Datos_Estado_Del_Arte_Ejemplo.png
