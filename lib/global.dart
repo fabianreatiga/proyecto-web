@@ -6,16 +6,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 class ProgresoGlobal {
   static final Set<int> pestanasVistas = {};
   static final Set<int> todosLosIDs = {
-    ...List.generate(5, (i) => i + 1), // Título
-    ...List.generate(15, (i) => i + 6), // Planteamiento
-    ...List.generate(4, (i) => i + 21), // Justificación
-    ...List.generate(7, (i) => i + 25), // Objetivos
-    ...List.generate(6, (i) => i + 32), // Metodología
-    ...List.generate(3, (i) => i + 38), // Cronograma
-    ...List.generate(3, (i) => i + 41), // Actividades
-    ...List.generate(7, (i) => i + 44), // Bibliografía
-    ...List.generate(5, (i) => i + 51), // Busqueda
-    ...List.generate(5, (i) => i + 56), // Bases de datos
+    ...List.generate(6, (i) => i + 1), // Título
+    ...List.generate(15, (i) => i + 7), // Planteamiento
+    ...List.generate(4, (i) => i + 22), // Justificación
+    ...List.generate(7, (i) => i + 26), // Objetivos
+    ...List.generate(6, (i) => i + 33), // Metodología
+    ...List.generate(3, (i) => i + 39), // Cronograma
+    ...List.generate(3, (i) => i + 42), // Actividades
+    ...List.generate(7, (i) => i + 45), // Bibliografía
+    ...List.generate(5, (i) => i + 52), // Busqueda
+    ...List.generate(5, (i) => i + 57), // Bases de datos
   };
 
   static double get progreso => pestanasVistas.length / todosLosIDs.length;

@@ -304,6 +304,7 @@ class _InicioState extends State<Inicio> {
             child: TextField(
               controller: _Nficha,
               decoration: InputDecoration(
+                labelStyle: TextStyle(color: Colors.black),
                 filled: true,
                 fillColor: obtenercolor('Color_Fondo'),
                 labelText: 'N° Ficha',
@@ -466,6 +467,7 @@ class _InicioState extends State<Inicio> {
                   child: TextField(
                     controller: _Nficha,
                     decoration: InputDecoration(
+                      labelStyle: TextStyle(color: Colors.black),
                       filled: true,
                       fillColor: obtenercolor('Color_Fondo'),
                       labelText: 'N° Ficha',
@@ -551,6 +553,7 @@ class _InicioState extends State<Inicio> {
           filled: true,
           fillColor: obtenercolor('Color_Fondo'),
           labelText: label,
+          labelStyle: TextStyle(color: Colors.black),
           hintText: hint,
           prefixIcon: Icon(icon, color: obtenercolor('Color_Principal')),
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),

@@ -1,10 +1,12 @@
 // ignore_for_file: deprecated_member_use, non_constant_identifier_names
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import 'package:nuevomockups/Appbar/appbar.dart';
 import 'package:nuevomockups/Color_texto/color_texto.dart';
+import 'package:nuevomockups/Links/links.dart';
 import 'package:nuevomockups/Menus/menus.dart';
 import 'package:nuevomockups/PlanteamientoProblemas/plantiamientoproblemas.dart';
 import 'package:nuevomockups/global.dart';
@@ -41,7 +43,8 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
     'Características: debe ser preciso, Contener la idea principal del tema de investigación, Debe responder a: ¿Qué se va a hacer? ¿Sobre qué o quiénes se hará? ¿Dónde se llevará a cabo?, El título del proyecto se estructura en tres partes: Proceso: La acción o acciones a desarrollar. Objeto: El motivo del proceso. Localización: La ubicación geográfica de la investigación.',
     'Se recomienda usar entre 12-20 palabras, Ser limitativo: Si son fechas: Especificar el periodo de tiempo o la época, Si son personas: Edad, género, profesión, etc., Si son lugares: Colonia, localidad, municipio, estado, país, Si son teorías o corrientes: Especificar la ciencia que se aplica, Evitar la sobre explicación.',
     'Palabras útiles para estructurar el título.',
-    'Ejemplos para la creación de un título:',
+    '',
+    //'Ejemplos para la creación de un título:',
   ]; // lista de los textos que se van a mostrar
 
   final List<String> imagenes = [
@@ -144,11 +147,14 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
           Positioned(
             top: 0,
             left: 0,
-            child: Image.asset(
-              'assets/titulo/Fondo_Supeior_Izquierda.png',
-              width: esPantallaPequena ? 120 : 250,
-              //MediaQuery.of(context).size.width * 0.18,
-              fit: BoxFit.contain,
+            child: Opacity(
+              opacity: opacidad(1),
+              child: Image.asset(
+                'assets/titulo/Fondo_Supeior_Izquierda.png',
+                width: esPantallaPequena ? 120 : 250,
+                //MediaQuery.of(context).size.width * 0.18,
+                fit: BoxFit.contain,
+              ),
             ),
           ),
 
@@ -156,11 +162,14 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
           Positioned(
             top: 0,
             right: 0,
-            child: Image.asset(
-              'assets/titulo/Fondo_Supeior_Derecha.png',
-              width: esPantallaPequena ? 120 : 250,
-              //height: MediaQuery.of(context).size.width * 0.18,
-              fit: BoxFit.contain,
+            child: Opacity(
+              opacity: opacidad(1),
+              child: Image.asset(
+                'assets/titulo/Fondo_Supeior_Derecha.png',
+                width: esPantallaPequena ? 120 : 250,
+                //height: MediaQuery.of(context).size.width * 0.18,
+                fit: BoxFit.contain,
+              ),
             ),
           ),
 
@@ -168,11 +177,14 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
           Positioned(
             bottom: 90,
             left: 0,
-            child: Image.asset(
-              'assets/titulo/Fondo_Inferior_Izquierda.png',
-              width: esPantallaPequena ? 120 : 250,
-              //height: MediaQuery.of(context).size.width * 0.18,
-              fit: BoxFit.contain,
+            child: Opacity(
+              opacity: opacidad(1),
+              child: Image.asset(
+                'assets/titulo/Fondo_Inferior_Izquierda.png',
+                width: esPantallaPequena ? 120 : 250,
+                //height: MediaQuery.of(context).size.width * 0.18,
+                fit: BoxFit.contain,
+              ),
             ),
           ),
 
@@ -180,11 +192,14 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
           Positioned(
             bottom: 90,
             right: 0,
-            child: Image.asset(
-              'assets/titulo/Fondo_Inferior_Derecha.png',
-              width: esPantallaPequena ? 120 : 250,
-              //height: MediaQuery.of(context).size.width * 0.18,
-              fit: BoxFit.contain,
+            child: Opacity(
+              opacity: opacidad(1),
+              child: Image.asset(
+                'assets/titulo/Fondo_Inferior_Derecha.png',
+                width: esPantallaPequena ? 120 : 250,
+                //height: MediaQuery.of(context).size.width * 0.18,
+                fit: BoxFit.contain,
+              ),
             ),
           ),
 
@@ -308,6 +323,43 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
                             ),
                             textAlign: TextAlign.justify,
                           ),
+                          if (_index == 4)
+                            RichText(
+                              textAlign: TextAlign.justify,
+                              text: TextSpan(
+                                style: TextStyle(
+                                  fontSize: tamanotexto(2) + 4,
+                                  fontFamily: 'Calibri',
+                                  height: 1.5,
+                                  color: Colors.black,
+                                ),
+                                children: [
+                                  TextSpan(
+                                    text:
+                                        'Ejemplos para la creación de un título: \n',
+                                  ),
+                                  TextSpan(
+                                    text:
+                                        'Puedes acceder a la herramienta aquí: ',
+                                  ),
+                                  TextSpan(
+                                    text: 'https://trends.google.com',
+                                    style: TextStyle(
+                                      color: Colors.blue,
+                                      //decoration: TextDecoration.underline,
+                                    ),
+                                    recognizer:
+                                        TapGestureRecognizer()
+                                          ..onTap = () {
+                                            abrirLink(
+                                              'https://sena4-my.sharepoint.com/personal/ochaparrob_sena_edu_co/_layouts/15/stream.aspx?id=%2Fpersonal%2Fochaparrob%5Fsena%5Fedu%5Fco%2FDocuments%2F5%2E%20Sena%20Documentos%2F2025%2FInvestigaci%C3%B3n%2FProyecto%20Investigaci%C3%B3n%20Practica%2FVideo%20T%C3%ADtulo%2FVideo%20del%20t%C3%ADtulo%2Ewebm&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E14f8d0ee%2Dd03d%2D4c9a%2D9f61%2D041ab9840b25',
+                                            );
+                                          },
+                                  ),
+                                ],
+                              ),
+                            ),
+
                           const SizedBox(height: 20),
                           ClipRRect(
                             borderRadius: BorderRadius.circular(12),
@@ -328,15 +380,55 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
                             //se usa flex para que la imagen ocupe el 2/3 de la pantalla
                             child: Padding(
                               padding: const EdgeInsets.only(right: 20),
-                              child: Text(
-                                textos[_index],
-                                style: TextStyle(
-                                  fontSize: tamanotexto(2) + 4,
-                                  fontFamily: 'Calibri',
-                                  height: 1.5,
-                                  //se usa height para aumentar la altura de la letra
-                                ),
-                                textAlign: TextAlign.justify,
+                              child: Column(
+                                children: [
+                                  Text(
+                                    textos[_index],
+                                    style: TextStyle(
+                                      fontSize: tamanotexto(2) + 4,
+                                      fontFamily: 'Calibri',
+                                      height: 1.5,
+                                      //se usa height para aumentar la altura de la letra
+                                    ),
+                                    textAlign: TextAlign.justify,
+                                  ),
+                                  if (_index == 4)
+                                    RichText(
+                                      textAlign: TextAlign.justify,
+                                      text: TextSpan(
+                                        style: TextStyle(
+                                          fontSize: tamanotexto(2) + 4,
+                                          fontFamily: 'Calibri',
+                                          height: 1.5,
+                                          color: Colors.black,
+                                        ),
+                                        children: [
+                                          TextSpan(
+                                            text:
+                                                'Ejemplos para la creación de un título: \n',
+                                          ),
+                                          TextSpan(
+                                            text:
+                                                'Puedes acceder a la herramienta aquí: ',
+                                          ),
+                                          TextSpan(
+                                            text: 'https://trends.google.com',
+                                            style: TextStyle(
+                                              color: Colors.blue,
+                                              //decoration: TextDecoration.underline,
+                                            ),
+                                            recognizer:
+                                                TapGestureRecognizer()
+                                                  ..onTap = () {
+                                                    abrirLink(
+                                                      'https://sena4-my.sharepoint.com/personal/ochaparrob_sena_edu_co/_layouts/15/stream.aspx?id=%2Fpersonal%2Fochaparrob%5Fsena%5Fedu%5Fco%2FDocuments%2F5%2E%20Sena%20Documentos%2F2025%2FInvestigaci%C3%B3n%2FProyecto%20Investigaci%C3%B3n%20Practica%2FVideo%20T%C3%ADtulo%2FVideo%20del%20t%C3%ADtulo%2Ewebm&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E14f8d0ee%2Dd03d%2D4c9a%2D9f61%2D041ab9840b25',
+                                                    );
+                                                  },
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                ],
                               ),
                             ),
                           ),
@@ -357,6 +449,7 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
                               ),
                             ),
                           ),
+
                           if (_index == 3 || _index == 4) Spacer(),
                         ],
                       ),

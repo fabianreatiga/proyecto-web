@@ -147,7 +147,7 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
   ];
   int _currentseccion = 0;
 
-  static int ID_BASE_PROGRESO = 6;
+  static int ID_BASE_PROGRESO = 7;
 
   @override
   void initState() {

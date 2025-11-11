@@ -28,4 +28,17 @@ double tamanotexto(int valor) {
   }
 }
 
+double opacidad(double valor) {
+  switch (valor) {
+    case 1: //opacidad alta
+      return 1.0;
+    case 2: //opacidad media
+      return 0.5;
+    case 3: //opacidad baja
+      return 0.2;
+    default:
+      return 1.0;
+  }
+}
+
 // esta funcion es global y se usa en todo el aplicativo
