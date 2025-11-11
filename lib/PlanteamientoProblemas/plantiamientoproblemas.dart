@@ -171,7 +171,7 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
 
   @override
   Widget build(BuildContext context) {
-    final bool esPantallaPequena = MediaQuery.of(context).size.width < 2000;
+    final bool esPantallaPequena = MediaQuery.of(context).size.width < 650;
 
     return Scaffold(
       backgroundColor: obtenercolor('Color_Fondo'),
