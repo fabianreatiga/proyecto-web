@@ -52,7 +52,6 @@ flutter:
     - assets/titulo/Titulo_otras_caracteristicas.jpg
     - assets/titulo/Titulo_palabras_utiles.png
     - assets/titulo/Titulo_ejemplo.png
-    - assets/titulo/Video_Título.mp4
 
     - assets/titulo/Fondo_Supeior_Izquierda.png
     - assets/titulo/Fondo_Supeior_Derecha.png
@@ -77,6 +76,9 @@ flutter:
     - assets/PlanteamientoProblema/Planteamiento_del_Problema_Esquema_de_Redaccion_Parte_2.png
     - assets/PlanteamientoProblema/Planteamiento_del_Problema_Como_Hacer_Arbol_De_Problemas.png
     - assets/PlanteamientoProblema/Planteamiento_del_Problema_Ejemplo_Arbol_De_Problemas.png
+
+    - assets/PlanteamientoProblema/Fondo_Inferior_Derecha.png
+    - assets/PlanteamientoProblema/Fondo_Supeior_Izquierda.png
     
 #--------------- IMagenes Justificacion ----------------#
 
