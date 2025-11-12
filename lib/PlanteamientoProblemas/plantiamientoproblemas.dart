@@ -112,7 +112,7 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
   ];
 
   final List<double> alturaImagengrande = [
-    300, // PLANTEAMIENTO DEL PROBLEMA
+    301, // PLANTEAMIENTO DEL PROBLEMA
     325, // DEFINICIÓN
     400, // METODOLOGIAS
     350, // 5W1H
