@@ -124,7 +124,8 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     // 📌 Ahora el nombre refleja la condición real
-    final bool esPantallaPequena = MediaQuery.of(context).size.width < 850;
+    final bool esPantallaPequena =
+        MediaQuery.of(context).size.shortestSide < 650;
 
     return Scaffold(
       backgroundColor: obtenercolor('Color_Fondo'),

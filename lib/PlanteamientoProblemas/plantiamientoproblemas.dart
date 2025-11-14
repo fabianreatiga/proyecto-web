@@ -1,11 +1,14 @@
 // ignore_for_file: non_constant_identifier_names, deprecated_member_use, unused_field
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
+
 import 'package:flutter/material.dart';
 
 import 'package:nuevomockups/Appbar/appbar.dart';
 import 'package:nuevomockups/Color_texto/color_texto.dart';
 import 'package:nuevomockups/Justificacion/justificacion.dart';
+import 'package:nuevomockups/Links/links.dart';
 import 'package:nuevomockups/Menus/menus.dart';
 import 'package:nuevomockups/Titulo/titulo.dart';
 import 'package:nuevomockups/global.dart';
@@ -43,36 +46,52 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
     'El planteamiento del problema es el punto de partida de todo proyecto o investigación. '
         'El problema expresa un vacío en el conocimiento o una necesidad que debe ser resuelta. '
         'La problemática requiere un sustento que haga evidente la necesidad de resolver el problema a tratar.',
-    'Tener en cuenta 1: ¿Qué es lo que se pretende conocer de un determinado objeto de estudio a partir de su '
-        'investigación? 2: ¿De qué manera se piensa abordar la temática para esclarecer su desconocimiento?',
-    'Se recomiendan estas 4 metodologías: 5W1H, Espina de pescado, Árbol de problemas, Esquema de redacción.',
-    'Ejemplos: Qué (WHAT): Hay personas que sufren de los ojos, conjuntivitis alergénica y llevan aplicándose '
+
+    'Tener en cuenta:\n • ¿Qué es lo que se pretende conocer de un determinado objeto de estudio a partir de su '
+        'investigación?\n • ¿De qué manera se piensa abordar la temática para esclarecer su desconocimiento?',
+
+    'Se recomiendan estas 4 metodologías:\n • 5W1H,\n• Espina de pescado,\n• Árbol de problemas,\n• Esquema de redacción.',
+
+    /*'Ejemplos: Qué (WHAT): Hay personas que sufren de los ojos, conjuntivitis alergénica y llevan aplicándose '
         'medicamento hace mucho tiempo sin curarse. Porqué (WHY): Porque los medicamentos que se aplican no son '
         'efectivos. Cuando (WHEN): Virosis de conjuntivitis, cuando hay altas tasas de polución y cuando se usa '
         'mucho los celulares o pantallas. Dónde (WHERE): Ciudades con mayor polución, en el campo durante las quemas '
         'y preparación, cuando cocina con leña, en personal de obra constructivo. En niños de etapa temprana. '
         'Quién (WHO): Personal de construcción, agricultores, niños, madres cabeza de familia que cocinan con '
         'leña, adultos mayores, personas que trabajan muchas horas desde la pantalla. Cómo (HOW): Medicamentos '
-        'formulados, miel, otros remedios para los ojos. Cirugía.',
+        'formulados, miel, otros remedios para los ojos. Cirugía.',*/
+    '',
+
     'Basado en el análisis de los ítems anteriores se redacta un párrafo general con la descripción de '
         'la problemática identificada.',
+
     'Esquemas que pueden ayudar a plantear la problemática. 1. Para productos: Hemos observado que el '
         '[Producto o servicio] no está cumpliendo [con estos objetivos], lo cual está causando [efecto negativo] '
         'a nuestro [impacto en el negocio].',
+
     'Esquemas que pueden ayudar a plantear la problemática. 1. Cuándo es un punto de vista: [Tipo de usuario] '
         'intenta [descripción de su necesidad u objetivo] pero [barrera] porque [hallazgo] lo cual le hace sentir '
         '[efecto negativo].',
+
     'Herramienta para el análisis de los problemas que básicamente representa la relación entre un efecto (problema) '
         'y todas las posibles causas que lo ocasionan. Diagrama de causa-efecto.',
     '¿Cómo hacer el diagrama de Ishikawa?',
+
     'Ejemplo utilizando las categorías tradicionales.',
+
     'Ejemplo creando las categorías según la necesidad del proyecto.',
+
     'Es una herramienta gráfica que permite visualizar de forma sistemática un problema central con sus '
         'causas y consecuencias como raíces y ramas respectivamente. El tronco constituye el problema central. '
         'Las raíces son las causas. Las ramas son las consecuencias.',
+
     '',
+
     'Ejemplo árbol de problemas:',
+
     'Estructura del Planteamiento del problema:',
+
+    '',
   ];
 
   final List<String> imagenes = [
@@ -91,6 +110,7 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
     'assets/PlanteamientoProblema/Planteamiento_del_Problema_Como_Hacer_Arbol_De_Problemas.png', // COMO HACER EL ÁRBOL DE PROBLEMAS
     'assets/PlanteamientoProblema/Planteamiento_del_Problema_Ejemplo_Arbol_De_Problemas.png', // EJEMPLO ÁRBOL DE PROBLEMAS
     'assets/PlanteamientoProblema/Planteamiento_del_Problema_Esquema_de_Redaccion_Parte_1.png', // ESQUEMA DE REDACCIÓN
+    'assets/PlanteamientoProblema/Icono_video.png',
   ];
 
   final List<String> secciones = [
@@ -109,12 +129,13 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
     'COMO HACER EL ÁRBOL DE PROBLEMAS',
     'EJEMPLO ÁRBOL DE PROBLEMAS',
     'ESQUEMA DE REDACCIÓN',
+    'VIDEO',
   ];
 
   final List<double> alturaImagengrande = [
     301, // PLANTEAMIENTO DEL PROBLEMA
     325, // DEFINICIÓN
-    400, // METODOLOGIAS
+    500, // METODOLOGIAS
     350, // 5W1H
     500, // EJEMPLO 5W1H
     500, // EJEMPLO 2 5W1H
@@ -127,6 +148,7 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
     500, // COMO HACER EL ÁRBOL DE PROBLEMAS
     500, // EJEMPLO ÁRBOL DE PROBLEMAS
     400, // ESQUEMA DE REDACCIÓN
+    250,
   ];
   final List<double> alturaImagenPequena = [
     300, // PLANTEAMIENTO DEL PROBLEMA
@@ -144,6 +166,7 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
     250, // COMO HACER EL ÁRBOL DE PROBLEMAS
     300, // EJEMPLO ÁRBOL DE PROBLEMAS
     300, // ESQUEMA DE REDACCIÓN
+    250,
   ];
   int _currentseccion = 0;
 
@@ -225,7 +248,7 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
               opacity: opacidad(1),
               child: Image.asset(
                 'assets/PlanteamientoProblema/Fondo_Supeior_Izquierda.png',
-                width: esPantallaPequena ? 220 : 450,
+                width: esPantallaPequena ? 120 : 250,
                 //height: MediaQuery.of(context).size.width * 0.18,
                 fit: BoxFit.contain,
               ),
@@ -255,7 +278,7 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
               opacity: opacidad(1),
               child: Image.asset(
                 'assets/PlanteamientoProblema/Fondo_Inferior_Derecha.png',
-                width: esPantallaPequena ? 220 : 450,
+                width: esPantallaPequena ? 120 : 250,
                 //height: MediaQuery.of(context).size.width * 0.18,
                 fit: BoxFit.contain,
               ),
@@ -370,6 +393,128 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                       ? Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+                          if (_index == 3)
+                            RichText(
+                              textAlign: TextAlign.justify,
+                              text: TextSpan(
+                                style: TextStyle(
+                                  fontSize: tamanotexto(2) + 4,
+                                  fontFamily: 'Calibri',
+                                  height: 1.5,
+                                  //color: Colors.black,
+                                ),
+                                children: [
+                                  TextSpan(text: 'Ejemplos: '),
+                                  TextSpan(
+                                    text: 'Qué (WHAT): ',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text:
+                                        ' Hay personas que sufren de los ojos, conjuntivitis alergénica y llevan aplicándose '
+                                        'medicamento hace mucho tiempo sin curarse. ',
+                                  ),
+                                  //TextSpan(text: 'Porqué '),
+                                  TextSpan(
+                                    text: 'Porqué (WHY): ',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text:
+                                        'Virosis de conjuntivitis, cuando hay altas tasas de polución y cuando se usa '
+                                        'mucho los celulares o pantallas. ',
+                                  ),
+                                  //TextSpan(text: ' Cuando '),
+                                  TextSpan(
+                                    text: 'Cuando (WHEN): ',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text:
+                                        'Virosis de conjuntivitis, cuando hay altas tasas de polución y cuando se usa '
+                                        'mucho los celulares o pantallas. ',
+                                  ),
+                                  //TextSpan(text: 'Dónde '),
+                                  TextSpan(
+                                    text: 'Dónde (WHERE): ',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text:
+                                        'Ciudades con mayor polución, en el campo durante las quemas '
+                                        'y preparación, cuando cocina con leña, en personal de obra constructivo. En niños de etapa temprana. ',
+                                  ),
+                                  //TextSpan(text: 'Quién '),
+                                  TextSpan(
+                                    text: 'Quién (WHO): ',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text:
+                                        'Personal de construcción, agricultores, niños, madres cabeza de familia que cocinan con '
+                                        'leña, adultos mayores, personas que trabajan muchas horas desde la pantalla. ',
+                                  ),
+                                  //TextSpan(text: 'Cómo '),
+                                  TextSpan(
+                                    text: 'Cómo (HOW): ',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text:
+                                        'Medicamentos '
+                                        'formulados, miel, otros remedios para los ojos. Cirugía.',
+                                  ),
+                                ],
+                              ),
+                            ),
+                          if (_index == 15)
+                            RichText(
+                              textAlign: TextAlign.justify,
+                              text: TextSpan(
+                                style: TextStyle(
+                                  fontSize: tamanotexto(2) + 4,
+                                  fontFamily: 'Calibri',
+                                  height: 1.5,
+                                  color: Colors.black,
+                                ),
+                                children: [
+                                  /*TextSpan(
+                                    text:
+                                        'Ejemplos para la creación de un título: \n',
+                                  ),*/
+                                  TextSpan(
+                                    text:
+                                        'Para comprender mejor este tema, te invitamos a ingresar al siguiente enlace y ver el ',
+                                  ),
+                                  TextSpan(
+                                    text: 'Video explicativo',
+                                    style: TextStyle(
+                                      color: Colors.blue,
+                                      //decoration: TextDecoration.underline,
+                                    ),
+                                    recognizer:
+                                        TapGestureRecognizer()
+                                          ..onTap = () {
+                                            abrirLink(
+                                              'https://sena4-my.sharepoint.com/personal/ochaparrob_sena_edu_co/_layouts/15/stream.aspx?id=%2Fpersonal%2Fochaparrob%5Fsena%5Fedu%5Fco%2FDocuments%2F5%2E%20Sena%20Documentos%2F2025%2FInvestigaci%C3%B3n%2FProyecto%20Investigaci%C3%B3n%20Practica%2FVideo%20Planteamiento%20del%20problema%2FPlanteamiento%20del%20problema%20video%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E894d23f2%2Db0ea%2D4b47%2D9319%2D90cfdf5a7be2',
+                                            );
+                                          },
+                                  ),
+                                ],
+                              ),
+                            ),
                           Text(
                             textos[_index],
                             style: TextStyle(
@@ -380,6 +525,7 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                             textAlign: TextAlign.justify,
                           ),
                           const SizedBox(height: 20),
+
                           ClipRRect(
                             borderRadius: BorderRadius.circular(12),
                             child: Image.asset(
@@ -400,21 +546,150 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                       : Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Expanded(
-                            flex: 2,
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 20),
-                              child: Text(
-                                textos[_index],
+                          if (_index == 15)
+                            RichText(
+                              textAlign: TextAlign.justify,
+                              text: TextSpan(
                                 style: TextStyle(
                                   fontSize: tamanotexto(2) + 4,
                                   fontFamily: 'Calibri',
                                   height: 1.5,
+                                  color: Colors.black,
                                 ),
-                                textAlign: TextAlign.justify,
+                                children: [
+                                  /*TextSpan(
+                                    text:
+                                        'Ejemplos para la creación de un título: \n',
+                                  ),*/
+                                  TextSpan(
+                                    text:
+                                        'Para comprender mejor este tema, te invitamos a ingresar al siguiente enlace y ver el ',
+                                  ),
+                                  TextSpan(
+                                    text: 'Video explicativo',
+                                    style: TextStyle(
+                                      color: Colors.blue,
+                                      //decoration: TextDecoration.underline,
+                                    ),
+                                    recognizer:
+                                        TapGestureRecognizer()
+                                          ..onTap = () {
+                                            abrirLink(
+                                              'https://sena4-my.sharepoint.com/personal/ochaparrob_sena_edu_co/_layouts/15/stream.aspx?id=%2Fpersonal%2Fochaparrob%5Fsena%5Fedu%5Fco%2FDocuments%2F5%2E%20Sena%20Documentos%2F2025%2FInvestigaci%C3%B3n%2FProyecto%20Investigaci%C3%B3n%20Practica%2FVideo%20Planteamiento%20del%20problema%2FPlanteamiento%20del%20problema%20video%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E894d23f2%2Db0ea%2D4b47%2D9319%2D90cfdf5a7be2',
+                                            );
+                                          },
+                                  ),
+                                ],
+                              ),
+                            ),
+
+                          Expanded(
+                            flex: 2,
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 20),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  if (_index == 3)
+                                    RichText(
+                                      textAlign: TextAlign.justify,
+                                      text: TextSpan(
+                                        style: TextStyle(
+                                          fontSize: tamanotexto(2) + 4,
+                                          fontFamily: 'Calibri',
+                                          height: 1.5,
+                                          //color: Colors.black,
+                                        ),
+                                        children: [
+                                          TextSpan(text: 'Ejemplos: '),
+                                          TextSpan(
+                                            text: 'Qué (WHAT): ',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          TextSpan(
+                                            text:
+                                                ' Hay personas que sufren de los ojos, conjuntivitis alergénica y llevan aplicándose '
+                                                'medicamento hace mucho tiempo sin curarse. ',
+                                          ),
+                                          //TextSpan(text: 'Porqué '),
+                                          TextSpan(
+                                            text: 'Porqué (WHY): ',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          TextSpan(
+                                            text:
+                                                'Virosis de conjuntivitis, cuando hay altas tasas de polución y cuando se usa '
+                                                'mucho los celulares o pantallas. ',
+                                          ),
+                                          //TextSpan(text: ' Cuando '),
+                                          TextSpan(
+                                            text: 'Cuando (WHEN): ',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          TextSpan(
+                                            text:
+                                                'Virosis de conjuntivitis, cuando hay altas tasas de polución y cuando se usa '
+                                                'mucho los celulares o pantallas. ',
+                                          ),
+                                          //TextSpan(text: 'Dónde '),
+                                          TextSpan(
+                                            text: 'Dónde (WHERE): ',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          TextSpan(
+                                            text:
+                                                'Ciudades con mayor polución, en el campo durante las quemas '
+                                                'y preparación, cuando cocina con leña, en personal de obra constructivo. En niños de etapa temprana. ',
+                                          ),
+                                          //TextSpan(text: 'Quién '),
+                                          TextSpan(
+                                            text: 'Quién (WHO): ',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          TextSpan(
+                                            text:
+                                                'Personal de construcción, agricultores, niños, madres cabeza de familia que cocinan con '
+                                                'leña, adultos mayores, personas que trabajan muchas horas desde la pantalla. ',
+                                          ),
+                                          //TextSpan(text: 'Cómo '),
+                                          TextSpan(
+                                            text: 'Cómo (HOW): ',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          TextSpan(
+                                            text:
+                                                'Medicamentos '
+                                                'formulados, miel, otros remedios para los ojos. Cirugía.',
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  Text(
+                                    textos[_index],
+                                    style: TextStyle(
+                                      fontSize: tamanotexto(2) + 4,
+                                      fontFamily: 'Calibri',
+                                      height: 1.5,
+                                    ),
+                                    textAlign: TextAlign.justify,
+                                  ),
+                                ],
                               ),
                             ),
                           ),
+
                           Flexible(
                             flex: 0,
                             child: Align(
@@ -781,6 +1056,13 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
       'icon': Icons.edit_note,
       'color': obtenercolor('Color_Secundario'),
       'indice': 14,
+    },
+    {
+      'id': 17,
+      'text': 'Video',
+      'icon': Icons.video_library_outlined,
+      'color': obtenercolor('Color_Secundario'),
+      'indice': 15,
     },
   ];
 }

@@ -98,7 +98,8 @@ class _CronogramasState extends State<Cronogramas>
   @override
   Widget build(BuildContext context) {
     // 📌 Ahora el nombre refleja la condición real
-    final bool esPantallaPequena = MediaQuery.of(context).size.width < 2000;
+    final bool esPantallaPequena =
+        MediaQuery.of(context).size.shortestSide < 650;
 
     return Scaffold(
       backgroundColor: obtenercolor('Color_Fondo'),

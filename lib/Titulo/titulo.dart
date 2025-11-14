@@ -43,6 +43,7 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
     'Características: debe ser preciso, Contener la idea principal del tema de investigación, Debe responder a: ¿Qué se va a hacer? ¿Sobre qué o quiénes se hará? ¿Dónde se llevará a cabo?, El título del proyecto se estructura en tres partes: Proceso: La acción o acciones a desarrollar. Objeto: El motivo del proceso. Localización: La ubicación geográfica de la investigación.',
     'Se recomienda usar entre 12-20 palabras, Ser limitativo: Si son fechas: Especificar el periodo de tiempo o la época, Si son personas: Edad, género, profesión, etc., Si son lugares: Colonia, localidad, municipio, estado, país, Si son teorías o corrientes: Especificar la ciencia que se aplica, Evitar la sobre explicación.',
     'Palabras útiles para estructurar el título.',
+    'Ejemplos para la creación de un título:',
     '',
     //'Ejemplos para la creación de un título:',
   ]; // lista de los textos que se van a mostrar
@@ -53,6 +54,7 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
     'assets/titulo/Titulo_otras_caracteristicas.jpg',
     'assets/titulo/Titulo_palabras_utiles.png',
     'assets/titulo/Titulo_ejemplo.png',
+    '',
   ]; // lista de las imagenes
 
   // ignore: unused_field
@@ -64,6 +66,7 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
     'MÁS CARACTERÍSTICAS DEL TÍTULO',
     'PALABRAS ÚTILES PARA TÍTULO',
     'EJEMPLOS DE TÍTULO',
+    'VIDEO',
   ]; // lista de las secciones
 
   final List<double> alturaImagengrande = [
@@ -72,6 +75,7 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
     260, //MAS CARACTERISTICAS DEL TITULO
     350, // PALABRAS UTILES PARA TITULO
     450, //EJEMPLOS DE TITULOS
+    250,
   ]; // lista de las alturas de las imagenes para pantallas grandes
 
   final List<double> alturaImagenPequena = [
@@ -80,6 +84,7 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
     200, //MAS CARACTERISTICAS DEL TITULO
     450, // PALABRAS UTILES PARA TITULO
     450, //EJEMPLOS DE TITULOS
+    250,
   ]; // lista de las alturas de las imagenes para pantallas pequenas
 
   static int ID_BASE_PROGRESO = 1; // ID base para el progreso de este subtema
@@ -314,16 +319,7 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
                       ? Column(
                         // se usa ? como un operador ternario para saber si la pantalla es pequeña o grande
                         children: [
-                          Text(
-                            textos[_index],
-                            style: TextStyle(
-                              fontSize: tamanotexto(2) + 4,
-                              fontFamily: 'Calibri',
-                              height: 1.5,
-                            ),
-                            textAlign: TextAlign.justify,
-                          ),
-                          if (_index == 4)
+                          if (_index == 5)
                             RichText(
                               textAlign: TextAlign.justify,
                               text: TextSpan(
@@ -336,14 +332,10 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
                                 children: [
                                   TextSpan(
                                     text:
-                                        'Ejemplos para la creación de un título: \n',
+                                        'Para comprender mejor este tema, te invitamos a ingresar al siguiente enlace y ver el ',
                                   ),
                                   TextSpan(
-                                    text:
-                                        'Puedes acceder a la herramienta aquí: ',
-                                  ),
-                                  TextSpan(
-                                    text: 'https://trends.google.com',
+                                    text: 'Video explicativo.',
                                     style: TextStyle(
                                       color: Colors.blue,
                                       //decoration: TextDecoration.underline,
@@ -359,7 +351,15 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
                                 ],
                               ),
                             ),
-
+                          Text(
+                            textos[_index],
+                            style: TextStyle(
+                              fontSize: tamanotexto(2) + 4,
+                              fontFamily: 'Calibri',
+                              height: 1.5,
+                            ),
+                            textAlign: TextAlign.justify,
+                          ),
                           const SizedBox(height: 20),
                           ClipRRect(
                             borderRadius: BorderRadius.circular(12),
@@ -381,18 +381,9 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
                             child: Padding(
                               padding: const EdgeInsets.only(right: 20),
                               child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    textos[_index],
-                                    style: TextStyle(
-                                      fontSize: tamanotexto(2) + 4,
-                                      fontFamily: 'Calibri',
-                                      height: 1.5,
-                                      //se usa height para aumentar la altura de la letra
-                                    ),
-                                    textAlign: TextAlign.justify,
-                                  ),
-                                  if (_index == 4)
+                                  if (_index == 5)
                                     RichText(
                                       textAlign: TextAlign.justify,
                                       text: TextSpan(
@@ -405,14 +396,10 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
                                         children: [
                                           TextSpan(
                                             text:
-                                                'Ejemplos para la creación de un título: \n',
+                                                'Para comprender mejor este tema, te invitamos a ingresar al siguiente enlace y ver el ',
                                           ),
                                           TextSpan(
-                                            text:
-                                                'Puedes acceder a la herramienta aquí: ',
-                                          ),
-                                          TextSpan(
-                                            text: 'https://trends.google.com',
+                                            text: 'Video explicativo.',
                                             style: TextStyle(
                                               color: Colors.blue,
                                               //decoration: TextDecoration.underline,
@@ -428,6 +415,16 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
                                         ],
                                       ),
                                     ),
+                                  Text(
+                                    textos[_index],
+                                    style: TextStyle(
+                                      fontSize: tamanotexto(2) + 4,
+                                      fontFamily: 'Calibri',
+                                      height: 1.5,
+                                      //se usa height para aumentar la altura de la letra
+                                    ),
+                                    textAlign: TextAlign.justify,
+                                  ),
                                 ],
                               ),
                             ),
@@ -706,6 +703,13 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
       'icon': Icons.book,
       'color': obtenercolor('Color_Secundario'),
       'indice': 4,
+    },
+    {
+      'id': 7,
+      'text': 'Video',
+      'icon': Icons.question_answer,
+      'color': obtenercolor('Color_Secundario'),
+      'indice': 5,
     },
   ];
 }

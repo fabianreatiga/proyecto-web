@@ -110,4 +110,5 @@ class Appbar2 extends StatelessWidget implements PreferredSizeWidget {
 }
 
 
+
 // el appbar.dart se esta usando en todas las ventanas del aplicativo

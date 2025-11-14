@@ -48,6 +48,9 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
 
     'El SENA ofrece una Biblioteca Virtual donde todos los aprendices e instructores pueden acceder a bases de datos académicas y científicas. Estas bases contienen libros digitales, revistas, artículos, normas técnicas, investigaciones y otros recursos confiables para apoyar la formación y los proyectos.',
 
+    '',
+    '',
+
     'El estado del arte es una parte esencial de toda investigación científica, técnica o académica. Consiste en revisar,'
         ' analizar y describir los conocimientos, teorías, métodos, avances y resultados que otros investigadores han desarrollado'
         ' previamente sobre el mismo tema o uno relacionado. Su objetivo principal es mostrar cómo está el conocimiento actual'
@@ -56,26 +59,19 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
         ' “nivel más avanzado del conocimiento en un campo determinado”. En investigación, se utiliza para referirse a la recopilación'
         ' y análisis de la información más actualizada y relevante disponible.',
 
-    'Imagina que quieres investigar sobre el uso de software educativo en los colegios. '
-        'Antes de empezar tu investigación, necesitas saber qué se ha estudiado y descubierto sobre ese tema. '
-        'Para hacerlo, puedes seguir estos pasos: '
-        '• Empieza buscando información en fuentes confiables, como Google Académico, Scielo, Redalyc o Dialnet. '
-        'Escribe palabras clave como: '
-        '👉 “software educativo”, “herramientas digitales para el aprendizaje”, o “uso de aplicaciones en la educación”. '
-        '• Revisa qué estudios ya existen. '
-        'Por ejemplo, encuentras un trabajo que analiza el uso de programas como Kahoot o Duolingo para reforzar el aprendizaje. '
-        '• Observa qué métodos usaron otros investigadores. '
-        'Algunos aplicaron encuestas a docentes y estudiantes, otros midieron el rendimiento académico antes y después de usar software educativo. '
-        '• Anota los resultados más importantes. '
-        'La mayoría de estudios coinciden en que el uso de software mejora la motivación y participación de los estudiantes, aunque algunos autores mencionan que depende mucho de la capacitación del docente. '
-        '•Identifica qué aspectos no se han estudiado mucho. '
-        'Descubres que casi no hay investigaciones sobre el uso de software educativo en zonas rurales o con acceso limitado a internet.',
-  ]; // lista de los textos que se van a mostrar
-
+    'Imagina que vas a investigar sobre el uso de software educativo en colegios.'
+        'Antes de empezar, revisa qué se ha estudiado sobre el tema:\n'
+        '• Busca información en fuentes confiables como Google Académico, Scielo, Redalyc o Dialnet, usando palabras clave como “software educativo” o “herramientas digitales para el aprendizaje”.\n'
+        '• Analiza los estudios existentes: algunos evalúan programas como Kahoot o Duolingo, aplicando encuestas o comparando el rendimiento antes y después de su uso.\n'
+        '• Registra los principales hallazgos: la mayoría concluye que el software educativo mejora la motivación y participación de los estudiantes, aunque depende de la capacitación docente.\n'
+        '• Detecta vacíos en la investigación: por ejemplo, el poco estudio del uso de software en zonas rurales o con acceso limitado a internet.  ]; // lista de los textos que se van a mostrar',
+  ];
   final List<String> imagenes = [
     'assets/BasesDatos/Bases_De_Datos_Definicion.png', //DEFINICIÓN
     'assets/BasesDatos/Bases_De_Datos_Que_Es.png', //¿PARA QUE SIRVE?
     'assets/BasesDatos/Bases_De_Datos_Biblioteca_Sena.jpg', //¿DÓNDE PUEDES ENCONTRAR LAS BASES DE DATOS CIENTÍFICAS?
+    '',
+    '',
     'assets/BasesDatos/Bases_De_Datos_Estado_Del_Arte.png', //¿QUÉ ES EL ESTADO DEL ARTE?
     'assets/BasesDatos/Bases_De_Datos_Estado_Del_Arte_Ejemplo.png', //EJEMPLOS
   ]; // lista de las imagenes
@@ -87,6 +83,8 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
     'DEFINICIÓN',
     '¿PARA QUE SIRVE?',
     '¿DÓNDE PUEDES ENCONTRAR LAS BASES DE DATOS CIENTÍFICAS?',
+    '¿QUÉ SON LOS ANTECEDENTES?',
+    'EJEMPLO',
     '¿QUÉ ES EL ESTADO DEL ARTE?',
     'EJEMPLO',
   ]; // lista de las secciones
@@ -95,6 +93,8 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
     250, // DEFINICIÓN
     250, // ¿PARA QUE SIRVE?
     130, // ¿DÓNDE PUEDES ENCONTRAR LAS BASES DE DATOS CIENTÍFICAS?
+    0,
+    0,
     250, // ¿QUÉ ES EL ESTADO DEL ARTE?
     350, // EJEMPLOS
   ]; // lista de las alturas de las imagenes para pantallas grandes
@@ -103,6 +103,8 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
     250, // DEFINICIÓN
     250, // ¿PARA QUE SIRVE?
     130, // ¿DÓNDE PUEDES ENCONTRAR LAS BASES DE DATOS CIENTÍFICAS?
+    0,
+    0,
     150, // ¿QUÉ ES EL ESTADO DEL ARTE?
     250, // EJEMPLOS
   ]; // lista de las alturas de las imagenes para pantallas pequenas
@@ -135,7 +137,7 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     // 📌 Ahora el nombre refleja la condición real
-    final bool esPantallaPequena = MediaQuery.of(context).size.width < 850;
+    final bool esPantallaPequena = MediaQuery.of(context).size.width < 650;
 
     return Scaffold(
       backgroundColor: obtenercolor('Color_Fondo'),
@@ -755,7 +757,7 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
     },
     {
       'id': 4,
-      'text': 'Ejemplos',
+      'text': 'Biblioteca SENA',
       'icon': Icons.storage,
       'color': obtenercolor('Color_Secundario'),
       'indice': 2,
@@ -770,9 +772,23 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
     {
       'id': 6,
       'text': 'Ejemplo',
-      'icon': Icons.text_fields,
+      'icon': Icons.book,
       'color': obtenercolor('Color_Secundario'),
       'indice': 4,
+    },
+    {
+      'id': 7,
+      'text': 'Estado del arte',
+      'icon': Icons.text_fields,
+      'color': obtenercolor('Color_Secundario'),
+      'indice': 5,
+    },
+    {
+      'id': 8,
+      'text': 'Ejemplo',
+      'icon': Icons.text_fields,
+      'color': obtenercolor('Color_Secundario'),
+      'indice': 6,
     },
   ];
 }

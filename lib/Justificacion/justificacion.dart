@@ -111,7 +111,8 @@ class _JustificacionesState extends State<Justificaciones>
 
   @override
   Widget build(BuildContext context) {
-    final bool esPantallaPequena = MediaQuery.of(context).size.width < 2000;
+    final bool esPantallaPequena =
+        MediaQuery.of(context).size.shortestSide < 650;
 
     return Scaffold(
       backgroundColor: obtenercolor('Color_Fondo'),

@@ -6,8 +6,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 class ProgresoGlobal {
   static final Set<int> pestanasVistas = {};
   static final Set<int> todosLosIDs = {
-    ...List.generate(6, (i) => i + 1), // Título
-    ...List.generate(15, (i) => i + 7), // Planteamiento
+    ...List.generate(5, (i) => i + 1), // Título
+    ...List.generate(16, (i) => i + 7), // Planteamiento
     ...List.generate(4, (i) => i + 22), // Justificación
     ...List.generate(7, (i) => i + 26), // Objetivos
     ...List.generate(6, (i) => i + 33), // Metodología

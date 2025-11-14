@@ -1,11 +1,12 @@
 // ignore_for_file: file_names, use_build_context_synchronously
 import 'package:flutter/material.dart';
-import 'package:nuevomockups/Appbar/appbar.dart';
+//import 'package:nuevomockups/Appbar/appbar.dart';
 import 'package:nuevomockups/Color_texto/color_texto.dart';
 import 'package:nuevomockups/Menus/menus.dart';
 
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:nuevomockups/Videos/videos.dart';
 import 'package:nuevomockups/global.dart';
 
 // Ahora enviamos nombre y ficha también
@@ -161,7 +162,7 @@ class _EncuestasState extends State<Encuestas> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: obtenercolor('Color_Fondo'),
-      appBar: Appbar2(nombre: '', progreso: 100, actions: []),
+      appBar: Appbars(),
       drawer: Menu(currentScreen: 'Encuesta'),
       body: SingleChildScrollView(
         child: Center(

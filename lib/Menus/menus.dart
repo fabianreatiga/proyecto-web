@@ -11,6 +11,7 @@ import 'package:nuevomockups/Metodologia/metodologia.dart';
 import 'package:nuevomockups/Objetivos/objetivos.dart';
 import 'package:nuevomockups/PlanteamientoProblemas/plantiamientoproblemas.dart';
 import 'package:nuevomockups/Titulo/titulo.dart';
+import 'package:nuevomockups/Videos/videos.dart';
 import 'package:nuevomockups/main.dart';
 
 class Menu extends StatelessWidget {
@@ -316,6 +317,28 @@ class Menu extends StatelessWidget {
             },
           ),
 
+          ListTile(
+            leading: Icon(
+              Icons.video_library,
+              color: currentScreen == 'Videos' ? Colors.white : Colors.black,
+            ),
+            title: Text(
+              'Videos',
+              style: TextStyle(
+                fontSize: texto + 4,
+                color: currentScreen == 'Videos' ? Colors.white : Colors.black,
+              ),
+            ),
+            selected: currentScreen == 'Videos',
+            selectedTileColor: obtenercolor('Color_Principal'),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const Videos()),
+              );
+            },
+          ),
           //======================= OPCIÓN ENCUESTA =======================\\
           ListTile(
             leading: Icon(
