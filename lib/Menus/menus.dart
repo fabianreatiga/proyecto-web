@@ -244,7 +244,7 @@ class Menu extends StatelessWidget {
                   currentScreen == 'Bibliogafia' ? Colors.white : Colors.black,
             ),
             title: Text(
-              'Bibliografia',
+              'Bibliografía',
               style: TextStyle(
                 fontSize: texto + 4,
                 color:
