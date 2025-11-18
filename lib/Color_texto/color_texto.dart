@@ -41,4 +41,14 @@ double opacidad(double valor) {
   }
 }
 
+double altura(int valor) {
+  switch (valor) {
+    case 1: //espaciado grande
+      return 50;
+
+    default:
+      return 30;
+  }
+}
+
 // esta funcion es global y se usa en todo el aplicativo

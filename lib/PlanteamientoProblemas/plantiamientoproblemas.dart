@@ -226,19 +226,19 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
       body: Stack(
         children: [
           // 🌄 Fondo superior izquierda decorativo
-          /*Positioned(
+          Positioned(
             top: 0,
-            left: 0,
+            right: 0,
             child: Opacity(
               opacity: opacidad(1),
               child: Image.asset(
-                'assets/titulo/Fondo_Supeior_Izquierda.png',
+                'assets/PlanteamientoProblema/Fondo_superior_Derecha.png',
                 width: esPantallaPequena ? 120 : 250,
                 //MediaQuery.of(context).size.width * 0.18,
                 fit: BoxFit.contain,
               ),
             ),
-          ),*/
+          ),
 
           // 🌄 Fondo superior derecha decorativo
           Positioned(
@@ -256,19 +256,19 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
           ),
 
           // 🌄 Fondo inferior izquierda
-          /* Positioned(
+          Positioned(
             bottom: 90,
             left: 0,
             child: Opacity(
               opacity: opacidad(1),
               child: Image.asset(
-                'assets/titulo/Fondo_Inferior_Izquierda.png',
+                'assets/PlanteamientoProblema/Fondo_inferior_Izquierda.png',
                 width: esPantallaPequena ? 120 : 250,
                 //height: MediaQuery.of(context).size.width * 0.18,
                 fit: BoxFit.contain,
               ),
             ),
-          ),*/
+          ),
 
           // 🌄 Fondo inferior derecha
           Positioned(
@@ -319,6 +319,7 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                                     ),
                                     const SizedBox(height: 20),
                                     _buildTimelineCard(),
+                                    SizedBox(height: altura(1)),
                                   ],
                                 ),
                               )
@@ -337,6 +338,7 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                                   ),
                                   const SizedBox(height: 20),
                                   _buildTimelineCard(),
+                                  SizedBox(height: altura(1)),
                                 ],
                               ),
                     ),

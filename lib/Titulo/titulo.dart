@@ -242,6 +242,7 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
                                     ),
                                     const SizedBox(height: 20),
                                     _buildTimelineCard(),
+                                    SizedBox(height: altura(1)),
                                   ],
                                 ),
                               )
@@ -260,6 +261,7 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
                                   ),
                                   const SizedBox(height: 20),
                                   _buildTimelineCard(),
+                                  SizedBox(height: altura(1)),
                                 ],
                               ),
                     ),

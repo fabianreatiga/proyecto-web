@@ -81,6 +81,8 @@ flutter:
 
     - assets/PlanteamientoProblema/Fondo_Inferior_Derecha.png
     - assets/PlanteamientoProblema/Fondo_Supeior_Izquierda.png
+    - assets/PlanteamientoProblema/Fondo_inferior_Izquierda.png
+    - assets/PlanteamientoProblema/Fondo_superior_Derecha.png
     
 #--------------- IMagenes Justificacion ----------------#
 
@@ -88,6 +90,14 @@ flutter:
     - assets/Justificacion/Justificacion_Pasos.png
     - assets/Justificacion/Justificacion_Consejos.png
     - assets/Justificacion/Justificacion_Ejemplo.png
+
+
+    - assets/Justificacion/Fondo_Inferior_Derecha.png
+    - assets/Justificacion/Fondo_Supeior_Izquierda.png
+    - assets/Justificacion/Fondo_inferior_Izquierda.png
+    - assets/Justificacion/Fondo_superior_Derecha.png
+
+    - assets/Justificacion/Icono_Superior_Izquierso.png
 
 #--------------- IMAGENES OBJETIVOS ----------------#
 
@@ -101,6 +111,11 @@ flutter:
     - assets/Objetivos/Objetivos_Método_Grow.png
     - assets/Objetivos/Objetivos_Método_Pure.png
     - assets/Objetivos/Objetivos_Arbol_de_Objetivos.png
+
+    - assets/Objetivos/Fondo_Inferior_Derecha.png
+    - assets/Objetivos/Fondo_Supeior_Izquierda.png
+    - assets/Objetivos/Fondo_inferior_Izquierda.png
+    - assets/Objetivos/Fondo_superior_Derecha.png
 
 
 #--------------- IMAGENES BIBLIOGRAFIA ----------------#

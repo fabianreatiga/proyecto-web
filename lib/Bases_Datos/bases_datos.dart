@@ -826,7 +826,7 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
     },
     {
       'id': 5,
-      'text': 'Estado del arte',
+      'text': 'Antecedentes',
       'icon': Icons.book,
       'color': obtenercolor('Color_Secundario'),
       'indice': 3,
