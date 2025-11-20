@@ -75,7 +75,7 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
     260, //MAS CARACTERISTICAS DEL TITULO
     350, // PALABRAS UTILES PARA TITULO
     450, //EJEMPLOS DE TITULOS
-    250,
+    0,
   ]; // lista de las alturas de las imagenes para pantallas grandes
 
   final List<double> alturaImagenPequena = [
@@ -84,7 +84,7 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
     200, //MAS CARACTERISTICAS DEL TITULO
     450, // PALABRAS UTILES PARA TITULO
     450, //EJEMPLOS DE TITULOS
-    250,
+    0,
   ]; // lista de las alturas de las imagenes para pantallas pequenas
 
   static int ID_BASE_PROGRESO = 1; // ID base para el progreso de este subtema
@@ -353,6 +353,7 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
                                 ],
                               ),
                             ),
+
                           Text(
                             textos[_index],
                             style: TextStyle(
@@ -363,14 +364,15 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
                             textAlign: TextAlign.justify,
                           ),
                           const SizedBox(height: 20),
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(12),
-                            child: Image.asset(
-                              imagenes[_index],
-                              height: alturaImagenPequena[_index],
-                              fit: BoxFit.contain,
+                          if (_index <= 4)
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(12),
+                              child: Image.asset(
+                                imagenes[_index],
+                                height: alturaImagenPequena[_index],
+                                fit: BoxFit.contain,
+                              ),
                             ),
-                          ),
                         ],
                       )
                       : Row(
@@ -386,35 +388,37 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   if (_index == 5)
-                                    RichText(
-                                      textAlign: TextAlign.justify,
-                                      text: TextSpan(
-                                        style: TextStyle(
-                                          fontSize: tamanotexto(2) + 4,
-                                          fontFamily: 'Calibri',
-                                          height: 1.5,
-                                          color: Colors.black,
-                                        ),
-                                        children: [
-                                          TextSpan(
-                                            text:
-                                                'Para comprender mejor este tema, te invitamos a ingresar al siguiente enlace y ver el ',
+                                    Center(
+                                      child: RichText(
+                                        textAlign: TextAlign.justify,
+                                        text: TextSpan(
+                                          style: TextStyle(
+                                            fontSize: tamanotexto(2) + 4,
+                                            fontFamily: 'Calibri',
+                                            height: 1.5,
+                                            color: Colors.black,
                                           ),
-                                          TextSpan(
-                                            text: 'Video explicativo.',
-                                            style: TextStyle(
-                                              color: Colors.blue,
-                                              //decoration: TextDecoration.underline,
+                                          children: [
+                                            TextSpan(
+                                              text:
+                                                  'Para comprender mejor este tema, te invitamos a ingresar al siguiente enlace y ver el ',
                                             ),
-                                            recognizer:
-                                                TapGestureRecognizer()
-                                                  ..onTap = () {
-                                                    abrirLink(
-                                                      'https://sena4-my.sharepoint.com/personal/ochaparrob_sena_edu_co/_layouts/15/stream.aspx?id=%2Fpersonal%2Fochaparrob%5Fsena%5Fedu%5Fco%2FDocuments%2F5%2E%20Sena%20Documentos%2F2025%2FInvestigaci%C3%B3n%2FProyecto%20Investigaci%C3%B3n%20Practica%2FVideo%20T%C3%ADtulo%2FVideo%20del%20t%C3%ADtulo%2Ewebm&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E14f8d0ee%2Dd03d%2D4c9a%2D9f61%2D041ab9840b25',
-                                                    );
-                                                  },
-                                          ),
-                                        ],
+                                            TextSpan(
+                                              text: 'Video explicativo.',
+                                              style: TextStyle(
+                                                color: Colors.blue,
+                                                //decoration: TextDecoration.underline,
+                                              ),
+                                              recognizer:
+                                                  TapGestureRecognizer()
+                                                    ..onTap = () {
+                                                      abrirLink(
+                                                        'https://sena4-my.sharepoint.com/personal/ochaparrob_sena_edu_co/_layouts/15/stream.aspx?id=%2Fpersonal%2Fochaparrob%5Fsena%5Fedu%5Fco%2FDocuments%2F5%2E%20Sena%20Documentos%2F2025%2FInvestigaci%C3%B3n%2FProyecto%20Investigaci%C3%B3n%20Practica%2FVideo%20T%C3%ADtulo%2FVideo%20del%20t%C3%ADtulo%2Ewebm&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E14f8d0ee%2Dd03d%2D4c9a%2D9f61%2D041ab9840b25',
+                                                      );
+                                                    },
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   Text(
@@ -431,23 +435,24 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
                               ),
                             ),
                           ),
-                          Flexible(
-                            flex: 0,
-                            child: Align(
-                              alignment: Alignment.topRight,
-                              // Alinear imagen a la derecha.
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(12),
-                                child: Image.asset(
-                                  imagenes[_index], // Imagen dinámica.
-                                  height: alturaImagengrande[_index],
-                                  // Altura para pantallas grandes.
-                                  fit: BoxFit.contain,
-                                  // se usa fit para que la imagen se ajuste al tamaño del contenedor
+                          if (_index <= 4)
+                            Flexible(
+                              flex: 0,
+                              child: Align(
+                                alignment: Alignment.topRight,
+                                // Alinear imagen a la derecha.
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(12),
+                                  child: Image.asset(
+                                    imagenes[_index], // Imagen dinámica.
+                                    height: alturaImagengrande[_index],
+                                    // Altura para pantallas grandes.
+                                    fit: BoxFit.contain,
+                                    // se usa fit para que la imagen se ajuste al tamaño del contenedor
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
 
                           if (_index == 3 || _index == 4) Spacer(),
                         ],
@@ -709,7 +714,7 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
     {
       'id': 7,
       'text': 'Video',
-      'icon': Icons.question_answer,
+      'icon': Icons.video_library_outlined,
       'color': obtenercolor('Color_Secundario'),
       'indice': 5,
     },

@@ -44,6 +44,9 @@ flutter:
     - assets/banner_superior.jpg
     - assets/fondo_textura.png
     - assets/fondo_textura_2.png
+    - assets/Icono_Atomo.png
+    - assets/Icono_Bombilla.png
+    - assets/Icono_Proveta.png
 
 #------------------- IMAGENES TITULO ------------------#
 
@@ -97,8 +100,6 @@ flutter:
     - assets/Justificacion/Fondo_inferior_Izquierda.png
     - assets/Justificacion/Fondo_superior_Derecha.png
 
-    - assets/Justificacion/Icono_Superior_Izquierso.png
-
 #--------------- IMAGENES OBJETIVOS ----------------#
 
     - assets/Objetivos/Objetivos.png
@@ -116,7 +117,6 @@ flutter:
     - assets/Objetivos/Fondo_Supeior_Izquierda.png
     - assets/Objetivos/Fondo_inferior_Izquierda.png
     - assets/Objetivos/Fondo_superior_Derecha.png
-
 
 #--------------- IMAGENES BIBLIOGRAFIA ----------------#
 

@@ -25,17 +25,38 @@ class Video extends StatefulWidget {
 class _VideoState extends State<Video> {
   @override
   Widget build(BuildContext context) {
+    final bool esPantallaPequena =
+        MediaQuery.of(context).size.shortestSide < 650;
     return Scaffold(
       backgroundColor: obtenercolor('Color_Fondo'),
       appBar: Appbars(),
       drawer: Menu(currentScreen: 'Videos'),
-      body: SingleChildScrollView(
-        child: Center(
-          child: Padding(
-            padding: EdgeInsets.all(30),
-            child: Column(
-              children: [
-                Card(
+      body: Stack(
+        children: [
+          Positioned(
+            top: 0,
+            right: 0,
+            child: Opacity(
+              opacity: opacidad(1),
+              child: Image.asset(
+                'assets/PlanteamientoProblema/Fondo_superior_Derecha.png',
+                width: esPantallaPequena ? 120 : 350,
+                //MediaQuery.of(context).size.width * 0.18,
+                fit: BoxFit.contain,
+              ),
+            ),
+          ),
+          // SizedBox(height: esPantallaPequena ? 50 : 100),
+          SingleChildScrollView(
+            child: Center(
+              child: Padding(
+                padding: EdgeInsets.only(
+                  top: esPantallaPequena ? 50 : 100,
+                  left: 20,
+                  right: 20,
+                  bottom: esPantallaPequena ? 50 : 100,
+                ),
+                child: Card(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30),
                   ),
@@ -111,19 +132,7 @@ class _VideoState extends State<Video> {
                                         );
                                       },
                               ),
-                            ],
-                          ),
-                        ),
-                        RichText(
-                          textAlign: TextAlign.justify,
-                          text: TextSpan(
-                            style: TextStyle(
-                              fontSize: tamanotexto(2) + 4,
-                              fontFamily: 'Calibri',
-                              height: 1.5,
-                              color: Colors.black,
-                            ),
-                            children: [
+
                               TextSpan(
                                 text: 'Justificación\n',
                                 style: TextStyle(
@@ -147,9 +156,7 @@ class _VideoState extends State<Video> {
                                 recognizer:
                                     TapGestureRecognizer()
                                       ..onTap = () {
-                                        abrirLink(
-                                          'https://sena4-my.sharepoint.com/personal/ochaparrob_sena_edu_co/_layouts/15/stream.aspx?id=%2Fpersonal%2Fochaparrob%5Fsena%5Fedu%5Fco%2FDocuments%2F5%2E%20Sena%20Documentos%2F2025%2FInvestigaci%C3%B3n%2FProyecto%20Investigaci%C3%B3n%20Practica%2FVideo%20T%C3%ADtulo%2FVideo%20del%20t%C3%ADtulo%2Ewebm&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E14f8d0ee%2Dd03d%2D4c9a%2D9f61%2D041ab9840b25',
-                                        );
+                                        abrirLink('');
                                       },
                               ),
                               TextSpan(
@@ -175,24 +182,10 @@ class _VideoState extends State<Video> {
                                 recognizer:
                                     TapGestureRecognizer()
                                       ..onTap = () {
-                                        abrirLink(
-                                          'https://sena4-my.sharepoint.com/personal/ochaparrob_sena_edu_co/_layouts/15/stream.aspx?id=%2Fpersonal%2Fochaparrob%5Fsena%5Fedu%5Fco%2FDocuments%2F5%2E%20Sena%20Documentos%2F2025%2FInvestigaci%C3%B3n%2FProyecto%20Investigaci%C3%B3n%20Practica%2FVideo%20Planteamiento%20del%20problema%2FPlanteamiento%20del%20problema%20video%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E894d23f2%2Db0ea%2D4b47%2D9319%2D90cfdf5a7be2',
-                                        );
+                                        abrirLink('');
                                       },
                               ),
-                            ],
-                          ),
-                        ),
-                        RichText(
-                          textAlign: TextAlign.justify,
-                          text: TextSpan(
-                            style: TextStyle(
-                              fontSize: tamanotexto(2) + 4,
-                              fontFamily: 'Calibri',
-                              height: 1.5,
-                              color: Colors.black,
-                            ),
-                            children: [
+
                               TextSpan(
                                 text: 'Metodología\n',
                                 style: TextStyle(
@@ -216,9 +209,7 @@ class _VideoState extends State<Video> {
                                 recognizer:
                                     TapGestureRecognizer()
                                       ..onTap = () {
-                                        abrirLink(
-                                          'https://sena4-my.sharepoint.com/personal/ochaparrob_sena_edu_co/_layouts/15/stream.aspx?id=%2Fpersonal%2Fochaparrob%5Fsena%5Fedu%5Fco%2FDocuments%2F5%2E%20Sena%20Documentos%2F2025%2FInvestigaci%C3%B3n%2FProyecto%20Investigaci%C3%B3n%20Practica%2FVideo%20T%C3%ADtulo%2FVideo%20del%20t%C3%ADtulo%2Ewebm&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E14f8d0ee%2Dd03d%2D4c9a%2D9f61%2D041ab9840b25',
-                                        );
+                                        abrirLink('');
                                       },
                               ),
                               TextSpan(
@@ -244,26 +235,12 @@ class _VideoState extends State<Video> {
                                 recognizer:
                                     TapGestureRecognizer()
                                       ..onTap = () {
-                                        abrirLink(
-                                          'https://sena4-my.sharepoint.com/personal/ochaparrob_sena_edu_co/_layouts/15/stream.aspx?id=%2Fpersonal%2Fochaparrob%5Fsena%5Fedu%5Fco%2FDocuments%2F5%2E%20Sena%20Documentos%2F2025%2FInvestigaci%C3%B3n%2FProyecto%20Investigaci%C3%B3n%20Practica%2FVideo%20Planteamiento%20del%20problema%2FPlanteamiento%20del%20problema%20video%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E894d23f2%2Db0ea%2D4b47%2D9319%2D90cfdf5a7be2',
-                                        );
+                                        abrirLink('');
                                       },
                               ),
-                            ],
-                          ),
-                        ),
-                        RichText(
-                          textAlign: TextAlign.justify,
-                          text: TextSpan(
-                            style: TextStyle(
-                              fontSize: tamanotexto(2) + 4,
-                              fontFamily: 'Calibri',
-                              height: 1.5,
-                              color: Colors.black,
-                            ),
-                            children: [
+
                               TextSpan(
-                                text: 'Actividades o resultados\n\n',
+                                text: 'Actividades o resultados\n',
                                 style: TextStyle(
                                   fontSize: tamanotexto(1) - 10,
                                   fontWeight: FontWeight.bold,
@@ -285,9 +262,7 @@ class _VideoState extends State<Video> {
                                 recognizer:
                                     TapGestureRecognizer()
                                       ..onTap = () {
-                                        abrirLink(
-                                          'https://sena4-my.sharepoint.com/personal/ochaparrob_sena_edu_co/_layouts/15/stream.aspx?id=%2Fpersonal%2Fochaparrob%5Fsena%5Fedu%5Fco%2FDocuments%2F5%2E%20Sena%20Documentos%2F2025%2FInvestigaci%C3%B3n%2FProyecto%20Investigaci%C3%B3n%20Practica%2FVideo%20T%C3%ADtulo%2FVideo%20del%20t%C3%ADtulo%2Ewebm&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E14f8d0ee%2Dd03d%2D4c9a%2D9f61%2D041ab9840b25',
-                                        );
+                                        abrirLink('');
                                       },
                               ),
                               TextSpan(
@@ -313,9 +288,7 @@ class _VideoState extends State<Video> {
                                 recognizer:
                                     TapGestureRecognizer()
                                       ..onTap = () {
-                                        abrirLink(
-                                          'https://sena4-my.sharepoint.com/personal/ochaparrob_sena_edu_co/_layouts/15/stream.aspx?id=%2Fpersonal%2Fochaparrob%5Fsena%5Fedu%5Fco%2FDocuments%2F5%2E%20Sena%20Documentos%2F2025%2FInvestigaci%C3%B3n%2FProyecto%20Investigaci%C3%B3n%20Practica%2FVideo%20Planteamiento%20del%20problema%2FPlanteamiento%20del%20problema%20video%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E894d23f2%2Db0ea%2D4b47%2D9319%2D90cfdf5a7be2',
-                                        );
+                                        abrirLink('');
                                       },
                               ),
                             ],
@@ -325,10 +298,10 @@ class _VideoState extends State<Video> {
                     ),
                   ),
                 ),
-              ],
+              ),
             ),
           ),
-        ),
+        ],
       ),
     );
   }

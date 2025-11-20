@@ -65,13 +65,16 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
     'Basado en el análisis de los ítems anteriores se redacta un párrafo general con la descripción de '
         'la problemática identificada.',
 
-    'Esquemas que pueden ayudar a plantear la problemática. 1. Para productos: Hemos observado que el '
-        '[Producto o servicio] no está cumpliendo [con estos objetivos], lo cual está causando [efecto negativo] '
-        'a nuestro [impacto en el negocio].',
+    '',
+    //'Esquemas que pueden ayudar a plantear la problemática. 1. Para productos: Hemos observado que el '
+    //  '[Producto o servicio] no está cumpliendo [con estos objetivos], lo cual está causando [efecto negativo] '
+    //  'a nuestro [impacto en el negocio].',
 
+    /*
     'Esquemas que pueden ayudar a plantear la problemática. 1. Cuándo es un punto de vista: [Tipo de usuario] '
         'intenta [descripción de su necesidad u objetivo] pero [barrera] porque [hallazgo] lo cual le hace sentir '
-        '[efecto negativo].',
+        '[efecto negativo].',*/
+    '',
 
     'Herramienta para el análisis de los problemas que básicamente representa la relación entre un efecto (problema) '
         'y todas las posibles causas que lo ocasionan. Diagrama de causa-efecto.',
@@ -165,7 +168,7 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
     200, // ÁRBOL DE PROBLEMAS
     250, // COMO HACER EL ÁRBOL DE PROBLEMAS
     300, // EJEMPLO ÁRBOL DE PROBLEMAS
-    300, // ESQUEMA DE REDACCIÓN
+    380, // ESQUEMA DE REDACCIÓN
     250,
   ];
   int _currentseccion = 0;
@@ -358,7 +361,7 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
   Widget _buildTimelineCard() {
     return LayoutBuilder(
       builder: (context, constraints) {
-        bool esPantallaPequena = constraints.maxWidth < 1000;
+        bool esPantallaPequena = constraints.maxWidth < 1300;
         return Card(
           color: obtenercolor('Color_Fondo'),
           shape: RoundedRectangleBorder(
@@ -473,14 +476,10 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  TextSpan(
-                                    text:
-                                        'Medicamentos '
-                                        'formulados, miel, otros remedios para los ojos. Cirugía.',
-                                  ),
                                 ],
                               ),
                             ),
+
                           if (_index == 15)
                             RichText(
                               textAlign: TextAlign.justify,
@@ -517,6 +516,104 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                                 ],
                               ),
                             ),
+                          if (_index == 5)
+                            RichText(
+                              textAlign: TextAlign.justify,
+                              text: TextSpan(
+                                style: TextStyle(
+                                  fontSize: tamanotexto(2) + 4,
+                                  fontFamily: 'Calibri',
+                                  height: 1.5,
+                                  //color: Colors.black,
+                                ),
+                                children: [
+                                  TextSpan(
+                                    text:
+                                        'Esquemas que pueden ayudar a plantear la problemática. 1. Para productos: Hemos observado que el ',
+                                  ),
+                                  TextSpan(
+                                    text: '[Producto o servicio] ',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  TextSpan(text: ' no está cumpliendo '),
+                                  TextSpan(
+                                    text: '[con estos objetivos],',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  TextSpan(text: ' lo cual está causando '),
+                                  TextSpan(
+                                    text: '[efecto negativo] ',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  TextSpan(text: ' a nuestro '),
+                                  TextSpan(
+                                    text: '[impacto en el negocio].',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          if (_index == 6)
+                            RichText(
+                              textAlign: TextAlign.justify,
+                              text: TextSpan(
+                                style: TextStyle(
+                                  fontSize: tamanotexto(2) + 4,
+                                  fontFamily: 'Calibri',
+                                  height: 1.5,
+                                  //color: Colors.black,
+                                ),
+                                children: [
+                                  TextSpan(
+                                    text:
+                                        'Esquemas que pueden ayudar a plantear la problemática. 1. Cuándo es un punto de vista: ',
+                                  ),
+                                  TextSpan(
+                                    text: '[Tipo de usuario] ',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  TextSpan(text: 'intenta '),
+                                  TextSpan(
+                                    text:
+                                        '[descripción de su necesidad u objetivo] ',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  TextSpan(text: 'pero '),
+                                  TextSpan(
+                                    text: '[barrera] ',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  TextSpan(text: 'porque '),
+                                  TextSpan(
+                                    text: '[hallazgo] ',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  TextSpan(text: 'lo cual le hace sentir '),
+                                  TextSpan(
+                                    text: '[efecto negativo].',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                           Text(
                             textos[_index],
                             style: TextStyle(
@@ -526,16 +623,17 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                             ),
                             textAlign: TextAlign.justify,
                           ),
-                          const SizedBox(height: 20),
 
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(12),
-                            child: Image.asset(
-                              imagenes[_index],
-                              height: alturaImagenPequena[_index],
-                              fit: BoxFit.contain,
+                          const SizedBox(height: 20),
+                          if (_index <= 14)
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(12),
+                              child: Image.asset(
+                                imagenes[_index],
+                                height: alturaImagenPequena[_index],
+                                fit: BoxFit.contain,
+                              ),
                             ),
-                          ),
                           if (_index == 14)
                             SizedBox(
                               height: 380,
@@ -548,6 +646,8 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                       : Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
+                          if (_index == 15) Spacer(),
+                          if (_index == 15) Spacer(),
                           if (_index == 15)
                             RichText(
                               textAlign: TextAlign.justify,
@@ -678,6 +778,111 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                                         ],
                                       ),
                                     ),
+                                  if (_index == 5)
+                                    RichText(
+                                      textAlign: TextAlign.justify,
+                                      text: TextSpan(
+                                        style: TextStyle(
+                                          fontSize: tamanotexto(2) + 4,
+                                          fontFamily: 'Calibri',
+                                          height: 1.5,
+                                          //color: Colors.black,
+                                        ),
+                                        children: [
+                                          TextSpan(
+                                            text:
+                                                'Esquemas que pueden ayudar a plantear la problemática. 1. Para productos: Hemos observado que el ',
+                                          ),
+                                          TextSpan(
+                                            text: '[Producto o servicio] ',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          TextSpan(
+                                            text: ' no está cumpliendo ',
+                                          ),
+                                          TextSpan(
+                                            text: '[con estos objetivos],',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          TextSpan(
+                                            text: ' lo cual está causando ',
+                                          ),
+                                          TextSpan(
+                                            text: '[efecto negativo] ',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          TextSpan(text: ' a nuestro '),
+                                          TextSpan(
+                                            text: '[impacto en el negocio].',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  if (_index == 6)
+                                    RichText(
+                                      textAlign: TextAlign.justify,
+                                      text: TextSpan(
+                                        style: TextStyle(
+                                          fontSize: tamanotexto(2) + 4,
+                                          fontFamily: 'Calibri',
+                                          height: 1.5,
+                                          //color: Colors.black,
+                                        ),
+                                        children: [
+                                          TextSpan(
+                                            text:
+                                                'Esquemas que pueden ayudar a plantear la problemática. 1. Cuándo es un punto de vista: ',
+                                          ),
+                                          TextSpan(
+                                            text: '[Tipo de usuario] ',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          TextSpan(text: 'intenta '),
+                                          TextSpan(
+                                            text:
+                                                '[descripción de su necesidad u objetivo] ',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          TextSpan(text: 'pero '),
+                                          TextSpan(
+                                            text: '[barrera] ',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          TextSpan(text: 'porque '),
+                                          TextSpan(
+                                            text: '[hallazgo] ',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          TextSpan(
+                                            text: 'lo cual le hace sentir ',
+                                          ),
+                                          TextSpan(
+                                            text: '[efecto negativo].',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+
                                   Text(
                                     textos[_index],
                                     style: TextStyle(
@@ -691,21 +896,21 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                               ),
                             ),
                           ),
-
-                          Flexible(
-                            flex: 0,
-                            child: Align(
-                              alignment: Alignment.topRight,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(12),
-                                child: Image.asset(
-                                  imagenes[_index],
-                                  height: alturaImagengrande[_index],
-                                  fit: BoxFit.contain,
+                          if (_index <= 14)
+                            Flexible(
+                              flex: 0,
+                              child: Align(
+                                alignment: Alignment.topRight,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(12),
+                                  child: Image.asset(
+                                    imagenes[_index],
+                                    height: alturaImagengrande[_index],
+                                    fit: BoxFit.contain,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
                           if (_index == 8 ||
                               /* _index == 9 || _index == 10 ||*/
                               _index == 12 ||

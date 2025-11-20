@@ -1,9 +1,11 @@
 // ignore_for_file: unused_field, deprecated_member_use, non_constant_identifier_names
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:nuevomockups/Appbar/appbar.dart';
 import 'package:nuevomockups/Color_texto/color_texto.dart';
+import 'package:nuevomockups/Links/links.dart';
 import 'package:nuevomockups/Menus/menus.dart';
 import 'package:nuevomockups/Objetivos/objetivos.dart';
 import 'package:nuevomockups/PlanteamientoProblemas/plantiamientoproblemas.dart';
@@ -57,6 +59,8 @@ class _JustificacionesState extends State<Justificaciones>
         ' vez más escépticos ante lo que les ofrezcan, debido a que con mayor frecuencia aparecerán personas'
         ' informadas que pueden originar cambios que afectarán al mundo de los negocios en su totalidad, y surgirá'
         ' una nueva batalla en la competitividad empresarial.',
+
+    '',
   ];
 
   final List<String> imagenes = [
@@ -64,6 +68,7 @@ class _JustificacionesState extends State<Justificaciones>
     'assets/Justificacion/Justificacion_Pasos.png', // Imagen para la pestaña PASOS
     'assets/Justificacion/Justificacion_Consejos.png', // Imagen para la pestaña CONSEJOS
     'assets/Justificacion/Justificacion_Ejemplo.png', // Imagen para la pestaña EJEMPLO
+    '',
   ];
 
   final List<String> secciones = [
@@ -71,6 +76,7 @@ class _JustificacionesState extends State<Justificaciones>
     'PASOS',
     'CONSEJOS',
     'EJEMPLO',
+    'VIDEO',
   ];
 
   final List<double> alturaImagengrande = [
@@ -78,6 +84,7 @@ class _JustificacionesState extends State<Justificaciones>
     400, // PASOS
     550, // CONSEJOS
     200, // EJEMPLO
+    200, // VIDEO
   ];
 
   final List<double> alturaImagenPequena = [
@@ -85,6 +92,7 @@ class _JustificacionesState extends State<Justificaciones>
     300, // PASOS
     350, // CONSEJOS
     150, // EJEMPLO
+    200, // VIDEO
   ];
   static int ID_BASE_PROGRESO = 21;
   int _currentseccion = 0;
@@ -162,7 +170,7 @@ class _JustificacionesState extends State<Justificaciones>
             child: Opacity(
               opacity: opacidad(1),
               child: Image.asset(
-                'assets/Justificacion/Icono_Superior_Izquierso.png',
+                'assets/Icono_Atomo.png',
                 width: esPantallaPequena ? 45 : 98,
                 //MediaQuery.of(context).size.width * 0.18,
                 fit: BoxFit.contain,
@@ -221,7 +229,7 @@ class _JustificacionesState extends State<Justificaciones>
             child: Opacity(
               opacity: opacidad(1),
               child: Image.asset(
-                'assets/Justificacion/Icono_Superior_Izquierso.png',
+                'assets/Icono_Atomo.png',
                 width: esPantallaPequena ? 45 : 98,
                 //MediaQuery.of(context).size.width * 0.18,
                 fit: BoxFit.contain,
@@ -337,6 +345,38 @@ class _JustificacionesState extends State<Justificaciones>
                   esPantallaPequena
                       ? Column(
                         children: [
+                          if (_index == 4)
+                            Center(
+                              child: RichText(
+                                textAlign: TextAlign.justify,
+                                text: TextSpan(
+                                  style: TextStyle(
+                                    fontSize: tamanotexto(2) + 4,
+                                    fontFamily: 'Calibri',
+                                    height: 1.5,
+                                    color: Colors.black,
+                                  ),
+                                  children: [
+                                    TextSpan(
+                                      text:
+                                          'Para comprender mejor este tema, te invitamos a ingresar al siguiente enlace y ver el ',
+                                    ),
+                                    TextSpan(
+                                      text: 'Video explicativo.',
+                                      style: TextStyle(
+                                        color: Colors.blue,
+                                        //decoration: TextDecoration.underline,
+                                      ),
+                                      recognizer:
+                                          TapGestureRecognizer()
+                                            ..onTap = () {
+                                              abrirLink('');
+                                            },
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
                           Text(
                             textos[_index],
                             style: TextStyle(
@@ -347,19 +387,55 @@ class _JustificacionesState extends State<Justificaciones>
                             textAlign: TextAlign.justify,
                           ),
                           const SizedBox(height: 20),
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(12),
-                            child: Image.asset(
-                              imagenes[_index],
-                              height: alturaImagenPequena[_index],
-                              fit: BoxFit.contain,
+
+                          if (_index <= 3)
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(12),
+                              child: Image.asset(
+                                imagenes[_index],
+                                height: alturaImagenPequena[_index],
+                                fit: BoxFit.contain,
+                              ),
                             ),
-                          ),
                         ],
                       )
                       : Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
+                          if (_index == 4) Spacer(),
+                          if (_index == 4) Spacer(),
+                          if (_index == 4)
+                            Center(
+                              child: RichText(
+                                textAlign: TextAlign.justify,
+                                text: TextSpan(
+                                  style: TextStyle(
+                                    fontSize: tamanotexto(2) + 4,
+                                    fontFamily: 'Calibri',
+                                    height: 1.5,
+                                    color: Colors.black,
+                                  ),
+                                  children: [
+                                    TextSpan(
+                                      text:
+                                          'Para comprender mejor este tema, te invitamos a ingresar al siguiente enlace y ver el ',
+                                    ),
+                                    TextSpan(
+                                      text: 'Video explicativo.',
+                                      style: TextStyle(
+                                        color: Colors.blue,
+                                        //decoration: TextDecoration.underline,
+                                      ),
+                                      recognizer:
+                                          TapGestureRecognizer()
+                                            ..onTap = () {
+                                              abrirLink('');
+                                            },
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
                           Expanded(
                             flex: 2,
                             child: Padding(
@@ -375,20 +451,21 @@ class _JustificacionesState extends State<Justificaciones>
                               ),
                             ),
                           ),
-                          Flexible(
-                            flex: 0,
-                            child: Align(
-                              alignment: Alignment.topRight,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(12),
-                                child: Image.asset(
-                                  imagenes[_index],
-                                  height: alturaImagengrande[_index],
-                                  fit: BoxFit.contain,
+                          if (_index <= 3)
+                            Flexible(
+                              flex: 0,
+                              child: Align(
+                                alignment: Alignment.topRight,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(12),
+                                  child: Image.asset(
+                                    imagenes[_index],
+                                    height: alturaImagengrande[_index],
+                                    fit: BoxFit.contain,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
                           if (_index == 1 || _index == 2) Spacer(),
                           //if ( /*_index == 1 ||*/ _index == 2) Spacer(),
                         ],
@@ -650,6 +727,13 @@ class _JustificacionesState extends State<Justificaciones>
       'icon': Icons.description_outlined,
       'color': obtenercolor('Color_Secundario'),
       'indice': 3,
+    },
+    {
+      'id': 6,
+      'text': 'Video',
+      'icon': Icons.video_library_outlined,
+      'color': obtenercolor('Color_Secundario'),
+      'indice': 4,
     },
   ];
 }

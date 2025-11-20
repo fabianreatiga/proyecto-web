@@ -1,10 +1,12 @@
 // ignore_for_file: unused_field, deprecated_member_use, non_constant_identifier_names
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:nuevomockups/Appbar/appbar.dart';
 import 'package:nuevomockups/Color_texto/color_texto.dart';
 import 'package:nuevomockups/Justificacion/justificacion.dart';
+import 'package:nuevomockups/Links/links.dart';
 import 'package:nuevomockups/Menus/menus.dart';
 import 'package:nuevomockups/Metodologia/metodologia.dart';
 
@@ -66,6 +68,7 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
 
     'El árbol de objetivos reúne los medios y alternativas para solucionar el problema principal. Gracias a ello, se logra una visión positiva de las'
         ' situaciones negativas que aparecían en el árbol anterior, aunque utilice la misma estructura. Así, se busca ir resolviendo el problema paso a paso..',
+    '',
   ];
 
   final List<String> imagenes = [
@@ -76,6 +79,7 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
     'assets/Objetivos/Objetivos_Método_Grow.png', //MÉTODO GROW
     'assets/Objetivos/Objetivos_Método_Dumb_texto.png', //MÉTODO DUMB
     'assets/Objetivos/Objetivos_Arbol_de_Objetivos.png', //ÁRBOL DE OJETIVOS
+    '',
   ];
 
   final List<String> secciones = [
@@ -86,6 +90,7 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
     'MÉTODO GROW',
     'MÉTODO DUMB',
     'ÁRBOL DE OJETIVOS',
+    'VIDEOS',
   ];
 
   /* int _progresoContador = 1;
@@ -101,6 +106,7 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
     350, //MÉTODO GROW
     350, //MÉTODO DUMB
     500, //ÁRBOL DE OJETIVOS
+    200,
   ];
 
   final List<double> alturaImagenPequena = [
@@ -111,6 +117,7 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
     350, //MÉTODO GROW
     300, //MÉTODO DUMB
     300, //ÁRBOL DE OJETIVOS
+    200,
   ];
 
   static int ID_BASE_PROGRESO = 25;
@@ -191,7 +198,7 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
             child: Opacity(
               opacity: opacidad(1),
               child: Image.asset(
-                'assets/Justificacion/Icono_Superior_Izquierso.png',
+                'assets/Icono_Proveta.png',
                 width: esPantallaPequena ? 45 : 98,
                 //MediaQuery.of(context).size.width * 0.18,
                 fit: BoxFit.contain,
@@ -250,7 +257,7 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
             child: Opacity(
               opacity: opacidad(1),
               child: Image.asset(
-                'assets/Justificacion/Icono_Superior_Izquierso.png',
+                'assets/Icono_Bombilla.png',
                 width: esPantallaPequena ? 45 : 98,
                 //MediaQuery.of(context).size.width * 0.18,
                 fit: BoxFit.contain,
@@ -281,7 +288,7 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
                                 child: Column(
                                   children: [
                                     Text(
-                                      '¿Sabes como redactar una Justificación?',
+                                      '¿Sabes como crear los Objetivos?',
                                       style: TextStyle(
                                         fontSize: tamanotexto(1) + 5,
                                         fontFamily: 'Calibri',
@@ -300,7 +307,7 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
                                 // 💻 En pantallas grandes sin zoom
                                 children: [
                                   Text(
-                                    '¿Sabes como redactar una Justificación?',
+                                    '¿Sabes como crear los Objetivos?',
                                     style: TextStyle(
                                       fontSize: tamanotexto(1) + 5,
                                       fontFamily: 'Calibri',
@@ -309,7 +316,7 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
                                     ),
                                     textAlign: TextAlign.center,
                                   ),
-                                  const SizedBox(height: 20),
+                                  const SizedBox(height: 35),
                                   _buildercard(),
                                   SizedBox(height: altura(1)),
                                 ],
@@ -372,6 +379,38 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
                       ? Column(
                         // se usa Column para mostrar el texto en dos filas
                         children: [
+                          if (_index == 7)
+                            Center(
+                              child: RichText(
+                                textAlign: TextAlign.justify,
+                                text: TextSpan(
+                                  style: TextStyle(
+                                    fontSize: tamanotexto(2) + 4,
+                                    fontFamily: 'Calibri',
+                                    height: 1.5,
+                                    color: Colors.black,
+                                  ),
+                                  children: [
+                                    TextSpan(
+                                      text:
+                                          'Para comprender mejor este tema, te invitamos a ingresar al siguiente enlace y ver el ',
+                                    ),
+                                    TextSpan(
+                                      text: 'Video explicativo.',
+                                      style: TextStyle(
+                                        color: Colors.blue,
+                                        //decoration: TextDecoration.underline,
+                                      ),
+                                      recognizer:
+                                          TapGestureRecognizer()
+                                            ..onTap = () {
+                                              abrirLink('');
+                                            },
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
                           Text(
                             textos[_index],
                             style: TextStyle(
@@ -381,20 +420,56 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
                             ),
                             textAlign: TextAlign.justify,
                           ),
+
                           const SizedBox(height: 20),
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(12),
-                            child: Image.asset(
-                              imagenes[_index],
-                              height: alturaImagenPequena[_index],
-                              fit: BoxFit.contain,
+                          if (_index <= 6)
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(12),
+                              child: Image.asset(
+                                imagenes[_index],
+                                height: alturaImagenPequena[_index],
+                                fit: BoxFit.contain,
+                              ),
                             ),
-                          ),
                         ],
                       )
                       : Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
+                          if (_index == 7) Spacer(),
+                          if (_index == 7) Spacer(),
+                          if (_index == 7)
+                            Center(
+                              child: RichText(
+                                textAlign: TextAlign.justify,
+                                text: TextSpan(
+                                  style: TextStyle(
+                                    fontSize: tamanotexto(2) + 4,
+                                    fontFamily: 'Calibri',
+                                    height: 1.5,
+                                    color: Colors.black,
+                                  ),
+                                  children: [
+                                    TextSpan(
+                                      text:
+                                          'Para comprender mejor este tema, te invitamos a ingresar al siguiente enlace y ver el ',
+                                    ),
+                                    TextSpan(
+                                      text: 'Video explicativo.',
+                                      style: TextStyle(
+                                        color: Colors.blue,
+                                        //decoration: TextDecoration.underline,
+                                      ),
+                                      recognizer:
+                                          TapGestureRecognizer()
+                                            ..onTap = () {
+                                              abrirLink('');
+                                            },
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
                           Expanded(
                             flex: 2,
                             child: Padding(
@@ -410,20 +485,22 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
                               ),
                             ),
                           ),
-                          Flexible(
-                            flex: 0,
-                            child: Align(
-                              alignment: Alignment.topRight,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(12),
-                                child: Image.asset(
-                                  imagenes[_index],
-                                  height: alturaImagengrande[_index],
-                                  fit: BoxFit.contain,
+
+                          if (_index <= 6)
+                            Flexible(
+                              flex: 0,
+                              child: Align(
+                                alignment: Alignment.topRight,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(12),
+                                  child: Image.asset(
+                                    imagenes[_index],
+                                    height: alturaImagengrande[_index],
+                                    fit: BoxFit.contain,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
                         ],
                       ),
 
@@ -728,6 +805,13 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
       'icon': Icons.call_split,
       'color': obtenercolor('Color_Secundario'),
       'indice': 6,
+    },
+    {
+      'id': 10,
+      'text': 'Videos',
+      'icon': Icons.video_library_outlined,
+      'color': obtenercolor('Color_Secundario'),
+      'indice': 7,
     },
   ];
 }
