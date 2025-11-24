@@ -164,7 +164,7 @@ class _MetodologiasState extends State<Metodologias>
             child: Opacity(
               opacity: opacidad(1),
               child: Image.asset(
-                'assets/Objetivos/Fondo_superior_Derecha.png',
+                'assets/Metodologia/Fondo_superior_Derecha.png',
                 width: esPantallaPequena ? 120 : 250,
                 //MediaQuery.of(context).size.width * 0.18,
                 fit: BoxFit.contain,
@@ -177,7 +177,7 @@ class _MetodologiasState extends State<Metodologias>
             child: Opacity(
               opacity: opacidad(1),
               child: Image.asset(
-                'assets/Icono_Atomo.png',
+                'assets/Icono_Cohete.png',
                 width: esPantallaPequena ? 45 : 98,
                 //MediaQuery.of(context).size.width * 0.18,
                 fit: BoxFit.contain,
@@ -192,7 +192,7 @@ class _MetodologiasState extends State<Metodologias>
             child: Opacity(
               opacity: opacidad(1),
               child: Image.asset(
-                'assets/Objetivos/Fondo_Supeior_Izquierda.png',
+                'assets/Metodologia/Fondo_Supeior_Izquierda.png',
                 width: esPantallaPequena ? 120 : 250,
                 //height: MediaQuery.of(context).size.width * 0.18,
                 fit: BoxFit.contain,
@@ -207,7 +207,7 @@ class _MetodologiasState extends State<Metodologias>
             child: Opacity(
               opacity: opacidad(1),
               child: Image.asset(
-                'assets/Justificacion/Fondo_inferior_Izquierda.png',
+                'assets/Metodologia/Fondo_inferior_Izquierda.png',
                 width: esPantallaPequena ? 120 : 250,
                 //height: MediaQuery.of(context).size.width * 0.18,
                 fit: BoxFit.contain,
@@ -222,7 +222,7 @@ class _MetodologiasState extends State<Metodologias>
             child: Opacity(
               opacity: opacidad(1),
               child: Image.asset(
-                'assets/Justificacion/Fondo_Inferior_Derecha.png',
+                'assets/Metodologia/Fondo_Inferior_Derecha.png',
                 width: esPantallaPequena ? 120 : 250,
                 //height: MediaQuery.of(context).size.width * 0.18,
                 fit: BoxFit.contain,
@@ -236,8 +236,8 @@ class _MetodologiasState extends State<Metodologias>
             child: Opacity(
               opacity: opacidad(1),
               child: Image.asset(
-                'assets/Icono_Atomo.png',
-                width: esPantallaPequena ? 45 : 98,
+                'assets/Icono_Microscopio.png',
+                width: esPantallaPequena ? 45 : 70,
                 //MediaQuery.of(context).size.width * 0.18,
                 fit: BoxFit.contain,
               ),
@@ -278,6 +278,7 @@ class _MetodologiasState extends State<Metodologias>
                                     ),
                                     const SizedBox(height: 20),
                                     _buildercard(),
+                                    SizedBox(height: altura(1)),
                                   ],
                                 ),
                               )
@@ -294,7 +295,7 @@ class _MetodologiasState extends State<Metodologias>
                                     ),
                                     textAlign: TextAlign.center,
                                   ),
-                                  const SizedBox(height: 20),
+                                  const SizedBox(height: 35),
                                   _buildercard(),
                                   SizedBox(height: altura(1)),
                                 ],

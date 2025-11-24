@@ -46,7 +46,13 @@ flutter:
     - assets/fondo_textura_2.png
     - assets/Icono_Atomo.png
     - assets/Icono_Bombilla.png
-    - assets/Icono_Proveta.png
+    - assets/Icono_Proveta.png 
+    - assets/Icono_Cohete.png
+    - assets/Icono_Microscopio.png
+    - assets/Icono_Molecula.png
+    - assets/Icono_Planeta.png
+    - assets/Icono_T_Ensayo.png
+    - assets/Icono_video.png
 
 #------------------- IMAGENES TITULO ------------------#
 
@@ -80,7 +86,6 @@ flutter:
     - assets/PlanteamientoProblema/Planteamiento_del_Problema_Como_Hacer_Arbol_De_Problemas.png
     - assets/PlanteamientoProblema/Planteamiento_del_Problema_Ejemplo_Arbol_De_Problemas.png
 
-    - assets/PlanteamientoProblema/Icono_video.png
 
     - assets/PlanteamientoProblema/Fondo_Inferior_Derecha.png
     - assets/PlanteamientoProblema/Fondo_Supeior_Izquierda.png
@@ -137,11 +142,23 @@ flutter:
     - assets/Metodologia/Metodologia_Tipos_De_Metodologia_Mixta.png
     - assets/Metodologia/Metodologia_Pasos_Crear.png
 
+
+    - assets/Metodologia/Fondo_Inferior_Derecha.png
+    - assets/Metodologia/Fondo_Supeior_Izquierda.png
+    - assets/Metodologia/Fondo_inferior_Izquierda.png
+    - assets/Metodologia/Fondo_superior_Derecha.png
+
 #--------------- IMAGENES CRONOGRAMA -----------------#
 
     - assets/Cronograma/Cronograma_como_crear_un_Cronograma.png
     - assets/Cronograma/Cronograma_Pasos.png
     - assets/Cronograma/Cronograma_Ejemplo.png
+
+    - assets/Cronograma/Fondo_Inferior_Derecha.png
+    - assets/Cronograma/Fondo_Supeior_Izquierda.png
+    - assets/Cronograma/Fondo_inferior_Izquierda.png
+    - assets/Cronograma/Fondo_superior_Derecha.png
+
 
 #--------------- IMAGENES ACTIVIDADES ----------------#
 
@@ -170,3 +187,11 @@ flutter:
     - assets/BasesDatos/Bases_De_Datos_Biblioteca_Sena.jpg
     - assets/BasesDatos/Bases_De_Datos_Estado_Del_Arte.png
     - assets/BasesDatos/Bases_De_Datos_Estado_Del_Arte_Ejemplo.png
+
+    - assets/BasesDatos/Fondo_inferior_Derecha.png
+    - assets/BasesDatos/Fondo_superior_Izqiuerda.png
+
+
+
+    - assets/Video/Fondo_inferior_Derecha.png
+    - assets/Video/Fondo_superior_Izqiuerda.png

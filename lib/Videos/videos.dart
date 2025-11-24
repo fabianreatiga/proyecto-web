@@ -33,14 +33,56 @@ class _VideoState extends State<Video> {
       drawer: Menu(currentScreen: 'Videos'),
       body: Stack(
         children: [
+          //fondo inferior derecha
           Positioned(
-            top: 0,
+            bottom: 0,
             right: 0,
             child: Opacity(
               opacity: opacidad(1),
               child: Image.asset(
-                'assets/PlanteamientoProblema/Fondo_superior_Derecha.png',
-                width: esPantallaPequena ? 120 : 350,
+                'assets/Video/Fondo_inferior_Derecha.png',
+                width: esPantallaPequena ? 320 : 400,
+                //MediaQuery.of(context).size.width * 0.18,
+                fit: BoxFit.contain,
+              ),
+            ),
+          ),
+
+          //fondo superior izquierda
+          Positioned(
+            top: 0,
+            left: 0,
+            child: Opacity(
+              opacity: opacidad(1),
+              child: Image.asset(
+                'assets/Video/Fondo_superior_Izqiuerda.png',
+                width: esPantallaPequena ? 320 : 400,
+                //MediaQuery.of(context).size.width * 0.18,
+                fit: BoxFit.contain,
+              ),
+            ),
+          ),
+          Positioned(
+            top: 8,
+            right: 8,
+            child: Opacity(
+              opacity: opacidad(1),
+              child: Image.asset(
+                'assets/Icono_video.png',
+                width: esPantallaPequena ? 45 : 98,
+                //MediaQuery.of(context).size.width * 0.18,
+                fit: BoxFit.contain,
+              ),
+            ),
+          ),
+          Positioned(
+            top: 8,
+            left: 8,
+            child: Opacity(
+              opacity: opacidad(1),
+              child: Image.asset(
+                'assets/Icono_video.png',
+                width: esPantallaPequena ? 45 : 98,
                 //MediaQuery.of(context).size.width * 0.18,
                 fit: BoxFit.contain,
               ),
