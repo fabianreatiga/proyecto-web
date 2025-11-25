@@ -283,7 +283,7 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
                                 child: Column(
                                   children: [
                                     Text(
-                                      '¿Sabes como crear los Objetivos?',
+                                      '¿Sabes qué es una base de datos científica?',
                                       style: TextStyle(
                                         fontSize: tamanotexto(1) + 5,
                                         fontFamily: 'Calibri',
@@ -302,7 +302,7 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
                                 // 💻 En pantallas grandes sin zoom
                                 children: [
                                   Text(
-                                    '¿Sabes como crear los Objetivos?',
+                                    '¿Sabes qué es una base de datos científica?',
                                     style: TextStyle(
                                       fontSize: tamanotexto(1) + 5,
                                       fontFamily: 'Calibri',

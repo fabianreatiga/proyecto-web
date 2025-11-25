@@ -133,6 +133,11 @@ flutter:
     - assets/bibliografia/BiblioGrafia_Ejemplo_IEEE.png
     - assets/bibliografia/Bibliografia_Sitios_Web_Recomendados.png
 
+    - assets/bibliografia/Fondo_Inferior_Derecha.png
+    - assets/bibliografia/Fondo_Supeior_Izquierda.png
+    - assets/bibliografia/Fondo_inferior_Izquierda.png
+    - assets/bibliografia/Fondo_superior_Derecha.png
+
 #--------------- IMAGENES METODOLOGIA ----------------# 
 
     - assets/Metodologia/Metodologia_Tipos_De_Metodologia.png
@@ -166,6 +171,12 @@ flutter:
     - assets/Actividades/Actividades_Resultados.png
     - assets/Actividades/Actividades_Formulacion_De_Resultados.png
 
+
+    - assets/Actividades/Fondo_Inferior_Derecha.png
+    - assets/Actividades/Fondo_Supeior_Izquierda.png
+    - assets/Actividades/Fondo_inferior_Izquierda.png
+    - assets/Actividades/Fondo_superior_Derecha.png
+
 #--------------- IMAGENES BUSQUEDA ----------------#
 
     - assets/Busqueda/Busqueda_Google_Academico.png
@@ -179,6 +190,11 @@ flutter:
     - assets/Busqueda/Busqueda_Ejemplo_Google_Alertas2.png
     - assets/Busqueda/Busqueda_Ejemplo_Google_Tendencias1.png
     - assets/Busqueda/Busqueda_Ejemplo_Google_Tendencias2.png
+
+    - assets/Busqueda/Fondo_Inferior_Derecha.png
+    - assets/Busqueda/Fondo_Supeior_Izquierda.png
+    - assets/Busqueda/Fondo_inferior_Izquierda.png
+    - assets/Busqueda/Fondo_superior_Derecha.png
 
 #--------------- IMAGENES BASESDATOS ----------------#
 

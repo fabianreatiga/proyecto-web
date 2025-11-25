@@ -103,8 +103,8 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
     250, //MÉTODO SMART
     180, //MÉTODO CLEAR
     350, //MÉTODO PURE
-    350, //MÉTODO GROW
-    350, //MÉTODO DUMB
+    150, //MÉTODO GROW
+    150, //MÉTODO DUMB
     500, //ÁRBOL DE OJETIVOS
     200,
   ];

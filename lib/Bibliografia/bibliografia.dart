@@ -145,55 +145,160 @@ class _BibliografiasState extends State<Bibliografias>
         ],
       ),
       drawer: const Menu(currentScreen: 'Bibliogafia'),
-      body: Column(
+      body: Stack(
         children: [
-          Expanded(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
-              child:
-                  esPantallaPequena
-                      ? InteractiveViewer(
-                        // 📌 Zoom solo en pantallas pequeñas
-                        constrained: true,
-                        minScale: 1.0,
-                        maxScale: 3.0,
-                        child: Column(
-                          children: [
-                            Text(
-                              '¿Sabes que es una Bibliografía?',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: tamanotexto(1) + 5,
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'Calibri',
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                            const SizedBox(height: 20),
-                            _buildercard(),
-                          ],
-                        ),
-                      )
-                      : Column(
-                        // 📌 Sin zoom en pantallas grandes
-                        children: [
-                          Text(
-                            '¿Sabes que es una Bibliografía?',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: tamanotexto(1) + 5,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'Calibri',
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                          const SizedBox(height: 20),
-                          _buildercard(),
-                        ],
-                      ),
+          // 🌄 Fondo superior izquierda decorativo
+          Positioned(
+            top: 0,
+            right: 0,
+            child: Opacity(
+              opacity: opacidad(1),
+              child: Image.asset(
+                'assets/bibliografia/Fondo_superior_Derecha.png',
+                width: esPantallaPequena ? 120 : 250,
+                //MediaQuery.of(context).size.width * 0.18,
+                fit: BoxFit.contain,
+              ),
             ),
           ),
-          _buildNavigation(),
+          Positioned(
+            top: 8,
+            right: 8,
+            child: Opacity(
+              opacity: opacidad(1),
+              child: Image.asset(
+                'assets/Icono_Atomo.png',
+                width: esPantallaPequena ? 45 : 98,
+                //MediaQuery.of(context).size.width * 0.18,
+                fit: BoxFit.contain,
+              ),
+            ),
+          ),
+
+          // 🌄 Fondo superior derecha decorativo
+          Positioned(
+            top: 0,
+            left: 0,
+            child: Opacity(
+              opacity: opacidad(1),
+              child: Image.asset(
+                'assets/bibliografia/Fondo_Supeior_Izquierda.png',
+                width: esPantallaPequena ? 120 : 250,
+                //height: MediaQuery.of(context).size.width * 0.18,
+                fit: BoxFit.contain,
+              ),
+            ),
+          ),
+
+          // 🌄 Fondo inferior izquierda
+          Positioned(
+            bottom: 90,
+            left: 0,
+            child: Opacity(
+              opacity: opacidad(1),
+              child: Image.asset(
+                'assets/bibliografia/Fondo_inferior_Izquierda.png',
+                width: esPantallaPequena ? 120 : 250,
+                //height: MediaQuery.of(context).size.width * 0.18,
+                fit: BoxFit.contain,
+              ),
+            ),
+          ),
+
+          // 🌄 Fondo inferior derecha
+          Positioned(
+            bottom: 90,
+            right: 0,
+            child: Opacity(
+              opacity: opacidad(1),
+              child: Image.asset(
+                'assets/bibliografia/Fondo_Inferior_Derecha.png',
+                width: esPantallaPequena ? 120 : 250,
+                //height: MediaQuery.of(context).size.width * 0.18,
+                fit: BoxFit.contain,
+              ),
+            ),
+          ),
+
+          Positioned(
+            top: 8,
+            left: 8,
+            child: Opacity(
+              opacity: opacidad(1),
+              child: Image.asset(
+                'assets/Icono_Cohete.png',
+                width: esPantallaPequena ? 45 : 110,
+                //MediaQuery.of(context).size.width * 0.18,
+                fit: BoxFit.contain,
+              ),
+            ),
+          ),
+
+          // 📜 Contenido principal
+          SafeArea(
+            child: Container(
+              padding: EdgeInsets.zero,
+              child: Column(
+                children: [
+                  // Scroll del contenido
+                  Expanded(
+                    child: SingleChildScrollView(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 20,
+                      ),
+                      child:
+                          esPantallaPequena
+                              ? InteractiveViewer(
+                                // 🔍 Zoom solo en pantallas pequeñas
+                                constrained: true,
+                                minScale: 1.0,
+                                maxScale: 5.0,
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      '¿Sabes que es una Bibliografía?',
+                                      style: TextStyle(
+                                        fontSize: tamanotexto(1) + 5,
+                                        fontFamily: 'Calibri',
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    const SizedBox(height: 20),
+                                    _buildercard(),
+                                    SizedBox(height: altura(1)),
+                                  ],
+                                ),
+                              )
+                              : Column(
+                                // 💻 En pantallas grandes sin zoom
+                                children: [
+                                  Text(
+                                    '¿Sabes que es una Bibliografía?',
+                                    style: TextStyle(
+                                      fontSize: tamanotexto(1) + 5,
+                                      fontFamily: 'Calibri',
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  const SizedBox(height: 35),
+                                  _buildercard(),
+                                  SizedBox(height: altura(1)),
+                                ],
+                              ),
+                    ),
+                  ),
+
+                  // 🔘 Navegación inferior
+                  _buildNavigation(),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );
