@@ -12,6 +12,8 @@ import 'package:nuevomockups/PlanteamientoProblemas/plantiamientoproblemas.dart'
 import 'package:nuevomockups/global.dart';
 
 class Titulo extends StatelessWidget {
+  const Titulo({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -43,9 +45,7 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
     'Características: debe ser preciso, Contener la idea principal del tema de investigación, Debe responder a: ¿Qué se va a hacer? ¿Sobre qué o quiénes se hará? ¿Dónde se llevará a cabo?, El título del proyecto se estructura en tres partes: Proceso: La acción o acciones a desarrollar. Objeto: El motivo del proceso. Localización: La ubicación geográfica de la investigación.',
     'Se recomienda usar entre 12-20 palabras, Ser limitativo: Si son fechas: Especificar el periodo de tiempo o la época, Si son personas: Edad, género, profesión, etc., Si son lugares: Colonia, localidad, municipio, estado, país, Si son teorías o corrientes: Especificar la ciencia que se aplica, Evitar la sobre explicación.',
     'Palabras útiles para estructurar el título.',
-    'Ejemplos para la creación de un título:',
-    '',
-    //'Ejemplos para la creación de un título:',
+    'Ejemplos para la creación de un título:\n',
   ]; // lista de los textos que se van a mostrar
 
   final List<String> imagenes = [
@@ -54,7 +54,6 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
     'assets/titulo/Titulo_otras_caracteristicas.jpg',
     'assets/titulo/Titulo_palabras_utiles.png',
     'assets/titulo/Titulo_ejemplo.png',
-    '',
   ]; // lista de las imagenes
 
   // ignore: unused_field
@@ -66,7 +65,6 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
     'MÁS CARACTERÍSTICAS DEL TÍTULO',
     'PALABRAS ÚTILES PARA TÍTULO',
     'EJEMPLOS DE TÍTULO',
-    'VIDEO',
   ]; // lista de las secciones
 
   final List<double> alturaImagengrande = [
@@ -75,16 +73,14 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
     260, //MAS CARACTERISTICAS DEL TITULO
     350, // PALABRAS UTILES PARA TITULO
     450, //EJEMPLOS DE TITULOS
-    0,
   ]; // lista de las alturas de las imagenes para pantallas grandes
 
   final List<double> alturaImagenPequena = [
     200, //TITULO
     200, // CARACTERISTICAS DEL TITULO
     200, //MAS CARACTERISTICAS DEL TITULO
-    450, // PALABRAS UTILES PARA TITULO
-    450, //EJEMPLOS DE TITULOS
-    0,
+    250, // PALABRAS UTILES PARA TITULO
+    250, //EJEMPLOS DE TITULOS
   ]; // lista de las alturas de las imagenes para pantallas pequenas
 
   static int ID_BASE_PROGRESO = 1; // ID base para el progreso de este subtema
@@ -321,58 +317,59 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
                       ? Column(
                         // se usa ? como un operador ternario para saber si la pantalla es pequeña o grande
                         children: [
-                          if (_index == 5)
-                            RichText(
-                              textAlign: TextAlign.justify,
-                              text: TextSpan(
-                                style: TextStyle(
-                                  fontSize: tamanotexto(2) + 4,
-                                  fontFamily: 'Calibri',
-                                  height: 1.5,
-                                  color: Colors.black,
-                                ),
-                                children: [
-                                  TextSpan(
-                                    text:
-                                        'Para comprender mejor este tema, te invitamos a ingresar al siguiente enlace y ver el ',
-                                  ),
-                                  TextSpan(
-                                    text: 'Video explicativo.',
-                                    style: TextStyle(
-                                      color: Colors.blue,
-                                      //decoration: TextDecoration.underline,
-                                    ),
-                                    recognizer:
-                                        TapGestureRecognizer()
-                                          ..onTap = () {
-                                            abrirLink(
-                                              'https://sena4-my.sharepoint.com/personal/ochaparrob_sena_edu_co/_layouts/15/stream.aspx?id=%2Fpersonal%2Fochaparrob%5Fsena%5Fedu%5Fco%2FDocuments%2F5%2E%20Sena%20Documentos%2F2025%2FInvestigaci%C3%B3n%2FProyecto%20Investigaci%C3%B3n%20Practica%2FVideo%20T%C3%ADtulo%2FVideo%20del%20t%C3%ADtulo%2Ewebm&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E14f8d0ee%2Dd03d%2D4c9a%2D9f61%2D041ab9840b25',
-                                            );
-                                          },
-                                  ),
-                                ],
-                              ),
-                            ),
-
                           Text(
                             textos[_index],
                             style: TextStyle(
-                              fontSize: tamanotexto(2) + 4,
+                              fontSize: tamanotexto(2) + 6,
                               fontFamily: 'Calibri',
                               height: 1.5,
                             ),
                             textAlign: TextAlign.justify,
                           ),
-                          const SizedBox(height: 20),
-                          if (_index <= 4)
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(12),
-                              child: Image.asset(
-                                imagenes[_index],
-                                height: alturaImagenPequena[_index],
-                                fit: BoxFit.contain,
+                          if (_index == 4)
+                            Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: RichText(
+                                textAlign: TextAlign.justify,
+                                text: TextSpan(
+                                  style: TextStyle(
+                                    fontSize: tamanotexto(2) + 4,
+                                    fontFamily: 'Calibri',
+                                    height: 1.5,
+                                    color: Colors.black,
+                                  ),
+                                  children: [
+                                    TextSpan(
+                                      text:
+                                          'Para comprender mejor este tema, te invitamos a ingresar al siguiente enlace y ver el ',
+                                    ),
+                                    TextSpan(
+                                      text: 'Video explicativo.',
+                                      style: TextStyle(
+                                        color: Colors.blue,
+                                        //decoration: TextDecoration.underline,
+                                      ),
+                                      recognizer:
+                                          TapGestureRecognizer()
+                                            ..onTap = () {
+                                              abrirLink(
+                                                'https://sena4-my.sharepoint.com/personal/ochaparrob_sena_edu_co/_layouts/15/stream.aspx?id=%2Fpersonal%2Fochaparrob%5Fsena%5Fedu%5Fco%2FDocuments%2F5%2E%20Sena%20Documentos%2F2025%2FInvestigaci%C3%B3n%2FProyecto%20Investigaci%C3%B3n%20Practica%2FVideo%20T%C3%ADtulo%2FVideo%20del%20t%C3%ADtulo%2Ewebm&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E14f8d0ee%2Dd03d%2D4c9a%2D9f61%2D041ab9840b25',
+                                              );
+                                            },
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
+                          const SizedBox(height: 20),
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(12),
+                            child: Image.asset(
+                              imagenes[_index],
+                              height: alturaImagenPequena[_index],
+                              fit: BoxFit.contain,
+                            ),
+                          ),
                         ],
                       )
                       : Row(
@@ -387,7 +384,17 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  if (_index == 5)
+                                  Text(
+                                    textos[_index],
+                                    style: TextStyle(
+                                      fontSize: tamanotexto(2) + 4,
+                                      fontFamily: 'Calibri',
+                                      height: 1.5,
+                                      //se usa height para aumentar la altura de la letra
+                                    ),
+                                    textAlign: TextAlign.justify,
+                                  ),
+                                  if (_index == 4)
                                     Center(
                                       child: RichText(
                                         textAlign: TextAlign.justify,
@@ -421,38 +428,28 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
                                         ),
                                       ),
                                     ),
-                                  Text(
-                                    textos[_index],
-                                    style: TextStyle(
-                                      fontSize: tamanotexto(2) + 4,
-                                      fontFamily: 'Calibri',
-                                      height: 1.5,
-                                      //se usa height para aumentar la altura de la letra
-                                    ),
-                                    textAlign: TextAlign.justify,
-                                  ),
                                 ],
                               ),
                             ),
                           ),
-                          if (_index <= 4)
-                            Flexible(
-                              flex: 0,
-                              child: Align(
-                                alignment: Alignment.topRight,
-                                // Alinear imagen a la derecha.
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(12),
-                                  child: Image.asset(
-                                    imagenes[_index], // Imagen dinámica.
-                                    height: alturaImagengrande[_index],
-                                    // Altura para pantallas grandes.
-                                    fit: BoxFit.contain,
-                                    // se usa fit para que la imagen se ajuste al tamaño del contenedor
-                                  ),
+
+                          Flexible(
+                            flex: 0,
+                            child: Align(
+                              alignment: Alignment.topRight,
+                              // Alinear imagen a la derecha.
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(12),
+                                child: Image.asset(
+                                  imagenes[_index], // Imagen dinámica.
+                                  height: alturaImagengrande[_index],
+                                  // Altura para pantallas grandes.
+                                  fit: BoxFit.contain,
+                                  // se usa fit para que la imagen se ajuste al tamaño del contenedor
                                 ),
                               ),
                             ),
+                          ),
 
                           if (_index == 3 || _index == 4) Spacer(),
                         ],
@@ -521,13 +518,13 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
                     }
                   });
                 } else {
-                  await guardarProgresoFinal(2);
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => const Plantiamientoproblemas(),
                     ),
                   );
+                  await guardarProgresoFinal(2);
                 }
               },
 
@@ -710,13 +707,6 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
       'icon': Icons.book,
       'color': obtenercolor('Color_Secundario'),
       'indice': 4,
-    },
-    {
-      'id': 7,
-      'text': 'Video',
-      'icon': Icons.video_library_outlined,
-      'color': obtenercolor('Color_Secundario'),
-      'indice': 5,
     },
   ];
 }

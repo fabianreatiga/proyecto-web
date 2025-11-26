@@ -58,9 +58,7 @@ class _JustificacionesState extends State<Justificaciones>
         ' la sustentabilidad de sus operaciones. Las empresas tendrán que convencer a los consumidores cada'
         ' vez más escépticos ante lo que les ofrezcan, debido a que con mayor frecuencia aparecerán personas'
         ' informadas que pueden originar cambios que afectarán al mundo de los negocios en su totalidad, y surgirá'
-        ' una nueva batalla en la competitividad empresarial.',
-
-    '',
+        ' una nueva batalla en la competitividad empresarial.\n',
   ];
 
   final List<String> imagenes = [
@@ -68,7 +66,6 @@ class _JustificacionesState extends State<Justificaciones>
     'assets/Justificacion/Justificacion_Pasos.png', // Imagen para la pestaña PASOS
     'assets/Justificacion/Justificacion_Consejos.png', // Imagen para la pestaña CONSEJOS
     'assets/Justificacion/Justificacion_Ejemplo.png', // Imagen para la pestaña EJEMPLO
-    '',
   ];
 
   final List<String> secciones = [
@@ -76,7 +73,6 @@ class _JustificacionesState extends State<Justificaciones>
     'PASOS',
     'CONSEJOS',
     'EJEMPLO',
-    'VIDEO',
   ];
 
   final List<double> alturaImagengrande = [
@@ -84,7 +80,6 @@ class _JustificacionesState extends State<Justificaciones>
     400, // PASOS
     550, // CONSEJOS
     200, // EJEMPLO
-    200, // VIDEO
   ];
 
   final List<double> alturaImagenPequena = [
@@ -92,7 +87,6 @@ class _JustificacionesState extends State<Justificaciones>
     300, // PASOS
     350, // CONSEJOS
     150, // EJEMPLO
-    200, // VIDEO
   ];
   static int ID_BASE_PROGRESO = 21;
   int _currentseccion = 0;
@@ -345,72 +339,23 @@ class _JustificacionesState extends State<Justificaciones>
                   esPantallaPequena
                       ? Column(
                         children: [
-                          if (_index == 4)
-                            Center(
-                              child: RichText(
-                                textAlign: TextAlign.justify,
-                                text: TextSpan(
-                                  style: TextStyle(
-                                    fontSize: tamanotexto(2) + 4,
-                                    fontFamily: 'Calibri',
-                                    height: 1.5,
-                                    color: Colors.black,
-                                  ),
-                                  children: [
-                                    TextSpan(
-                                      text:
-                                          'Para comprender mejor este tema, te invitamos a ingresar al siguiente enlace y ver el ',
-                                    ),
-                                    TextSpan(
-                                      text: 'Video explicativo.',
-                                      style: TextStyle(
-                                        color: Colors.blue,
-                                        //decoration: TextDecoration.underline,
-                                      ),
-                                      recognizer:
-                                          TapGestureRecognizer()
-                                            ..onTap = () {
-                                              abrirLink('');
-                                            },
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
                           Text(
                             textos[_index],
                             style: TextStyle(
-                              fontSize: tamanotexto(2),
+                              fontSize: tamanotexto(2) + 4,
                               fontFamily: 'Calibri',
                               height: 1.5,
                             ),
                             textAlign: TextAlign.justify,
                           ),
                           const SizedBox(height: 20),
-
-                          if (_index <= 3)
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(12),
-                              child: Image.asset(
-                                imagenes[_index],
-                                height: alturaImagenPequena[_index],
-                                fit: BoxFit.contain,
-                              ),
-                            ),
-                        ],
-                      )
-                      : Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          if (_index == 4) Spacer(),
-                          if (_index == 4) Spacer(),
-                          if (_index == 4)
+                          if (_index == 3)
                             Center(
                               child: RichText(
                                 textAlign: TextAlign.justify,
                                 text: TextSpan(
                                   style: TextStyle(
-                                    fontSize: tamanotexto(2) + 4,
+                                    fontSize: tamanotexto(2),
                                     fontFamily: 'Calibri',
                                     height: 1.5,
                                     color: Colors.black,
@@ -436,21 +381,71 @@ class _JustificacionesState extends State<Justificaciones>
                                 ),
                               ),
                             ),
+
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(12),
+                            child: Image.asset(
+                              imagenes[_index],
+                              height: alturaImagenPequena[_index],
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                        ],
+                      )
+                      : Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
                           Expanded(
                             flex: 2,
                             child: Padding(
                               padding: const EdgeInsets.only(right: 20),
-                              child: Text(
-                                textos[_index],
-                                style: TextStyle(
-                                  fontSize: tamanotexto(2) + 4,
-                                  fontFamily: 'Calibri',
-                                  height: 1.5,
-                                ),
-                                textAlign: TextAlign.justify,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    textos[_index],
+                                    style: TextStyle(
+                                      fontSize: tamanotexto(2) + 4,
+                                      fontFamily: 'Calibri',
+                                      height: 1.5,
+                                    ),
+                                    textAlign: TextAlign.justify,
+                                  ),
+                                  if (_index == 3)
+                                    RichText(
+                                      textAlign: TextAlign.justify,
+                                      text: TextSpan(
+                                        style: TextStyle(
+                                          fontSize: tamanotexto(2) + 4,
+                                          fontFamily: 'Calibri',
+                                          height: 1.5,
+                                          color: Colors.black,
+                                        ),
+                                        children: [
+                                          TextSpan(
+                                            text:
+                                                'Para comprender mejor este tema, te invitamos a ingresar al siguiente enlace y ver el ',
+                                          ),
+                                          TextSpan(
+                                            text: 'Video explicativo.',
+                                            style: TextStyle(
+                                              color: Colors.blue,
+                                              //decoration: TextDecoration.underline,
+                                            ),
+                                            recognizer:
+                                                TapGestureRecognizer()
+                                                  ..onTap = () {
+                                                    abrirLink('');
+                                                  },
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                ],
                               ),
                             ),
                           ),
+
                           if (_index <= 3)
                             Flexible(
                               flex: 0,
@@ -546,11 +541,11 @@ class _JustificacionesState extends State<Justificaciones>
                     }
                   });
                 } else {
-                  await guardarProgresoFinal(2);
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const Objetivos()),
                   );
+                  await guardarProgresoFinal(2);
                 }
               },
               icon: Icon(
@@ -727,13 +722,6 @@ class _JustificacionesState extends State<Justificaciones>
       'icon': Icons.description_outlined,
       'color': obtenercolor('Color_Secundario'),
       'indice': 3,
-    },
-    {
-      'id': 6,
-      'text': 'Video',
-      'icon': Icons.video_library_outlined,
-      'color': obtenercolor('Color_Secundario'),
-      'indice': 4,
     },
   ];
 }

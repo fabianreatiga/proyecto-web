@@ -67,8 +67,7 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
         ' entreguen valor a la empresa y a la marca..',
 
     'El árbol de objetivos reúne los medios y alternativas para solucionar el problema principal. Gracias a ello, se logra una visión positiva de las'
-        ' situaciones negativas que aparecían en el árbol anterior, aunque utilice la misma estructura. Así, se busca ir resolviendo el problema paso a paso..',
-    '',
+        ' situaciones negativas que aparecían en el árbol anterior, aunque utilice la misma estructura. Así, se busca ir resolviendo el problema paso a paso..\n',
   ];
 
   final List<String> imagenes = [
@@ -79,7 +78,6 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
     'assets/Objetivos/Objetivos_Método_Grow.png', //MÉTODO GROW
     'assets/Objetivos/Objetivos_Método_Dumb_texto.png', //MÉTODO DUMB
     'assets/Objetivos/Objetivos_Arbol_de_Objetivos.png', //ÁRBOL DE OJETIVOS
-    '',
   ];
 
   final List<String> secciones = [
@@ -90,7 +88,6 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
     'MÉTODO GROW',
     'MÉTODO DUMB',
     'ÁRBOL DE OJETIVOS',
-    'VIDEOS',
   ];
 
   /* int _progresoContador = 1;
@@ -101,23 +98,21 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
   final List<double> alturaImagengrande = [
     650, //COMO CREAR LOS OBJETIVOS
     250, //MÉTODO SMART
-    180, //MÉTODO CLEAR
+    120, //MÉTODO CLEAR
     350, //MÉTODO PURE
     150, //MÉTODO GROW
     150, //MÉTODO DUMB
     500, //ÁRBOL DE OJETIVOS
-    200,
   ];
 
   final List<double> alturaImagenPequena = [
     500, //COMO CREAR LOS OBJETIVOS
-    350, //MÉTODO SMART
-    350, //MÉTODO CLEAR
+    150, //MÉTODO SMART
+    100, //MÉTODO CLEAR
     350, //MÉTODO PURE
-    350, //MÉTODO GROW
-    300, //MÉTODO DUMB
+    100, //MÉTODO GROW
+    100, //MÉTODO DUMB
     300, //ÁRBOL DE OJETIVOS
-    200,
   ];
 
   static int ID_BASE_PROGRESO = 25;
@@ -379,38 +374,6 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
                       ? Column(
                         // se usa Column para mostrar el texto en dos filas
                         children: [
-                          if (_index == 7)
-                            Center(
-                              child: RichText(
-                                textAlign: TextAlign.justify,
-                                text: TextSpan(
-                                  style: TextStyle(
-                                    fontSize: tamanotexto(2) + 4,
-                                    fontFamily: 'Calibri',
-                                    height: 1.5,
-                                    color: Colors.black,
-                                  ),
-                                  children: [
-                                    TextSpan(
-                                      text:
-                                          'Para comprender mejor este tema, te invitamos a ingresar al siguiente enlace y ver el ',
-                                    ),
-                                    TextSpan(
-                                      text: 'Video explicativo.',
-                                      style: TextStyle(
-                                        color: Colors.blue,
-                                        //decoration: TextDecoration.underline,
-                                      ),
-                                      recognizer:
-                                          TapGestureRecognizer()
-                                            ..onTap = () {
-                                              abrirLink('');
-                                            },
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
                           if (_index == 1)
                             RichText(
                               textAlign: TextAlign.justify,
@@ -571,25 +534,7 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
                               ),
                               textAlign: TextAlign.justify,
                             ),
-
-                          const SizedBox(height: 20),
-                          if (_index <= 6)
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(12),
-                              child: Image.asset(
-                                imagenes[_index],
-                                height: alturaImagenPequena[_index],
-                                fit: BoxFit.contain,
-                              ),
-                            ),
-                        ],
-                      )
-                      : Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          if (_index == 7) Spacer(),
-                          if (_index == 7) Spacer(),
-                          if (_index == 7)
+                          if (_index == 6)
                             Center(
                               child: RichText(
                                 textAlign: TextAlign.justify,
@@ -621,7 +566,21 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
                                 ),
                               ),
                             ),
-
+                          const SizedBox(height: 20),
+                          if (_index <= 6)
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(12),
+                              child: Image.asset(
+                                imagenes[_index],
+                                height: alturaImagenPequena[_index],
+                                fit: BoxFit.contain,
+                              ),
+                            ),
+                        ],
+                      )
+                      : Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
                           Expanded(
                             flex: 2,
                             child: Padding(
@@ -792,6 +751,38 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
                                       ),
                                       textAlign: TextAlign.justify,
                                     ),
+                                  if (_index == 6)
+                                    Center(
+                                      child: RichText(
+                                        textAlign: TextAlign.justify,
+                                        text: TextSpan(
+                                          style: TextStyle(
+                                            fontSize: tamanotexto(2) + 6,
+                                            fontFamily: 'Calibri',
+                                            height: 1.5,
+                                            color: Colors.black,
+                                          ),
+                                          children: [
+                                            TextSpan(
+                                              text:
+                                                  'Para comprender mejor este tema, te invitamos a ingresar al siguiente enlace y ver el ',
+                                            ),
+                                            TextSpan(
+                                              text: 'Video explicativo.',
+                                              style: TextStyle(
+                                                color: Colors.blue,
+                                                //decoration: TextDecoration.underline,
+                                              ),
+                                              recognizer:
+                                                  TapGestureRecognizer()
+                                                    ..onTap = () {
+                                                      abrirLink('');
+                                                    },
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
                                 ],
                               ),
                             ),
@@ -818,21 +809,21 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
                   if (_index == 1)
                     Center(
                       child: Image.asset(
-                        height: 250,
+                        height: esPantallaPequena ? 120 : 200,
                         'assets/Objetivos/Objetivos_Método_Smart_Titulo.png',
                       ),
                     ),
                   if (_index == 2)
                     Center(
                       child: Image.asset(
-                        height: 400,
+                        height: esPantallaPequena ? 250 : 400,
                         'assets/Objetivos/Objetivos_Método_Clear_Titulo.png',
                       ),
                     ),
                   if (_index == 5)
                     Center(
                       child: Image.asset(
-                        height: 350,
+                        height: esPantallaPequena ? 130 : 350,
                         'assets/Objetivos/Objetivos_Método_Dumb_Titulo.png',
                       ),
                     ),
@@ -912,13 +903,13 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
                     }
                   });
                 } else {
-                  await guardarProgresoFinal(2);
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => const Metodologia(),
                     ),
                   );
+                  await guardarProgresoFinal(2);
                 }
               },
               icon: Icon(
@@ -1116,13 +1107,6 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
       'icon': Icons.call_split,
       'color': obtenercolor('Color_Secundario'),
       'indice': 6,
-    },
-    {
-      'id': 10,
-      'text': 'Videos',
-      'icon': Icons.video_library_outlined,
-      'color': obtenercolor('Color_Secundario'),
-      'indice': 7,
     },
   ];
 }

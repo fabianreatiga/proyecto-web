@@ -1,11 +1,13 @@
 // ignore_for_file: unused_field, deprecated_member_use, non_constant_identifier_names
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:nuevomockups/Appbar/appbar.dart';
 import 'package:nuevomockups/Bibliografia/bibliografia.dart';
 import 'package:nuevomockups/Color_texto/color_texto.dart';
 import 'package:nuevomockups/Cronograma/cronograma.dart';
+import 'package:nuevomockups/Links/links.dart';
 
 import 'package:nuevomockups/Menus/menus.dart';
 import 'package:nuevomockups/global.dart';
@@ -42,7 +44,7 @@ class _ActividadState extends State<Actividad> with TickerProviderStateMixin {
         ' alcanzar sus objetivos. Por objetivo debe haber mínimo un resultado esperado',
     '• Se deben especificar los resultados esperados en el orden y en el período de tiempo en el cual'
         ' se pretenden alcanzar.\n• Se formulan en términos de los efectos o impactos que pueden generarse a'
-        ' nivel social, medioambiental, de políticas públicas, etc.',
+        ' nivel social, medioambiental, de políticas públicas, etc.\n',
   ];
   final List<String> imagenes = [
     'assets/Actividades/Actividades.png', //ACTIVIDADES
@@ -64,7 +66,7 @@ class _ActividadState extends State<Actividad> with TickerProviderStateMixin {
   final List<double> alturaImagengrande = [
     550, //ACTIVIDADES
     350, //RESULTADOS
-    450, //FORMULACIÓN DE RESULTADOS
+    250, //FORMULACIÓN DE RESULTADOS
   ];
 
   final List<double> alturaImagenPequena = [
@@ -73,7 +75,7 @@ class _ActividadState extends State<Actividad> with TickerProviderStateMixin {
     300, //FORMULACIÓN DE RESULTADOS
   ];
 
-  static int ID_BASE_PROGRESO = 41;
+  static int ID_BASE_PROGRESO = 46;
   int _currentseccion = 0;
   @override
   void initState() {
@@ -338,12 +340,44 @@ class _ActividadState extends State<Actividad> with TickerProviderStateMixin {
                             ),
                             textAlign: TextAlign.justify,
                           ),
+                          if (_index == 2)
+                            Center(
+                              child: RichText(
+                                textAlign: TextAlign.justify,
+                                text: TextSpan(
+                                  style: TextStyle(
+                                    fontSize: tamanotexto(2) + 4,
+                                    fontFamily: 'Calibri',
+                                    height: 1.5,
+                                    color: Colors.black,
+                                  ),
+                                  children: [
+                                    TextSpan(
+                                      text:
+                                          'Para comprender mejor este tema, te invitamos a ingresar al siguiente enlace y ver el ',
+                                    ),
+                                    TextSpan(
+                                      text: 'Video explicativo.',
+                                      style: TextStyle(
+                                        color: Colors.blue,
+                                        //decoration: TextDecoration.underline,
+                                      ),
+                                      recognizer:
+                                          TapGestureRecognizer()
+                                            ..onTap = () {
+                                              abrirLink('');
+                                            },
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
                           const SizedBox(height: 20),
                           ClipRRect(
                             borderRadius: BorderRadius.circular(12),
                             child: Image.asset(
                               imagenes[_index],
-                              height: alturaImagenPequena[_index],
+                              //height: alturaImagenPequena[_index],
                               fit: BoxFit.contain,
                             ),
                           ),
@@ -356,14 +390,50 @@ class _ActividadState extends State<Actividad> with TickerProviderStateMixin {
                             flex: 2,
                             child: Padding(
                               padding: EdgeInsets.only(right: 20),
-                              child: Text(
-                                textos[_index],
-                                style: TextStyle(
-                                  fontSize: tamanotexto(2) + 4,
-                                  fontFamily: 'calibri',
-                                  height: 1.5,
-                                ),
-                                textAlign: TextAlign.justify,
+                              child: Column(
+                                children: [
+                                  Text(
+                                    textos[_index],
+                                    style: TextStyle(
+                                      fontSize: tamanotexto(2) + 4,
+                                      fontFamily: 'calibri',
+                                      height: 1.5,
+                                    ),
+                                    textAlign: TextAlign.justify,
+                                  ),
+                                  if (_index == 2)
+                                    Center(
+                                      child: RichText(
+                                        textAlign: TextAlign.justify,
+                                        text: TextSpan(
+                                          style: TextStyle(
+                                            fontSize: tamanotexto(2) + 4,
+                                            fontFamily: 'Calibri',
+                                            height: 1.5,
+                                            color: Colors.black,
+                                          ),
+                                          children: [
+                                            TextSpan(
+                                              text:
+                                                  'Para comprender mejor este tema, te invitamos a ingresar al siguiente enlace y ver el ',
+                                            ),
+                                            TextSpan(
+                                              text: 'Video explicativo.',
+                                              style: TextStyle(
+                                                color: Colors.blue,
+                                                //decoration: TextDecoration.underline,
+                                              ),
+                                              recognizer:
+                                                  TapGestureRecognizer()
+                                                    ..onTap = () {
+                                                      abrirLink('');
+                                                    },
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                ],
                               ),
                             ),
                           ),
@@ -457,13 +527,13 @@ class _ActividadState extends State<Actividad> with TickerProviderStateMixin {
                     }
                   });
                 } else {
-                  await guardarProgresoFinal(2);
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => const Bibliografia(),
                     ),
                   );
+                  await guardarProgresoFinal(2);
                 }
               },
               icon: Icon(

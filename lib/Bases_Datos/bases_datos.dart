@@ -47,35 +47,11 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
         '🎓 Apoyar trabajos académicos y tesis: Brinda información actualizada y verificada para sustentar investigaciones.',
 
     'El SENA ofrece una Biblioteca Virtual donde todos los aprendices e instructores pueden acceder a bases de datos académicas y científicas. Estas bases contienen libros digitales, revistas, artículos, normas técnicas, investigaciones y otros recursos confiables para apoyar la formación y los proyectos. ',
-
-    'Los antecedentes son una parte del trabajo de investigación donde se recopila y describe la información previa existente sobre el tema que se está estudiando. Incluyen investigaciones, artículos, tesis, proyectos o informes anteriores que abordan el mismo problema o uno relacionado. '
-        'Su finalidad es mostrar qué se ha investigado antes, cuáles han sido los principales resultados obtenidos y cómo esos estudios sirven como base o referencia para tu propia investigación. Gracias a los antecedentes se puede entender el contexto, evitar repetir trabajos ya realizados y justificar por qué tu estudio es importante o necesario.',
-
-    '',
-
-    'El estado del arte es una parte esencial de toda investigación científica, técnica o académica. Consiste en revisar,'
-        ' analizar y describir los conocimientos, teorías, métodos, avances y resultados que otros investigadores han desarrollado'
-        ' previamente sobre el mismo tema o uno relacionado. Su objetivo principal es mostrar cómo está el conocimiento actual'
-        ' sobre un tema y cuál ha sido su evolución a lo largo del tiempo. Es decir, permite entender qué se sabe, cómo se ha estudiado '
-        'y qué falta por investigar. El término “estado del arte” proviene del inglés state of the art, que significa literalmente'
-        ' “nivel más avanzado del conocimiento en un campo determinado”. En investigación, se utiliza para referirse a la recopilación'
-        ' y análisis de la información más actualizada y relevante disponible.',
-
-    'Imagina que vas a investigar sobre el uso de software educativo en colegios.'
-        'Antes de empezar, revisa qué se ha estudiado sobre el tema:\n'
-        '• Busca información en fuentes confiables como Google Académico, Scielo, Redalyc o Dialnet, usando palabras clave como “software educativo” o “herramientas digitales para el aprendizaje”.\n'
-        '• Analiza los estudios existentes: algunos evalúan programas como Kahoot o Duolingo, aplicando encuestas o comparando el rendimiento antes y después de su uso.\n'
-        '• Registra los principales hallazgos: la mayoría concluye que el software educativo mejora la motivación y participación de los estudiantes, aunque depende de la capacitación docente.\n'
-        '• Detecta vacíos en la investigación: por ejemplo, el poco estudio del uso de software en zonas rurales o con acceso limitado a internet.',
   ];
   final List<String> imagenes = [
     'assets/BasesDatos/Bases_De_Datos_Definicion.png', //DEFINICIÓN
     'assets/BasesDatos/Bases_De_Datos_Que_Es.png', //¿PARA QUE SIRVE?
     'assets/BasesDatos/Bases_De_Datos_Biblioteca_Sena.jpg', //¿DÓNDE PUEDES ENCONTRAR LAS BASES DE DATOS CIENTÍFICAS?
-    '',
-    '',
-    'assets/BasesDatos/Bases_De_Datos_Estado_Del_Arte.png', //¿QUÉ ES EL ESTADO DEL ARTE?
-    'assets/BasesDatos/Bases_De_Datos_Estado_Del_Arte_Ejemplo.png', //EJEMPLOS
   ]; // lista de las imagenes
 
   // ignore: unused_field
@@ -85,34 +61,22 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
     'DEFINICIÓN',
     '¿PARA QUE SIRVE?',
     '¿DÓNDE PUEDES ENCONTRAR LAS BASES DE DATOS CIENTÍFICAS?',
-    '¿QUÉ SON LOS ANTECEDENTES?',
-    'EJEMPLO',
-    '¿QUÉ ES EL ESTADO DEL ARTE?',
-    'EJEMPLO',
   ]; // lista de las secciones
 
   final List<double> alturaImagengrande = [
     250, // DEFINICIÓN
     250, // ¿PARA QUE SIRVE?
     130, // ¿DÓNDE PUEDES ENCONTRAR LAS BASES DE DATOS CIENTÍFICAS?
-    0,
-    0,
-    250, // ¿QUÉ ES EL ESTADO DEL ARTE?
-    350, // EJEMPLOS
   ]; // lista de las alturas de las imagenes para pantallas grandes
 
   final List<double> alturaImagenPequena = [
     250, // DEFINICIÓN
     250, // ¿PARA QUE SIRVE?
     130, // ¿DÓNDE PUEDES ENCONTRAR LAS BASES DE DATOS CIENTÍFICAS?
-    0,
-    0,
-    150, // ¿QUÉ ES EL ESTADO DEL ARTE?
-    250, // EJEMPLOS
   ]; // lista de las alturas de las imagenes para pantallas pequenas
 
   // ignore: non_constant_identifier_names
-  static int ID_BASE_PROGRESO = 56; // ID base para el progreso de este subtema
+  static int ID_BASE_PROGRESO = 61; // ID base para el progreso de este subtema
 
   @override
   void initState() {
@@ -379,6 +343,36 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
                   esPantallaPequena
                       ? Column(
                         children: [
+                          if (_index == 4)
+                            RichText(
+                              textAlign: TextAlign.justify,
+                              text: TextSpan(
+                                style: TextStyle(
+                                  fontSize: tamanotexto(2) + 4,
+                                  fontFamily: 'Calibri',
+                                  height: 1.5,
+                                  //color: Colors.black,
+                                ),
+                                children: [
+                                  TextSpan(
+                                    text: 'Antecedente 1: \n',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text:
+                                        'En 2020, María Pérez realizó un estudio sobre el uso del celular en estudiantes de secundaria. Su investigación mostró que los jóvenes pasan en promedio 4 horas al día usando redes sociales. '
+                                        'Este estudio es importante porque ayuda a entender cómo el uso del celular afecta el tiempo de estudio de los estudiantes.\n',
+                                  ),
+
+                                  TextSpan(
+                                    text:
+                                        'Este es un ejemplo básico que muestra:\n• Quién hizo el estudio\n• De qué trató\n• Qué encontró\n• Por qué es relevante para otra investigación.',
+                                  ),
+                                ],
+                              ),
+                            ),
                           Text(
                             textos[_index],
                             style: TextStyle(
@@ -388,7 +382,9 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
                             ),
                             textAlign: TextAlign.justify,
                           ),
+
                           const SizedBox(height: 10),
+
                           /*if (_index == 4)
                             RichText(
                               textAlign: TextAlign.justify,
@@ -416,36 +412,6 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
                                 ],
                               ),
                             ),*/
-                          if (_index == 4)
-                            RichText(
-                              textAlign: TextAlign.justify,
-                              text: TextSpan(
-                                style: TextStyle(
-                                  fontSize: tamanotexto(2) + 4,
-                                  fontFamily: 'Calibri',
-                                  height: 1.5,
-                                  //color: Colors.black,
-                                ),
-                                children: [
-                                  TextSpan(
-                                    text: 'Antecedente 1: \n',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  TextSpan(
-                                    text:
-                                        'En 2020, María Pérez realizó un estudio sobre el uso del celular en estudiantes de secundaria. Su investigación mostró que los jóvenes pasan en promedio 4 horas al día usando redes sociales. '
-                                        'Este estudio es importante porque ayuda a entender cómo el uso del celular afecta el tiempo de estudio de los estudiantes.\n',
-                                  ),
-
-                                  TextSpan(
-                                    text:
-                                        'Este es un ejemplo básico que muestra:\n• quién hizo el estudio,\n• de qué trató,\n• qué encontró,\n• y por qué es relevante para otra investigación.',
-                                  ),
-                                ],
-                              ),
-                            ),
                           if (_index == 2)
                             RichText(
                               textAlign: TextAlign.justify,
@@ -551,7 +517,7 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
 
                                           TextSpan(
                                             text:
-                                                'Este es un ejemplo básico que muestra:\n• quién hizo el estudio,\n• de qué trató,\n• qué encontró,\n• y por qué es relevante para otra investigación.',
+                                                'Este es un ejemplo básico que muestra:\n• Quién hizo el estudio\n• De qué trató\n• Qué encontró\n• Por qué es relevante para otra investigación.',
                                           ),
                                         ],
                                       ),
@@ -678,6 +644,21 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
                           ),
                         ],
                       ),
+                  if (_index == 2)
+                    Center(
+                      child: SizedBox(
+                        child: Column(
+                          children: [
+                            SizedBox(height: 20),
+                            Image.asset('assets/BasesDatos/Ejemplo1.png'),
+                            SizedBox(height: 10),
+                            Image.asset('assets/BasesDatos/Ejemplo2.png'),
+                            SizedBox(height: 10),
+                            Image.asset('assets/BasesDatos/Ejemplo3.png'),
+                          ],
+                        ),
+                      ),
+                    ),
                 ],
               ),
             ),

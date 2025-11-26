@@ -7,15 +7,16 @@ class ProgresoGlobal {
   static final Set<int> pestanasVistas = {};
   static final Set<int> todosLosIDs = {
     ...List.generate(5, (i) => i + 1), // Título
-    ...List.generate(16, (i) => i + 7), // Planteamiento
+    ...List.generate(15, (i) => i + 7), // Planteamiento
     ...List.generate(4, (i) => i + 22), // Justificación
     ...List.generate(7, (i) => i + 26), // Objetivos
-    ...List.generate(6, (i) => i + 33), // Metodología
-    ...List.generate(3, (i) => i + 39), // Cronograma
-    ...List.generate(3, (i) => i + 42), // Actividades
-    ...List.generate(7, (i) => i + 45), // Bibliografía
-    ...List.generate(5, (i) => i + 52), // Busqueda
-    ...List.generate(5, (i) => i + 57), // Bases de datos
+    ...List.generate(4, (i) => i + 33), // Antecedentes
+    ...List.generate(6, (i) => i + 37), // Metodología
+    ...List.generate(3, (i) => i + 43), // Cronograma
+    ...List.generate(3, (i) => i + 46), // Actividades
+    ...List.generate(7, (i) => i + 49), // Bibliografía
+    ...List.generate(5, (i) => i + 56), // Busqueda
+    ...List.generate(3, (i) => i + 61), // Bases de datos
   };
 
   static double get progreso => pestanasVistas.length / todosLosIDs.length;

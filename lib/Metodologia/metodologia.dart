@@ -1,12 +1,15 @@
 // ignore_for_file: unused_field, deprecated_member_use, non_constant_identifier_names
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:nuevomockups/Antecedentes_Estado/antecedentesoestado.dart';
 import 'package:nuevomockups/Appbar/appbar.dart';
 import 'package:nuevomockups/Color_texto/color_texto.dart';
 import 'package:nuevomockups/Cronograma/cronograma.dart';
+import 'package:nuevomockups/Links/links.dart';
 import 'package:nuevomockups/Menus/menus.dart';
-import 'package:nuevomockups/Objetivos/objetivos.dart';
+
 import 'package:nuevomockups/global.dart';
 
 class Metodologia extends StatelessWidget {
@@ -99,7 +102,7 @@ class _MetodologiasState extends State<Metodologias>
     300, //PASOS PARA CREAR
   ];
 
-  static int ID_BASE_PROGRESO = 32;
+  static int ID_BASE_PROGRESO = 37;
   int _currentseccion = 0;
 
   @override
@@ -357,22 +360,68 @@ class _MetodologiasState extends State<Metodologias>
                       ? Column(
                         // se usa Column para mostrar el texto en dos filas
                         children: [
-                          Text(
-                            textos[_index],
-                            style: TextStyle(
-                              fontSize: tamanotexto(2) + 4,
-                              fontFamily: 'Calibri',
-                              height: 1.5,
+                          if (_index == 5)
+                            RichText(
+                              textAlign: TextAlign.justify,
+                              text: TextSpan(
+                                style: TextStyle(
+                                  fontSize: tamanotexto(2) + 4,
+                                  fontFamily: 'Calibri',
+                                  height: 1.5,
+                                  color: Colors.black,
+                                ),
+                                children: [
+                                  /*TextSpan(
+                                    text:
+                                        'Ejemplos para la creación de un título: \n',
+                                  ),*/
+                                  TextSpan(
+                                    text:
+                                        'Para comprender mejor este tema, te invitamos a ingresar al siguiente enlace y ver el ',
+                                  ),
+                                  TextSpan(
+                                    text: 'Video explicativo',
+                                    style: TextStyle(
+                                      color: Colors.blue,
+                                      //decoration: TextDecoration.underline,
+                                    ),
+                                    recognizer:
+                                        TapGestureRecognizer()
+                                          ..onTap = () {
+                                            abrirLink('');
+                                          },
+                                  ),
+                                ],
+                              ),
                             ),
-                            textAlign: TextAlign.justify,
-                          ),
+                          if (_index != 5)
+                            Text(
+                              textos[_index],
+                              style: TextStyle(
+                                fontSize: tamanotexto(2) + 4,
+                                fontFamily: 'Calibri',
+                                height: 1.5,
+                              ),
+                              textAlign: TextAlign.justify,
+                            ),
+
                           const SizedBox(height: 20),
                           ClipRRect(
                             borderRadius: BorderRadius.circular(12),
-                            child: Image.asset(
-                              imagenes[_index],
-                              height: alturaImagenPequena[_index],
-                              fit: BoxFit.contain,
+                            child: Column(
+                              children: [
+                                Image.asset(
+                                  imagenes[_index],
+                                  height: alturaImagenPequena[_index],
+                                  fit: BoxFit.contain,
+                                ),
+                                if (_index == 5)
+                                  Image.asset(
+                                    'assets/Metodologia/Metodologia_Pasos_Crear2.png',
+
+                                    fit: BoxFit.contain,
+                                  ),
+                              ],
                             ),
                           ),
                         ],
@@ -384,14 +433,48 @@ class _MetodologiasState extends State<Metodologias>
                             flex: 2,
                             child: Padding(
                               padding: EdgeInsets.only(right: 20),
-                              child: Text(
-                                textos[_index],
-                                style: TextStyle(
-                                  fontSize: tamanotexto(2) + 4,
-                                  fontFamily: 'calibri',
-                                  height: 1.5,
-                                ),
-                                textAlign: TextAlign.justify,
+                              child: Column(
+                                children: [
+                                  Text(
+                                    textos[_index],
+                                    style: TextStyle(
+                                      fontSize: tamanotexto(2) + 4,
+                                      fontFamily: 'calibri',
+                                      height: 1.5,
+                                    ),
+                                    textAlign: TextAlign.justify,
+                                  ),
+                                  if (_index == 5)
+                                    RichText(
+                                      textAlign: TextAlign.justify,
+                                      text: TextSpan(
+                                        style: TextStyle(
+                                          fontSize: tamanotexto(2) + 4,
+                                          fontFamily: 'Calibri',
+                                          height: 1.5,
+                                          color: Colors.black,
+                                        ),
+                                        children: [
+                                          TextSpan(
+                                            text:
+                                                'Para comprender mejor este tema, te invitamos a ingresar al siguiente enlace y ver el ',
+                                          ),
+                                          TextSpan(
+                                            text: 'Video explicativo',
+                                            style: TextStyle(
+                                              color: Colors.blue,
+                                              //decoration: TextDecoration.underline,
+                                            ),
+                                            recognizer:
+                                                TapGestureRecognizer()
+                                                  ..onTap = () {
+                                                    abrirLink('');
+                                                  },
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                ],
                               ),
                             ),
                           ),
@@ -401,10 +484,20 @@ class _MetodologiasState extends State<Metodologias>
                               alignment: Alignment.topRight,
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(12),
-                                child: Image.asset(
-                                  imagenes[_index],
-                                  height: alturaImagengrande[_index],
-                                  fit: BoxFit.contain,
+                                child: Column(
+                                  children: [
+                                    Image.asset(
+                                      imagenes[_index],
+                                      height: alturaImagengrande[_index],
+                                      fit: BoxFit.contain,
+                                    ),
+                                    if (_index == 5)
+                                      Image.asset(
+                                        'assets/Metodologia/Metodologia_Pasos_Crear2.png',
+                                        height: 450,
+                                        fit: BoxFit.contain,
+                                      ),
+                                  ],
                                 ),
                               ),
                             ),
@@ -449,7 +542,9 @@ class _MetodologiasState extends State<Metodologias>
                 } else {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const Objetivos()),
+                    MaterialPageRoute(
+                      builder: (context) => const Antecedentes_Estados(),
+                    ),
                   );
                 }
               },

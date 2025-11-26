@@ -1,10 +1,12 @@
 // ignore_for_file: unused_field, deprecated_member_use, non_constant_identifier_names
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:nuevomockups/Actividades/actividades.dart';
 import 'package:nuevomockups/Appbar/appbar.dart';
 import 'package:nuevomockups/Color_texto/color_texto.dart';
+import 'package:nuevomockups/Links/links.dart';
 
 import 'package:nuevomockups/Menus/menus.dart';
 import 'package:nuevomockups/Metodologia/metodologia.dart';
@@ -68,11 +70,11 @@ class _CronogramasState extends State<Cronogramas>
 
   final List<double> alturaImagenPequena = [
     200, //COMO CREAR UN CRONOGRAMA
-    200, //PASOS
-    200, //EJEMPLO
+    250, //PASOS
+    280, //EJEMPLO
   ];
 
-  static int ID_BASE_PROGRESO = 38;
+  static int ID_BASE_PROGRESO = 43;
   int _currentseccion = 0;
 
   @override
@@ -340,6 +342,38 @@ class _CronogramasState extends State<Cronogramas>
                             ),
                             textAlign: TextAlign.justify,
                           ),
+                          if (_index == 2)
+                            Center(
+                              child: RichText(
+                                textAlign: TextAlign.justify,
+                                text: TextSpan(
+                                  style: TextStyle(
+                                    fontSize: tamanotexto(2) + 2,
+                                    fontFamily: 'Calibri',
+                                    height: 1.5,
+                                    color: Colors.black,
+                                  ),
+                                  children: [
+                                    TextSpan(
+                                      text:
+                                          'Para comprender mejor este tema, te invitamos a ingresar al siguiente enlace y ver el ',
+                                    ),
+                                    TextSpan(
+                                      text: 'Video explicativo.',
+                                      style: TextStyle(
+                                        color: Colors.blue,
+                                        //decoration: TextDecoration.underline,
+                                      ),
+                                      recognizer:
+                                          TapGestureRecognizer()
+                                            ..onTap = () {
+                                              abrirLink('');
+                                            },
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
                           const SizedBox(height: 20),
                           ClipRRect(
                             borderRadius: BorderRadius.circular(12),
@@ -358,14 +392,51 @@ class _CronogramasState extends State<Cronogramas>
                             flex: 2,
                             child: Padding(
                               padding: EdgeInsets.only(right: 20),
-                              child: Text(
-                                textos[_index],
-                                style: TextStyle(
-                                  fontSize: tamanotexto(2) + 4,
-                                  fontFamily: 'calibri',
-                                  height: 1.5,
-                                ),
-                                textAlign: TextAlign.justify,
+                              child: Column(
+                                children: [
+                                  if (_index == 2)
+                                    Center(
+                                      child: RichText(
+                                        textAlign: TextAlign.justify,
+                                        text: TextSpan(
+                                          style: TextStyle(
+                                            fontSize: tamanotexto(2) + 6,
+                                            fontFamily: 'Calibri',
+                                            height: 1.5,
+                                            color: Colors.black,
+                                          ),
+                                          children: [
+                                            TextSpan(
+                                              text:
+                                                  'Para comprender mejor este tema, te invitamos a ingresar al siguiente enlace y ver el ',
+                                            ),
+                                            TextSpan(
+                                              text: 'Video explicativo.',
+                                              style: TextStyle(
+                                                color: Colors.blue,
+                                                //decoration: TextDecoration.underline,
+                                              ),
+                                              recognizer:
+                                                  TapGestureRecognizer()
+                                                    ..onTap = () {
+                                                      abrirLink('');
+                                                    },
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  if (_index != 2)
+                                    Text(
+                                      textos[_index],
+                                      style: TextStyle(
+                                        fontSize: tamanotexto(2) + 4,
+                                        fontFamily: 'calibri',
+                                        height: 1.5,
+                                      ),
+                                      textAlign: TextAlign.justify,
+                                    ),
+                                ],
                               ),
                             ),
                           ),
@@ -463,13 +534,13 @@ class _CronogramasState extends State<Cronogramas>
                     }
                   });
                 } else {
-                  await guardarProgresoFinal(2);
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => const Actividades(),
                     ),
                   );
+                  await guardarProgresoFinal(2);
                 }
               },
               icon: Icon(

@@ -24,7 +24,7 @@ void main(List<String> args) async {
 }
 
 class Inicio extends StatefulWidget {
-  Inicio({super.key});
+  const Inicio({super.key});
 
   @override
   State<Inicio> createState() => _InicioState();
@@ -39,6 +39,7 @@ class _InicioState extends State<Inicio> {
 
   Future<bool> verificarConexion() async {
     var conectividad = await Connectivity().checkConnectivity();
+    // ignore: unrelated_type_equality_checks
     return conectividad != ConnectivityResult.none;
   }
 
@@ -286,9 +287,9 @@ class _InicioState extends State<Inicio> {
 
           const SizedBox(height: 20),
           _campoTexto(
-            label: 'Nombre',
+            label: 'Nombre y Apellido',
             icon: Icons.person,
-            hint: 'Escribe tu nombre',
+            hint: 'Escribe tu nombre y apellido',
             controller: _NombreAprendiz,
           ),
           const SizedBox(height: 15),
@@ -448,9 +449,9 @@ class _InicioState extends State<Inicio> {
                 ),
                 const SizedBox(height: 30),
                 _campoTexto(
-                  label: 'Nombre',
+                  label: 'Nombre y Apellido',
                   icon: Icons.person,
-                  hint: 'Escribe tu nombre',
+                  hint: 'Escribe tu nombre y apellido',
                   controller: _NombreAprendiz,
                 ),
                 const SizedBox(height: 15),

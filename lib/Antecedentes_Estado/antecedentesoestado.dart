@@ -1,33 +1,38 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/foundation.dart';
-import 'package:flutter/gestures.dart';
+
 import 'package:flutter/material.dart';
 import 'package:nuevomockups/Appbar/appbar.dart';
-import 'package:nuevomockups/Bases_Datos/bases_datos.dart';
-import 'package:nuevomockups/Bibliografia/bibliografia.dart';
+
 import 'package:nuevomockups/Color_texto/color_texto.dart';
-import 'package:nuevomockups/Links/links.dart';
+
 import 'package:nuevomockups/Menus/menus.dart';
+import 'package:nuevomockups/Metodologia/metodologia.dart';
+import 'package:nuevomockups/Objetivos/objetivos.dart';
 import 'package:nuevomockups/global.dart';
 
-// Solo se usa en web
-
-class Busqueda extends StatelessWidget {
-  const Busqueda({super.key});
+// ignore: camel_case_types
+class Antecedente_EStado extends StatelessWidget {
+  const Antecedente_EStado({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Busquedas();
+    return Antecedentes_Estados();
   }
 }
 
-class Busquedas extends StatefulWidget {
-  const Busquedas({super.key});
+// ignore: camel_case_types
+class Antecedentes_Estados extends StatefulWidget {
+  const Antecedentes_Estados({super.key});
 
   @override
-  State<Busquedas> createState() => _BusquedasState();
+  State<Antecedentes_Estados> createState() => _Antecedentes_EstadosState();
 }
 
-class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
+// ignore: camel_case_types
+class _Antecedentes_EstadosState extends State<Antecedentes_Estados>
+    with TickerProviderStateMixin {
   // ID único del subtema
 
   int _index = 0; //indica que las secciones inicia en la primera
@@ -37,64 +42,55 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
       []; // en esta variable se guarda las pestañas ya vistas
 
   final List<String> textos = [
-    'El objetivo de una búsqueda es obtener información relevante, verídica y útil que permita dar respuesta a una pregunta, resolver un problema o profundizar en un tema específico. Mediante este proceso, se pretende reunir y analizar datos, ideas o evidencias que ayuden a comprender mejor una situación y a tomar decisiones fundamentadas.'
-        'Además, la búsqueda tiene como propósito fomentar el pensamiento crítico y el aprendizaje autónomo, ya que impulsa a comparar diferentes fuentes, identificar la más confiable y seleccionar la información que mejor se adapte al propósito planteado.'
-        'En contextos académicos, profesionales o personales, la búsqueda permite ampliar el conocimiento, generar nuevas ideas y fortalecer la capacidad de análisis, convirtiéndose en una herramienta esencial para el desarrollo intelectual y la solución de problemas.',
-
-    'Utilizar palabras clave y operadores lógicos permite obtener resultados más precisos y relevantes al buscar en Google. '
-        'Los operadores más comunes son:\n'
-        '• AND (Y): incluye todos los términos. \n'
-        '• OR (O): busca cualquiera de los términos.\n'
-        '• NOT (-): excluye palabras no deseadas.\n'
-        '• Comillas (“ ”): buscan una frase exacta.\n'
-        '• Asterisco (*): reemplaza una palabra desconocida.\n'
-        '• site: limita la búsqueda a un sitio web específico.\n'
-        'En conjunto, estos operadores ayudan a filtrar y combinar términos para encontrar información confiable, facilitando una búsqueda más profesional y eficiente para trabajos académicos o investigaciones.',
-
-    'Google Scholar, también llamado Google Académico, es una herramienta gratuita de Google que permite buscar información científica y académica de manera sencilla. Está diseñada para encontrar artículos, libros, tesis, resúmenes, informes y publicaciones de revistas especializadas en diferentes áreas del conocimiento.'
-        'A diferencia del buscador común, Google Scholar se enfoca únicamente en fuentes confiables y de carácter académico, lo que garantiza resultados más precisos y útiles para la investigación, el estudio o el trabajo universitario.'
-        'Además, muestra cuántas veces ha sido citado un documento, quién lo ha citado y en qué otros trabajos se ha utilizado, lo cual ayuda a evaluar la relevancia y credibilidad de las fuentes.'
-        'En resumen, Google Scholar es una plataforma de búsqueda académica que facilita el acceso a información verificada, actualizada y proveniente de instituciones educativas, científicas y profesionales.',
+    'Los antecedentes son una parte del trabajo de investigación donde se recopila y describe la información previa existente sobre el tema que se está estudiando. Incluyen investigaciones, artículos, tesis, proyectos o informes anteriores que abordan el mismo problema o uno relacionado. '
+        'Su finalidad es mostrar qué se ha investigado antes, cuáles han sido los principales resultados obtenidos y cómo esos estudios sirven como base o referencia para tu propia investigación. Gracias a los antecedentes se puede entender el contexto, evitar repetir trabajos ya realizados y justificar por qué tu estudio es importante o necesario.',
 
     '',
 
-    'Google Tendencias (Google Trends) es una herramienta gratuita de Google que permite analizar qué temas o palabras son más buscados en Internet. Muestra cómo cambia el interés por un término a lo largo del tiempo y en diferentes regiones, además de permitir comparar varios temas o categorías como educación, salud o tecnología.'
-        'También ayuda a identificar tendencias, estudiar patrones de búsqueda y conocer los intereses actuales de las personas. Es especialmente útil para estudiantes, investigadores y profesionales que necesitan información confiable sobre lo que la gente busca en la web.',
-  ]; // lista de los textos que se van a mostrar
+    'El estado del arte es una parte esencial de toda investigación científica, técnica o académica. Consiste en revisar,'
+        ' analizar y describir los conocimientos, teorías, métodos, avances y resultados que otros investigadores han desarrollado'
+        ' previamente sobre el mismo tema o uno relacionado. Su objetivo principal es mostrar cómo está el conocimiento actual'
+        ' sobre un tema y cuál ha sido su evolución a lo largo del tiempo. Es decir, permite entender qué se sabe, cómo se ha estudiado '
+        'y qué falta por investigar. El término “estado del arte” proviene del inglés state of the art, que significa literalmente'
+        ' “nivel más avanzado del conocimiento en un campo determinado”. En investigación, se utiliza para referirse a la recopilación'
+        ' y análisis de la información más actualizada y relevante disponible.',
 
+    'Imagina que vas a investigar sobre el uso de software educativo en colegios.'
+        'Antes de empezar, revisa qué se ha estudiado sobre el tema:\n'
+        '• Busca información en fuentes confiables como Google Académico, Scielo, Redalyc o Dialnet, usando palabras clave como “software educativo” o “herramientas digitales para el aprendizaje”.\n'
+        '• Analiza los estudios existentes: algunos evalúan programas como Kahoot o Duolingo, aplicando encuestas o comparando el rendimiento antes y después de su uso.\n'
+        '• Registra los principales hallazgos: la mayoría concluye que el software educativo mejora la motivación y participación de los estudiantes, aunque depende de la capacitación docente.\n'
+        '• Detecta vacíos en la investigación: por ejemplo, el poco estudio del uso de software en zonas rurales o con acceso limitado a internet.',
+  ];
   final List<String> imagenes = [
-    'assets/Busqueda/Busqueda_Objetivos.png', // OBJETIVO
-    'assets/Busqueda/Busqueda_Operadores_Booleanos.jpg', // BUSQUEDA EN GOOGLE CON OPERADORES LOGICOS Y PALABRAS CLAVE
-    'assets/Busqueda/Busqueda_Google_Academico.png', // GOOGLE ACADÉMICO (SCHOLAR)
-    'assets/Busqueda/Busqueda_Google_Alertas.png', // ALERTAS DE GOOGLE
-    'assets/Busqueda/Busqueda_Google_Tendencias.png', // GOOGLE TENDENCIAS (TRENDS)
+    'assets/BasesDatos/Bases_De_Datos_Antecedentes.png', //¿QUÉ SON LOS ANTECEDENTES?
+    'assets/BasesDatos/Bases_De_Datos_Antecedentes_Ejemplo.png', //EJEMPLO DE ANTECEDENTES
+    'assets/BasesDatos/Bases_De_Datos_Estado_Del_Arte.png', //¿QUÉ ES EL ESTADO DEL ARTE?
+    'assets/BasesDatos/Bases_De_Datos_Estado_Del_Arte_Ejemplo.png', //EJEMPLOS
   ]; // lista de las imagenes
 
   // ignore: unused_field
   int _currentseccion = 0;
 
   final List<String> secciones = [
-    'OBJETIVO',
-    'BUSQUEDA EN GOOGLE CON OPERADORES LOGICOS Y PALABRAS CLAVE',
-    'GOOGLE ACADÉMICO (SCHOLAR)',
-    'ALERTAS DE GOOGLE',
-    'GOOGLE TENDENCIAS (TRENDS)',
+    '¿QUÉ SON LOS ANTECEDENTES?',
+    'EJEMPLO',
+    '¿QUÉ ES EL ESTADO DEL ARTE?',
+    'EJEMPLO',
   ]; // lista de las secciones
 
   final List<double> alturaImagengrande = [
-    300, // OBJETIVO
-    350, // BUSQUEDA EN GOOGLE CON OPERADORES LOGICOS Y PALABRAS CLAVE
-    450, // GOOGLE ACADÉMICO (SCHOLAR)
-    250, // ALERTAS DE GOOGLE
-    350, // GOOGLE TENDENCIAS (TRENDS)
+    250,
+    300,
+    250, // ¿QUÉ ES EL ESTADO DEL ARTE?
+    350, // EJEMPLOS
   ]; // lista de las alturas de las imagenes para pantallas grandes
 
   final List<double> alturaImagenPequena = [
-    250, //OBJETIVO
-    300, // BUSQUEDA EN GOOGLE CON OPERADORES LOGICOS Y PALABRAS CLAVE
-    300, // GOOGLE ACADÉMICO (SCHOLAR)
-    150, // ALERTAS DE GOOGLE
-    250, // GOOGLE TENDENCIAS (TRENDS)
+    250,
+    250,
+    150, // ¿QUÉ ES EL ESTADO DEL ARTE?
+    250, // EJEMPLOS
   ]; // lista de las alturas de las imagenes para pantallas pequenas
 
   // ignore: non_constant_identifier_names
@@ -125,8 +121,7 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     // 📌 Ahora el nombre refleja la condición real
-    final bool esPantallaPequena =
-        MediaQuery.of(context).size.shortestSide < 650;
+    final bool esPantallaPequena = MediaQuery.of(context).size.width < 650;
 
     return Scaffold(
       backgroundColor: obtenercolor('Color_Fondo'),
@@ -156,8 +151,8 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
         ],
       ),
 
-      // Een este bloque de codigo se usa para mostrar y navegar por el modal menu
-      drawer: const Menu(currentScreen: 'Busqueda'),
+      // En este bloque de codigo se usa para mostrar y navegar por el modal menu
+      drawer: const Menu(currentScreen: 'Arte'),
       body: Stack(
         children: [
           // 🌄 Fondo superior izquierda decorativo
@@ -167,21 +162,22 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
             child: Opacity(
               opacity: opacidad(1),
               child: Image.asset(
-                'assets/Busqueda/Fondo_superior_Derecha.png',
-                width: esPantallaPequena ? 120 : 250,
+                'assets/BasesDatos/Fondo_inferior_Derecha.png',
+                width: esPantallaPequena ? 250 : 400,
                 //MediaQuery.of(context).size.width * 0.18,
                 fit: BoxFit.contain,
               ),
             ),
           ),
+
           Positioned(
             top: 8,
             right: 8,
             child: Opacity(
               opacity: opacidad(1),
               child: Image.asset(
-                'assets/Icono_Microscopio.png',
-                width: esPantallaPequena ? 45 : 80,
+                'assets/Icono_Proveta.png',
+                width: esPantallaPequena ? 45 : 98,
                 //MediaQuery.of(context).size.width * 0.18,
                 fit: BoxFit.contain,
               ),
@@ -189,19 +185,19 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
           ),
 
           // 🌄 Fondo superior derecha decorativo
-          Positioned(
+          /* Positioned(
             top: 0,
             left: 0,
             child: Opacity(
               opacity: opacidad(1),
               child: Image.asset(
-                'assets/Busqueda/Fondo_Supeior_Izquierda.png',
-                width: esPantallaPequena ? 120 : 220,
+                'assets/BasesDatos/Fondo_superior_Izqiuerda.png',
+                width: esPantallaPequena ? 120 : 250,
                 //height: MediaQuery.of(context).size.width * 0.18,
                 fit: BoxFit.contain,
               ),
             ),
-          ),
+          ),*/
 
           // 🌄 Fondo inferior izquierda
           Positioned(
@@ -210,8 +206,8 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
             child: Opacity(
               opacity: opacidad(1),
               child: Image.asset(
-                'assets/Busqueda/Fondo_inferior_Izquierda.png',
-                width: esPantallaPequena ? 120 : 220,
+                'assets/BasesDatos/Fondo_superior_Izqiuerda.png',
+                width: esPantallaPequena ? 250 : 400,
                 //height: MediaQuery.of(context).size.width * 0.18,
                 fit: BoxFit.contain,
               ),
@@ -219,28 +215,27 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
           ),
 
           // 🌄 Fondo inferior derecha
-          Positioned(
+          /*Positioned(
             bottom: 90,
             right: 0,
             child: Opacity(
               opacity: opacidad(1),
               child: Image.asset(
-                'assets/Busqueda/Fondo_Inferior_Derecha.png',
+                'assets/BasesDatos/Fondo_inferior_Derecha.png',
                 width: esPantallaPequena ? 120 : 250,
                 //height: MediaQuery.of(context).size.width * 0.18,
                 fit: BoxFit.contain,
               ),
             ),
-          ),
-
+          ),*/
           Positioned(
             top: 8,
             left: 8,
             child: Opacity(
               opacity: opacidad(1),
               child: Image.asset(
-                'assets/Icono_Planeta.png',
-                width: esPantallaPequena ? 45 : 110,
+                'assets/Icono_Bombilla.png',
+                width: esPantallaPequena ? 45 : 98,
                 //MediaQuery.of(context).size.width * 0.18,
                 fit: BoxFit.contain,
               ),
@@ -270,7 +265,7 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                                 child: Column(
                                   children: [
                                     Text(
-                                      '¿Sabes cómo hacer una búsqueda?',
+                                      '¿Qué son los antecedentes o el estado del arte?',
                                       style: TextStyle(
                                         fontSize: tamanotexto(1) + 5,
                                         fontFamily: 'Calibri',
@@ -289,7 +284,7 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                                 // 💻 En pantallas grandes sin zoom
                                 children: [
                                   Text(
-                                    '¿Sabes cómo hacer una búsqueda?',
+                                    '¿Qué son los antecedentes o el estado del arte?',
                                     style: TextStyle(
                                       fontSize: tamanotexto(1) + 5,
                                       fontFamily: 'Calibri',
@@ -298,7 +293,7 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                                     ),
                                     textAlign: TextAlign.center,
                                   ),
-                                  const SizedBox(height: 50),
+                                  const SizedBox(height: 35),
                                   _buildTimelineCard(),
                                   SizedBox(height: altura(1)),
                                 ],
@@ -352,7 +347,7 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SelectableText(
+                  Text(
                     secciones[_index],
                     style: TextStyle(
                       fontSize: tamanotexto(1) - 10,
@@ -366,41 +361,35 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                   esPantallaPequena
                       ? Column(
                         children: [
-                          if (_index == 3)
-                            SelectableText.rich(
-                              TextSpan(
+                          if (_index == 1)
+                            RichText(
+                              textAlign: TextAlign.justify,
+                              text: TextSpan(
                                 style: TextStyle(
                                   fontSize: tamanotexto(2) + 4,
                                   fontFamily: 'Calibri',
                                   height: 1.5,
-                                  color: Colors.black,
+                                  //color: Colors.black,
                                 ),
                                 children: [
                                   TextSpan(
-                                    text:
-                                        'Las alertas de Google son una herramienta gratuita que envía notificaciones al correo electrónico cuando aparece nueva información relacionada con un tema o palabra clave elegida. Para activarlas, se ingresa a ',
-                                  ),
-                                  TextSpan(
-                                    text: 'google.com/alerts',
+                                    text: 'Antecedente 1: \n',
                                     style: TextStyle(
-                                      color: Colors.blue,
-                                      //decoration: TextDecoration.underline,
+                                      fontWeight: FontWeight.bold,
                                     ),
-                                    recognizer:
-                                        TapGestureRecognizer()
-                                          ..onTap = () {
-                                            abrirLink(
-                                              'https://www.google.com/alerts',
-                                            );
-                                          },
                                   ),
                                   TextSpan(
                                     text:
-                                        ', se escribe el tema de interés, se ajustan las opciones (frecuencia, idioma, fuentes) y se presiona “Crear alerta”. Sirven para mantenerse informado automáticamente sobre noticias, investigaciones o temas específicos sin tener que buscarlos manualmente.',
+                                        'En 2020, María Pérez realizó un estudio sobre el uso del celular en estudiantes de secundaria. Su investigación mostró que los jóvenes pasan en promedio 4 horas al día usando redes sociales. '
+                                        'Este estudio es importante porque ayuda a entender cómo el uso del celular afecta el tiempo de estudio de los estudiantes.\n',
+                                  ),
+
+                                  TextSpan(
+                                    text:
+                                        'Este es un ejemplo básico que muestra:\n• Quién hizo el estudio\n• De qué trató\n• Qué encontró\n• Por qué es relevante para otra investigación.',
                                   ),
                                 ],
                               ),
-                              textAlign: TextAlign.justify,
                             ),
                           Text(
                             textos[_index],
@@ -411,7 +400,10 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                             ),
                             textAlign: TextAlign.justify,
                           ),
-                          if (_index == 4)
+
+                          const SizedBox(height: 10),
+
+                          /*if (_index == 4)
                             RichText(
                               textAlign: TextAlign.justify,
                               text: TextSpan(
@@ -422,59 +414,22 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                                   color: Colors.black,
                                 ),
                                 children: [
+                                  TextSpan(text: ''),
                                   TextSpan(
-                                    text:
-                                        'Puedes acceder a la herramienta aquí: ',
-                                  ),
-                                  TextSpan(
-                                    text: 'https://trends.google.com',
+                                    text: '',
                                     style: TextStyle(
                                       color: Colors.blue,
-                                      //decoration: TextDecoration.underline,
+                                      decoration: TextDecoration.underline,
                                     ),
                                     recognizer:
                                         TapGestureRecognizer()
-                                          ..onTap = () {
-                                            abrirLink(
-                                              'https://trends.google.com',
-                                            );
+                                          ..onTap = () async {
+                                            await abrirLink('');
                                           },
                                   ),
                                 ],
                               ),
-                            ),
-                          if (_index == 2)
-                            RichText(
-                              textAlign: TextAlign.justify,
-                              text: TextSpan(
-                                style: TextStyle(
-                                  fontSize: tamanotexto(2) + 4,
-                                  fontFamily: 'Calibri',
-                                  height: 1.5,
-                                  color: Colors.black,
-                                ),
-                                children: [
-                                  TextSpan(
-                                    text:
-                                        'Puedes acceder a la herramienta aquí: ',
-                                  ),
-                                  TextSpan(
-                                    text: 'https://scholar.google.com',
-                                    style: TextStyle(
-                                      color: Colors.blue,
-                                      //decoration: TextDecoration.underline,
-                                    ),
-                                    recognizer:
-                                        TapGestureRecognizer()
-                                          ..onTap = () {
-                                            abrirLink(
-                                              'https://scholar.google.com',
-                                            );
-                                          },
-                                  ),
-                                ],
-                              ),
-                            ),
+                            ),*/
                           const SizedBox(height: 20),
                           ClipRRect(
                             borderRadius: BorderRadius.circular(12),
@@ -496,7 +451,7 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  if (_index == 3)
+                                  if (_index == 1)
                                     RichText(
                                       textAlign: TextAlign.justify,
                                       text: TextSpan(
@@ -504,30 +459,24 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                                           fontSize: tamanotexto(2) + 4,
                                           fontFamily: 'Calibri',
                                           height: 1.5,
-                                          color: Colors.black,
+                                          //color: Colors.black,
                                         ),
                                         children: [
                                           TextSpan(
-                                            text:
-                                                'Las alertas de Google son una herramienta gratuita que envía notificaciones al correo electrónico cuando aparece nueva información relacionada con un tema o palabra clave elegida. Para activarlas, se ingresa a ',
-                                          ),
-                                          TextSpan(
-                                            text: 'google.com/alerts',
+                                            text: 'Antecedente 1: \n',
                                             style: TextStyle(
-                                              color: Colors.blue,
-                                              //decoration: TextDecoration.underline,
+                                              fontWeight: FontWeight.bold,
                                             ),
-                                            recognizer:
-                                                TapGestureRecognizer()
-                                                  ..onTap = () {
-                                                    abrirLink(
-                                                      'https://www.google.com/alerts',
-                                                    );
-                                                  },
                                           ),
                                           TextSpan(
                                             text:
-                                                ', se escribe el tema de interés, se ajustan las opciones (frecuencia, idioma, fuentes) y se presiona “Crear alerta”. Sirven para mantenerse informado automáticamente sobre noticias, investigaciones o temas específicos sin tener que buscarlos manualmente.',
+                                                'En 2020, María Pérez realizó un estudio sobre el uso del celular en estudiantes de secundaria. Su investigación mostró que los jóvenes pasan en promedio 4 horas al día usando redes sociales. '
+                                                'Este estudio es importante porque ayuda a entender cómo el uso del celular afecta el tiempo de estudio de los estudiantes.\n',
+                                          ),
+
+                                          TextSpan(
+                                            text:
+                                                'Este es un ejemplo básico que muestra:\n• Quién hizo el estudio\n• De qué trató\n• Qué encontró\n• Por qué es relevante para otra investigación.',
                                           ),
                                         ],
                                       ),
@@ -541,7 +490,9 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                                     ),
                                     textAlign: TextAlign.justify,
                                   ),
-                                  if (_index == 4)
+                                  const SizedBox(height: 10),
+
+                                  /*if (_index == 4)
                                     RichText(
                                       textAlign: TextAlign.justify,
                                       text: TextSpan(
@@ -552,59 +503,23 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                                           color: Colors.black,
                                         ),
                                         children: [
+                                          TextSpan(text: ''),
                                           TextSpan(
-                                            text:
-                                                'Puedes acceder a la herramienta aquí: ',
-                                          ),
-                                          TextSpan(
-                                            text: 'https://trends.google.com',
+                                            text: '',
                                             style: TextStyle(
                                               color: Colors.blue,
-                                              //decoration: TextDecoration.underline,
+                                              decoration:
+                                                  TextDecoration.underline,
                                             ),
                                             recognizer:
                                                 TapGestureRecognizer()
-                                                  ..onTap = () {
-                                                    abrirLink(
-                                                      'https://trends.google.com',
-                                                    );
+                                                  ..onTap = () async {
+                                                    await abrirLink('');
                                                   },
                                           ),
                                         ],
                                       ),
-                                    ),
-                                  if (_index == 2)
-                                    RichText(
-                                      textAlign: TextAlign.justify,
-                                      text: TextSpan(
-                                        style: TextStyle(
-                                          fontSize: tamanotexto(2) + 4,
-                                          fontFamily: 'Calibri',
-                                          height: 1.5,
-                                          color: Colors.black,
-                                        ),
-                                        children: [
-                                          TextSpan(
-                                            text:
-                                                'Puedes acceder a la herramienta aquí: ',
-                                          ),
-                                          TextSpan(
-                                            text: 'https://scholar.google.com',
-                                            style: TextStyle(
-                                              color: Colors.blue,
-                                              //decoration: TextDecoration.underline,
-                                            ),
-                                            recognizer:
-                                                TapGestureRecognizer()
-                                                  ..onTap = () {
-                                                    abrirLink(
-                                                      'https://scholar.google.com',
-                                                    );
-                                                  },
-                                          ),
-                                        ],
-                                      ),
-                                    ),
+                                    ),*/
                                 ],
                               ),
                             ),
@@ -626,67 +541,6 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                           ),
                         ],
                       ),
-                  if (_index == 2)
-                    Center(
-                      child: SingleChildScrollView(
-                        child: SizedBox(
-                          child: Column(
-                            children: [
-                              /*Text(
-                                'Ejemplo',
-                                style: TextStyle(
-                                  fontSize: tamanotexto(1),
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: 'Calibri',
-                                  color: obtenercolor('Color_Principal'),
-                                  backgroundColor: Colors.white,
-                                ),
-                                textAlign: TextAlign.left,
-                              ),*/
-                              SizedBox(height: 20),
-                              Image.asset(
-                                'assets/Busqueda/Busqueda_Ejemplo_Google_Academico1.png',
-                              ),
-                              Image.asset(
-                                'assets/Busqueda/Busqueda_Ejemplo_Google_Academico2.png',
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  if (_index == 3)
-                    Center(
-                      child: SingleChildScrollView(
-                        child: SizedBox(
-                          child: Column(
-                            children: [
-                              Image.asset(
-                                'assets/Busqueda/Busqueda_Ejemplo_Google_Alertas1.png',
-                              ),
-                              Image.asset(
-                                'assets/Busqueda/Busqueda_Ejemplo_Google_Alertas2.png',
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  if (_index == 4)
-                    Center(
-                      child: SizedBox(
-                        child: Column(
-                          children: [
-                            Image.asset(
-                              'assets/Busqueda/Busqueda_Ejemplo_Google_Tendencias1.png',
-                            ),
-                            Image.asset(
-                              'assets/Busqueda/Busqueda_Ejemplo_Google_Tendencias2.png',
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
                 ],
               ),
             ),
@@ -722,7 +576,7 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                 } else {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Bibliografia()),
+                    MaterialPageRoute(builder: (context) => Objetivo()),
                   );
                 }
               },
@@ -761,11 +615,11 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                     }
                   });
                 } else {
+                  //  await guardarProgresoFinal(2);
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Basesdatos()),
+                    MaterialPageRoute(builder: (context) => Metodologia()),
                   );
-                  await guardarProgresoFinal(2);
                 }
               },
 
@@ -882,7 +736,6 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                               (isSelected || isVisited)
                                   ? obtenercolor(
                                     'Color_Principal',
-                                    // ignore: deprecated_member_use
                                   ).withOpacity(0.2)
                                   : item['color'].withOpacity(0.2),
                           shape: BoxShape.circle,
@@ -916,39 +769,32 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
 
   final List<Map<String, dynamic>> menuItems = [
     {
-      'id': 2,
-      'text': 'Objetivo',
-      'icon': Icons.data_object,
+      'id': 5,
+      'text': 'Antecedentes',
+      'icon': Icons.folder,
       'color': obtenercolor('Color_Secundario'),
       'indice': 0,
     },
     {
-      'id': 3,
-      'text': 'Búsqueda en Google',
-      'icon': Icons.info,
+      'id': 6,
+      'text': 'Ejemplo',
+      'icon': Icons.book,
       'color': obtenercolor('Color_Secundario'),
       'indice': 1,
     },
     {
-      'id': 4,
-      'text': 'Google Académico (Scholar)',
-      'icon': Icons.list_alt,
+      'id': 7,
+      'text': 'Estado del arte',
+      'icon': Icons.search,
       'color': obtenercolor('Color_Secundario'),
       'indice': 2,
     },
     {
-      'id': 5,
-      'text': 'Aletas de Google',
+      'id': 8,
+      'text': 'Ejemplo',
       'icon': Icons.text_fields,
       'color': obtenercolor('Color_Secundario'),
       'indice': 3,
-    },
-    {
-      'id': 6,
-      'text': 'Google Tendencias (Trends)',
-      'icon': Icons.book,
-      'color': obtenercolor('Color_Secundario'),
-      'indice': 4,
     },
   ];
 }

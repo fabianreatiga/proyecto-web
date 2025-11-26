@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nuevomockups/Actividades/actividades.dart';
+import 'package:nuevomockups/Antecedentes_Estado/antecedentesoestado.dart';
 import 'package:nuevomockups/Bases_Datos/bases_datos.dart';
 import 'package:nuevomockups/Bibliografia/bibliografia.dart';
 import 'package:nuevomockups/Busqueda/busqueda.dart';
@@ -154,6 +155,31 @@ class Menu extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const Objetivos()),
+              );
+            },
+          ),
+          //======================= OPCIÓN OBJETIVOS =======================\\
+          ListTile(
+            leading: Icon(
+              Icons.folder,
+              color: currentScreen == 'Arte' ? Colors.white : Colors.black,
+            ),
+            title: Text(
+              'Antecedentes o Estado del Arte',
+              style: TextStyle(
+                fontSize: texto + 4,
+                color: currentScreen == 'Arte' ? Colors.white : Colors.black,
+              ),
+            ),
+            selected: currentScreen == 'Arte',
+            selectedTileColor: obtenercolor('Color_Principal'),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const Antecedente_EStado(),
+                ),
               );
             },
           ),

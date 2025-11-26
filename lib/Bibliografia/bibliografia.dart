@@ -1,11 +1,13 @@
 // ignore_for_file: unused_field, deprecated_member_use, non_constant_identifier_names
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:nuevomockups/Actividades/actividades.dart';
 import 'package:nuevomockups/Appbar/appbar.dart';
 import 'package:nuevomockups/Busqueda/busqueda.dart';
 import 'package:nuevomockups/Color_texto/color_texto.dart';
+import 'package:nuevomockups/Links/links.dart';
 import 'package:nuevomockups/Menus/menus.dart';
 import 'package:nuevomockups/global.dart';
 
@@ -42,7 +44,7 @@ class _BibliografiasState extends State<Bibliografias>
     'Ejemplos diferentes usos.',
     'Las normas IEEE determinan y se recomienda tener en cuenta:',
     'Ejemplos diferentes usos.',
-    'Para ampliar el manejo del estilo APA se recomienda consultar los siguientes sitios web:',
+    'Para ampliar el manejo del estilo APA se recomienda consultar los siguientes sitios web:\n',
   ];
   final List<String> imagenes = [
     'assets/bibliografia/Bibliografia.png', //BIBLIOGRAFÍA
@@ -75,21 +77,21 @@ class _BibliografiasState extends State<Bibliografias>
     520, //NORMAS APA
     650, //EJEMPLOS APA
     500, //NORMAS IEEE
-    650, //EJEMPLOS IEEE
+    750, //EJEMPLOS IEEE
     550, //SITIOS WEB RECOMENDADOS
   ];
 
   final List<double> alturaImagenPequena = [
-    500, //BIBLIOGRAFÍA
-    300, //EJEMPLOS
-    400, //NORMAS APA
+    250, //BIBLIOGRAFÍA
+    250, //EJEMPLOS
+    200, //NORMAS APA
     350, //EJEMPLOS APA
-    400, //NORMAS IEEE
-    300, //EJEMPLOS IEEE
-    500, //SITIOS WEB RECOMENDADOS
+    200, //NORMAS IEEE
+    600, //EJEMPLOS IEEE
+    300, //SITIOS WEB RECOMENDADOS
   ];
 
-  static int ID_BASE_PROGRESO = 44;
+  static int ID_BASE_PROGRESO = 49;
   int _currentseccion = 0;
 
   @override
@@ -357,6 +359,36 @@ class _BibliografiasState extends State<Bibliografias>
                             ),
                             textAlign: TextAlign.justify,
                           ),
+                          if (_index == 6)
+                            RichText(
+                              textAlign: TextAlign.justify,
+                              text: TextSpan(
+                                style: TextStyle(
+                                  fontSize: tamanotexto(2) + 4,
+                                  fontFamily: 'Calibri',
+                                  height: 1.5,
+                                  color: Colors.black,
+                                ),
+                                children: [
+                                  TextSpan(
+                                    text:
+                                        'Para comprender mejor este tema, te invitamos a ingresar al siguiente enlace y ver el ',
+                                  ),
+                                  TextSpan(
+                                    text: 'Video explicativo.',
+                                    style: TextStyle(
+                                      color: Colors.blue,
+                                      //decoration: TextDecoration.underline,
+                                    ),
+                                    recognizer:
+                                        TapGestureRecognizer()
+                                          ..onTap = () {
+                                            abrirLink('');
+                                          },
+                                  ),
+                                ],
+                              ),
+                            ),
                           const SizedBox(height: 20),
                           ClipRRect(
                             borderRadius: BorderRadius.circular(12),
@@ -381,15 +413,49 @@ class _BibliografiasState extends State<Bibliografias>
                             //se usa flex para que la imagen ocupe el 2/3 de la pantalla
                             child: Padding(
                               padding: const EdgeInsets.only(right: 20),
-                              child: Text(
-                                textos[_index],
-                                style: TextStyle(
-                                  fontSize: tamanotexto(2) + 4,
-                                  fontFamily: 'Calibri',
-                                  height: 1.5,
-                                  //se usa height para aumentar la altura de la letra
-                                ),
-                                textAlign: TextAlign.justify,
+                              child: Column(
+                                children: [
+                                  Text(
+                                    textos[_index],
+                                    style: TextStyle(
+                                      fontSize: tamanotexto(2) + 4,
+                                      fontFamily: 'Calibri',
+                                      height: 1.5,
+                                      //se usa height para aumentar la altura de la letra
+                                    ),
+                                    textAlign: TextAlign.justify,
+                                  ),
+                                  if (_index == 6)
+                                    RichText(
+                                      textAlign: TextAlign.justify,
+                                      text: TextSpan(
+                                        style: TextStyle(
+                                          fontSize: tamanotexto(2) + 4,
+                                          fontFamily: 'Calibri',
+                                          height: 1.5,
+                                          color: Colors.black,
+                                        ),
+                                        children: [
+                                          TextSpan(
+                                            text:
+                                                'Para comprender mejor este tema, te invitamos a ingresar al siguiente enlace y ver el ',
+                                          ),
+                                          TextSpan(
+                                            text: 'Video explicativo.',
+                                            style: TextStyle(
+                                              color: Colors.blue,
+                                              //decoration: TextDecoration.underline,
+                                            ),
+                                            recognizer:
+                                                TapGestureRecognizer()
+                                                  ..onTap = () {
+                                                    abrirLink('');
+                                                  },
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                ],
                               ),
                             ),
                           ),
@@ -494,11 +560,11 @@ class _BibliografiasState extends State<Bibliografias>
                     }
                   });
                 } else {
-                  await guardarProgresoFinal(2);
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const Busqueda()),
                   );
+                  await guardarProgresoFinal(2);
                 }
               },
               icon: Icon(

@@ -92,9 +92,7 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
 
     'Ejemplo árbol de problemas:',
 
-    'Estructura del Planteamiento del problema:',
-
-    '',
+    'Estructura del Planteamiento del problema:\n',
   ];
 
   final List<String> imagenes = [
@@ -113,7 +111,6 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
     'assets/PlanteamientoProblema/Planteamiento_del_Problema_Como_Hacer_Arbol_De_Problemas.png', // COMO HACER EL ÁRBOL DE PROBLEMAS
     'assets/PlanteamientoProblema/Planteamiento_del_Problema_Ejemplo_Arbol_De_Problemas.png', // EJEMPLO ÁRBOL DE PROBLEMAS
     'assets/PlanteamientoProblema/Planteamiento_del_Problema_Esquema_de_Redaccion_Parte_1.png', // ESQUEMA DE REDACCIÓN
-    'assets/PlanteamientoProblema/Icono_video.png',
   ];
 
   final List<String> secciones = [
@@ -132,7 +129,6 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
     'COMO HACER EL ÁRBOL DE PROBLEMAS',
     'EJEMPLO ÁRBOL DE PROBLEMAS',
     'ESQUEMA DE REDACCIÓN',
-    'VIDEO',
   ];
 
   final List<double> alturaImagengrande = [
@@ -151,17 +147,16 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
     500, // COMO HACER EL ÁRBOL DE PROBLEMAS
     500, // EJEMPLO ÁRBOL DE PROBLEMAS
     400, // ESQUEMA DE REDACCIÓN
-    250,
   ];
   final List<double> alturaImagenPequena = [
     300, // PLANTEAMIENTO DEL PROBLEMA
     300, // DEFINICIÓN
     300, // METODOLOGIAS
-    350, // 5W1H
-    400, // EJEMPLO 5W1H
-    400, // EJEMPLO 2 5W1H
-    400, // EJEMPLO 3 5W1H
-    400, // ESPINA DE PESCADO
+    250, // 5W1H
+    250, // EJEMPLO 5W1H
+    250, // EJEMPLO 2 5W1H
+    250, // EJEMPLO 3 5W1H
+    300, // ESPINA DE PESCADO
     300, // COMO HACER ESPINA DE PESCADO
     300, // EJEMPLO 1 ESPINA DE PESCADO
     300, // EJEMPLO 2 ESPINA DE PESCADO
@@ -169,7 +164,6 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
     250, // COMO HACER EL ÁRBOL DE PROBLEMAS
     300, // EJEMPLO ÁRBOL DE PROBLEMAS
     380, // ESQUEMA DE REDACCIÓN
-    250,
   ];
   int _currentseccion = 0;
 
@@ -480,42 +474,6 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                               ),
                             ),
 
-                          if (_index == 15)
-                            RichText(
-                              textAlign: TextAlign.justify,
-                              text: TextSpan(
-                                style: TextStyle(
-                                  fontSize: tamanotexto(2) + 4,
-                                  fontFamily: 'Calibri',
-                                  height: 1.5,
-                                  color: Colors.black,
-                                ),
-                                children: [
-                                  /*TextSpan(
-                                    text:
-                                        'Ejemplos para la creación de un título: \n',
-                                  ),*/
-                                  TextSpan(
-                                    text:
-                                        'Para comprender mejor este tema, te invitamos a ingresar al siguiente enlace y ver el ',
-                                  ),
-                                  TextSpan(
-                                    text: 'Video explicativo',
-                                    style: TextStyle(
-                                      color: Colors.blue,
-                                      //decoration: TextDecoration.underline,
-                                    ),
-                                    recognizer:
-                                        TapGestureRecognizer()
-                                          ..onTap = () {
-                                            abrirLink(
-                                              'https://sena4-my.sharepoint.com/personal/ochaparrob_sena_edu_co/_layouts/15/stream.aspx?id=%2Fpersonal%2Fochaparrob%5Fsena%5Fedu%5Fco%2FDocuments%2F5%2E%20Sena%20Documentos%2F2025%2FInvestigaci%C3%B3n%2FProyecto%20Investigaci%C3%B3n%20Practica%2FVideo%20Planteamiento%20del%20problema%2FPlanteamiento%20del%20problema%20video%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E894d23f2%2Db0ea%2D4b47%2D9319%2D90cfdf5a7be2',
-                                            );
-                                          },
-                                  ),
-                                ],
-                              ),
-                            ),
                           if (_index == 5)
                             RichText(
                               textAlign: TextAlign.justify,
@@ -623,32 +581,7 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                             ),
                             textAlign: TextAlign.justify,
                           ),
-
-                          const SizedBox(height: 20),
-                          if (_index <= 14)
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(12),
-                              child: Image.asset(
-                                imagenes[_index],
-                                height: alturaImagenPequena[_index],
-                                fit: BoxFit.contain,
-                              ),
-                            ),
                           if (_index == 14)
-                            SizedBox(
-                              height: 380,
-                              child: Image.asset(
-                                'assets/PlanteamientoProblema/Planteamiento_del_Problema_Esquema_de_Redaccion_Parte_2.png',
-                              ),
-                            ),
-                        ],
-                      )
-                      : Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          if (_index == 15) Spacer(),
-                          if (_index == 15) Spacer(),
-                          if (_index == 15)
                             RichText(
                               textAlign: TextAlign.justify,
                               text: TextSpan(
@@ -685,6 +618,28 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                               ),
                             ),
 
+                          const SizedBox(height: 20),
+
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(12),
+                            child: Image.asset(
+                              imagenes[_index],
+                              height: alturaImagenPequena[_index],
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                          if (_index == 14)
+                            SizedBox(
+                              height: 380,
+                              child: Image.asset(
+                                'assets/PlanteamientoProblema/Planteamiento_del_Problema_Esquema_de_Redaccion_Parte_2.png',
+                              ),
+                            ),
+                        ],
+                      )
+                      : Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
                           Expanded(
                             flex: 2,
                             child: Padding(
@@ -883,34 +838,74 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                                       ),
                                     ),
 
-                                  Text(
-                                    textos[_index],
-                                    style: TextStyle(
-                                      fontSize: tamanotexto(2) + 4,
-                                      fontFamily: 'Calibri',
-                                      height: 1.5,
-                                    ),
-                                    textAlign: TextAlign.justify,
+                                  Column(
+                                    children: [
+                                      Text(
+                                        textos[_index],
+                                        style: TextStyle(
+                                          fontSize: tamanotexto(2) + 4,
+                                          fontFamily: 'Calibri',
+                                          height: 1.5,
+                                        ),
+                                        textAlign: TextAlign.justify,
+                                      ),
+                                      if (_index == 14)
+                                        RichText(
+                                          textAlign: TextAlign.justify,
+                                          text: TextSpan(
+                                            style: TextStyle(
+                                              fontSize: tamanotexto(2) + 4,
+                                              fontFamily: 'Calibri',
+                                              height: 1.5,
+                                              color: Colors.black,
+                                            ),
+                                            children: [
+                                              /*TextSpan(
+                                    text:
+                                        'Ejemplos para la creación de un título: \n',
+                                  ),*/
+                                              TextSpan(
+                                                text:
+                                                    'Para comprender mejor este tema, te invitamos a ingresar al siguiente enlace y ver el ',
+                                              ),
+                                              TextSpan(
+                                                text: 'Video explicativo',
+                                                style: TextStyle(
+                                                  color: Colors.blue,
+                                                  //decoration: TextDecoration.underline,
+                                                ),
+                                                recognizer:
+                                                    TapGestureRecognizer()
+                                                      ..onTap = () {
+                                                        abrirLink(
+                                                          'https://sena4-my.sharepoint.com/personal/ochaparrob_sena_edu_co/_layouts/15/stream.aspx?id=%2Fpersonal%2Fochaparrob%5Fsena%5Fedu%5Fco%2FDocuments%2F5%2E%20Sena%20Documentos%2F2025%2FInvestigaci%C3%B3n%2FProyecto%20Investigaci%C3%B3n%20Practica%2FVideo%20Planteamiento%20del%20problema%2FPlanteamiento%20del%20problema%20video%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E894d23f2%2Db0ea%2D4b47%2D9319%2D90cfdf5a7be2',
+                                                        );
+                                                      },
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                    ],
                                   ),
                                 ],
                               ),
                             ),
                           ),
-                          if (_index <= 14)
-                            Flexible(
-                              flex: 0,
-                              child: Align(
-                                alignment: Alignment.topRight,
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(12),
-                                  child: Image.asset(
-                                    imagenes[_index],
-                                    height: alturaImagengrande[_index],
-                                    fit: BoxFit.contain,
-                                  ),
+
+                          Flexible(
+                            flex: 0,
+                            child: Align(
+                              alignment: Alignment.topRight,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(12),
+                                child: Image.asset(
+                                  imagenes[_index],
+                                  height: alturaImagengrande[_index],
+                                  fit: BoxFit.contain,
                                 ),
                               ),
                             ),
+                          ),
                           if (_index == 8 ||
                               /* _index == 9 || _index == 10 ||*/
                               _index == 12 ||
@@ -1005,13 +1000,13 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                     }
                   });
                 } else {
-                  await guardarProgresoFinal(2);
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => const Justificacion(),
                     ),
                   );
+                  await guardarProgresoFinal(2);
                 }
               },
               label: Text(
@@ -1263,13 +1258,6 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
       'icon': Icons.edit_note,
       'color': obtenercolor('Color_Secundario'),
       'indice': 14,
-    },
-    {
-      'id': 17,
-      'text': 'Video',
-      'icon': Icons.video_library_outlined,
-      'color': obtenercolor('Color_Secundario'),
-      'indice': 15,
     },
   ];
 }

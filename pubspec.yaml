@@ -146,6 +146,7 @@ flutter:
     - assets/Metodologia/Metodologia_Tipos_De_Metodologia_Cuantitativa.png  
     - assets/Metodologia/Metodologia_Tipos_De_Metodologia_Mixta.png
     - assets/Metodologia/Metodologia_Pasos_Crear.png
+    - assets/Metodologia/Metodologia_Pasos_Crear2.png
 
 
     - assets/Metodologia/Fondo_Inferior_Derecha.png
@@ -203,6 +204,12 @@ flutter:
     - assets/BasesDatos/Bases_De_Datos_Biblioteca_Sena.jpg
     - assets/BasesDatos/Bases_De_Datos_Estado_Del_Arte.png
     - assets/BasesDatos/Bases_De_Datos_Estado_Del_Arte_Ejemplo.png
+    - assets/BasesDatos/Bases_De_Datos_Antecedentes.png
+    - assets/BasesDatos/Bases_De_Datos_Antecedentes_Ejemplo.png
+
+    - assets/BasesDatos/Ejemplo1.png
+    - assets/BasesDatos/Ejemplo2.png
+    - assets/BasesDatos/Ejemplo3.png 
 
     - assets/BasesDatos/Fondo_inferior_Derecha.png
     - assets/BasesDatos/Fondo_superior_Izqiuerda.png
