@@ -43,7 +43,7 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
   final List<String> textos = [
     'El título de un proyecto de investigación es el nombre con el que se identifica dicho proyecto. El título debe ser conciso; debe estar formulado de modo tal que exprese con pocas palabras y de modo preciso, el objetivo de la investigación, las variables bajo consideración, la población o universo sobre la que se extenderán las conclusiones, y de ser necesario, dónde se llevará a cabo y cuándo.',
     'Características: debe ser preciso, Contener la idea principal del tema de investigación, Debe responder a: ¿Qué se va a hacer? ¿Sobre qué o quiénes se hará? ¿Dónde se llevará a cabo?, El título del proyecto se estructura en tres partes: Proceso: La acción o acciones a desarrollar. Objeto: El motivo del proceso. Localización: La ubicación geográfica de la investigación.',
-    'Se recomienda usar entre 12-20 palabras, Ser limitativo: Si son fechas: Especificar el periodo de tiempo o la época, Si son personas: Edad, género, profesión, etc., Si son lugares: Colonia, localidad, municipio, estado, país, Si son teorías o corrientes: Especificar la ciencia que se aplica, Evitar la sobre explicación.',
+    'Se recomienda usar entre 12-20 palabras, Ser limitativo: Si son fechas: Especificar el periodo de tiempo o la época, Si son personas: Edad, género, profesión, etc., Si son lugares: vereda, ciudad, municipio, departamento, país, Si son teorías o corrientes: Especificar la ciencia que se aplica, Evitar la sobre explicación.',
     'Palabras útiles para estructurar el título.',
     'Ejemplos para la creación de un título:\n',
   ]; // lista de los textos que se van a mostrar
@@ -72,7 +72,7 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
     240, // CARACTERISTICAS DEL TITULO
     260, //MAS CARACTERISTICAS DEL TITULO
     350, // PALABRAS UTILES PARA TITULO
-    450, //EJEMPLOS DE TITULOS
+    550, //EJEMPLOS DE TITULOS
   ]; // lista de las alturas de las imagenes para pantallas grandes
 
   final List<double> alturaImagenPequena = [
@@ -353,7 +353,7 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
                                           TapGestureRecognizer()
                                             ..onTap = () {
                                               abrirLink(
-                                                'https://sena4-my.sharepoint.com/personal/ochaparrob_sena_edu_co/_layouts/15/stream.aspx?id=%2Fpersonal%2Fochaparrob%5Fsena%5Fedu%5Fco%2FDocuments%2F5%2E%20Sena%20Documentos%2F2025%2FInvestigaci%C3%B3n%2FProyecto%20Investigaci%C3%B3n%20Practica%2FVideo%20T%C3%ADtulo%2FVideo%20del%20t%C3%ADtulo%2Ewebm&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E14f8d0ee%2Dd03d%2D4c9a%2D9f61%2D041ab9840b25',
+                                                'https://youtu.be/F_MeeGwggHk',
                                               );
                                             },
                                     ),
@@ -420,7 +420,7 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
                                                   TapGestureRecognizer()
                                                     ..onTap = () {
                                                       abrirLink(
-                                                        'https://sena4-my.sharepoint.com/personal/ochaparrob_sena_edu_co/_layouts/15/stream.aspx?id=%2Fpersonal%2Fochaparrob%5Fsena%5Fedu%5Fco%2FDocuments%2F5%2E%20Sena%20Documentos%2F2025%2FInvestigaci%C3%B3n%2FProyecto%20Investigaci%C3%B3n%20Practica%2FVideo%20T%C3%ADtulo%2FVideo%20del%20t%C3%ADtulo%2Ewebm&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E14f8d0ee%2Dd03d%2D4c9a%2D9f61%2D041ab9840b25',
+                                                        'https://youtu.be/F_MeeGwggHk',
                                                       );
                                                     },
                                             ),
@@ -451,7 +451,7 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
                             ),
                           ),
 
-                          if (_index == 3 || _index == 4) Spacer(),
+                          if (_index == 3) Spacer(),
                         ],
                       ),
                 ],

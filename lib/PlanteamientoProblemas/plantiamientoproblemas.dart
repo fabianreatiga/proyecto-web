@@ -134,18 +134,18 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
   final List<double> alturaImagengrande = [
     301, // PLANTEAMIENTO DEL PROBLEMA
     325, // DEFINICIÓN
-    500, // METODOLOGIAS
+    620, // METODOLOGIAS
     350, // 5W1H
     500, // EJEMPLO 5W1H
     500, // EJEMPLO 2 5W1H
     450, // EJEMPLO 3 5W1H
     400, // ESPINA DE PESCADO
     450, // COMO HACER ESPINA DE PESCADO
-    450, // EJEMPLO 1 ESPINA DE PESCADO
-    450, // EJEMPLO 2 ESPINA DE PESCADO
-    450, // ÁRBOL DE PROBLEMAS
+    500, // EJEMPLO 1 ESPINA DE PESCADO
+    500, // EJEMPLO 2 ESPINA DE PESCADO
+    550, // ÁRBOL DE PROBLEMAS
     500, // COMO HACER EL ÁRBOL DE PROBLEMAS
-    500, // EJEMPLO ÁRBOL DE PROBLEMAS
+    700, // EJEMPLO ÁRBOL DE PROBLEMAS
     400, // ESQUEMA DE REDACCIÓN
   ];
   final List<double> alturaImagenPequena = [
@@ -610,7 +610,7 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                                         TapGestureRecognizer()
                                           ..onTap = () {
                                             abrirLink(
-                                              'https://sena4-my.sharepoint.com/personal/ochaparrob_sena_edu_co/_layouts/15/stream.aspx?id=%2Fpersonal%2Fochaparrob%5Fsena%5Fedu%5Fco%2FDocuments%2F5%2E%20Sena%20Documentos%2F2025%2FInvestigaci%C3%B3n%2FProyecto%20Investigaci%C3%B3n%20Practica%2FVideo%20Planteamiento%20del%20problema%2FPlanteamiento%20del%20problema%20video%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E894d23f2%2Db0ea%2D4b47%2D9319%2D90cfdf5a7be2',
+                                              'https://youtu.be/321q63085Cc',
                                             );
                                           },
                                   ),
@@ -878,7 +878,7 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                                                     TapGestureRecognizer()
                                                       ..onTap = () {
                                                         abrirLink(
-                                                          'https://sena4-my.sharepoint.com/personal/ochaparrob_sena_edu_co/_layouts/15/stream.aspx?id=%2Fpersonal%2Fochaparrob%5Fsena%5Fedu%5Fco%2FDocuments%2F5%2E%20Sena%20Documentos%2F2025%2FInvestigaci%C3%B3n%2FProyecto%20Investigaci%C3%B3n%20Practica%2FVideo%20Planteamiento%20del%20problema%2FPlanteamiento%20del%20problema%20video%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E894d23f2%2Db0ea%2D4b47%2D9319%2D90cfdf5a7be2',
+                                                          'https://youtu.be/321q63085Cc',
                                                         );
                                                       },
                                               ),
@@ -898,18 +898,23 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                               alignment: Alignment.topRight,
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(12),
-                                child: Image.asset(
-                                  imagenes[_index],
-                                  height: alturaImagengrande[_index],
-                                  fit: BoxFit.contain,
+                                child: Row(
+                                  children: [
+                                    Image.asset(
+                                      imagenes[_index],
+                                      height: alturaImagengrande[_index],
+                                      fit: BoxFit.contain,
+                                    ),
+                                    if (_index == 13) SizedBox(width: 100),
+                                  ],
                                 ),
                               ),
                             ),
                           ),
-                          if (_index == 8 ||
+                          if (_index == 2 ||
+                              _index == 8 ||
                               /* _index == 9 || _index == 10 ||*/
-                              _index == 12 ||
-                              _index == 13)
+                              _index == 12)
                             Spacer(),
                           if (_index == 9 || _index == 10) SizedBox(width: 100),
                           if ( //_index == 8 ||

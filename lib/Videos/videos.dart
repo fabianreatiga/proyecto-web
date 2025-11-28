@@ -142,7 +142,7 @@ class _VideoState extends State<Video> {
                                     TapGestureRecognizer()
                                       ..onTap = () {
                                         abrirLink(
-                                          'https://sena4-my.sharepoint.com/personal/ochaparrob_sena_edu_co/_layouts/15/stream.aspx?id=%2Fpersonal%2Fochaparrob%5Fsena%5Fedu%5Fco%2FDocuments%2F5%2E%20Sena%20Documentos%2F2025%2FInvestigaci%C3%B3n%2FProyecto%20Investigaci%C3%B3n%20Practica%2FVideo%20T%C3%ADtulo%2FVideo%20del%20t%C3%ADtulo%2Ewebm&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E14f8d0ee%2Dd03d%2D4c9a%2D9f61%2D041ab9840b25',
+                                          'https://youtu.be/F_MeeGwggHk',
                                         );
                                       },
                               ),
@@ -170,7 +170,7 @@ class _VideoState extends State<Video> {
                                     TapGestureRecognizer()
                                       ..onTap = () {
                                         abrirLink(
-                                          'https://sena4-my.sharepoint.com/personal/ochaparrob_sena_edu_co/_layouts/15/stream.aspx?id=%2Fpersonal%2Fochaparrob%5Fsena%5Fedu%5Fco%2FDocuments%2F5%2E%20Sena%20Documentos%2F2025%2FInvestigaci%C3%B3n%2FProyecto%20Investigaci%C3%B3n%20Practica%2FVideo%20Planteamiento%20del%20problema%2FPlanteamiento%20del%20problema%20video%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E894d23f2%2Db0ea%2D4b47%2D9319%2D90cfdf5a7be2',
+                                          'https://youtu.be/321q63085Cc',
                                         );
                                       },
                               ),

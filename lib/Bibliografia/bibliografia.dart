@@ -72,7 +72,7 @@ class _BibliografiasState extends State<Bibliografias>
   }*/
 
   final List<double> alturaImagengrande = [
-    500, //BIBLIOGRAFÍA
+    700, //BIBLIOGRAFÍA
     500, //EJEMPLOS
     520, //NORMAS APA
     650, //EJEMPLOS APA

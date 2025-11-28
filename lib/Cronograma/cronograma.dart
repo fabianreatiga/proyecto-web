@@ -42,7 +42,7 @@ class _CronogramasState extends State<Cronogramas>
     'Una de las grandes ventajas de la gestión de proyectos es que te permite visualizar tu trabajo en un cronograma'
         ' de actividades y no en una hoja de cálculo o lista de pendientes desorganizada. Con un cronograma de actividades,'
         ' tienes una idea clara de cómo encajan todas las piezas de tu plan. Entonces, ¿por qué no tienes uno aún? Sin la tecnología'
-        ' adecuada, crear un cronograma de actividades de tu proyecto puede ser muy complicado..',
+        ' adecuada, crear un cronograma de actividades de tu proyecto puede ser muy complicado.',
 
     '',
     '',
@@ -65,7 +65,7 @@ class _CronogramasState extends State<Cronogramas>
   final List<double> alturaImagengrande = [
     300, //COMO CREAR UN CRONOGRAMA
     500, //PASOS
-    500, //EJEMPLO
+    800, //EJEMPLO
   ];
 
   final List<double> alturaImagenPequena = [
@@ -454,8 +454,8 @@ class _CronogramasState extends State<Cronogramas>
                               ),
                             ),
                           ),
-                          if (_index == 1 || _index == 2) Spacer(),
-                          if (_index == 1 || _index == 2) Spacer(),
+                          if (_index == 1) Spacer(),
+                          if (_index == 1) Spacer(),
                         ],
                       ),
                 ],
