@@ -62,17 +62,21 @@ class _CronogramasState extends State<Cronogramas>
   //int _progresoContador = 1;
   //double get progreso {  return _progresoContador / secciones.length;}
 
-  final List<double> alturaImagengrande = [
-    300, //COMO CREAR UN CRONOGRAMA
-    500, //PASOS
-    800, //EJEMPLO
-  ];
+  List<double> grande(BuildContext context) {
+    return [
+      MediaQuery.of(context).size.width * 0.2 - 18, //COMO CREAR UN CRONOGRAMA
+      MediaQuery.of(context).size.width * 0.4 - 18, //PASOS
+      MediaQuery.of(context).size.width * 0.53 - 18, //EJEMPLO
+    ];
+  }
 
-  final List<double> alturaImagenPequena = [
-    200, //COMO CREAR UN CRONOGRAMA
-    250, //PASOS
-    280, //EJEMPLO
-  ];
+  List<double> Pequena(BuildContext context) {
+    return [
+      MediaQuery.of(context).size.width * 0.3 - 18, //COMO CREAR UN CRONOGRAMA
+      MediaQuery.of(context).size.width * 0.5 - 18, //PASOS
+      MediaQuery.of(context).size.width * 0.6 - 18, //EJEMPLO
+    ];
+  }
 
   static int ID_BASE_PROGRESO = 43;
   int _currentseccion = 0;
@@ -295,6 +299,9 @@ class _CronogramasState extends State<Cronogramas>
       builder: (context, Constraints) {
         bool esPantallaPequena = Constraints.maxWidth < 1000;
         // se usa bool para saber si la pantalla es pequena
+
+        final alturaImagenPequena = Pequena(context);
+        final alturaImagengrande = grande(context);
         return Card(
           color: obtenercolor('Color_Fondo'),
           shape: RoundedRectangleBorder(
@@ -375,6 +382,7 @@ class _CronogramasState extends State<Cronogramas>
                               ),
                             ),
                           const SizedBox(height: 20),
+
                           ClipRRect(
                             borderRadius: BorderRadius.circular(12),
                             child: Image.asset(
@@ -446,10 +454,14 @@ class _CronogramasState extends State<Cronogramas>
                               alignment: Alignment.topRight,
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(12),
-                                child: Image.asset(
-                                  imagenes[_index],
-                                  height: alturaImagengrande[_index],
-                                  fit: BoxFit.contain,
+                                child: Row(
+                                  children: [
+                                    Image.asset(
+                                      imagenes[_index],
+                                      height: alturaImagengrande[_index],
+                                      fit: BoxFit.contain,
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),

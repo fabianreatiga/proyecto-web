@@ -84,23 +84,27 @@ class _MetodologiasState extends State<Metodologias>
     return _progresoContador / secciones.length;
   }*/
 
-  final List<double> alturaImagengrande = [
-    200, //METODOLOGÍA
-    250, //TIPOS DE METODOLOGÍAS
-    300, //CUALITATIVA
-    300, //CUANTITATIVA
-    300, //MIXTA
-    550, //PASOS PARA CREAR
-  ];
+  List<double> agrande(BuildContext context) {
+    return [
+      MediaQuery.of(context).size.width * 0.15 - 18, //METODOLOGÍA
+      250, //TIPOS DE METODOLOGÍAS
+      300, //CUALITATIVA
+      300, //CUANTITATIVA
+      300, //MIXTA
+      MediaQuery.of(context).size.width * 0.35 - 18, //PASOS PARA CREAR
+    ];
+  }
 
-  final List<double> alturaImagenPequena = [
-    150, //METODOLOGÍA
-    300, //TIPOS DE METODOLOGÍAS
-    300, //CUALITATIVA
-    300, //CUANTITATIVA
-    300, //MIXTA
-    300, //PASOS PARA CREAR
-  ];
+  List<double> Pequena(BuildContext context) {
+    return [
+      MediaQuery.of(context).size.width * 0.25 - 18, //METODOLOGÍA
+      300, //TIPOS DE METODOLOGÍAS
+      300, //CUALITATIVA
+      300, //CUANTITATIVA
+      300, //MIXTA
+      MediaQuery.of(context).size.width * 0.63 - 18, //PASOS PARA CREAR
+    ];
+  }
 
   static int ID_BASE_PROGRESO = 37;
   int _currentseccion = 0;
@@ -323,6 +327,8 @@ class _MetodologiasState extends State<Metodologias>
       builder: (context, Constraints) {
         bool esPantallaPequena = Constraints.maxWidth < 1000;
         // se usa bool para saber si la pantalla es pequena
+        final alturaImagenPequena = Pequena(context);
+        final alturaImagengrande = agrande(context);
         return Card(
           color: obtenercolor('Color_Fondo'),
           shape: RoundedRectangleBorder(
@@ -360,40 +366,6 @@ class _MetodologiasState extends State<Metodologias>
                       ? Column(
                         // se usa Column para mostrar el texto en dos filas
                         children: [
-                          if (_index == 5)
-                            RichText(
-                              textAlign: TextAlign.justify,
-                              text: TextSpan(
-                                style: TextStyle(
-                                  fontSize: tamanotexto(2) + 4,
-                                  fontFamily: 'Calibri',
-                                  height: 1.5,
-                                  color: Colors.black,
-                                ),
-                                children: [
-                                  /*TextSpan(
-                                    text:
-                                        'Ejemplos para la creación de un título: \n',
-                                  ),*/
-                                  TextSpan(
-                                    text:
-                                        'Para comprender mejor este tema, te invitamos a ingresar al siguiente enlace y ver el ',
-                                  ),
-                                  TextSpan(
-                                    text: 'Video explicativo',
-                                    style: TextStyle(
-                                      color: Colors.blue,
-                                      //decoration: TextDecoration.underline,
-                                    ),
-                                    recognizer:
-                                        TapGestureRecognizer()
-                                          ..onTap = () {
-                                            abrirLink('');
-                                          },
-                                  ),
-                                ],
-                              ),
-                            ),
                           if (_index == 2)
                             RichText(
                               textAlign: TextAlign.justify,
@@ -506,24 +478,13 @@ class _MetodologiasState extends State<Metodologias>
                                     recognizer:
                                         TapGestureRecognizer()
                                           ..onTap = () {
-                                            abrirLink('');
+                                            abrirLink(
+                                              'https://youtu.be/BVo31Aun_fg',
+                                            );
                                           },
                                   ),
                                 ],
                               ),
-                            ),
-                          if (_index != 2 &&
-                              _index != 3 &&
-                              _index != 4 &&
-                              _index != 5)
-                            Text(
-                              textos[_index],
-                              style: TextStyle(
-                                fontSize: tamanotexto(2) + 4,
-                                fontFamily: 'Calibri',
-                                height: 1.5,
-                              ),
-                              textAlign: TextAlign.justify,
                             ),
 
                           const SizedBox(height: 20),
@@ -669,7 +630,9 @@ class _MetodologiasState extends State<Metodologias>
                                             recognizer:
                                                 TapGestureRecognizer()
                                                   ..onTap = () {
-                                                    abrirLink('');
+                                                    abrirLink(
+                                                      'https://youtu.be/BVo31Aun_fg',
+                                                    );
                                                   },
                                           ),
                                         ],
@@ -695,7 +658,10 @@ class _MetodologiasState extends State<Metodologias>
                                     if (_index == 5)
                                       Image.asset(
                                         'assets/Metodologia/Metodologia_Pasos_Crear2.png',
-                                        height: 450,
+                                        height:
+                                            MediaQuery.of(context).size.width *
+                                                0.3 -
+                                            18,
                                         fit: BoxFit.contain,
                                       ),
                                   ],
@@ -703,9 +669,12 @@ class _MetodologiasState extends State<Metodologias>
                               ),
                             ),
                           ),
-                          if (_index == 5) Spacer(),
+                          if (_index == 5)
+                            SizedBox(
+                              width:
+                                  MediaQuery.of(context).size.width * 0.1 - 18,
+                            ),
                           if (_index == 1) SizedBox(width: 150),
-                          if (_index == 5) Spacer(),
                         ],
                       ),
                 ],

@@ -67,21 +67,27 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
     'EJEMPLOS DE TÍTULO',
   ]; // lista de las secciones
 
-  final List<double> alturaImagengrande = [
-    220, //TITULO
-    240, // CARACTERISTICAS DEL TITULO
-    260, //MAS CARACTERISTICAS DEL TITULO
-    350, // PALABRAS UTILES PARA TITULO
-    550, //EJEMPLOS DE TITULOS
-  ]; // lista de las alturas de las imagenes para pantallas grandes
+  List<double> grande(BuildContext context) {
+    return [
+      220, //TITULO
+      240, // CARACTERISTICAS DEL TITULO
+      260, //MAS CARACTERISTICAS DEL TITULO
+      MediaQuery.of(context).size.width * 0.3 -
+          18, // PALABRAS UTILES PARA TITULO
+      MediaQuery.of(context).size.width * 0.4 - 18, //EJEMPLOS DE TITULOS
+    ];
+  } // lista de las alturas de las imagenes para pantallas grandes
 
-  final List<double> alturaImagenPequena = [
-    200, //TITULO
-    200, // CARACTERISTICAS DEL TITULO
-    200, //MAS CARACTERISTICAS DEL TITULO
-    250, // PALABRAS UTILES PARA TITULO
-    250, //EJEMPLOS DE TITULOS
-  ]; // lista de las alturas de las imagenes para pantallas pequenas
+  List<double> Pequena(BuildContext context) {
+    return [
+      200, //TITULO
+      200, // CARACTERISTICAS DEL TITULO
+      200, //MAS CARACTERISTICAS DEL TITULO
+      MediaQuery.of(context).size.width * 0.35 -
+          18, // PALABRAS UTILES PARA TITULO
+      MediaQuery.of(context).size.width * 0.45 - 18, //EJEMPLOS DE TITULOS
+    ];
+  } // lista de las alturas de las imagenes para pantallas pequenas
 
   static int ID_BASE_PROGRESO = 1; // ID base para el progreso de este subtema
 
@@ -280,6 +286,9 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
       builder: (context, constraints) {
         bool esPantallaPequena = constraints.maxWidth < 1000;
         //se bool para saber si la pantalla es pequena
+
+        final alturaImagengrande = grande(context);
+        final alturaImagenPequena = Pequena(context);
         return Card(
           color: obtenercolor('Color_Fondo'),
           shape: RoundedRectangleBorder(

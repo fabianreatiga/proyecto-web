@@ -118,6 +118,7 @@ class _VideoState extends State<Video> {
                               color: Colors.black,
                             ),
                             children: [
+                              //---------------------- Video explicativo de Titulo ----------------------
                               TextSpan(
                                 text: 'Título\n',
                                 style: TextStyle(
@@ -146,6 +147,8 @@ class _VideoState extends State<Video> {
                                         );
                                       },
                               ),
+
+                              //---------------------- Video explicativo de Planteamiento del Problema ----------------------
                               TextSpan(
                                 text: 'Planteamiento del Problema\n',
                                 style: TextStyle(
@@ -170,11 +173,12 @@ class _VideoState extends State<Video> {
                                     TapGestureRecognizer()
                                       ..onTap = () {
                                         abrirLink(
-                                          'https://youtu.be/321q63085Cc',
+                                          'https://youtu.be/dKs0BfuF25A',
                                         );
                                       },
                               ),
 
+                              //---------------------- Video explicativo de Justificación ----------------------
                               TextSpan(
                                 text: 'Justificación\n',
                                 style: TextStyle(
@@ -198,9 +202,13 @@ class _VideoState extends State<Video> {
                                 recognizer:
                                     TapGestureRecognizer()
                                       ..onTap = () {
-                                        abrirLink('');
+                                        abrirLink(
+                                          'https://youtu.be/GOU4qjxFNxw',
+                                        );
                                       },
                               ),
+
+                              //---------------------- Video explicativo de Objetivos ----------------------
                               TextSpan(
                                 text: 'Objetivos\n',
                                 style: TextStyle(
@@ -224,10 +232,13 @@ class _VideoState extends State<Video> {
                                 recognizer:
                                     TapGestureRecognizer()
                                       ..onTap = () {
-                                        abrirLink('');
+                                        abrirLink(
+                                          'https://youtu.be/WwmEpjQ4knE',
+                                        );
                                       },
                               ),
 
+                              //---------------------- Video explicativo de Metodología ----------------------
                               TextSpan(
                                 text: 'Metodología\n',
                                 style: TextStyle(
@@ -251,9 +262,13 @@ class _VideoState extends State<Video> {
                                 recognizer:
                                     TapGestureRecognizer()
                                       ..onTap = () {
-                                        abrirLink('');
+                                        abrirLink(
+                                          'https://youtu.be/BVo31Aun_fg',
+                                        );
                                       },
                               ),
+
+                              //---------------------- Video explicativo de Cronograma ----------------------
                               TextSpan(
                                 text: 'Cronograma\n',
                                 style: TextStyle(
@@ -281,6 +296,7 @@ class _VideoState extends State<Video> {
                                       },
                               ),
 
+                              //---------------------- Video explicativo de Actividades o resultados ----------------------
                               TextSpan(
                                 text: 'Actividades o resultados\n',
                                 style: TextStyle(
@@ -307,6 +323,8 @@ class _VideoState extends State<Video> {
                                         abrirLink('');
                                       },
                               ),
+
+                              //---------------------- Video explicativo de Bibliografía ----------------------
                               TextSpan(
                                 text: 'Bibliografía\n',
                                 style: TextStyle(

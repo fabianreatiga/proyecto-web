@@ -60,7 +60,7 @@ class Menu extends StatelessWidget {
               color: currentScreen == 'Titulo' ? Colors.white : Colors.black,
             ),
             title: Text(
-              'Titulo',
+              'Título',
               style: TextStyle(
                 fontSize: texto + 4,
                 color: currentScreen == 'Titulo' ? Colors.white : Colors.black,

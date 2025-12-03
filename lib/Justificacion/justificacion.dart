@@ -75,19 +75,24 @@ class _JustificacionesState extends State<Justificaciones>
     'EJEMPLO',
   ];
 
-  final List<double> alturaImagengrande = [
-    250, // JUSTIFICACIÓN
-    400, // PASOS
-    550, // CONSEJOS
-    200, // EJEMPLO
-  ];
+  List<double> grande(BuildContext context) {
+    return [
+      250, // JUSTIFICACIÓN
+      MediaQuery.of(context).size.width * 0.35 - 18, // PASOS
+      MediaQuery.of(context).size.width * 0.4 - 18, // CONSEJOS
+      200, // EJEMPLO
+    ];
+  }
 
-  final List<double> alturaImagenPequena = [
-    200, // JUSTIFICACIÓN
-    300, // PASOS
-    350, // CONSEJOS
-    150, // EJEMPLO
-  ];
+  List<double> Pequena(BuildContext context) {
+    return [
+      MediaQuery.of(context).size.width * 0.3 - 18, // JUSTIFICACIÓN
+      MediaQuery.of(context).size.width * 0.5 - 18, // PASOS
+      MediaQuery.of(context).size.width * 0.55 - 18, // CONSEJOS
+      MediaQuery.of(context).size.width * 0.3 - 18, // EJEMPLO
+    ];
+  }
+
   static int ID_BASE_PROGRESO = 21;
   int _currentseccion = 0;
 
@@ -304,6 +309,9 @@ class _JustificacionesState extends State<Justificaciones>
     return LayoutBuilder(
       builder: (context, constraints) {
         bool esPantallaPequena = constraints.maxWidth < 1000;
+
+        final alturaImagengrande = grande(context);
+        final alturaImagenPequena = Pequena(context);
         return Card(
           color: obtenercolor('Color_Fondo'),
           shape: RoundedRectangleBorder(
@@ -355,7 +363,7 @@ class _JustificacionesState extends State<Justificaciones>
                                 textAlign: TextAlign.justify,
                                 text: TextSpan(
                                   style: TextStyle(
-                                    fontSize: tamanotexto(2),
+                                    fontSize: tamanotexto(2) + 4,
                                     fontFamily: 'Calibri',
                                     height: 1.5,
                                     color: Colors.black,
@@ -374,7 +382,9 @@ class _JustificacionesState extends State<Justificaciones>
                                       recognizer:
                                           TapGestureRecognizer()
                                             ..onTap = () {
-                                              abrirLink('');
+                                              abrirLink(
+                                                'https://youtu.be/GOU4qjxFNxw',
+                                              );
                                             },
                                     ),
                                   ],
@@ -435,7 +445,9 @@ class _JustificacionesState extends State<Justificaciones>
                                             recognizer:
                                                 TapGestureRecognizer()
                                                   ..onTap = () {
-                                                    abrirLink('');
+                                                    abrirLink(
+                                                      'https://youtu.be/GOU4qjxFNxw',
+                                                    );
                                                   },
                                           ),
                                         ],
@@ -461,7 +473,7 @@ class _JustificacionesState extends State<Justificaciones>
                                 ),
                               ),
                             ),
-                          if (_index == 1 || _index == 2) Spacer(),
+
                           //if ( /*_index == 1 ||*/ _index == 2) Spacer(),
                         ],
                       ),

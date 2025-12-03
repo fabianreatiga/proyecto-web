@@ -38,11 +38,7 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
   final List<int> pestanasVistas = [];
 
   final List<String> textos = [
-    'Una de las grandes ventajas de la gestión de proyectos es que te permite visualizar tu trabajo en'
-        ' un cronograma de actividades y no en una hoja de cálculo o lista de pendientes desorganizada. Con'
-        ' un cronograma de actividades, tienes una idea clara de cómo encajan todas las piezas de tu plan.'
-        ' Entonces, ¿por qué no tienes uno aún? Sin la tecnología adecuada, crear un cronograma de actividades'
-        ' de tu proyecto puede ser muy complicado.',
+    'Hay varias formas de establecer objetivos, siendo una de las más utilizadas y populares la metodología SMART. Sin embargo, surgen nuevas propuestas metodológicas en el establecimiento de los objetivos desde otras perspectivas más globales o transversales, adaptándose a las diferentes filosofías y formas de trabajo empresarial y el entorno VUCA de la sociedad actual. En todos los casos, pero hay unos elementos comunes, los cuales son:',
 
     '',
     /* 'El modelo SMART –acrónimo que significa «inteligente» en inglés– hace referencia a cinco conceptos que hay'
@@ -64,10 +60,10 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
 
     'La metodología DUMB resalta las características que debe tener un objetivo de negocio. DUMB significa: Doable, Understandable, Manejable'
         ' y Beneficial. En traducción sería que cada objetivo tiene que ser realizable, entendible, manejable y beneficioso. Deben ser aquellos que'
-        ' entreguen valor a la empresa y a la marca..',
+        ' entreguen valor a la empresa y a la marca.',
 
     'El árbol de objetivos reúne los medios y alternativas para solucionar el problema principal. Gracias a ello, se logra una visión positiva de las'
-        ' situaciones negativas que aparecían en el árbol anterior, aunque utilice la misma estructura. Así, se busca ir resolviendo el problema paso a paso..\n',
+        ' situaciones negativas que aparecían en el árbol anterior, aunque utilice la misma estructura. Así, se busca ir resolviendo el problema paso a paso.\n',
   ];
 
   final List<String> imagenes = [
@@ -95,25 +91,29 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
     return _progresoContador / secciones.length;
   }*/
 
-  final List<double> alturaImagengrande = [
-    650, //COMO CREAR LOS OBJETIVOS
-    250, //MÉTODO SMART
-    120, //MÉTODO CLEAR
-    350, //MÉTODO PURE
-    150, //MÉTODO GROW
-    150, //MÉTODO DUMB
-    500, //ÁRBOL DE OJETIVOS
-  ];
+  List<double> grande(BuildContext context) {
+    return [
+      MediaQuery.of(context).size.width * 0.4 - 18, //COMO CREAR LOS OBJETIVOS
+      MediaQuery.of(context).size.width * 0.18 - 18, //MÉTODO SMART
+      MediaQuery.of(context).size.width * 0.1 - 18, //MÉTODO CLEAR
+      MediaQuery.of(context).size.width * 0.3 - 18, //MÉTODO PURE
+      MediaQuery.of(context).size.width * 0.14 - 18, //MÉTODO GROW
+      MediaQuery.of(context).size.width * 0.1 - 18, //MÉTODO DUMB
+      MediaQuery.of(context).size.width * 0.35 - 18, //ÁRBOL DE OJETIVOS
+    ];
+  }
 
-  final List<double> alturaImagenPequena = [
-    500, //COMO CREAR LOS OBJETIVOS
-    150, //MÉTODO SMART
-    100, //MÉTODO CLEAR
-    350, //MÉTODO PURE
-    100, //MÉTODO GROW
-    100, //MÉTODO DUMB
-    300, //ÁRBOL DE OJETIVOS
-  ];
+  List<double> Pequena(BuildContext context) {
+    return [
+      MediaQuery.of(context).size.width * 0.6 - 18, //COMO CREAR LOS OBJETIVOS
+      MediaQuery.of(context).size.width * 0.3 - 18, //MÉTODO SMART
+      MediaQuery.of(context).size.width * 0.15 - 18, //MÉTODO CLEAR
+      MediaQuery.of(context).size.width * 0.4 - 18, //MÉTODO PURE
+      MediaQuery.of(context).size.width * 0.25 - 18, //MÉTODO GROW
+      MediaQuery.of(context).size.width * 0.15 - 18, //MÉTODO DUMB
+      MediaQuery.of(context).size.width * 0.55 - 18, //ÁRBOL DE OJETIVOS
+    ];
+  }
 
   static int ID_BASE_PROGRESO = 25;
   int _currentseccion = 0;
@@ -336,6 +336,9 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
       builder: (context, Constraints) {
         bool esPantallaPequena = Constraints.maxWidth < 1000;
         // se usa bool para saber si la pantalla es pequena
+
+        final alturaImagenPequena = Pequena(context);
+        final alturaImagengrande = grande(context);
         return Card(
           color: obtenercolor('Color_Fondo'),
           shape: RoundedRectangleBorder(
@@ -486,7 +489,7 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
                                   ),
                                   TextSpan(
                                     text:
-                                        '• Positive stated (enunciados en positivo) • Understood (comprensible) • Relevant (relevante) • Ethical (ético)..',
+                                        '• Positive stated (enunciados en positivo) • Understood (comprensible) • Relevant (relevante) • Ethical (ético).',
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -559,7 +562,9 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
                                       recognizer:
                                           TapGestureRecognizer()
                                             ..onTap = () {
-                                              abrirLink('');
+                                              abrirLink(
+                                                'https://youtu.be/WwmEpjQ4knE',
+                                              );
                                             },
                                     ),
                                   ],
@@ -702,7 +707,7 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
                                           ),
                                           TextSpan(
                                             text:
-                                                '• Positive stated (enunciados en positivo) • Understood (comprensible) • Relevant (relevante) • Ethical (ético)..',
+                                                '• Positive stated (enunciados en positivo) • Understood (comprensible) • Relevant (relevante) • Ethical (ético).',
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                             ),
@@ -776,7 +781,9 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
                                               recognizer:
                                                   TapGestureRecognizer()
                                                     ..onTap = () {
-                                                      abrirLink('');
+                                                      abrirLink(
+                                                        'https://youtu.be/WwmEpjQ4knE',
+                                                      );
                                                     },
                                             ),
                                           ],
@@ -809,21 +816,30 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
                   if (_index == 1)
                     Center(
                       child: Image.asset(
-                        height: esPantallaPequena ? 120 : 200,
+                        height:
+                            esPantallaPequena
+                                ? MediaQuery.of(context).size.width * 0.3 - 18
+                                : MediaQuery.of(context).size.width * 0.2 - 18,
                         'assets/Objetivos/Objetivos_Método_Smart_Titulo.png',
                       ),
                     ),
                   if (_index == 2)
                     Center(
                       child: Image.asset(
-                        height: esPantallaPequena ? 250 : 400,
+                        height:
+                            esPantallaPequena
+                                ? MediaQuery.of(context).size.width * 0.45 - 18
+                                : MediaQuery.of(context).size.width * 0.35 - 18,
                         'assets/Objetivos/Objetivos_Método_Clear_Titulo.png',
                       ),
                     ),
                   if (_index == 5)
                     Center(
                       child: Image.asset(
-                        height: esPantallaPequena ? 130 : 350,
+                        height:
+                            esPantallaPequena
+                                ? MediaQuery.of(context).size.width * 0.35 - 18
+                                : MediaQuery.of(context).size.width * 0.3 - 18,
                         'assets/Objetivos/Objetivos_Método_Dumb_Titulo.png',
                       ),
                     ),

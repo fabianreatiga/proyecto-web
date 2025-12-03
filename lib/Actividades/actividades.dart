@@ -63,17 +63,21 @@ class _ActividadState extends State<Actividad> with TickerProviderStateMixin {
   //return _progresoContador / secciones.length;
   //}
 
-  final List<double> alturaImagengrande = [
-    550, //ACTIVIDADES
-    350, //RESULTADOS
-    250, //FORMULACIÓN DE RESULTADOS
-  ];
+  List<double> grande(BuildContext context) {
+    return [
+      MediaQuery.of(context).size.width * 0.4 - 18, //ACTIVIDADES
+      MediaQuery.of(context).size.width * 0.25 - 18, //RESULTADOS
+      MediaQuery.of(context).size.width * 0.17 - 18, //FORMULACIÓN DE RESULTADOS
+    ];
+  }
 
-  final List<double> alturaImagenPequena = [
-    300, //ACTIVIDADES
-    300, //RESULTADOS
-    300, //FORMULACIÓN DE RESULTADOS
-  ];
+  List<double> Pequena(BuildContext context) {
+    return [
+      MediaQuery.of(context).size.width * 0.6 - 18, //ACTIVIDADES
+      MediaQuery.of(context).size.width * 0.45 - 18, //RESULTADOS
+      MediaQuery.of(context).size.width * 0.25 - 18, //FORMULACIÓN DE RESULTADOS
+    ];
+  }
 
   static int ID_BASE_PROGRESO = 46;
   int _currentseccion = 0;
@@ -294,6 +298,9 @@ class _ActividadState extends State<Actividad> with TickerProviderStateMixin {
       builder: (context, Constraints) {
         bool esPantallaPequena = Constraints.maxWidth < 1000;
         // se usa bool para saber si la pantalla es pequena
+
+        final alturaImagenPequena = Pequena(context);
+        final alturaImagengrande = grande(context);
         return Card(
           color: obtenercolor('Color_Fondo'),
           shape: RoundedRectangleBorder(
@@ -377,7 +384,7 @@ class _ActividadState extends State<Actividad> with TickerProviderStateMixin {
                             borderRadius: BorderRadius.circular(12),
                             child: Image.asset(
                               imagenes[_index],
-                              //height: alturaImagenPequena[_index],
+                              height: alturaImagenPequena[_index],
                               fit: BoxFit.contain,
                             ),
                           ),

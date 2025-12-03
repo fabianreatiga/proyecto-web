@@ -71,25 +71,29 @@ class _BibliografiasState extends State<Bibliografias>
     return _progresoContador / secciones.length;
   }*/
 
-  final List<double> alturaImagengrande = [
-    700, //BIBLIOGRAFÍA
-    500, //EJEMPLOS
-    520, //NORMAS APA
-    650, //EJEMPLOS APA
-    500, //NORMAS IEEE
-    750, //EJEMPLOS IEEE
-    550, //SITIOS WEB RECOMENDADOS
-  ];
+  List<double> grande(BuildContext context) {
+    return [
+      MediaQuery.of(context).size.width * 0.5 - 18, //BIBLIOGRAFÍA
+      MediaQuery.of(context).size.width * 0.37 - 18, //EJEMPLOS
+      MediaQuery.of(context).size.width * 0.38 - 18, //NORMAS APA
+      MediaQuery.of(context).size.width * 0.48 - 18, //EJEMPLOS APA
+      MediaQuery.of(context).size.width * 0.35 - 18, //NORMAS IEEE
+      MediaQuery.of(context).size.width * 0.65 - 18, //EJEMPLOS IEEE
+      MediaQuery.of(context).size.width * 0.37 - 18, //SITIOS WEB RECOMENDADOS
+    ];
+  }
 
-  final List<double> alturaImagenPequena = [
-    250, //BIBLIOGRAFÍA
-    250, //EJEMPLOS
-    200, //NORMAS APA
-    350, //EJEMPLOS APA
-    200, //NORMAS IEEE
-    600, //EJEMPLOS IEEE
-    300, //SITIOS WEB RECOMENDADOS
-  ];
+  List<double> Pequena(BuildContext context) {
+    return [
+      MediaQuery.of(context).size.width * 0.7 - 18, //BIBLIOGRAFÍA
+      MediaQuery.of(context).size.width * 0.5 - 18, //EJEMPLOS
+      MediaQuery.of(context).size.width * 0.5 - 18, //NORMAS APA
+      MediaQuery.of(context).size.width * 0.7 - 18, //EJEMPLOS APA
+      MediaQuery.of(context).size.width * 0.58 - 18, //NORMAS IEEE
+      MediaQuery.of(context).size.width * 0.9 - 18, //EJEMPLOS IEEE
+      MediaQuery.of(context).size.width * 0.5 - 18, //SITIOS WEB RECOMENDADOS
+    ];
+  }
 
   static int ID_BASE_PROGRESO = 49;
   int _currentseccion = 0;
@@ -310,8 +314,11 @@ class _BibliografiasState extends State<Bibliografias>
     return LayoutBuilder(
       // se usa LayoutBuilder para obtener el tamaño de la pantalla
       builder: (context, Constraints) {
-        bool esPantallaPequena = Constraints.maxWidth < 1200;
+        bool esPantallaPequena = Constraints.maxWidth < 1000;
         // se usa bool para saber si la pantalla es pequena
+
+        final alturaImagenPequena = Pequena(context);
+        final alturaImagengrande = grande(context);
         return Card(
           color: obtenercolor('Color_Fondo'),
           shape: RoundedRectangleBorder(
