@@ -224,6 +224,36 @@ app.post("/guardarProgreso", async (req, res) => {
 });
 
 
+app.get("/progreso", async (req, res) => {
+  try {
+    const { nombre, ficha } = req.query;
+
+    if (!nombre || !ficha) {
+      return res.status(400).json({ mensaje: "nombre y ficha son requeridos" });
+    }
+
+    // Buscar por nombre (sin importar mayúsculas)
+    const item = await Item.findOne(
+      {
+        nombre: { $regex: '^' + nombre + '$', $options: 'i' },
+        ficha: ficha
+      },
+      { progreso: 1, _id: 0 } // 👉 Solo devolver el campo progreso
+    );
+
+    if (!item) {
+      return res.status(404).json({ mensaje: "❌ No se encontró ningún registro con ese nombre y ficha" });
+    }
+
+    res.json({
+      mensaje: "✅ Progreso encontrado",
+      progreso: item.progreso ?? 0
+    });
+
+  } catch (err) {
+    res.status(500).json({ mensaje: err.message });
+  }
+});
 
 
 
