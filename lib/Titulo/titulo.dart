@@ -518,14 +518,25 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
               onPressed: () async {
                 if (_index < secciones.length - 1) {
                   _tabController.animateTo(_index + 1);
-                  setState(() async {
+
+                  // 1. Actualizamos UI primero
+                  setState(() {
                     _currentseccion = _index + 1;
-                    if (!pestanasVistas.contains(_index + 1)) {
-                      pestanasVistas.add(_index + 1);
-                      ProgresoGlobal.marcarVisto(ID_BASE_PROGRESO + _index + 1);
-                      await guardarProgresoFinal(ID_BASE_PROGRESO);
-                    }
                   });
+
+                  // 2. Actualizamos progreso (fuera de setState)
+                  int idReal = ID_BASE_PROGRESO + _index + 1;
+
+                  if (!ProgresoGlobal.pestanasVistas.contains(idReal)) {
+                    ProgresoGlobal.pestanasVistas.add(idReal);
+                    await ProgresoGlobal.guardarLocal();
+
+                    // ignore: avoid_print
+                    print("🟢 Progreso sumado → ID: $idReal");
+
+                    // 🟢 GUARDAR EN MONGODB
+                    await guardarProgresoEnAPI();
+                  }
                 } else {
                   Navigator.push(
                     context,
@@ -533,7 +544,9 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
                       builder: (context) => const Plantiamientoproblemas(),
                     ),
                   );
-                  await guardarProgresoFinal(2);
+
+                  // ProgresoGlobal.marcarVisto(2);
+                  //await guardarProgresoEnAPI(); // 🟢 también lo guardamos aquí
                 }
               },
 

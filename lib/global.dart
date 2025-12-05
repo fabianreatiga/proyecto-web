@@ -1,10 +1,16 @@
-import 'dart:convert';
+// ignore_for_file: avoid_print
 
+import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
+/// ------------------------------------------------------
+/// GESTOR DEL PROGRESO
+/// ------------------------------------------------------
 class ProgresoGlobal {
   static final Set<int> pestanasVistas = {};
+
+  /// Lista total de IDs válidos
   static final Set<int> todosLosIDs = {
     ...List.generate(5, (i) => i + 1), // Título
     ...List.generate(15, (i) => i + 7), // Planteamiento
@@ -15,111 +21,185 @@ class ProgresoGlobal {
     ...List.generate(3, (i) => i + 43), // Cronograma
     ...List.generate(3, (i) => i + 46), // Actividades
     ...List.generate(7, (i) => i + 49), // Bibliografía
-    ...List.generate(5, (i) => i + 56), // Busqueda
+    ...List.generate(5, (i) => i + 56), // Búsqueda
     ...List.generate(3, (i) => i + 61), // Bases de datos
   };
 
+  /// Progreso total entre 0 y 1
   static double get progreso => pestanasVistas.length / todosLosIDs.length;
 
-  static Future<void> cargarProgreso() async {
+  /// Obtener porcentaje exacto del progreso (0 a 100)
+  static int get porcentaje => ((progreso * 100).round());
+
+  /// Cargar progreso local
+  static Future<void> cargarLocal() async {
     final prefs = await SharedPreferences.getInstance();
     final lista = prefs.getStringList('progreso_visto') ?? [];
+
     pestanasVistas
       ..clear()
       ..addAll(lista.map(int.parse));
   }
 
-  static Future<void> marcarVisto(int id) async {
-    if (todosLosIDs.contains(id)) {
-      pestanasVistas.add(id);
-      final prefs = await SharedPreferences.getInstance();
-      prefs.setStringList(
-        'progreso_visto',
-        pestanasVistas.map((e) => e.toString()).toList(),
-      );
-    }
+  /// Guardar progreso local
+  static Future<void> guardarLocal() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setStringList(
+      'progreso_visto',
+      pestanasVistas.map((e) => e.toString()).toList(),
+    );
   }
 
+  /// Marcar una pestaña como vista
+  static Future<void> marcarVisto(int id) async {
+    if (!todosLosIDs.contains(id)) return;
+
+    pestanasVistas.add(id);
+    await guardarLocal();
+  }
+
+  /// Reiniciar progreso
   static Future<void> reiniciar() async {
     pestanasVistas.clear();
     final prefs = await SharedPreferences.getInstance();
     prefs.remove('progreso_visto');
   }
 }
-//en esta bariable de progeso se esta mostrando el progreso de cada tema
 
-int progreso = 0;
-// lib/global.dart
-//library global;
+/// ------------------------------------------------------
+/// VARIABLES GLOBALES (USUARIO, FICHA, PROGRAMA)
+/// ------------------------------------------------------
+String usuarioglobal = "";
+String fichaglobal = "";
+String programaglobal = "";
 
-/*String usuarioNombre = "";
-String fichaNombre = "";
-String fichaNumero = "";*/
+void setUsuarioGlobal(String nombre) => usuarioglobal = nombre;
+void setFichaGlobal(String ficha) => fichaglobal = ficha;
+void setprogramaGlobal(String programa) => programaglobal = programa;
 
-String usuarioglobal = ''; // aquí se guardará el nombre del usuario
+String getUsuarioGlobal() => usuarioglobal;
+String getFichaGlobal() => fichaglobal;
+String getprogramaGlobal() => programaglobal;
 
-void setUsuarioGlobal(String nombre) {
-  usuarioglobal = nombre;
-} //en esta linea de codigo se guarda el nombre del usuario
+/// ------------------------------------------------------
+/// 🔄 SINCRONIZAR PROGRESO DESPUÉS DEL LOGIN (OPCIÓN A)
+/// ------------------------------------------------------
+/// Se ejecuta DESPUÉS del login
+///
+/// 1. Carga progreso guardado en MongoDB
+/// 2. Actualiza SharedPreferences
+/// 3. No reinicia progreso
+/// ------------------------------------------------------
+/*Future<void> sincronizarProgresoConAPI() async {
+  if (usuarioglobal.isEmpty || fichaglobal.isEmpty) return;
 
-String getUsuarioGlobal() {
-  return usuarioglobal;
-}
+  final url = Uri.parse(
+    "https://proyecto-api-1vjo.onrender.com/obtenerProgreso",
+  );
 
-String fichaglobal =
-    ''; //en esta linea de codigo se guarda la informacion de la ficha
-// se usó esta variable globar para que que guardara la informacion de el progreso, sin esto no funciona no se envia nada a la base de datos
-
-void setFichaGlobal(String ficha) {
-  fichaglobal = ficha;
-} //en esta linea de codigo se guarda la informacion de la ficha
-
-String getFichaGlobal() {
-  return fichaglobal;
-}
-
-String programaglobal = '';
-
-void setprogramaGlobal(String programa) {
-  programaglobal = programa;
-}
-
-String getprogramaGlobal() {
-  return programaglobal;
-}
-//para que funcione correctamente el guardar progresofinal no se debe borrar el nombre y ficha porque es esencial
-/*Future<void> guardarProgresoFinal(String id) async {
-  final url = Uri.parse("http://192.168.0.105:5000/guardarProgreso");
-  //aqui se debe de cambiar la ip segun la red local
-  //final url = Uri.parse("http://192.168.101.19:5000/guardarProgreso");
-  //final response =
-  await http.post(
+  final response = await http.post(
     url,
     headers: {"Content-Type": "application/json"},
-    body: jsonEncode({
-      "nombre": usuarioglobal, //aca se esta aplicando el nombre del usario
-      "ficha": fichaglobal, // aca se esta aplicando la ficha del usario
-      "progreso": id, // aca se esta aplicando el progreso del usario
-    }),
+    body: jsonEncode({"nombre": usuarioglobal, "ficha": fichaglobal}),
   );
-} */ // en este bloque de codigo se obtine el progreso y se guarda en la base de datos
 
-//quitar
-Future<void> guardarProgresoFinal(int id) async {
+  if (response.statusCode != 200) return;
+
+  final data = jsonDecode(response.body);
+
+  if (data["progreso"] == null) return;
+
+  final int progresoGuardado = data["progreso"];
+
+  // Convertir porcentaje a cantidad de IDs vistos
+  final int cantidadVistas =
+      ((progresoGuardado / 100) * ProgresoGlobal.todosLosIDs.length).round();
+
+  // Limpiar y cargar esos IDs
+  ProgresoGlobal.pestanasVistas.clear();
+  ProgresoGlobal.pestanasVistas.addAll(
+    ProgresoGlobal.todosLosIDs.take(cantidadVistas),
+  );
+
+  await ProgresoGlobal.guardarLocal();
+
+}*/
+
+/// ------------------------------------------------------
+/// GUARDAR PROGRESO FINAL EN LA API
+/// ------------------------------------------------------
+Future<void> sincronizarProgresoConAPI() async {
+  try {
+    final url = Uri.parse(
+      "https://proyecto-api-1vjo.onrender.com/progreso"
+      "?nombre=$usuarioglobal&ficha=$fichaglobal",
+    );
+
+    final response = await http.get(url);
+
+    //print("🔍 STATUS CODE: ${response.statusCode}");
+    // print("🔍 RESPUESTA API: ${response.body}");
+
+    if (response.statusCode == 404) {
+      //  print("⚠️ No se encontró progreso, iniciando desde 0.");
+      ProgresoGlobal.pestanasVistas.clear();
+      await ProgresoGlobal.guardarLocal();
+      return;
+    }
+
+    if (response.statusCode != 200) {
+      // print("⚠️ Error al consultar progreso.");
+      return;
+    }
+
+    final data = jsonDecode(response.body);
+
+    int progresoAPI = data["progreso"] ?? 0;
+
+    //print("🔵 Progreso recibido desde API: $progresoAPI %");
+
+    int total = ProgresoGlobal.todosLosIDs.length;
+    int cantidadVistas = ((progresoAPI / 100) * total).round();
+
+    //print("🔵 Pestañas a marcar como vistas: $cantidadVistas de $total");
+
+    ProgresoGlobal.pestanasVistas.clear();
+    ProgresoGlobal.pestanasVistas.addAll(
+      ProgresoGlobal.todosLosIDs.take(cantidadVistas),
+    );
+
+    //print("🔵 IDs cargados: ${ProgresoGlobal.pestanasVistas}");
+
+    await ProgresoGlobal.guardarLocal();
+  } catch (e) {
+    //print("❌ Error al sincronizar progreso: $e");
+  }
+}
+
+/// ------------------------------------------------------
+/// GUARDAR PROGRESO EN LA API (SUMA +2 HASTA 100)
+/// ------------------------------------------------------
+Future<void> guardarProgresoEnAPI() async {
+  if (usuarioglobal.isEmpty || fichaglobal.isEmpty) return;
+
+  // 🔥 1. Obtener el progreso actual en porcentaje
+  final int porcentaje = ProgresoGlobal.porcentaje;
+
   final url = Uri.parse(
     "https://proyecto-api-1vjo.onrender.com/guardarProgreso",
   );
-  // Ojo: cambia la IP según tu red local
 
-  await http.post(
+  // 🔥 2. Enviar progreso, nombre y ficha
+  final response = await http.post(
     url,
     headers: {"Content-Type": "application/json"},
     body: jsonEncode({
-      "nombre": usuarioglobal, // nombre del usuario
+      "nombre": usuarioglobal,
       "ficha": fichaglobal,
-      // 👇 Ya no es necesario enviar "progreso"
+      "progreso": porcentaje, // <<--- AQUÍ ESTABA EL ERROR
     }),
   );
-}
 
-//quitar
+  print("📡 Enviando PROGRESO: $porcentaje%");
+  print("📩 Respuesta API: ${response.body}");
+}

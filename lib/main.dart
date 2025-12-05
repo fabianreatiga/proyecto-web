@@ -177,9 +177,12 @@ class _InicioState extends State<Inicio> {
       setFichaGlobal(ficha);
       setprogramaGlobal(programa);
 
-      await guardarProgresoFinal(0);
+      // ❌ ESTA LÍNEA NO ➝ await guardarProgresoFinal(0);
+
       await usuarioRegistrado(nombre, ficha);
       await _guardarEnAPI(context);
+
+      await sincronizarProgresoConAPI();
 
       Navigator.push(
         context,

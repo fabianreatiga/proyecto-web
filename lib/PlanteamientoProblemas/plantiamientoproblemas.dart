@@ -981,14 +981,25 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
               onPressed: () async {
                 if (_index < secciones.length - 1) {
                   _tabController.animateTo(_index + 1);
-                  setState(() async {
+
+                  // 1. Actualizamos UI primero
+                  setState(() {
                     _currentseccion = _index + 1;
-                    if (!pestanasVistas.contains(_index + 1)) {
-                      pestanasVistas.add(_index + 1);
-                      ProgresoGlobal.marcarVisto(ID_BASE_PROGRESO + _index + 1);
-                      await guardarProgresoFinal(ID_BASE_PROGRESO);
-                    }
                   });
+
+                  // 2. Actualizamos progreso (fuera de setState)
+                  int idReal = ID_BASE_PROGRESO + _index + 1;
+
+                  if (!ProgresoGlobal.pestanasVistas.contains(idReal)) {
+                    ProgresoGlobal.pestanasVistas.add(idReal);
+                    await ProgresoGlobal.guardarLocal();
+
+                    // ignore: avoid_print
+                    print("🟢 Progreso sumado → ID: $idReal");
+
+                    // 🟢 GUARDAR EN MONGODB
+                    await guardarProgresoEnAPI();
+                  }
                 } else {
                   Navigator.push(
                     context,
@@ -996,7 +1007,8 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                       builder: (context) => const Justificacion(),
                     ),
                   );
-                  await guardarProgresoFinal(2);
+                  //await guardarProgresoEnAPI();
+                  // await guardarProgresoFinal(2);
                 }
               },
               label: Text(

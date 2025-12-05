@@ -757,7 +757,7 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                     if (!pestanasVistas.contains(_index + 1)) {
                       pestanasVistas.add(_index + 1);
                       ProgresoGlobal.marcarVisto(ID_BASE_PROGRESO + _index + 1);
-                      await guardarProgresoFinal(ID_BASE_PROGRESO);
+                      // await guardarProgresoFinal(ID_BASE_PROGRESO);
                     }
                   });
                 } else {
@@ -765,7 +765,7 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                     context,
                     MaterialPageRoute(builder: (context) => Basesdatos()),
                   );
-                  await guardarProgresoFinal(2);
+                  //await guardarProgresoFinal(2);
                 }
               },
 
