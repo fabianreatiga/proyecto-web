@@ -255,6 +255,36 @@ app.get("/progreso", async (req, res) => {
   }
 });
 
+app.get("/progreso", async (req, res) => {
+  try {
+    const { nombre, ficha } = req.query;
+
+    if (!nombre || !ficha) {
+      return res.status(400).json({ mensaje: "nombre y ficha son requeridos" });
+    }
+
+    const nombreLower = nombre.toLowerCase();
+
+    const item = await Item.findOne(
+      { nombre: nombreLower, ficha },
+      { progreso: 1, _id: 0 }
+    )
+    .collation({ locale: "es", strength: 2 });
+
+    if (!item) {
+      return res.status(404).json({ mensaje: "❌ No encontrado" });
+    }
+
+    res.json({
+      mensaje: "✅ Progreso encontrado",
+      progreso: item.progreso ?? 0
+    });
+
+  } catch (err) {
+    res.status(500).json({ mensaje: err.message });
+  }
+});
+
 
 
 // Guardar progreso (+2 cada vez)
