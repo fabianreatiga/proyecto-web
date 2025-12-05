@@ -1,12 +1,9 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/foundation.dart';
-
 import 'package:flutter/material.dart';
 import 'package:nuevomockups/Appbar/appbar.dart';
-
 import 'package:nuevomockups/Color_texto/color_texto.dart';
-
 import 'package:nuevomockups/Menus/menus.dart';
 import 'package:nuevomockups/Metodologia/metodologia.dart';
 import 'package:nuevomockups/Objetivos/objetivos.dart';
@@ -391,15 +388,68 @@ class _Antecedentes_EstadosState extends State<Antecedentes_Estados>
                                 ],
                               ),
                             ),
-                          Text(
-                            textos[_index],
-                            style: TextStyle(
-                              fontSize: tamanotexto(2) + 4,
-                              fontFamily: 'Calibri',
-                              height: 1.5,
+                          if (_index == 3)
+                            RichText(
+                              textAlign: TextAlign.justify,
+                              text: TextSpan(
+                                style: TextStyle(
+                                  fontSize: tamanotexto(2) + 4,
+                                  fontFamily: 'Calibri',
+                                  height: 1.5,
+                                  //color: Colors.black,
+                                ),
+                                children: [
+                                  TextSpan(
+                                    text:
+                                        'Imagina que vas a investigar sobre el uso de software educativo en colegios.'
+                                        'Antes de empezar, revisa qué se ha estudiado sobre el tema:\n'
+                                        '• Busca información en fuentes confiables como Google Académico, Scielo, Redalyc o Dialnet, usando palabras clave como “software educativo” o “herramientas digitales para el aprendizaje”.\n',
+                                  ),
+                                  TextSpan(
+                                    text: '• Analiza los estudios existentes: ',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text:
+                                        'algunos evalúan programas como Kahoot o Duolingo, aplicando encuestas o comparando el rendimiento antes y después de su uso.\n',
+                                  ),
+                                  TextSpan(
+                                    text:
+                                        '• Registra los principales hallazgos:',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text:
+                                        ' la mayoría concluye que el software educativo mejora la motivación y participación de los estudiantes, aunque depende de la capacitación docente.\n',
+                                  ),
+                                  TextSpan(
+                                    text:
+                                        '• Detecta vacíos en la investigación: ',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text:
+                                        'por ejemplo, el poco estudio del uso de software en zonas rurales o con acceso limitado a internet.',
+                                  ),
+                                ],
+                              ),
                             ),
-                            textAlign: TextAlign.justify,
-                          ),
+                          if (_index != 3)
+                            Text(
+                              textos[_index],
+                              style: TextStyle(
+                                fontSize: tamanotexto(2) + 4,
+                                fontFamily: 'Calibri',
+                                height: 1.5,
+                              ),
+                              textAlign: TextAlign.justify,
+                            ),
 
                           const SizedBox(height: 10),
 
@@ -481,15 +531,69 @@ class _Antecedentes_EstadosState extends State<Antecedentes_Estados>
                                         ],
                                       ),
                                     ),
-                                  Text(
-                                    textos[_index],
-                                    style: TextStyle(
-                                      fontSize: tamanotexto(2) + 4,
-                                      fontFamily: 'Calibri',
-                                      height: 1.5,
+                                  if (_index == 3)
+                                    RichText(
+                                      textAlign: TextAlign.justify,
+                                      text: TextSpan(
+                                        style: TextStyle(
+                                          fontSize: tamanotexto(2) + 4,
+                                          fontFamily: 'Calibri',
+                                          height: 1.5,
+                                          //color: Colors.black,
+                                        ),
+                                        children: [
+                                          TextSpan(
+                                            text:
+                                                'Imagina que vas a investigar sobre el uso de software educativo en colegios.'
+                                                'Antes de empezar, revisa qué se ha estudiado sobre el tema:\n'
+                                                '• Busca información en fuentes confiables como Google Académico, Scielo, Redalyc o Dialnet, usando palabras clave como “software educativo” o “herramientas digitales para el aprendizaje”.\n',
+                                          ),
+                                          TextSpan(
+                                            text:
+                                                '• Analiza los estudios existentes: ',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          TextSpan(
+                                            text:
+                                                'algunos evalúan programas como Kahoot o Duolingo, aplicando encuestas o comparando el rendimiento antes y después de su uso.\n',
+                                          ),
+                                          TextSpan(
+                                            text:
+                                                '• Registra los principales hallazgos:',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          TextSpan(
+                                            text:
+                                                ' la mayoría concluye que el software educativo mejora la motivación y participación de los estudiantes, aunque depende de la capacitación docente.\n',
+                                          ),
+                                          TextSpan(
+                                            text:
+                                                '• Detecta vacíos en la investigación: ',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          TextSpan(
+                                            text:
+                                                'por ejemplo, el poco estudio del uso de software en zonas rurales o con acceso limitado a internet.',
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                    textAlign: TextAlign.justify,
-                                  ),
+                                  if (_index != 3)
+                                    Text(
+                                      textos[_index],
+                                      style: TextStyle(
+                                        fontSize: tamanotexto(2) + 4,
+                                        fontFamily: 'Calibri',
+                                        height: 1.5,
+                                      ),
+                                      textAlign: TextAlign.justify,
+                                    ),
                                   const SizedBox(height: 10),
 
                                   /*if (_index == 4)

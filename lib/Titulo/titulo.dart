@@ -83,7 +83,7 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
       200, //TITULO
       200, // CARACTERISTICAS DEL TITULO
       200, //MAS CARACTERISTICAS DEL TITULO
-      MediaQuery.of(context).size.width * 0.35 -
+      MediaQuery.of(context).size.width * 0.45 -
           18, // PALABRAS UTILES PARA TITULO
       MediaQuery.of(context).size.width * 0.45 - 18, //EJEMPLOS DE TITULOS
     ];

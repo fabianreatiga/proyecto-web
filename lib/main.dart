@@ -1,9 +1,11 @@
 // ignore_for_file: avoid_unnecessary_containers, non_constant_identifier_names, avoid_print, use_build_context_synchronously
 
+import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:nuevomockups/Color_texto/color_texto.dart';
+import 'package:nuevomockups/Links/links.dart';
 import 'package:nuevomockups/Titulo/titulo.dart';
 import 'package:nuevomockups/global.dart';
 import 'package:http/http.dart' as http;
@@ -31,6 +33,34 @@ class Inicio extends StatefulWidget {
 }
 
 class _InicioState extends State<Inicio> {
+  int index = 0;
+
+  List<String> imagenes = [
+    'assets/Resumen/1.png',
+    'assets/Resumen/2.png',
+    'assets/Resumen/3.png',
+    'assets/Resumen/4.png',
+    'assets/Resumen/5.png',
+    'assets/Resumen/6.png',
+    'assets/Resumen/7.png',
+    'assets/Resumen/8.png',
+    'assets/Resumen/9.png',
+    'assets/Resumen/10.png',
+    'assets/Resumen/11.png',
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+
+    Timer.periodic(Duration(seconds: 5), (timer) {
+      if (!mounted) return;
+      setState(() {
+        index = (index + 1) % imagenes.length;
+      });
+    });
+  }
+
   final TextEditingController _Nficha = TextEditingController();
   final TextEditingController _NombrePrograma = TextEditingController();
   final TextEditingController _NombreAprendiz = TextEditingController();
@@ -180,25 +210,31 @@ class _InicioState extends State<Inicio> {
                   LayoutBuilder(
                     builder: (context, constraints) {
                       double screenWidth = constraints.maxWidth;
-                      return Container(
-                        child: Image.asset(
-                          'assets/banner_superior.jpg',
-                          width: screenWidth,
-                          height:
-                              screenWidth < 1000
-                                  ? MediaQuery.of(context).size.height * 0.1
-                                  : MediaQuery.of(context).size.height * 0.3,
-                          fit: BoxFit.cover,
-                        ),
+                      return Column(
+                        children: [
+                          Container(
+                            child: Image.asset(
+                              'assets/banner_superior.jpg',
+                              width: screenWidth,
+                              height:
+                                  screenWidth < 1000
+                                      ? MediaQuery.of(context).size.height * 0.1
+                                      : MediaQuery.of(context).size.height *
+                                          0.3,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ],
                       );
                     },
                   ),
+
                   Padding(
                     padding: const EdgeInsets.all(20),
                     child: ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: 1300),
+                      constraints: const BoxConstraints(maxWidth: 1500),
                       child: Padding(
-                        padding: const EdgeInsets.all(25),
+                        padding: const EdgeInsets.all(10),
                         child: LayoutBuilder(
                           builder: (context, constraints) {
                             bool isSmallScreen = constraints.maxWidth < 1000;
@@ -241,102 +277,161 @@ class _InicioState extends State<Inicio> {
         ),
       ),
       //usamos un boxdecoration para decorar el contenedor con color, con borde, en este caso es con una imagen
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const SizedBox(height: 20),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(16),
-            child: Image.asset(
-              'assets/logoSena.png',
-              //aca cargamos la imagen del logo del sena
-              width: MediaQuery.of(context).size.width < 600 ? 100 : 150,
-              //con este operador ternario se determina el tamaño del logo dependiendo del tamaño de la pantalla
-              fit: BoxFit.contain,
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.all(5),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  aplicativo,
-                  style: TextStyle(
-                    fontSize: tamanotexto(3),
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                    fontFamily: 'Calibri',
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                SizedBox(height: 20),
-                Text(
-                  descripciones,
-                  style: TextStyle(
-                    fontSize: tamanotexto(2),
-                    height: 1.4,
-                    fontFamily: 'Calibri',
-                    color: Colors.black,
-                  ),
-                  textAlign: TextAlign.justify,
-                ),
-              ],
-            ),
-          ),
-
-          const SizedBox(height: 20),
-          _campoTexto(
-            label: 'Nombre y Apellido',
-            icon: Icons.person,
-            hint: 'Escribe tu nombre y apellido',
-            controller: _NombreAprendiz,
-          ),
-          const SizedBox(height: 15),
-          _campoTexto(
-            label: 'Nombre Programa',
-            icon: Icons.text_decrease,
-            hint: 'Nombre Programa',
-            controller: _NombrePrograma,
-          ),
-          const SizedBox(height: 15),
-          SizedBox(
-            width: 250,
-            child: TextField(
-              controller: _Nficha,
-              decoration: InputDecoration(
-                labelStyle: TextStyle(color: Colors.black),
-                filled: true,
-                fillColor: obtenercolor('Color_Fondo'),
-                labelText: 'N° Ficha',
-                hintText: 'Escribe tu N° ficha',
-                prefixIcon: Icon(
-                  Icons.numbers,
-                  color: obtenercolor('Color_Principal'),
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: obtenercolor('Color_Principal'),
-                    width: 2,
-                  ),
-                  borderRadius: BorderRadius.circular(12),
-                ),
+      child: Center(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const SizedBox(height: 20),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(16),
+              child: Image.asset(
+                'assets/logoSena.png',
+                //aca cargamos la imagen del logo del sena
+                width: MediaQuery.of(context).size.width < 600 ? 100 : 150,
+                //con este operador ternario se determina el tamaño del logo dependiendo del tamaño de la pantalla
+                fit: BoxFit.contain,
               ),
-              keyboardType: TextInputType.number, // Abre teclado numérico
-              inputFormatters: [
-                FilteringTextInputFormatter.digitsOnly, // Solo dígitos
-                LengthLimitingTextInputFormatter(7),
-              ],
             ),
-          ),
-          const SizedBox(height: 30),
-          _botonIniciar(context),
-        ],
+            LayoutBuilder(
+              builder: (context, constraints) {
+                // double screenWidth = constraints.maxWidth;
+                return Column(
+                  children: [
+                    InkWell(
+                      child: Center(
+                        child: Column(
+                          children: [
+                            Text(
+                              'Ver video',
+                              style: TextStyle(
+                                color: obtenercolor('Color_Principal'),
+                                fontSize: tamanotexto(1) - 15,
+                                fontFamily: 'Calibri',
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Image.asset(
+                              imagenes[index],
+                              width: 350,
+                              height: 197,
+                              fit: BoxFit.cover,
+                            ),
+                          ],
+                        ),
+                      ),
+                      onTap: () => {abrirLink('https://youtu.be/y7czaORl13Y')},
+                    ),
+                    /* Container(
+                            child: Image.asset(
+                              imagenes[index],
+                              //width: screenWidth,
+                              height:
+                                  screenWidth < 1000
+                                      ? MediaQuery.of(context).size.height * 0.1
+                                      : MediaQuery.of(context).size.height *
+                                          0.3,
+                              fit: BoxFit.cover,
+                            ),
+                          ),*/
+                  ],
+                );
+              },
+            ),
+            Padding(
+              padding: EdgeInsets.all(5),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    aplicativo,
+                    style: TextStyle(
+                      fontSize: tamanotexto(3),
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                      fontFamily: 'Calibri',
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(height: 20),
+                  Text(
+                    descripciones,
+                    style: TextStyle(
+                      fontSize: tamanotexto(2),
+                      height: 1.4,
+                      fontFamily: 'Calibri',
+                      color: Colors.black,
+                    ),
+                    textAlign: TextAlign.justify,
+                  ),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: 20),
+            _campoTexto(
+              label: 'Nombres y Apellidos',
+              icon: Icons.person,
+              hint: 'Escribe tus nombres y apellidos',
+              controller: _NombreAprendiz,
+            ),
+            const SizedBox(height: 15),
+            _campoTexto(
+              label: 'Nombre Programa',
+              icon: Icons.text_decrease,
+              hint: 'Nombre Programa',
+              controller: _NombrePrograma,
+            ),
+            const SizedBox(height: 15),
+            SizedBox(
+              width: 250,
+              child: TextField(
+                controller: _Nficha,
+                decoration: InputDecoration(
+                  labelStyle: TextStyle(color: Colors.black),
+                  filled: true,
+                  fillColor: obtenercolor('Color_Fondo'),
+                  labelText: 'N° Ficha',
+                  hintText: 'Escribe tu N° ficha',
+                  prefixIcon: Icon(
+                    Icons.numbers,
+                    color: obtenercolor('Color_Principal'),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: obtenercolor('Color_Principal'),
+                      width: 2,
+                    ),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                keyboardType: TextInputType.number, // Abre teclado numérico
+                inputFormatters: [
+                  FilteringTextInputFormatter.digitsOnly, // Solo dígitos
+                  LengthLimitingTextInputFormatter(7),
+                ],
+              ),
+            ),
+            const SizedBox(height: 30),
+            _botonIniciar(context),
+          ],
+        ),
       ),
     );
+  }
+
+  int obtenerFlex(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+
+    if (width < 1200) {
+      return 3; // celulares pequeños
+    } else if (width > 1200) {
+      return 4; // tablets o pantallas medianas
+    } else {
+      return 3; // pantallas grandes o PC
+    }
   }
 
   Widget _buildRowLayout(BuildContext context) {
@@ -345,7 +440,7 @@ class _InicioState extends State<Inicio> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Expanded(
-          flex: 2,
+          flex: obtenerFlex(context),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -377,38 +472,105 @@ class _InicioState extends State<Inicio> {
                             ),
                           ),
                         ),
+                        Expanded(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage('assets/fondo_textura.png'),
+                                repeat: ImageRepeat.repeatY,
+                                opacity: 0.3,
+                              ),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
 
-                  Padding(
-                    padding: EdgeInsets.all(35),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          aplicativo,
-                          style: TextStyle(
-                            fontSize: tamanotexto(3),
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                            fontFamily: 'Calibri',
+                  Row(
+                    children: [
+                      LayoutBuilder(
+                        builder: (context, constraints) {
+                          // double screenWidth = constraints.maxWidth;
+                          return Column(
+                            children: [
+                              InkWell(
+                                child: Center(
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        'Ver video',
+                                        style: TextStyle(
+                                          color: obtenercolor(
+                                            'Color_Principal',
+                                          ),
+                                          fontSize: tamanotexto(1) - 15,
+                                          fontFamily: 'Calibri',
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Image.asset(
+                                        imagenes[index],
+                                        width: 350,
+                                        height: 197,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                onTap:
+                                    () => {
+                                      abrirLink('https://youtu.be/y7czaORl13Y'),
+                                    },
+                              ),
+                              /* Container(
+                            child: Image.asset(
+                              imagenes[index],
+                              //width: screenWidth,
+                              height:
+                                  screenWidth < 1000
+                                      ? MediaQuery.of(context).size.height * 0.1
+                                      : MediaQuery.of(context).size.height *
+                                          0.3,
+                              fit: BoxFit.cover,
+                            ),
+                          ),*/
+                            ],
+                          );
+                        },
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: EdgeInsets.all(35),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                aplicativo,
+                                style: TextStyle(
+                                  fontSize: tamanotexto(3),
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                  fontFamily: 'Calibri',
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                              SizedBox(height: 20),
+                              Text(
+                                descripciones,
+                                style: TextStyle(
+                                  fontSize: tamanotexto(2),
+                                  height: 1.4,
+                                  fontFamily: 'Calibri',
+                                  color: Colors.black,
+                                ),
+                                textAlign: TextAlign.justify,
+                              ),
+                            ],
                           ),
-                          textAlign: TextAlign.center,
                         ),
-                        SizedBox(height: 20),
-                        Text(
-                          descripciones,
-                          style: TextStyle(
-                            fontSize: tamanotexto(2),
-                            height: 1.4,
-                            fontFamily: 'Calibri',
-                            color: Colors.black,
-                          ),
-                          textAlign: TextAlign.justify,
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -449,50 +611,57 @@ class _InicioState extends State<Inicio> {
                 ),
                 const SizedBox(height: 30),
                 _campoTexto(
-                  label: 'Nombre y Apellido',
+                  label: 'Nombres y Apellidos',
                   icon: Icons.person,
-                  hint: 'Escribe tu nombre y apellido',
+                  hint: 'Escribe tus nombres y apellidos',
                   controller: _NombreAprendiz,
                 ),
                 const SizedBox(height: 15),
-                _campoTexto(
-                  label: 'Nombre Programa',
-                  icon: Icons.text_decrease,
-                  hint: 'Nombre Programa',
-                  controller: _NombrePrograma,
+                Tooltip(
+                  message: 'Si eres intructor, ',
+                  child: _campoTexto(
+                    label: 'Nombre Programa',
+                    icon: Icons.text_decrease,
+                    hint: 'Nombre Programa',
+                    controller: _NombrePrograma,
+                  ),
                 ),
                 const SizedBox(height: 15),
                 SizedBox(
-                  // se agrego este SizedBox para integrar el campo de texto del N° ficha
                   width: 250,
-                  child: TextField(
-                    controller: _Nficha,
-                    decoration: InputDecoration(
-                      labelStyle: TextStyle(color: Colors.black),
-                      filled: true,
-                      fillColor: obtenercolor('Color_Fondo'),
-                      labelText: 'N° Ficha',
-                      hintText: 'Escribe tu N° ficha',
-                      prefixIcon: Icon(
-                        Icons.numbers,
-                        color: obtenercolor('Color_Principal'),
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
+                  child: Tooltip(
+                    message: 'Si eres intructor, ',
+                    // se agrego este SizedBox para integrar el campo de texto del N° ficha
+                    child: TextField(
+                      controller: _Nficha,
+                      decoration: InputDecoration(
+                        labelStyle: TextStyle(color: Colors.black),
+                        filled: true,
+                        fillColor: obtenercolor('Color_Fondo'),
+                        labelText: 'N° Ficha',
+                        hintText: 'Escribe tu N° ficha',
+                        prefixIcon: Icon(
+                          Icons.numbers,
                           color: obtenercolor('Color_Principal'),
-                          width: 2,
                         ),
-                        borderRadius: BorderRadius.circular(12),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: obtenercolor('Color_Principal'),
+                            width: 2,
+                          ),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
                       ),
+                      keyboardType:
+                          TextInputType.number, // Abre teclado numérico
+                      inputFormatters: [
+                        FilteringTextInputFormatter.digitsOnly, // Solo dígitos
+                        LengthLimitingTextInputFormatter(7),
+                      ],
                     ),
-                    keyboardType: TextInputType.number, // Abre teclado numérico
-                    inputFormatters: [
-                      FilteringTextInputFormatter.digitsOnly, // Solo dígitos
-                      LengthLimitingTextInputFormatter(7),
-                    ],
                   ),
                 ),
 
