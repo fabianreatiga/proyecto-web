@@ -192,7 +192,7 @@ app.get('/items/:id', async (req, res) => {
   }
 });
 
-app.post("/guardarProgreso", async (req, res) => {
+/*app.post("/guardarProgreso", async (req, res) => { en caso de que no funcione este es el codigo anterior
   try {
     const { nombre, ficha } = req.body;
 
@@ -221,7 +221,42 @@ app.post("/guardarProgreso", async (req, res) => {
   } catch (err) {
     res.status(500).json({ mensaje: err.message });
   }
+});*/
+app.post("/guardarProgreso", async (req, res) => {
+  try {
+    const { nombre, ficha, progreso } = req.body;
+
+    if (!nombre || !ficha) {
+      return res.status(400).json({ mensaje: "nombre y ficha son requeridos" });
+    }
+
+    if (progreso === undefined) {
+      return res.status(400).json({ mensaje: "progreso es requerido" });
+    }
+
+    let item = await Item.findOne({ nombre, ficha });
+
+    if (!item) {
+      // Crear nuevo con progreso recibido
+      item = new Item({ nombre, ficha, progreso });
+    } else {
+      // Actualizar el progreso recibido (limitado a 100)
+      item.progreso = Math.min(progreso, 100);
+    }
+
+    await item.save();
+
+    res.json({
+      mensaje: "✅ Progreso actualizado",
+      progreso: item.progreso,
+      completado: item.progreso >= 100
+    });
+
+  } catch (err) {
+    res.status(500).json({ mensaje: err.message });
+  }
 });
+
 
 
 app.get("/progreso", async (req, res) => {
