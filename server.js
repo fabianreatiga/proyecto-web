@@ -259,6 +259,7 @@ app.post("/guardarProgreso", async (req, res) => {
 
 
 
+
 app.get("/progreso", async (req, res) => {
   try {
     const { nombre, ficha } = req.query;
