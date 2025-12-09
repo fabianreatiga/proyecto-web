@@ -31,7 +31,7 @@ mongoose.connect(process.env.MONGO_URI, {
   fecha: { type: Date }, 
 }, { timestamps: true });
 */
-/*const ItemSchema = new mongoose.Schema({
+const ItemSchema = new mongoose.Schema({
   nombre: { type: String, required: true, trim: true, lowercase: true },
   programa: { type: String, trim: true },
   ficha: { type: String, required: true, trim: true },
@@ -44,92 +44,7 @@ mongoose.connect(process.env.MONGO_URI, {
     observacion: { type: String },  
   }
 
-}, { timestamps: true });*/
-
-
-
-const ItemSchema = new mongoose.Schema({
-  nombre: { type: String, required: true, trim: true, lowercase: true },
-  programa: { type: String, trim: true },
-  ficha: { type: String, required: true, trim: true },
-
-  // 🔥 Nuevo
-  idsVistos: { type: [Number], default: [] },
-
-  progreso: { type: Number },
-  fecha: { type: Date },
-
-  encuesta: {
-    intentos: { type: Number },
-    observacion: { type: String },  
-  }
-
 }, { timestamps: true });
-
-
-
-
-app.post("/guardarIDS", async (req, res) => {
-  try {
-    const { nombre, ficha, idsVistos } = req.body;
-
-    if (!nombre || !ficha || !idsVistos) {
-      return res.status(400).json({ mensaje: "Campos requeridos faltantes" });
-    }
-
-    let item = await Item.findOne({ nombre, ficha });
-
-    if (!item) {
-      item = new Item({
-        nombre,
-        ficha,
-        idsVistos,
-        progreso: Math.min((idsVistos.length / 56) * 100, 100)
-      });
-    } else {
-      // 🔥 Combinar sin duplicar
-      const set = new Set([...item.idsVistos, ...idsVistos]);
-      item.idsVistos = [...set];
-      item.progreso = Math.min((item.idsVistos.length / 56) * 100, 100);
-    }
-
-    await item.save();
-    res.json({
-      mensaje: "✅ IDs guardados",
-      idsVistos: item.idsVistos,
-      progreso: item.progreso
-    });
-
-  } catch (err) {
-    res.status(500).json({ mensaje: err.message });
-  }
-});
-
-
-
-
-app.get("/idsVistos", async (req, res) => {
-  try {
-    const { nombre, ficha } = req.query;
-
-    const item = await Item.findOne(
-      { nombre, ficha },
-      { idsVistos: 1, _id: 0 }
-    );
-
-    if (!item) {
-      return res.json({ idsVistos: [] });
-    }
-
-    res.json({ idsVistos: item.idsVistos });
-
-  } catch (err) {
-    res.status(500).json({ mensaje: err.message });
-  }
-});
-
-
-
 
 app.post("/guardarTodo", async (req, res) => {
   try {

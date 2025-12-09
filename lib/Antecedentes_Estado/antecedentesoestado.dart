@@ -711,21 +711,16 @@ class _Antecedentes_EstadosState extends State<Antecedentes_Estados>
                 if (_index < secciones.length - 1) {
                   _tabController.animateTo(_index + 1);
 
-                  // 1. Actualizamos UI primero
                   setState(() {
                     _currentseccion = _index + 1;
                   });
 
-                  // 2. Actualizamos progreso (fuera de setState)
                   int idReal = ID_BASE_PROGRESO + _index + 1;
 
                   if (!ProgresoGlobal.pestanasVistas.contains(idReal)) {
                     ProgresoGlobal.pestanasVistas.add(idReal);
                     await ProgresoGlobal.guardarLocal();
 
-                    //print("🟢 Progreso sumado → ID: $idReal");
-
-                    // 🟢 GUARDAR EN MONGODB
                     await guardarProgresoEnAPI();
                   }
                 } else {

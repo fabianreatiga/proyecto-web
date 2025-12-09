@@ -77,10 +77,10 @@ class _JustificacionesState extends State<Justificaciones>
 
   List<double> grande(BuildContext context) {
     return [
-      250, // JUSTIFICACIÓN
+      MediaQuery.of(context).size.width * 0.18 - 18, // JUSTIFICACIÓN
       MediaQuery.of(context).size.width * 0.35 - 18, // PASOS
       MediaQuery.of(context).size.width * 0.4 - 18, // CONSEJOS
-      200, // EJEMPLO
+      MediaQuery.of(context).size.width * 0.16 - 18, // EJEMPLO
     ];
   }
 

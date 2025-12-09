@@ -81,21 +81,31 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
     'GOOGLE TENDENCIAS (TRENDS)',
   ]; // lista de las secciones
 
-  final List<double> alturaImagengrande = [
-    300, // OBJETIVO
-    350, // BUSQUEDA EN GOOGLE CON OPERADORES LOGICOS Y PALABRAS CLAVE
-    450, // GOOGLE ACADÉMICO (SCHOLAR)
-    250, // ALERTAS DE GOOGLE
-    350, // GOOGLE TENDENCIAS (TRENDS)
-  ]; // lista de las alturas de las imagenes para pantallas grandes
+  List<double> grande(BuildContext context) {
+    return [
+      MediaQuery.of(context).size.width * 0.2 - 18, // OBJETIVO
+      MediaQuery.of(context).size.width * 0.18 -
+          18, // BUSQUEDA EN GOOGLE CON OPERADORES LOGICOS Y PALABRAS CLAVE
+      MediaQuery.of(context).size.width * 0.25 -
+          18, // GOOGLE ACADÉMICO (SCHOLAR)
+      MediaQuery.of(context).size.width * 0.18 - 18, // ALERTAS DE GOOGLE
+      MediaQuery.of(context).size.width * 0.2 -
+          18, // GOOGLE TENDENCIAS (TRENDS)
+    ];
+  } // lista de las alturas de las imagenes para pantallas grandes
 
-  final List<double> alturaImagenPequena = [
-    250, //OBJETIVO
-    300, // BUSQUEDA EN GOOGLE CON OPERADORES LOGICOS Y PALABRAS CLAVE
-    300, // GOOGLE ACADÉMICO (SCHOLAR)
-    150, // ALERTAS DE GOOGLE
-    250, // GOOGLE TENDENCIAS (TRENDS)
-  ]; // lista de las alturas de las imagenes para pantallas pequenas
+  List<double> pequena(BuildContext context) {
+    return [
+      MediaQuery.of(context).size.width * 0.3 - 18, //OBJETIVO
+      MediaQuery.of(context).size.width * 0.3 -
+          18, // BUSQUEDA EN GOOGLE CON OPERADORES LOGICOS Y PALABRAS CLAVE
+      MediaQuery.of(context).size.width * 0.4 -
+          18, // GOOGLE ACADÉMICO (SCHOLAR)
+      MediaQuery.of(context).size.width * 0.3 - 18, // ALERTAS DE GOOGLE
+      MediaQuery.of(context).size.width * 0.4 -
+          18, // GOOGLE TENDENCIAS (TRENDS)
+    ];
+  } // lista de las alturas de las imagenes para pantallas pequenas
 
   // ignore: non_constant_identifier_names
   static int ID_BASE_PROGRESO = 56; // ID base para el progreso de este subtema
@@ -319,6 +329,9 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
 
   Widget _buildTimelineCard() {
     // Función para abrir links correctamente en web y móvil
+
+    final alturaImagenPequena = pequena(context);
+    final alturaImagengrande = grande(context);
 
     return LayoutBuilder(
       //se usa LayoutBuilder para adaptar el tamaño de la pantalla
@@ -752,14 +765,22 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
               onPressed: () async {
                 if (_index < secciones.length - 1) {
                   _tabController.animateTo(_index + 1);
-                  setState(() async {
+
+                  setState(() {
                     _currentseccion = _index + 1;
-                    if (!pestanasVistas.contains(_index + 1)) {
-                      pestanasVistas.add(_index + 1);
-                      ProgresoGlobal.marcarVisto(ID_BASE_PROGRESO + _index + 1);
-                      // await guardarProgresoFinal(ID_BASE_PROGRESO);
-                    }
                   });
+
+                  int idReal = ID_BASE_PROGRESO + _index + 1;
+
+                  if (!ProgresoGlobal.pestanasVistas.contains(idReal)) {
+                    ProgresoGlobal.pestanasVistas.add(idReal);
+                    await ProgresoGlobal.guardarLocal();
+
+                    // ignore: avoid_print
+                    print("🟢 Progreso sumado → ID: $idReal");
+
+                    await guardarProgresoEnAPI();
+                  }
                 } else {
                   Navigator.push(
                     context,

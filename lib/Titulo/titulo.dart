@@ -69,9 +69,11 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
 
   List<double> grande(BuildContext context) {
     return [
-      220, //TITULO
-      240, // CARACTERISTICAS DEL TITULO
-      260, //MAS CARACTERISTICAS DEL TITULO
+      MediaQuery.of(context).size.width * 0.17 - 18, //TITULO
+      MediaQuery.of(context).size.width * 0.18 -
+          18, // CARACTERISTICAS DEL TITULO
+      MediaQuery.of(context).size.width * 0.18 -
+          18, //MAS CARACTERISTICAS DEL TITULO
       MediaQuery.of(context).size.width * 0.3 -
           18, // PALABRAS UTILES PARA TITULO
       MediaQuery.of(context).size.width * 0.4 - 18, //EJEMPLOS DE TITULOS
@@ -80,9 +82,11 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
 
   List<double> Pequena(BuildContext context) {
     return [
-      200, //TITULO
-      200, // CARACTERISTICAS DEL TITULO
-      200, //MAS CARACTERISTICAS DEL TITULO
+      MediaQuery.of(context).size.width * 0.3 - 18, //TITULO
+      MediaQuery.of(context).size.width * 0.3 -
+          18, // CARACTERISTICAS DEL TITULO
+      MediaQuery.of(context).size.width * 0.3 -
+          18, //MAS CARACTERISTICAS DEL TITULO
       MediaQuery.of(context).size.width * 0.45 -
           18, // PALABRAS UTILES PARA TITULO
       MediaQuery.of(context).size.width * 0.45 - 18, //EJEMPLOS DE TITULOS
@@ -519,12 +523,10 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
                 if (_index < secciones.length - 1) {
                   _tabController.animateTo(_index + 1);
 
-                  // 1. Actualizamos UI primero
                   setState(() {
                     _currentseccion = _index + 1;
                   });
 
-                  // 2. Actualizamos progreso (fuera de setState)
                   int idReal = ID_BASE_PROGRESO + _index + 1;
 
                   if (!ProgresoGlobal.pestanasVistas.contains(idReal)) {
@@ -534,7 +536,6 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
                     // ignore: avoid_print
                     print("🟢 Progreso sumado → ID: $idReal");
 
-                    // 🟢 GUARDAR EN MONGODB
                     await guardarProgresoEnAPI();
                   }
                 } else {
