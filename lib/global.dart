@@ -26,7 +26,8 @@ class ProgresoGlobal {
   };
 
   /// Progreso total entre 0 y 1
-  static double get progreso => pestanasVistas.length / todosLosIDs.length;
+  static double get progreso =>
+      todosLosIDs.isEmpty ? 0 : pestanasVistas.length / todosLosIDs.length;
 
   /// Obtener porcentaje exacto del progreso (0 a 100)
   static int get porcentaje => ((progreso * 100).round());

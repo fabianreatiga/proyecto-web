@@ -91,7 +91,7 @@ class _Antecedentes_EstadosState extends State<Antecedentes_Estados>
   ]; // lista de las alturas de las imagenes para pantallas pequenas
 
   // ignore: non_constant_identifier_names
-  static int ID_BASE_PROGRESO = 56; // ID base para el progreso de este subtema
+  static int ID_BASE_PROGRESO = 33; // ID base para el progreso de este subtema
 
   @override
   void initState() {
@@ -149,7 +149,7 @@ class _Antecedentes_EstadosState extends State<Antecedentes_Estados>
       ),
 
       // En este bloque de codigo se usa para mostrar y navegar por el modal menu
-      drawer: const Menu(currentScreen: 'Arte'),
+      drawer: Menu(currentScreen: 'Arte', progreso: ProgresoGlobal.porcentaje),
       body: Stack(
         children: [
           // 🌄 Fondo superior izquierda decorativo
@@ -724,11 +724,11 @@ class _Antecedentes_EstadosState extends State<Antecedentes_Estados>
                     await guardarProgresoEnAPI();
                   }
                 } else {
-                  //  await guardarProgresoFinal(2);
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => Metodologia()),
                   );
+                  ProgresoGlobal.marcarVisto(2);
                 }
               },
 

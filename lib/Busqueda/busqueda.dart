@@ -167,7 +167,10 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
       ),
 
       // Een este bloque de codigo se usa para mostrar y navegar por el modal menu
-      drawer: const Menu(currentScreen: 'Busqueda'),
+      drawer: Menu(
+        currentScreen: 'Busqueda',
+        progreso: ProgresoGlobal.porcentaje,
+      ),
       body: Stack(
         children: [
           // 🌄 Fondo superior izquierda decorativo
@@ -786,7 +789,7 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                     context,
                     MaterialPageRoute(builder: (context) => Basesdatos()),
                   );
-                  //await guardarProgresoFinal(2);
+                  ProgresoGlobal.marcarVisto(2);
                 }
               },
 

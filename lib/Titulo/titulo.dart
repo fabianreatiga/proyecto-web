@@ -151,6 +151,7 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
 
       drawer: Menu(
         currentScreen: 'Titulo',
+        progreso: ProgresoGlobal.porcentaje,
       ), // Een este bloque de codigo se usa para mostrar y navegar por el modal menu
       body: Stack(
         children: [
@@ -339,41 +340,7 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
                             ),
                             textAlign: TextAlign.justify,
                           ),
-                          if (_index == 4)
-                            Padding(
-                              padding: const EdgeInsets.all(10),
-                              child: RichText(
-                                textAlign: TextAlign.justify,
-                                text: TextSpan(
-                                  style: TextStyle(
-                                    fontSize: tamanotexto(2) + 4,
-                                    fontFamily: 'Calibri',
-                                    height: 1.5,
-                                    color: Colors.black,
-                                  ),
-                                  children: [
-                                    TextSpan(
-                                      text:
-                                          'Para comprender mejor este tema, te invitamos a ingresar al siguiente enlace y ver el ',
-                                    ),
-                                    TextSpan(
-                                      text: 'Video explicativo.',
-                                      style: TextStyle(
-                                        color: Colors.blue,
-                                        //decoration: TextDecoration.underline,
-                                      ),
-                                      recognizer:
-                                          TapGestureRecognizer()
-                                            ..onTap = () {
-                                              abrirLink(
-                                                'https://youtu.be/F_MeeGwggHk',
-                                              );
-                                            },
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
+
                           const SizedBox(height: 20),
                           ClipRRect(
                             borderRadius: BorderRadius.circular(12),
@@ -407,40 +374,6 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
                                     ),
                                     textAlign: TextAlign.justify,
                                   ),
-                                  if (_index == 4)
-                                    Center(
-                                      child: RichText(
-                                        textAlign: TextAlign.justify,
-                                        text: TextSpan(
-                                          style: TextStyle(
-                                            fontSize: tamanotexto(2) + 4,
-                                            fontFamily: 'Calibri',
-                                            height: 1.5,
-                                            color: Colors.black,
-                                          ),
-                                          children: [
-                                            TextSpan(
-                                              text:
-                                                  'Para comprender mejor este tema, te invitamos a ingresar al siguiente enlace y ver el ',
-                                            ),
-                                            TextSpan(
-                                              text: 'Video explicativo.',
-                                              style: TextStyle(
-                                                color: Colors.blue,
-                                                //decoration: TextDecoration.underline,
-                                              ),
-                                              recognizer:
-                                                  TapGestureRecognizer()
-                                                    ..onTap = () {
-                                                      abrirLink(
-                                                        'https://youtu.be/F_MeeGwggHk',
-                                                      );
-                                                    },
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
                                 ],
                               ),
                             ),
@@ -467,6 +400,38 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
                           if (_index == 3) Spacer(),
                         ],
                       ),
+                  if (_index == 4)
+                    Center(
+                      child: RichText(
+                        textAlign: TextAlign.justify,
+                        text: TextSpan(
+                          style: TextStyle(
+                            fontSize: tamanotexto(2) + 4,
+                            fontFamily: 'Calibri',
+                            height: 1.5,
+                            color: Colors.black,
+                          ),
+                          children: [
+                            TextSpan(
+                              text:
+                                  'Para comprender mejor este tema, te invitamos a ingresar al siguiente enlace y ver el ',
+                            ),
+                            TextSpan(
+                              text: 'Video explicativo.',
+                              style: TextStyle(
+                                color: Colors.blue,
+                                //decoration: TextDecoration.underline,
+                              ),
+                              recognizer:
+                                  TapGestureRecognizer()
+                                    ..onTap = () {
+                                      abrirLink('https://youtu.be/F_MeeGwggHk');
+                                    },
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                 ],
               ),
             ),
@@ -546,7 +511,7 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
                     ),
                   );
 
-                  // ProgresoGlobal.marcarVisto(2);
+                  ProgresoGlobal.marcarVisto(2);
                   //await guardarProgresoEnAPI(); // 🟢 también lo guardamos aquí
                 }
               },

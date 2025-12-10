@@ -115,7 +115,7 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
     ];
   }
 
-  static int ID_BASE_PROGRESO = 25;
+  static int ID_BASE_PROGRESO = 26;
   int _currentseccion = 0;
 
   @override
@@ -169,7 +169,10 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
           ),
         ],
       ),
-      drawer: const Menu(currentScreen: 'Objetivos'),
+      drawer: Menu(
+        currentScreen: 'Objetivos',
+        progreso: ProgresoGlobal.porcentaje,
+      ),
       body: Stack(
         children: [
           // 🌄 Fondo superior izquierda decorativo
@@ -537,40 +540,7 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
                               ),
                               textAlign: TextAlign.justify,
                             ),
-                          if (_index == 6)
-                            Center(
-                              child: RichText(
-                                textAlign: TextAlign.justify,
-                                text: TextSpan(
-                                  style: TextStyle(
-                                    fontSize: tamanotexto(2) + 4,
-                                    fontFamily: 'Calibri',
-                                    height: 1.5,
-                                    color: Colors.black,
-                                  ),
-                                  children: [
-                                    TextSpan(
-                                      text:
-                                          'Para comprender mejor este tema, te invitamos a ingresar al siguiente enlace y ver el ',
-                                    ),
-                                    TextSpan(
-                                      text: 'Video explicativo.',
-                                      style: TextStyle(
-                                        color: Colors.blue,
-                                        //decoration: TextDecoration.underline,
-                                      ),
-                                      recognizer:
-                                          TapGestureRecognizer()
-                                            ..onTap = () {
-                                              abrirLink(
-                                                'https://youtu.be/WwmEpjQ4knE',
-                                              );
-                                            },
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
+
                           const SizedBox(height: 20),
                           if (_index <= 6)
                             ClipRRect(
@@ -756,40 +726,6 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
                                       ),
                                       textAlign: TextAlign.justify,
                                     ),
-                                  if (_index == 6)
-                                    Center(
-                                      child: RichText(
-                                        textAlign: TextAlign.justify,
-                                        text: TextSpan(
-                                          style: TextStyle(
-                                            fontSize: tamanotexto(2) + 6,
-                                            fontFamily: 'Calibri',
-                                            height: 1.5,
-                                            color: Colors.black,
-                                          ),
-                                          children: [
-                                            TextSpan(
-                                              text:
-                                                  'Para comprender mejor este tema, te invitamos a ingresar al siguiente enlace y ver el ',
-                                            ),
-                                            TextSpan(
-                                              text: 'Video explicativo.',
-                                              style: TextStyle(
-                                                color: Colors.blue,
-                                                //decoration: TextDecoration.underline,
-                                              ),
-                                              recognizer:
-                                                  TapGestureRecognizer()
-                                                    ..onTap = () {
-                                                      abrirLink(
-                                                        'https://youtu.be/WwmEpjQ4knE',
-                                                      );
-                                                    },
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
                                 ],
                               ),
                             ),
@@ -841,6 +777,53 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
                                 ? MediaQuery.of(context).size.width * 0.35 - 18
                                 : MediaQuery.of(context).size.width * 0.3 - 18,
                         'assets/Objetivos/Objetivos_Método_Dumb_Titulo.png',
+                      ),
+                    ),
+                  if (_index == 6) SizedBox(height: 20),
+                  if (_index == 6)
+                    Center(
+                      child: RichText(
+                        textAlign: TextAlign.justify,
+                        text: TextSpan(
+                          style: TextStyle(
+                            fontSize: tamanotexto(2) + 4,
+                            fontFamily: 'Calibri',
+                            height: 1.5,
+                            color: Colors.black,
+                          ),
+                          children: [
+                            TextSpan(
+                              text:
+                                  'Para comprender mejor este tema, te invitamos a ingresar al siguiente enlace y ver el ',
+                            ),
+
+                            // 🔵 BOTÓN DENTRO DEL TEXTO
+                            WidgetSpan(
+                              alignment: PlaceholderAlignment.middle,
+                              child: TextButton(
+                                style: TextButton.styleFrom(
+                                  padding:
+                                      EdgeInsets
+                                          .zero, // para que no se vea como botón grande
+                                  minimumSize: Size(0, 0), // evita alto extra
+                                  tapTargetSize:
+                                      MaterialTapTargetSize.shrinkWrap,
+                                ),
+                                onPressed: () {
+                                  abrirLink('https://youtu.be/WwmEpjQ4knE');
+                                },
+                                child: Text(
+                                  "Video explicativo.",
+                                  style: TextStyle(
+                                    color: Colors.blue,
+                                    fontSize: tamanotexto(2) + 4,
+                                    fontFamily: 'Calibri',
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                 ],
@@ -935,7 +918,7 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
                       builder: (context) => const Metodologia(),
                     ),
                   );
-                  //await guardarProgresoFinal(2);
+                  ProgresoGlobal.marcarVisto(2);
                 }
               },
               icon: Icon(

@@ -236,7 +236,10 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
           ),
         ],
       ),
-      drawer: const Menu(currentScreen: 'PlantiamientoProblema'),
+      drawer: Menu(
+        currentScreen: 'PlantiamientoProblema',
+        progreso: ProgresoGlobal.porcentaje,
+      ),
       body: Stack(
         children: [
           // 🌄 Fondo superior izquierda decorativo
@@ -883,37 +886,39 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                       ),
                   if (_index == 14) SizedBox(height: 20),
                   if (_index == 14)
-                    RichText(
-                      textAlign: TextAlign.justify,
-                      text: TextSpan(
-                        style: TextStyle(
-                          fontSize: tamanotexto(2) + 4,
-                          fontFamily: 'Calibri',
-                          height: 1.5,
-                          color: Colors.black,
-                        ),
-                        children: [
-                          /*TextSpan(
-                                    text:
-                                        'Ejemplos para la creación de un título: \n',
-                                  ),*/
-                          TextSpan(
-                            text:
-                                'Para comprender mejor este tema, te invitamos a ingresar al siguiente enlace y ver el ',
+                    Center(
+                      child: RichText(
+                        textAlign: TextAlign.justify,
+                        text: TextSpan(
+                          style: TextStyle(
+                            fontSize: tamanotexto(2) + 4,
+                            fontFamily: 'Calibri',
+                            height: 1.5,
+                            color: Colors.black,
                           ),
-                          TextSpan(
-                            text: 'Video explicativo',
-                            style: TextStyle(
-                              color: Colors.blue,
-                              //decoration: TextDecoration.underline,
+                          children: [
+                            /*TextSpan(
+                                      text:
+                                          'Ejemplos para la creación de un título: \n',
+                                    ),*/
+                            TextSpan(
+                              text:
+                                  'Para comprender mejor este tema, te invitamos a ingresar al siguiente enlace y ver el ',
                             ),
-                            recognizer:
-                                TapGestureRecognizer()
-                                  ..onTap = () {
-                                    abrirLink('https://youtu.be/dKs0BfuF25A');
-                                  },
-                          ),
-                        ],
+                            TextSpan(
+                              text: 'Video explicativo',
+                              style: TextStyle(
+                                color: Colors.blue,
+                                //decoration: TextDecoration.underline,
+                              ),
+                              recognizer:
+                                  TapGestureRecognizer()
+                                    ..onTap = () {
+                                      abrirLink('https://youtu.be/dKs0BfuF25A');
+                                    },
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                 ],
@@ -1008,7 +1013,7 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                     ),
                   );
                   //await guardarProgresoEnAPI();
-                  // await guardarProgresoFinal(2);
+                  ProgresoGlobal.marcarVisto(2);
                 }
               },
               label: Text(

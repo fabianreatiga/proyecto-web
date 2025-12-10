@@ -163,7 +163,10 @@ class _EncuestasState extends State<Encuestas> {
       resizeToAvoidBottomInset: false,
       backgroundColor: obtenercolor('Color_Fondo'),
       appBar: Appbars(),
-      drawer: Menu(currentScreen: 'Encuesta'),
+      drawer: Menu(
+        currentScreen: 'Encuesta',
+        progreso: ProgresoGlobal.porcentaje,
+      ),
       body: SingleChildScrollView(
         child: Center(
           child: Padding(

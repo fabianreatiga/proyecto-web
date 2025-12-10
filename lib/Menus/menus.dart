@@ -16,10 +16,11 @@ import 'package:nuevomockups/Videos/videos.dart';
 import 'package:nuevomockups/main.dart';
 
 class Menu extends StatelessWidget {
-  final String
-  currentScreen; // Pantalla actual para resaltar el ítem seleccionado
+  final String currentScreen;
 
-  const Menu({super.key, required this.currentScreen});
+  final int progreso; // Pantalla actual para resaltar el ítem seleccionado
+
+  const Menu({super.key, required this.currentScreen, required this.progreso});
 
   get db => null;
 
@@ -346,16 +347,16 @@ class Menu extends StatelessWidget {
           ListTile(
             leading: Icon(
               Icons.video_library,
-              color: currentScreen == 'Videos' ? Colors.white : Colors.black,
+              color: currentScreen == 'Videoss' ? Colors.white : Colors.black,
             ),
             title: Text(
               'Videos',
               style: TextStyle(
                 fontSize: texto + 4,
-                color: currentScreen == 'Videos' ? Colors.white : Colors.black,
+                color: currentScreen == 'Videoss' ? Colors.white : Colors.black,
               ),
             ),
-            selected: currentScreen == 'Videos',
+            selected: currentScreen == 'Videoss',
             selectedTileColor: obtenercolor('Color_Principal'),
             onTap: () {
               Navigator.pop(context);
@@ -366,29 +367,32 @@ class Menu extends StatelessWidget {
             },
           ),
           //======================= OPCIÓN ENCUESTA =======================\\
-          ListTile(
-            leading: Icon(
-              Icons.check_circle,
-              color: currentScreen == 'Encuesta' ? Colors.white : Colors.black,
-            ),
-            title: Text(
-              'Cuestionario',
-              style: TextStyle(
-                fontSize: texto + 4,
+          if (progreso >= 90)
+            ListTile(
+              leading: Icon(
+                Icons.check_circle,
                 color:
                     currentScreen == 'Encuesta' ? Colors.white : Colors.black,
               ),
+              title: Text(
+                'Cuestionario',
+                style: TextStyle(
+                  fontSize: texto + 4,
+                  color:
+                      currentScreen == 'Encuesta' ? Colors.white : Colors.black,
+                ),
+              ),
+              selected: currentScreen == 'Encuesta',
+              selectedTileColor: obtenercolor('Color_Principal'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Encuesta()),
+                );
+              },
             ),
-            selected: currentScreen == 'Encuesta',
-            selectedTileColor: obtenercolor('Color_Principal'),
-            onTap: () {
-              Navigator.pop(context);
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const Encuesta()),
-              );
-            },
-          ),
+
           //======================= OPCIÓN INICIO =======================\\
           ListTile(
             leading: Icon(

@@ -132,7 +132,10 @@ class _ActividadState extends State<Actividad> with TickerProviderStateMixin {
           ),
         ],
       ),
-      drawer: const Menu(currentScreen: 'Actividades'),
+      drawer: Menu(
+        currentScreen: 'Actividades',
+        progreso: ProgresoGlobal.porcentaje,
+      ),
       body: Stack(
         children: [
           // 🌄 Fondo superior izquierda decorativo
@@ -347,38 +350,7 @@ class _ActividadState extends State<Actividad> with TickerProviderStateMixin {
                             ),
                             textAlign: TextAlign.justify,
                           ),
-                          if (_index == 2)
-                            Center(
-                              child: RichText(
-                                textAlign: TextAlign.justify,
-                                text: TextSpan(
-                                  style: TextStyle(
-                                    fontSize: tamanotexto(2) + 4,
-                                    fontFamily: 'Calibri',
-                                    height: 1.5,
-                                    color: Colors.black,
-                                  ),
-                                  children: [
-                                    TextSpan(
-                                      text:
-                                          'Para comprender mejor este tema, te invitamos a ingresar al siguiente enlace y ver el ',
-                                    ),
-                                    TextSpan(
-                                      text: 'Video explicativo.',
-                                      style: TextStyle(
-                                        color: Colors.blue,
-                                        //decoration: TextDecoration.underline,
-                                      ),
-                                      recognizer:
-                                          TapGestureRecognizer()
-                                            ..onTap = () {
-                                              abrirLink('');
-                                            },
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
+
                           const SizedBox(height: 20),
                           ClipRRect(
                             borderRadius: BorderRadius.circular(12),
@@ -408,38 +380,6 @@ class _ActividadState extends State<Actividad> with TickerProviderStateMixin {
                                     ),
                                     textAlign: TextAlign.justify,
                                   ),
-                                  if (_index == 2)
-                                    Center(
-                                      child: RichText(
-                                        textAlign: TextAlign.justify,
-                                        text: TextSpan(
-                                          style: TextStyle(
-                                            fontSize: tamanotexto(2) + 4,
-                                            fontFamily: 'Calibri',
-                                            height: 1.5,
-                                            color: Colors.black,
-                                          ),
-                                          children: [
-                                            TextSpan(
-                                              text:
-                                                  'Para comprender mejor este tema, te invitamos a ingresar al siguiente enlace y ver el ',
-                                            ),
-                                            TextSpan(
-                                              text: 'Video explicativo.',
-                                              style: TextStyle(
-                                                color: Colors.blue,
-                                                //decoration: TextDecoration.underline,
-                                              ),
-                                              recognizer:
-                                                  TapGestureRecognizer()
-                                                    ..onTap = () {
-                                                      abrirLink('');
-                                                    },
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
                                 ],
                               ),
                             ),
@@ -460,6 +400,38 @@ class _ActividadState extends State<Actividad> with TickerProviderStateMixin {
                           ),
                         ],
                       ),
+                  if (_index == 2)
+                    Center(
+                      child: RichText(
+                        textAlign: TextAlign.justify,
+                        text: TextSpan(
+                          style: TextStyle(
+                            fontSize: tamanotexto(2) + 4,
+                            fontFamily: 'Calibri',
+                            height: 1.5,
+                            color: Colors.black,
+                          ),
+                          children: [
+                            TextSpan(
+                              text:
+                                  'Para comprender mejor este tema, te invitamos a ingresar al siguiente enlace y ver el ',
+                            ),
+                            TextSpan(
+                              text: 'Video explicativo.',
+                              style: TextStyle(
+                                color: Colors.blue,
+                                //decoration: TextDecoration.underline,
+                              ),
+                              recognizer:
+                                  TapGestureRecognizer()
+                                    ..onTap = () {
+                                      abrirLink('https://youtu.be/xJ4aDq4JUxU');
+                                    },
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                 ],
               ),
             ),
@@ -545,7 +517,7 @@ class _ActividadState extends State<Actividad> with TickerProviderStateMixin {
                       builder: (context) => const Bibliografia(),
                     ),
                   );
-                  //   await guardarProgresoFinal(2);
+                  ProgresoGlobal.marcarVisto(2);
                 }
               },
               icon: Icon(

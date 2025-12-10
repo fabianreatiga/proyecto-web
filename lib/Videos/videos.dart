@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:nuevomockups/Color_texto/color_texto.dart';
 import 'package:nuevomockups/Links/links.dart';
 import 'package:nuevomockups/Menus/menus.dart';
+
 // ignore: library_prefixes
 import 'package:nuevomockups/global.dart' as ProgresoGlobal;
 
@@ -30,7 +31,7 @@ class _VideoState extends State<Video> {
     return Scaffold(
       backgroundColor: obtenercolor('Color_Fondo'),
       appBar: Appbars(),
-      drawer: Menu(currentScreen: 'Videos'),
+      drawer: Menu(currentScreen: 'Cronograma', progreso: 100),
       body: Stack(
         children: [
           //fondo inferior derecha
@@ -292,7 +293,9 @@ class _VideoState extends State<Video> {
                                 recognizer:
                                     TapGestureRecognizer()
                                       ..onTap = () {
-                                        abrirLink('');
+                                        abrirLink(
+                                          'https://youtu.be/L0WrJUFkRKs',
+                                        );
                                       },
                               ),
 
@@ -320,7 +323,9 @@ class _VideoState extends State<Video> {
                                 recognizer:
                                     TapGestureRecognizer()
                                       ..onTap = () {
-                                        abrirLink('');
+                                        abrirLink(
+                                          'https://youtu.be/xJ4aDq4JUxU',
+                                        );
                                       },
                               ),
 
@@ -348,7 +353,9 @@ class _VideoState extends State<Video> {
                                 recognizer:
                                     TapGestureRecognizer()
                                       ..onTap = () {
-                                        abrirLink('');
+                                        abrirLink(
+                                          'https://youtu.be/bHvl_wPp4a4',
+                                        );
                                       },
                               ),
                             ],

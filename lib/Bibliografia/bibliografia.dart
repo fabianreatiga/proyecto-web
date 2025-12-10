@@ -150,7 +150,10 @@ class _BibliografiasState extends State<Bibliografias>
           ),
         ],
       ),
-      drawer: const Menu(currentScreen: 'Bibliogafia'),
+      drawer: Menu(
+        currentScreen: 'Bibliogafia',
+        progreso: ProgresoGlobal.porcentaje,
+      ),
       body: Stack(
         children: [
           // 🌄 Fondo superior izquierda decorativo
@@ -366,36 +369,7 @@ class _BibliografiasState extends State<Bibliografias>
                             ),
                             textAlign: TextAlign.justify,
                           ),
-                          if (_index == 6)
-                            RichText(
-                              textAlign: TextAlign.justify,
-                              text: TextSpan(
-                                style: TextStyle(
-                                  fontSize: tamanotexto(2) + 4,
-                                  fontFamily: 'Calibri',
-                                  height: 1.5,
-                                  color: Colors.black,
-                                ),
-                                children: [
-                                  TextSpan(
-                                    text:
-                                        'Para comprender mejor este tema, te invitamos a ingresar al siguiente enlace y ver el ',
-                                  ),
-                                  TextSpan(
-                                    text: 'Video explicativo.',
-                                    style: TextStyle(
-                                      color: Colors.blue,
-                                      //decoration: TextDecoration.underline,
-                                    ),
-                                    recognizer:
-                                        TapGestureRecognizer()
-                                          ..onTap = () {
-                                            abrirLink('');
-                                          },
-                                  ),
-                                ],
-                              ),
-                            ),
+
                           const SizedBox(height: 20),
                           ClipRRect(
                             borderRadius: BorderRadius.circular(12),
@@ -432,36 +406,6 @@ class _BibliografiasState extends State<Bibliografias>
                                     ),
                                     textAlign: TextAlign.justify,
                                   ),
-                                  if (_index == 6)
-                                    RichText(
-                                      textAlign: TextAlign.justify,
-                                      text: TextSpan(
-                                        style: TextStyle(
-                                          fontSize: tamanotexto(2) + 4,
-                                          fontFamily: 'Calibri',
-                                          height: 1.5,
-                                          color: Colors.black,
-                                        ),
-                                        children: [
-                                          TextSpan(
-                                            text:
-                                                'Para comprender mejor este tema, te invitamos a ingresar al siguiente enlace y ver el ',
-                                          ),
-                                          TextSpan(
-                                            text: 'Video explicativo.',
-                                            style: TextStyle(
-                                              color: Colors.blue,
-                                              //decoration: TextDecoration.underline,
-                                            ),
-                                            recognizer:
-                                                TapGestureRecognizer()
-                                                  ..onTap = () {
-                                                    abrirLink('');
-                                                  },
-                                          ),
-                                        ],
-                                      ),
-                                    ),
                                 ],
                               ),
                             ),
@@ -490,6 +434,38 @@ class _BibliografiasState extends State<Bibliografias>
                           //if (_index == 0 /*|| _index == 3 || _index == 5*/ ) Spacer(),
                         ],
                       ),
+                  if (_index == 6)
+                    Center(
+                      child: RichText(
+                        textAlign: TextAlign.justify,
+                        text: TextSpan(
+                          style: TextStyle(
+                            fontSize: tamanotexto(2) + 4,
+                            fontFamily: 'Calibri',
+                            height: 1.5,
+                            color: Colors.black,
+                          ),
+                          children: [
+                            TextSpan(
+                              text:
+                                  'Para comprender mejor este tema, te invitamos a ingresar al siguiente enlace y ver el ',
+                            ),
+                            TextSpan(
+                              text: 'Video explicativo.',
+                              style: TextStyle(
+                                color: Colors.blue,
+                                //decoration: TextDecoration.underline,
+                              ),
+                              recognizer:
+                                  TapGestureRecognizer()
+                                    ..onTap = () {
+                                      abrirLink('https://youtu.be/bHvl_wPp4a4');
+                                    },
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                 ],
               ),
             ),
@@ -529,6 +505,7 @@ class _BibliografiasState extends State<Bibliografias>
                       builder: (context) => const Actividades(),
                     ),
                   );
+                  ProgresoGlobal.marcarVisto(2);
                 }
               },
               icon: Icon(

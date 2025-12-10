@@ -134,7 +134,10 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
       ),
 
       // En este bloque de codigo se usa para mostrar y navegar por el modal menu
-      drawer: const Menu(currentScreen: 'BaseDeDatos'),
+      drawer: Menu(
+        currentScreen: 'BaseDeDatos',
+        progreso: ProgresoGlobal.porcentaje,
+      ),
       body: Stack(
         children: [
           // 🌄 Fondo superior izquierda decorativo
@@ -742,13 +745,14 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
                     // 🟢 GUARDAR EN MONGODB
                     await guardarProgresoEnAPI();
                   }
-                } else {
+                } /*else {
                   //  await guardarProgresoFinal(2);
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => Encuesta()),
                   );
-                }
+                  ProgresoGlobal.marcarVisto(2);
+                }*/
               },
 
               icon: Icon(
@@ -916,34 +920,6 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
       'icon': Icons.storage,
       'color': obtenercolor('Color_Secundario'),
       'indice': 2,
-    },
-    {
-      'id': 5,
-      'text': 'Antecedentes',
-      'icon': Icons.book,
-      'color': obtenercolor('Color_Secundario'),
-      'indice': 3,
-    },
-    {
-      'id': 6,
-      'text': 'Ejemplo',
-      'icon': Icons.book,
-      'color': obtenercolor('Color_Secundario'),
-      'indice': 4,
-    },
-    {
-      'id': 7,
-      'text': 'Estado del arte',
-      'icon': Icons.text_fields,
-      'color': obtenercolor('Color_Secundario'),
-      'indice': 5,
-    },
-    {
-      'id': 8,
-      'text': 'Ejemplo',
-      'icon': Icons.text_fields,
-      'color': obtenercolor('Color_Secundario'),
-      'indice': 6,
     },
   ];
 }

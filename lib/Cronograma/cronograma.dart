@@ -1,5 +1,7 @@
 // ignore_for_file: unused_field, deprecated_member_use, non_constant_identifier_names
 
+//import 'dart:nativewrappers/_internal/vm/lib/ffi_patch.dart';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -133,7 +135,10 @@ class _CronogramasState extends State<Cronogramas>
           ),
         ],
       ),
-      drawer: const Menu(currentScreen: 'Cronograma'),
+      drawer: Menu(
+        currentScreen: 'Cronograma',
+        progreso: ProgresoGlobal.porcentaje,
+      ),
       body: Stack(
         children: [
           // 🌄 Fondo superior izquierda decorativo
@@ -349,38 +354,7 @@ class _CronogramasState extends State<Cronogramas>
                             ),
                             textAlign: TextAlign.justify,
                           ),
-                          if (_index == 2)
-                            Center(
-                              child: RichText(
-                                textAlign: TextAlign.justify,
-                                text: TextSpan(
-                                  style: TextStyle(
-                                    fontSize: tamanotexto(2) + 2,
-                                    fontFamily: 'Calibri',
-                                    height: 1.5,
-                                    color: Colors.black,
-                                  ),
-                                  children: [
-                                    TextSpan(
-                                      text:
-                                          'Para comprender mejor este tema, te invitamos a ingresar al siguiente enlace y ver el ',
-                                    ),
-                                    TextSpan(
-                                      text: 'Video explicativo.',
-                                      style: TextStyle(
-                                        color: Colors.blue,
-                                        //decoration: TextDecoration.underline,
-                                      ),
-                                      recognizer:
-                                          TapGestureRecognizer()
-                                            ..onTap = () {
-                                              abrirLink('');
-                                            },
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
+
                           const SizedBox(height: 20),
 
                           ClipRRect(
@@ -402,38 +376,6 @@ class _CronogramasState extends State<Cronogramas>
                               padding: EdgeInsets.only(right: 20),
                               child: Column(
                                 children: [
-                                  if (_index == 2)
-                                    Center(
-                                      child: RichText(
-                                        textAlign: TextAlign.justify,
-                                        text: TextSpan(
-                                          style: TextStyle(
-                                            fontSize: tamanotexto(2) + 6,
-                                            fontFamily: 'Calibri',
-                                            height: 1.5,
-                                            color: Colors.black,
-                                          ),
-                                          children: [
-                                            TextSpan(
-                                              text:
-                                                  'Para comprender mejor este tema, te invitamos a ingresar al siguiente enlace y ver el ',
-                                            ),
-                                            TextSpan(
-                                              text: 'Video explicativo.',
-                                              style: TextStyle(
-                                                color: Colors.blue,
-                                                //decoration: TextDecoration.underline,
-                                              ),
-                                              recognizer:
-                                                  TapGestureRecognizer()
-                                                    ..onTap = () {
-                                                      abrirLink('');
-                                                    },
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
                                   if (_index != 2)
                                     Text(
                                       textos[_index],
@@ -468,8 +410,49 @@ class _CronogramasState extends State<Cronogramas>
                           ),
                           if (_index == 1) Spacer(),
                           if (_index == 1) Spacer(),
+                          if (_index == 2)
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.1,
+                            ),
                         ],
                       ),
+                  if (_index == 2)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Center(
+                        child: RichText(
+                          textAlign: TextAlign.justify,
+                          text: TextSpan(
+                            style: TextStyle(
+                              fontSize: tamanotexto(2) + 6,
+                              fontFamily: 'Calibri',
+                              height: 1.5,
+                              color: Colors.black,
+                            ),
+                            children: [
+                              TextSpan(
+                                text:
+                                    'Para comprender mejor este tema, te invitamos a ingresar al siguiente enlace y ver el ',
+                              ),
+                              TextSpan(
+                                text: 'Video explicativo.',
+                                style: TextStyle(
+                                  color: Colors.blue,
+                                  //decoration: TextDecoration.underline,
+                                ),
+                                recognizer:
+                                    TapGestureRecognizer()
+                                      ..onTap = () {
+                                        abrirLink(
+                                          'https://youtu.be/L0WrJUFkRKs',
+                                        );
+                                      },
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
                 ],
               ),
             ),
@@ -562,7 +545,7 @@ class _CronogramasState extends State<Cronogramas>
                       builder: (context) => const Actividades(),
                     ),
                   );
-                  // await guardarProgresoFinal(2);
+                  ProgresoGlobal.marcarVisto(2);
                 }
               },
               icon: Icon(

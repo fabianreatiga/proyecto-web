@@ -93,7 +93,7 @@ class _JustificacionesState extends State<Justificaciones>
     ];
   }
 
-  static int ID_BASE_PROGRESO = 21;
+  static int ID_BASE_PROGRESO = 22;
   int _currentseccion = 0;
 
   @override
@@ -146,7 +146,10 @@ class _JustificacionesState extends State<Justificaciones>
           ),
         ],
       ),
-      drawer: const Menu(currentScreen: 'Justificacion'),
+      drawer: Menu(
+        currentScreen: 'Justificacion',
+        progreso: ProgresoGlobal.porcentaje,
+      ),
       body: Stack(
         children: [
           // 🌄 Fondo superior izquierda decorativo
@@ -357,40 +360,6 @@ class _JustificacionesState extends State<Justificaciones>
                             textAlign: TextAlign.justify,
                           ),
                           const SizedBox(height: 20),
-                          if (_index == 3)
-                            Center(
-                              child: RichText(
-                                textAlign: TextAlign.justify,
-                                text: TextSpan(
-                                  style: TextStyle(
-                                    fontSize: tamanotexto(2) + 4,
-                                    fontFamily: 'Calibri',
-                                    height: 1.5,
-                                    color: Colors.black,
-                                  ),
-                                  children: [
-                                    TextSpan(
-                                      text:
-                                          'Para comprender mejor este tema, te invitamos a ingresar al siguiente enlace y ver el ',
-                                    ),
-                                    TextSpan(
-                                      text: 'Video explicativo.',
-                                      style: TextStyle(
-                                        color: Colors.blue,
-                                        //decoration: TextDecoration.underline,
-                                      ),
-                                      recognizer:
-                                          TapGestureRecognizer()
-                                            ..onTap = () {
-                                              abrirLink(
-                                                'https://youtu.be/GOU4qjxFNxw',
-                                              );
-                                            },
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
 
                           ClipRRect(
                             borderRadius: BorderRadius.circular(12),
@@ -421,38 +390,6 @@ class _JustificacionesState extends State<Justificaciones>
                                     ),
                                     textAlign: TextAlign.justify,
                                   ),
-                                  if (_index == 3)
-                                    RichText(
-                                      textAlign: TextAlign.justify,
-                                      text: TextSpan(
-                                        style: TextStyle(
-                                          fontSize: tamanotexto(2) + 4,
-                                          fontFamily: 'Calibri',
-                                          height: 1.5,
-                                          color: Colors.black,
-                                        ),
-                                        children: [
-                                          TextSpan(
-                                            text:
-                                                'Para comprender mejor este tema, te invitamos a ingresar al siguiente enlace y ver el ',
-                                          ),
-                                          TextSpan(
-                                            text: 'Video explicativo.',
-                                            style: TextStyle(
-                                              color: Colors.blue,
-                                              //decoration: TextDecoration.underline,
-                                            ),
-                                            recognizer:
-                                                TapGestureRecognizer()
-                                                  ..onTap = () {
-                                                    abrirLink(
-                                                      'https://youtu.be/GOU4qjxFNxw',
-                                                    );
-                                                  },
-                                          ),
-                                        ],
-                                      ),
-                                    ),
                                 ],
                               ),
                             ),
@@ -477,6 +414,38 @@ class _JustificacionesState extends State<Justificaciones>
                           //if ( /*_index == 1 ||*/ _index == 2) Spacer(),
                         ],
                       ),
+                  if (_index == 3)
+                    Center(
+                      child: RichText(
+                        textAlign: TextAlign.justify,
+                        text: TextSpan(
+                          style: TextStyle(
+                            fontSize: tamanotexto(2) + 4,
+                            fontFamily: 'Calibri',
+                            height: 1.5,
+                            color: Colors.black,
+                          ),
+                          children: [
+                            TextSpan(
+                              text:
+                                  'Para comprender mejor este tema, te invitamos a ingresar al siguiente enlace y ver el ',
+                            ),
+                            TextSpan(
+                              text: 'Video explicativo.',
+                              style: TextStyle(
+                                color: Colors.blue,
+                                //decoration: TextDecoration.underline,
+                              ),
+                              recognizer:
+                                  TapGestureRecognizer()
+                                    ..onTap = () {
+                                      abrirLink('https://youtu.be/GOU4qjxFNxw');
+                                    },
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                 ],
               ),
             ),
@@ -567,7 +536,7 @@ class _JustificacionesState extends State<Justificaciones>
                     context,
                     MaterialPageRoute(builder: (context) => const Objetivos()),
                   );
-                  // await guardarProgresoFinal(2);
+                  ProgresoGlobal.marcarVisto(2);
                 }
               },
               icon: Icon(
