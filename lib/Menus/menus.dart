@@ -28,7 +28,6 @@ class Menu extends StatelessWidget {
       context: context,
       builder:
           (ctx) => AlertDialog(
-            title: const Text('Error'),
             content: Text(mensaje),
             actions: [
               Center(
