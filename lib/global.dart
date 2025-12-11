@@ -21,8 +21,8 @@ class ProgresoGlobal {
     ...List.generate(3, (i) => i + 43), // Cronograma
     ...List.generate(3, (i) => i + 46), // Actividades
     ...List.generate(7, (i) => i + 49), // Bibliografía
-    ...List.generate(5, (i) => i + 56), // Búsqueda
-    ...List.generate(3, (i) => i + 61), // Bases de datos
+    ...List.generate(8, (i) => i + 56), // Búsqueda
+    //...List.generate(3, (i) => i + 61), // Bases de datos
   };
 
   /// Progreso total entre 0 y 1

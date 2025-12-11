@@ -275,7 +275,7 @@ class _InicioState extends State<Inicio> {
         image: DecorationImage(
           image: AssetImage('assets/fondo_textura.png'),
           //aca cargamas la imagen con la textura de fondo
-          repeat: ImageRepeat.repeat, // 🔥 Se repite en todo el fondo
+          repeat: ImageRepeat.repeat, // Se repite en todo el fondo
           opacity: MediaQuery.of(context).size.width < 600 ? 0.3 : 0.2,
         ),
       ),
@@ -522,8 +522,8 @@ class _InicioState extends State<Inicio> {
                                       ),
                                       Image.asset(
                                         imagenes[index],
-                                        width: 350,
-                                        height: 197,
+                                        width: 400,
+                                        height: 247,
                                         fit: BoxFit.cover,
                                       ),
                                     ],
@@ -641,7 +641,7 @@ class _InicioState extends State<Inicio> {
                 SizedBox(
                   width: 250,
                   child: Tooltip(
-                    message: 'Si eres intructor,colocar "0000000" ',
+                    message: 'Si eres intructor, colocar "0" ',
                     // se agrego este SizedBox para integrar el campo de texto del N° ficha
                     child: TextField(
                       controller: _Nficha,

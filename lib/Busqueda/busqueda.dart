@@ -2,9 +2,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:nuevomockups/Appbar/appbar.dart';
-import 'package:nuevomockups/Bases_Datos/bases_datos.dart';
 import 'package:nuevomockups/Bibliografia/bibliografia.dart';
 import 'package:nuevomockups/Color_texto/color_texto.dart';
+import 'package:nuevomockups/Encuesta/encuesta.dart';
 import 'package:nuevomockups/Links/links.dart';
 import 'package:nuevomockups/Menus/menus.dart';
 import 'package:nuevomockups/global.dart';
@@ -60,6 +60,16 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
 
     'Google Tendencias (Google Trends) es una herramienta gratuita de Google que permite analizar qué temas o palabras son más buscados en Internet. Muestra cómo cambia el interés por un término a lo largo del tiempo y en diferentes regiones, además de permitir comparar varios temas o categorías como educación, salud o tecnología.'
         'También ayuda a identificar tendencias, estudiar patrones de búsqueda y conocer los intereses actuales de las personas. Es especialmente útil para estudiantes, investigadores y profesionales que necesitan información confiable sobre lo que la gente busca en la web.',
+    'Una base de datos científica es una plataforma digital que almacena, organiza y permite acceder a información validada de investigaciones, como artículos, tesis y revistas especializadas. Facilita la búsqueda, consulta y citación de fuentes confiables, garantizando la calidad y veracidad del conocimiento científico.',
+
+    'Una base de datos científica sirve para:\n'
+        '🔍 Buscar información confiable: Permite encontrar artículos, investigaciones y documentos revisados por expertos.\n'
+        '🧠 Consultar antecedentes y estado del arte: Ayuda a conocer lo que ya se ha investigado sobre un tema.\n'
+        '📝 Citar correctamente: Facilita la obtención de datos bibliográficos para evitar el plagio.\n'
+        '📊 Analizar tendencias científicas: Permite ver qué temas son más estudiados o citados.\n'
+        '🎓 Apoyar trabajos académicos y tesis: Brinda información actualizada y verificada para sustentar investigaciones.',
+
+    'El SENA ofrece una Biblioteca Virtual donde todos los aprendices e instructores pueden acceder a bases de datos académicas y científicas. Estas bases contienen libros digitales, revistas, artículos, normas técnicas, investigaciones y otros recursos confiables para apoyar la formación y los proyectos. ',
   ]; // lista de los textos que se van a mostrar
 
   final List<String> imagenes = [
@@ -68,6 +78,9 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
     'assets/Busqueda/Busqueda_Google_Academico.png', // GOOGLE ACADÉMICO (SCHOLAR)
     'assets/Busqueda/Busqueda_Google_Alertas.png', // ALERTAS DE GOOGLE
     'assets/Busqueda/Busqueda_Google_Tendencias.png', // GOOGLE TENDENCIAS (TRENDS)
+    'assets/BasesDatos/Bases_De_Datos_Definicion.png', //DEFINICIÓN
+    'assets/BasesDatos/Bases_De_Datos_Que_Es.png', //¿PARA QUE SIRVE?
+    'assets/BasesDatos/Bases_De_Datos_Biblioteca_Sena.jpg', //¿DÓNDE PUEDES ENCONTRAR LAS BASES DE DATOS CIENTÍFICAS?
   ]; // lista de las imagenes
 
   // ignore: unused_field
@@ -79,6 +92,9 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
     'GOOGLE ACADÉMICO (SCHOLAR)',
     'ALERTAS DE GOOGLE',
     'GOOGLE TENDENCIAS (TRENDS)',
+    'DEFINICIÓN',
+    '¿PARA QUE SIRVE?',
+    '¿DÓNDE PUEDES ENCONTRAR LAS BASES DE DATOS CIENTÍFICAS?', // lista de las secciones
   ]; // lista de las secciones
 
   List<double> grande(BuildContext context) {
@@ -91,6 +107,9 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
       MediaQuery.of(context).size.width * 0.18 - 18, // ALERTAS DE GOOGLE
       MediaQuery.of(context).size.width * 0.2 -
           18, // GOOGLE TENDENCIAS (TRENDS)
+      250, // DEFINICIÓN
+      250, // ¿PARA QUE SIRVE?
+      130, // ¿DÓNDE PUEDES ENCONTRAR LAS BASES DE DATOS CIENTÍFICAS?
     ];
   } // lista de las alturas de las imagenes para pantallas grandes
 
@@ -104,6 +123,9 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
       MediaQuery.of(context).size.width * 0.3 - 18, // ALERTAS DE GOOGLE
       MediaQuery.of(context).size.width * 0.4 -
           18, // GOOGLE TENDENCIAS (TRENDS)
+      250, // DEFINICIÓN
+      250, // ¿PARA QUE SIRVE?
+      130, // ¿DÓNDE PUEDES ENCONTRAR LAS BASES DE DATOS CIENTÍFICAS?
     ];
   } // lista de las alturas de las imagenes para pantallas pequenas
 
@@ -780,14 +802,14 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                     await ProgresoGlobal.guardarLocal();
 
                     // ignore: avoid_print
-                    print("🟢 Progreso sumado → ID: $idReal");
+                    print(" Progreso sumado → ID: $idReal");
 
                     await guardarProgresoEnAPI();
                   }
                 } else {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Basesdatos()),
+                    MaterialPageRoute(builder: (context) => Encuesta()),
                   );
                   ProgresoGlobal.marcarVisto(2);
                 }
@@ -973,6 +995,27 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
       'icon': Icons.book,
       'color': obtenercolor('Color_Secundario'),
       'indice': 4,
+    },
+    {
+      'id': 7,
+      'text': 'Definición',
+      'icon': Icons.info,
+      'color': obtenercolor('Color_Secundario'),
+      'indice': 5,
+    },
+    {
+      'id': 8,
+      'text': '¿Para qué sirve?',
+      'icon': Icons.question_mark,
+      'color': obtenercolor('Color_Secundario'),
+      'indice': 6,
+    },
+    {
+      'id': 9,
+      'text': 'Biblioteca SENA',
+      'icon': Icons.storage,
+      'color': obtenercolor('Color_Secundario'),
+      'indice': 7,
     },
   ];
 }

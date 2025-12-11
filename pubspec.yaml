@@ -6,7 +6,8 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.7.2
+  #sdk: ^3.7.2
+  sdk: ">=3.5.3 <4.0.0"
 
 dependencies:
   flutter:
@@ -17,8 +18,8 @@ dependencies:
   mongo_dart: ^0.10.0
   http: ^1.1.0
   cupertino_icons: ^1.0.8
-  video_player: ^2.9.1
-  video_player_web: ^2.4.0
+  font_awesome_flutter: ^10.7.0
+
 
 dev_dependencies:
   flutter_test:

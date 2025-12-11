@@ -919,13 +919,5 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
       'color': obtenercolor('Color_Secundario'),
       'indice': 2,
     },
-
-    {
-      'id': 5,
-      'text': 'Progreso',
-      'icon': Icons.checklist,
-      'color': obtenercolor('Color_Secundario'),
-      'indice': 3,
-    },
   ];
 }

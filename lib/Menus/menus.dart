@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nuevomockups/Actividades/actividades.dart';
 import 'package:nuevomockups/Antecedentes_Estado/antecedentesoestado.dart';
-import 'package:nuevomockups/Bases_Datos/bases_datos.dart';
+//import 'package:nuevomockups/Bases_Datos/bases_datos.dart';
 import 'package:nuevomockups/Bibliografia/bibliografia.dart';
 import 'package:nuevomockups/Busqueda/busqueda.dart';
 import 'package:nuevomockups/Color_texto/color_texto.dart';
@@ -14,6 +14,7 @@ import 'package:nuevomockups/PlanteamientoProblemas/plantiamientoproblemas.dart'
 import 'package:nuevomockups/Titulo/titulo.dart';
 import 'package:nuevomockups/Videos/videos.dart';
 import 'package:nuevomockups/main.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Menu extends StatelessWidget {
   final String currentScreen;
@@ -82,9 +83,11 @@ class Menu extends StatelessWidget {
           //======================= OPCIÓN TITULO =======================\\
           ListTile(
             leading: Icon(
-              Icons.title,
+              FontAwesomeIcons.one,
               color: currentScreen == 'Titulo' ? Colors.white : Colors.black,
+              size: 17,
             ),
+
             title: Text(
               'Título',
               style: TextStyle(
@@ -105,11 +108,12 @@ class Menu extends StatelessWidget {
           //======================= OPCIÓN PLANTEAMIENTO DEL PROBLEMA =======================\\
           ListTile(
             leading: Icon(
-              Icons.psychology,
+              FontAwesomeIcons.two,
               color:
                   currentScreen == 'PlantiamientoProblema'
                       ? Colors.white
                       : Colors.black,
+              size: 17,
             ),
             title: Text(
               'Planteamiento del Problema',
@@ -127,7 +131,7 @@ class Menu extends StatelessWidget {
               if (progreso < 8) {
                 _progreso(
                   context,
-                  'Para seguir debes superar el 9% del progreso',
+                  'Para seguir debes superar el 8% del progreso en Título',
                 );
               } else {
                 Navigator.push(
@@ -143,11 +147,12 @@ class Menu extends StatelessWidget {
           //======================= OPCIÓN JUSTIFICACIÓN =======================\\
           ListTile(
             leading: Icon(
-              Icons.fact_check,
+              FontAwesomeIcons.three,
               color:
                   currentScreen == 'Justificacion'
                       ? Colors.white
                       : Colors.black,
+              size: 17,
             ),
             title: Text(
               'Justificación',
@@ -165,7 +170,7 @@ class Menu extends StatelessWidget {
               if (progreso < 25) {
                 _progreso(
                   context,
-                  'Para seguir debes superar el 25% del progreso',
+                  'Para seguir debes superar el 25% del progreso en Planteamiento del Problema',
                 );
               } else {
                 Navigator.pop(context);
@@ -181,8 +186,9 @@ class Menu extends StatelessWidget {
           //======================= OPCIÓN OBJETIVOS =======================\\
           ListTile(
             leading: Icon(
-              Icons.flag,
+              FontAwesomeIcons.four,
               color: currentScreen == 'Objetivos' ? Colors.white : Colors.black,
+              size: 17,
             ),
             title: Text(
               'Objetivos',
@@ -198,7 +204,7 @@ class Menu extends StatelessWidget {
               if (progreso < 35) {
                 _progreso(
                   context,
-                  'Para seguir debes superar el 35% del progreso',
+                  'Para seguir debes superar el 35% del progreso en Justificación',
                 );
               } else {
                 Navigator.pop(context);
@@ -212,8 +218,9 @@ class Menu extends StatelessWidget {
           //======================= OPCIÓN OBJETIVOS =======================\\
           ListTile(
             leading: Icon(
-              Icons.folder,
+              FontAwesomeIcons.five,
               color: currentScreen == 'Arte' ? Colors.white : Colors.black,
+              size: 17,
             ),
             title: Text(
               'Antecedentes o Estado del Arte',
@@ -228,7 +235,7 @@ class Menu extends StatelessWidget {
               if (progreso < 45) {
                 _progreso(
                   context,
-                  'Para seguir debes superar el 45% del progreso',
+                  'Para seguir debes superar el 45% del progreso en Objetivos',
                 );
               } else {
                 Navigator.pop(context);
@@ -244,9 +251,10 @@ class Menu extends StatelessWidget {
           //======================= OPCIÓN METODOLOGÍA =======================\\
           ListTile(
             leading: Icon(
-              Icons.analytics,
+              FontAwesomeIcons.six,
               color:
                   currentScreen == 'Metodologia' ? Colors.white : Colors.black,
+              size: 17,
             ),
             title: Text(
               'Metodología',
@@ -264,7 +272,7 @@ class Menu extends StatelessWidget {
               if (progreso < 56) {
                 _progreso(
                   context,
-                  'Para seguir debes superar el 56% del progreso',
+                  'Para seguir debes superar el 56% del progreso en Antecedentes o Estado del Arte',
                 );
               } else {
                 Navigator.pop(context);
@@ -278,9 +286,10 @@ class Menu extends StatelessWidget {
           //======================= OPCIÓN CRONOGRAMA =======================\\
           ListTile(
             leading: Icon(
-              Icons.calendar_month,
+              FontAwesomeIcons.seven,
               color:
                   currentScreen == 'Cronograma' ? Colors.white : Colors.black,
+              size: 17,
             ),
             title: Text(
               'Cronograma',
@@ -296,7 +305,7 @@ class Menu extends StatelessWidget {
               if (progreso < 64) {
                 _progreso(
                   context,
-                  'Para seguir debes superar el 64% del progreso',
+                  'Para seguir debes superar el 64% del progreso en Metodología',
                 );
               } else {
                 Navigator.pop(context);
@@ -310,9 +319,10 @@ class Menu extends StatelessWidget {
           //======================= OPCIÓN ACTIVIDADES O RESULTADOS =======================\\
           ListTile(
             leading: Icon(
-              Icons.task,
+              FontAwesomeIcons.eight,
               color:
                   currentScreen == 'Actividades' ? Colors.white : Colors.black,
+              size: 17,
             ),
             title: Text(
               'Actividades o resultados',
@@ -330,7 +340,7 @@ class Menu extends StatelessWidget {
               if (progreso < 70) {
                 _progreso(
                   context,
-                  'Para seguir debes superar el 70% del progreso',
+                  'Para seguir debes superar el 70% del progreso en Cronograma',
                 );
               } else {
                 Navigator.pop(context);
@@ -344,9 +354,10 @@ class Menu extends StatelessWidget {
           //======================= OPCIÓN BIBLIOGRAFÍA =======================\\
           ListTile(
             leading: Icon(
-              Icons.menu_book,
+              FontAwesomeIcons.nine,
               color:
-                  currentScreen == 'Bibliogafia' ? Colors.white : Colors.black,
+                  currentScreen == 'Bibliografia' ? Colors.white : Colors.black,
+              size: 17,
             ),
             title: Text(
               'Bibliografía',
@@ -364,7 +375,7 @@ class Menu extends StatelessWidget {
               if (progreso < 75) {
                 _progreso(
                   context,
-                  'Para seguir debes superar el 75% del progreso',
+                  'Para seguir debes superar el 75% del progreso en Actividades o Resultados',
                 );
               } else {
                 Navigator.pop(context);
@@ -382,6 +393,7 @@ class Menu extends StatelessWidget {
               Icons.search,
               color: currentScreen == 'Busqueda' ? Colors.white : Colors.black,
             ),
+
             title: Text(
               'Busqueda',
               style: TextStyle(
@@ -396,7 +408,7 @@ class Menu extends StatelessWidget {
               if (progreso < 85) {
                 _progreso(
                   context,
-                  'Para seguir debes superar el 85% del progreso',
+                  'Para seguir debes superar el 85% del progreso en Bibliografía',
                 );
               } else {
                 Navigator.pop(context);
@@ -409,11 +421,28 @@ class Menu extends StatelessWidget {
           ),
 
           //======================= BASES DE DATOS =======================\\
-          ListTile(
-            leading: Icon(
-              Icons.storage,
-              color:
-                  currentScreen == 'BaseDeDatos' ? Colors.white : Colors.black,
+          /* ListTile(
+            leading: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  FontAwesomeIcons.one,
+                  color:
+                      currentScreen == 'BasesDeDatos'
+                          ? Colors.white
+                          : Colors.black,
+                  size: 17,
+                ),
+                SizedBox(width: 2),
+                Icon(
+                  FontAwesomeIcons.one,
+                  color:
+                      currentScreen == 'BasesDeDatos'
+                          ? Colors.white
+                          : Colors.black,
+                  size: 17,
+                ),
+              ],
             ),
             title: Text(
               'Base de Datos Científica',
@@ -431,7 +460,7 @@ class Menu extends StatelessWidget {
               if (progreso < 95) {
                 _progreso(
                   context,
-                  'Para seguir debes superar el 95% del progreso',
+                  'Para seguir debes superar el 95% del progreso en Búsqueda',
                 );
               } else {
                 Navigator.pop(context);
@@ -441,8 +470,7 @@ class Menu extends StatelessWidget {
                 );
               }
             },
-          ),
-
+          ),*/
           ListTile(
             leading: Icon(
               Icons.video_library,
