@@ -740,19 +740,17 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
                     ProgresoGlobal.pestanasVistas.add(idReal);
                     await ProgresoGlobal.guardarLocal();
 
-                    // print("🟢 Progreso sumado → ID: $idReal");
-
-                    // 🟢 GUARDAR EN MONGODB
+                    //  GUARDAR EN MONGODB
                     await guardarProgresoEnAPI();
                   }
-                } /*else {
+                } else {
                   //  await guardarProgresoFinal(2);
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => Encuesta()),
                   );
                   ProgresoGlobal.marcarVisto(2);
-                }*/
+                }
               },
 
               icon: Icon(
@@ -920,6 +918,14 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
       'icon': Icons.storage,
       'color': obtenercolor('Color_Secundario'),
       'indice': 2,
+    },
+
+    {
+      'id': 5,
+      'text': 'Progreso',
+      'icon': Icons.checklist,
+      'color': obtenercolor('Color_Secundario'),
+      'indice': 3,
     },
   ];
 }

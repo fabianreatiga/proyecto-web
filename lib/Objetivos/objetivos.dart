@@ -3,13 +3,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:nuevomockups/Antecedentes_Estado/antecedentesoestado.dart';
 import 'package:nuevomockups/Appbar/appbar.dart';
 import 'package:nuevomockups/Color_texto/color_texto.dart';
 import 'package:nuevomockups/Justificacion/justificacion.dart';
 import 'package:nuevomockups/Links/links.dart';
 import 'package:nuevomockups/Menus/menus.dart';
-import 'package:nuevomockups/Metodologia/metodologia.dart';
-
 import 'package:nuevomockups/global.dart';
 
 class Objetivos extends StatelessWidget {
@@ -915,7 +914,7 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const Metodologia(),
+                      builder: (context) => const Antecedente_EStado(),
                     ),
                   );
                   ProgresoGlobal.marcarVisto(2);

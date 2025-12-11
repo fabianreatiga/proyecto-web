@@ -499,7 +499,7 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
                     await ProgresoGlobal.guardarLocal();
 
                     // ignore: avoid_print
-                    print("🟢 Progreso sumado → ID: $idReal");
+                    print(" Progreso sumado → ID: $idReal");
 
                     await guardarProgresoEnAPI();
                   }
@@ -512,7 +512,6 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
                   );
 
                   ProgresoGlobal.marcarVisto(2);
-                  //await guardarProgresoEnAPI(); // 🟢 también lo guardamos aquí
                 }
               },
 

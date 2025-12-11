@@ -152,7 +152,7 @@ class _JustificacionesState extends State<Justificaciones>
       ),
       body: Stack(
         children: [
-          // 🌄 Fondo superior izquierda decorativo
+          //  Fondo superior izquierda decorativo
           Positioned(
             top: 0,
             right: 0,
@@ -180,7 +180,7 @@ class _JustificacionesState extends State<Justificaciones>
             ),
           ),
 
-          // 🌄 Fondo superior derecha decorativo
+          //  Fondo superior derecha decorativo
           Positioned(
             top: 0,
             left: 0,
@@ -195,7 +195,7 @@ class _JustificacionesState extends State<Justificaciones>
             ),
           ),
 
-          // 🌄 Fondo inferior izquierda
+          //  Fondo inferior izquierda
           Positioned(
             bottom: 90,
             left: 0,
@@ -210,7 +210,7 @@ class _JustificacionesState extends State<Justificaciones>
             ),
           ),
 
-          // 🌄 Fondo inferior derecha
+          //  Fondo inferior derecha
           Positioned(
             bottom: 90,
             right: 0,
@@ -239,7 +239,6 @@ class _JustificacionesState extends State<Justificaciones>
             ),
           ),
 
-          // 📜 Contenido principal
           SafeArea(
             child: Container(
               padding: EdgeInsets.zero,
@@ -526,9 +525,6 @@ class _JustificacionesState extends State<Justificaciones>
                     ProgresoGlobal.pestanasVistas.add(idReal);
                     await ProgresoGlobal.guardarLocal();
 
-                    // print("🟢 Progreso sumado → ID: $idReal");
-
-                    // 🟢 GUARDAR EN MONGODB
                     await guardarProgresoEnAPI();
                   }
                 } else {

@@ -23,6 +23,32 @@ class Menu extends StatelessWidget {
   const Menu({super.key, required this.currentScreen, required this.progreso});
 
   get db => null;
+  void _Progreso(BuildContext context, String mensaje) {
+    showDialog(
+      context: context,
+      builder:
+          (ctx) => AlertDialog(
+            title: const Text('Error'),
+            content: Text(mensaje),
+            actions: [
+              Center(
+                child: Container(
+                  padding: EdgeInsets.all(0),
+                  width: 100,
+                  child: TextButton(
+                    onPressed: () => Navigator.of(ctx).pop(),
+                    style: TextButton.styleFrom(
+                      backgroundColor: obtenercolor('Color_Principal'),
+                      foregroundColor: obtenercolor('Color_Texto_Principal'),
+                    ),
+                    child: Text('Aceptar'),
+                  ),
+                ),
+              ),
+            ],
+          ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -76,6 +102,7 @@ class Menu extends StatelessWidget {
               );
             },
           ),
+
           //======================= OPCIÓN PLANTEAMIENTO DEL PROBLEMA =======================\\
           ListTile(
             leading: Icon(
@@ -98,14 +125,22 @@ class Menu extends StatelessWidget {
             selected: currentScreen == 'PlantiamientoProblema',
             selectedTileColor: obtenercolor('Color_Principal'),
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const Plantiamientoproblemas(),
-                ),
-              );
+              if (progreso < 8) {
+                _Progreso(
+                  context,
+                  'Para seguir debes superar el 9% del progreso',
+                );
+              } else {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const Plantiamientoproblemas(),
+                  ),
+                );
+              }
             },
           ),
+
           //======================= OPCIÓN JUSTIFICACIÓN =======================\\
           ListTile(
             leading: Icon(
@@ -128,11 +163,20 @@ class Menu extends StatelessWidget {
             selected: currentScreen == 'Justificacion',
             selectedTileColor: obtenercolor('Color_Principal'),
             onTap: () {
-              Navigator.pop(context);
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const Justificacion()),
-              );
+              if (progreso < 25) {
+                _Progreso(
+                  context,
+                  'Para seguir debes superar el 25% del progreso',
+                );
+              } else {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const Justificacion(),
+                  ),
+                );
+              }
             },
           ),
           //======================= OPCIÓN OBJETIVOS =======================\\
@@ -152,11 +196,18 @@ class Menu extends StatelessWidget {
             selected: currentScreen == 'Objetivos',
             selectedTileColor: obtenercolor('Color_Principal'),
             onTap: () {
-              Navigator.pop(context);
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const Objetivos()),
-              );
+              if (progreso < 35) {
+                _Progreso(
+                  context,
+                  'Para seguir debes superar el 35% del progreso',
+                );
+              } else {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Objetivos()),
+                );
+              }
             },
           ),
           //======================= OPCIÓN OBJETIVOS =======================\\
@@ -175,13 +226,20 @@ class Menu extends StatelessWidget {
             selected: currentScreen == 'Arte',
             selectedTileColor: obtenercolor('Color_Principal'),
             onTap: () {
-              Navigator.pop(context);
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const Antecedente_EStado(),
-                ),
-              );
+              if (progreso < 45) {
+                _Progreso(
+                  context,
+                  'Para seguir debes superar el 45% del progreso',
+                );
+              } else {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const Antecedente_EStado(),
+                  ),
+                );
+              }
             },
           ),
           //======================= OPCIÓN METODOLOGÍA =======================\\

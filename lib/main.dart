@@ -378,45 +378,53 @@ class _InicioState extends State<Inicio> {
               controller: _NombreAprendiz,
             ),
             const SizedBox(height: 15),
-            _campoTexto(
-              label: 'Nombre Programa',
-              icon: Icons.text_decrease,
-              hint: 'Nombre Programa',
-              controller: _NombrePrograma,
+            Tooltip(
+              message: 'Si eres intructor, colocar "Instructor"',
+              child: _campoTexto(
+                label: 'Nombre Programa',
+                icon: Icons.text_decrease,
+                hint: 'Nombre Programa',
+                controller: _NombrePrograma,
+              ),
             ),
             const SizedBox(height: 15),
             SizedBox(
               width: 250,
-              child: TextField(
-                controller: _Nficha,
-                decoration: InputDecoration(
-                  labelStyle: TextStyle(color: Colors.black),
-                  filled: true,
-                  fillColor: obtenercolor('Color_Fondo'),
-                  labelText: 'N° Ficha',
-                  hintText: 'Escribe tu N° ficha',
-                  prefixIcon: Icon(
-                    Icons.numbers,
-                    color: obtenercolor('Color_Principal'),
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
+              child: Tooltip(
+                message: 'Si eres intructor,colocar "0000000" ',
+                // se agrego este SizedBox para integrar el campo de texto del N° ficha
+                child: TextField(
+                  controller: _Nficha,
+                  decoration: InputDecoration(
+                    labelStyle: TextStyle(color: Colors.black),
+                    filled: true,
+                    fillColor: obtenercolor('Color_Fondo'),
+                    labelText: 'N° Ficha',
+                    hintText: 'Escribe tu N° ficha',
+                    prefixIcon: Icon(
+                      Icons.numbers,
                       color: obtenercolor('Color_Principal'),
-                      width: 2,
                     ),
-                    borderRadius: BorderRadius.circular(12),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: obtenercolor('Color_Principal'),
+                        width: 2,
+                      ),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
                   ),
+                  keyboardType: TextInputType.number, // Abre teclado numérico
+                  inputFormatters: [
+                    FilteringTextInputFormatter.digitsOnly, // Solo dígitos
+                    LengthLimitingTextInputFormatter(7),
+                  ],
                 ),
-                keyboardType: TextInputType.number, // Abre teclado numérico
-                inputFormatters: [
-                  FilteringTextInputFormatter.digitsOnly, // Solo dígitos
-                  LengthLimitingTextInputFormatter(7),
-                ],
               ),
             ),
+
             const SizedBox(height: 30),
             _botonIniciar(context),
           ],
@@ -621,7 +629,7 @@ class _InicioState extends State<Inicio> {
                 ),
                 const SizedBox(height: 15),
                 Tooltip(
-                  message: 'Si eres intructor, ',
+                  message: 'Si eres intructor, colocar "Instructor"',
                   child: _campoTexto(
                     label: 'Nombre Programa',
                     icon: Icons.text_decrease,
@@ -633,7 +641,7 @@ class _InicioState extends State<Inicio> {
                 SizedBox(
                   width: 250,
                   child: Tooltip(
-                    message: 'Si eres intructor, ',
+                    message: 'Si eres intructor,colocar "0000000" ',
                     // se agrego este SizedBox para integrar el campo de texto del N° ficha
                     child: TextField(
                       controller: _Nficha,
