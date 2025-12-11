@@ -18,12 +18,12 @@ import 'package:nuevomockups/main.dart';
 class Menu extends StatelessWidget {
   final String currentScreen;
 
-  final int progreso; // Pantalla actual para resaltar el ítem seleccionado
+  final int progreso;
 
   const Menu({super.key, required this.currentScreen, required this.progreso});
 
   get db => null;
-  void _Progreso(BuildContext context, String mensaje) {
+  void _progreso(BuildContext context, String mensaje) {
     showDialog(
       context: context,
       builder:
@@ -125,7 +125,7 @@ class Menu extends StatelessWidget {
             selectedTileColor: obtenercolor('Color_Principal'),
             onTap: () {
               if (progreso < 8) {
-                _Progreso(
+                _progreso(
                   context,
                   'Para seguir debes superar el 9% del progreso',
                 );
@@ -163,7 +163,7 @@ class Menu extends StatelessWidget {
             selectedTileColor: obtenercolor('Color_Principal'),
             onTap: () {
               if (progreso < 25) {
-                _Progreso(
+                _progreso(
                   context,
                   'Para seguir debes superar el 25% del progreso',
                 );
@@ -196,7 +196,7 @@ class Menu extends StatelessWidget {
             selectedTileColor: obtenercolor('Color_Principal'),
             onTap: () {
               if (progreso < 35) {
-                _Progreso(
+                _progreso(
                   context,
                   'Para seguir debes superar el 35% del progreso',
                 );
@@ -226,7 +226,7 @@ class Menu extends StatelessWidget {
             selectedTileColor: obtenercolor('Color_Principal'),
             onTap: () {
               if (progreso < 45) {
-                _Progreso(
+                _progreso(
                   context,
                   'Para seguir debes superar el 45% del progreso',
                 );
@@ -261,11 +261,18 @@ class Menu extends StatelessWidget {
             selected: currentScreen == 'Metodologia',
             selectedTileColor: obtenercolor('Color_Principal'),
             onTap: () {
-              Navigator.pop(context);
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const Metodologia()),
-              );
+              if (progreso < 56) {
+                _progreso(
+                  context,
+                  'Para seguir debes superar el 56% del progreso',
+                );
+              } else {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Metodologia()),
+                );
+              }
             },
           ),
           //======================= OPCIÓN CRONOGRAMA =======================\\
@@ -286,11 +293,18 @@ class Menu extends StatelessWidget {
             selected: currentScreen == 'Cronograma',
             selectedTileColor: obtenercolor('Color_Principal'),
             onTap: () {
-              Navigator.pop(context);
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const Cronograma()),
-              );
+              if (progreso < 64) {
+                _progreso(
+                  context,
+                  'Para seguir debes superar el 64% del progreso',
+                );
+              } else {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Cronograma()),
+                );
+              }
             },
           ),
           //======================= OPCIÓN ACTIVIDADES O RESULTADOS =======================\\
@@ -313,11 +327,18 @@ class Menu extends StatelessWidget {
             selected: currentScreen == 'Actividades',
             selectedTileColor: obtenercolor('Color_Principal'),
             onTap: () {
-              Navigator.pop(context);
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const Actividades()),
-              );
+              if (progreso < 70) {
+                _progreso(
+                  context,
+                  'Para seguir debes superar el 70% del progreso',
+                );
+              } else {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Actividades()),
+                );
+              }
             },
           ),
           //======================= OPCIÓN BIBLIOGRAFÍA =======================\\
@@ -340,11 +361,18 @@ class Menu extends StatelessWidget {
             selected: currentScreen == 'Bibliogafia',
             selectedTileColor: obtenercolor('Color_Principal'),
             onTap: () {
-              Navigator.pop(context);
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const Bibliografia()),
-              );
+              if (progreso < 75) {
+                _progreso(
+                  context,
+                  'Para seguir debes superar el 75% del progreso',
+                );
+              } else {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Bibliografia()),
+                );
+              }
             },
           ),
 
@@ -365,11 +393,18 @@ class Menu extends StatelessWidget {
             selected: currentScreen == 'Busqueda',
             selectedTileColor: obtenercolor('Color_Principal'),
             onTap: () {
-              Navigator.pop(context);
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const Busqueda()),
-              );
+              if (progreso < 85) {
+                _progreso(
+                  context,
+                  'Para seguir debes superar el 85% del progreso',
+                );
+              } else {
+                Navigator.pop(context);
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Busqueda()),
+                );
+              }
             },
           ),
 
@@ -393,11 +428,18 @@ class Menu extends StatelessWidget {
             selected: currentScreen == 'BaseDeDatos',
             selectedTileColor: obtenercolor('Color_Principal'),
             onTap: () {
-              Navigator.pop(context);
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const Basesdatos()),
-              );
+              if (progreso < 95) {
+                _progreso(
+                  context,
+                  'Para seguir debes superar el 95% del progreso',
+                );
+              } else {
+                Navigator.pop(context);
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Basesdatos()),
+                );
+              }
             },
           ),
 
