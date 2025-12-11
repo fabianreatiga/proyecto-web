@@ -136,27 +136,26 @@ class _InicioState extends State<Inicio> {
   void _mostrarcamposenblanco(BuildContext context, String mensaje) {
     showDialog(
       context: context,
-      builder:
-          (ctx) => AlertDialog(
-            title: const Text('Error'),
-            content: Text(mensaje),
-            actions: [
-              Center(
-                child: Container(
-                  padding: EdgeInsets.all(0),
-                  width: 100,
-                  child: TextButton(
-                    onPressed: () => Navigator.of(ctx).pop(),
-                    style: TextButton.styleFrom(
-                      backgroundColor: obtenercolor('Color_Principal'),
-                      foregroundColor: obtenercolor('Color_Texto_Principal'),
-                    ),
-                    child: Text('Aceptar'),
-                  ),
+      builder: (ctx) => AlertDialog(
+        title: const Text('Error'),
+        content: Text(mensaje),
+        actions: [
+          Center(
+            child: Container(
+              padding: EdgeInsets.all(0),
+              width: 100,
+              child: TextButton(
+                onPressed: () => Navigator.of(ctx).pop(),
+                style: TextButton.styleFrom(
+                  backgroundColor: obtenercolor('Color_Principal'),
+                  foregroundColor: obtenercolor('Color_Texto_Principal'),
                 ),
+                child: Text('Aceptar'),
               ),
-            ],
+            ),
           ),
+        ],
+      ),
     );
   }
 
@@ -219,11 +218,9 @@ class _InicioState extends State<Inicio> {
                             child: Image.asset(
                               'assets/banner_superior.jpg',
                               width: screenWidth,
-                              height:
-                                  screenWidth < 1000
-                                      ? MediaQuery.of(context).size.height * 0.1
-                                      : MediaQuery.of(context).size.height *
-                                          0.3,
+                              height: screenWidth < 1000
+                                  ? MediaQuery.of(context).size.height * 0.1
+                                  : MediaQuery.of(context).size.height * 0.3,
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -231,7 +228,6 @@ class _InicioState extends State<Inicio> {
                       );
                     },
                   ),
-
                   Padding(
                     padding: const EdgeInsets.all(20),
                     child: ConstrainedBox(
@@ -369,7 +365,6 @@ class _InicioState extends State<Inicio> {
                 ],
               ),
             ),
-
             const SizedBox(height: 20),
             _campoTexto(
               label: 'Nombres y Apellidos',
@@ -424,7 +419,6 @@ class _InicioState extends State<Inicio> {
                 ),
               ),
             ),
-
             const SizedBox(height: 30),
             _botonIniciar(context),
           ],
@@ -497,7 +491,6 @@ class _InicioState extends State<Inicio> {
                       ],
                     ),
                   ),
-
                   Row(
                     children: [
                       LayoutBuilder(
@@ -529,10 +522,9 @@ class _InicioState extends State<Inicio> {
                                     ],
                                   ),
                                 ),
-                                onTap:
-                                    () => {
-                                      abrirLink('https://youtu.be/y7czaORl13Y'),
-                                    },
+                                onTap: () => {
+                                  abrirLink('https://youtu.be/y7czaORl13Y'),
+                                },
                               ),
                               /* Container(
                             child: Image.asset(
@@ -643,6 +635,7 @@ class _InicioState extends State<Inicio> {
                   child: Tooltip(
                     message: 'Si eres intructor, colocar "0" ',
                     // se agrego este SizedBox para integrar el campo de texto del N° ficha
+                    //ejemplo
                     child: TextField(
                       controller: _Nficha,
                       decoration: InputDecoration(
@@ -675,7 +668,6 @@ class _InicioState extends State<Inicio> {
                     ),
                   ),
                 ),
-
                 const SizedBox(height: 30),
                 _botonIniciar(context),
               ],
