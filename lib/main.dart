@@ -24,7 +24,7 @@ void main(List<String> args) async {
     ),
   );
 }
-//noooo
+//noooo no sirve
 
 class Inicio extends StatefulWidget {
   const Inicio({super.key});
