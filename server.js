@@ -11,6 +11,9 @@ const PORT = process.env.PORT || 5000;
 console.log("VALOR REAL DE MONGO_URI ===>");
 console.log(process.env.MONGO_URI);
 
+console.log('MONGO_URI:', process.env.MONGO_URI);
+
+
 
 
 // Middleware
@@ -300,7 +303,7 @@ app.get("/progreso", async (req, res) => {
   }
 });
 
-app.get("/progreso", async (req, res) => {
+/*app.get("/progreso", async (req, res) => {
   try {
     const { nombre, ficha } = req.query;
 
@@ -328,7 +331,7 @@ app.get("/progreso", async (req, res) => {
   } catch (err) {
     res.status(500).json({ mensaje: err.message });
   }
-});
+});*/
 
 
 
