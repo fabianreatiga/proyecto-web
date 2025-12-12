@@ -7,8 +7,10 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 
+
 console.log("VALOR REAL DE MONGO_URI ===>");
 console.log(process.env.MONGO_URI);
+
 
 
 // Middleware
