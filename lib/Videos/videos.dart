@@ -31,7 +31,7 @@ class _VideoState extends State<Video> {
     return Scaffold(
       backgroundColor: obtenercolor('Color_Fondo'),
       appBar: Appbars(),
-      drawer: Menu(currentScreen: 'Cronograma', progreso: 100),
+      drawer: Menu(currentScreen: 'Video', progreso: 100),
       body: Stack(
         children: [
           //fondo inferior derecha
@@ -140,13 +140,12 @@ class _VideoState extends State<Video> {
                                   color: Colors.blue,
                                   //decoration: TextDecoration.underline,
                                 ),
-                                recognizer:
-                                    TapGestureRecognizer()
-                                      ..onTap = () {
-                                        abrirLink(
-                                          'https://youtu.be/F_MeeGwggHk',
-                                        );
-                                      },
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () {
+                                    abrirLink(
+                                      'https://youtu.be/F_MeeGwggHk',
+                                    );
+                                  },
                               ),
 
                               //---------------------- Video explicativo de Planteamiento del Problema ----------------------
@@ -170,13 +169,12 @@ class _VideoState extends State<Video> {
                                   color: Colors.blue,
                                   //decoration: TextDecoration.underline,
                                 ),
-                                recognizer:
-                                    TapGestureRecognizer()
-                                      ..onTap = () {
-                                        abrirLink(
-                                          'https://youtu.be/dKs0BfuF25A',
-                                        );
-                                      },
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () {
+                                    abrirLink(
+                                      'https://youtu.be/dKs0BfuF25A',
+                                    );
+                                  },
                               ),
 
                               //---------------------- Video explicativo de Justificación ----------------------
@@ -200,13 +198,12 @@ class _VideoState extends State<Video> {
                                   color: Colors.blue,
                                   //decoration: TextDecoration.underline,
                                 ),
-                                recognizer:
-                                    TapGestureRecognizer()
-                                      ..onTap = () {
-                                        abrirLink(
-                                          'https://youtu.be/GOU4qjxFNxw',
-                                        );
-                                      },
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () {
+                                    abrirLink(
+                                      'https://youtu.be/GOU4qjxFNxw',
+                                    );
+                                  },
                               ),
 
                               //---------------------- Video explicativo de Objetivos ----------------------
@@ -230,13 +227,12 @@ class _VideoState extends State<Video> {
                                   color: Colors.blue,
                                   //decoration: TextDecoration.underline,
                                 ),
-                                recognizer:
-                                    TapGestureRecognizer()
-                                      ..onTap = () {
-                                        abrirLink(
-                                          'https://youtu.be/WwmEpjQ4knE',
-                                        );
-                                      },
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () {
+                                    abrirLink(
+                                      'https://youtu.be/WwmEpjQ4knE',
+                                    );
+                                  },
                               ),
 
                               //---------------------- Video explicativo de Metodología ----------------------
@@ -260,13 +256,12 @@ class _VideoState extends State<Video> {
                                   color: Colors.blue,
                                   //decoration: TextDecoration.underline,
                                 ),
-                                recognizer:
-                                    TapGestureRecognizer()
-                                      ..onTap = () {
-                                        abrirLink(
-                                          'https://youtu.be/BVo31Aun_fg',
-                                        );
-                                      },
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () {
+                                    abrirLink(
+                                      'https://youtu.be/BVo31Aun_fg',
+                                    );
+                                  },
                               ),
 
                               //---------------------- Video explicativo de Cronograma ----------------------
@@ -290,13 +285,12 @@ class _VideoState extends State<Video> {
                                   color: Colors.blue,
                                   //decoration: TextDecoration.underline,
                                 ),
-                                recognizer:
-                                    TapGestureRecognizer()
-                                      ..onTap = () {
-                                        abrirLink(
-                                          'https://youtu.be/L0WrJUFkRKs',
-                                        );
-                                      },
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () {
+                                    abrirLink(
+                                      'https://youtu.be/L0WrJUFkRKs',
+                                    );
+                                  },
                               ),
 
                               //---------------------- Video explicativo de Actividades o resultados ----------------------
@@ -320,13 +314,12 @@ class _VideoState extends State<Video> {
                                   color: Colors.blue,
                                   //decoration: TextDecoration.underline,
                                 ),
-                                recognizer:
-                                    TapGestureRecognizer()
-                                      ..onTap = () {
-                                        abrirLink(
-                                          'https://youtu.be/xJ4aDq4JUxU',
-                                        );
-                                      },
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () {
+                                    abrirLink(
+                                      'https://youtu.be/xJ4aDq4JUxU',
+                                    );
+                                  },
                               ),
 
                               //---------------------- Video explicativo de Bibliografía ----------------------
@@ -350,13 +343,12 @@ class _VideoState extends State<Video> {
                                   color: Colors.blue,
                                   //decoration: TextDecoration.underline,
                                 ),
-                                recognizer:
-                                    TapGestureRecognizer()
-                                      ..onTap = () {
-                                        abrirLink(
-                                          'https://youtu.be/bHvl_wPp4a4',
-                                        );
-                                      },
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () {
+                                    abrirLink(
+                                      'https://youtu.be/bHvl_wPp4a4',
+                                    );
+                                  },
                               ),
                             ],
                           ),
@@ -424,7 +416,6 @@ class Appbars extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: obtenercolor('Color_Principal'),
       iconTheme: IconThemeData(color: obtenercolor('Color_Texto_Principal')),
       foregroundColor: obtenercolor('Color_Texto_Principal'),
-
       flexibleSpace: Container(
         decoration: BoxDecoration(
           color: obtenercolor('Color_Principal'),

@@ -8,7 +8,6 @@ Future<void> abrirLink(String url) async {
   final Uri uri = Uri.parse(url);
 
   if (kIsWeb) {
-    // ✅ Versión 100% funcional en compilaciones web
     try {
       html.window.open(uri.toString(), '_blank');
     } catch (e) {

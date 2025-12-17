@@ -44,21 +44,16 @@ class _MetodologiasState extends State<Metodologias>
         ' una las decisiones más difíciles para los investigadores por lo que es importante conocer los factores que influyen en'
         ' la decisión, las metodologías de investigación que existen y qué pasos seguir para poder seleccionar la mejor de acuerdo'
         ' con la investigación que se tenga en mente.',
-
     'Las metodologías de investigación pueden ser:',
-
     'Investigación Cualitativa: Las metodologías cualitativas se utilizan para responder cuestionamientos que no pueden ser'
         ' medibles y se enfocan en obtener información de experiencias y percepciones de los participantes que interesan a la investigación.',
-
     'Investigación Cuantitativa: Las metodologías cuantitativas son aquéllas con las que se pueden obtener datos cuantitativos o'
         ' medibles. Su importancia es que pueden validarse con modelos y principios científicos, pero pueden llegar a ser inflexibles y frías.',
-
     'Investigación Mixta: Las metodologías mixtas son aquéllas que combinan tanto las metodologías cualitativas como las cuantitativas.'
         ' En años recientes, los investigadores prefieren las metodologías mixtas porque les dan la oportunidad de llevar a cabo investigaciones'
         ' cualitativas y cuantitativas en paralelo. Sin embargo, también pueden resultar más costosas, complejas y tomar mayor tiempo que las'
         ' metodologías cualitativas y cuantitativas por separado. Dependiendo de su investigación podría pensar en combinar dos o más tipos'
         ' diferentes de las metodologías anteriores considerando al menos una metodología cualitativa y una cuantitativa.',
-
     '',
   ];
   final List<String> imagenes = [
@@ -267,33 +262,13 @@ class _MetodologiasState extends State<Metodologias>
                         horizontal: 20,
                         vertical: 20,
                       ),
-                      child:
-                          esPantallaPequena
-                              ? InteractiveViewer(
-                                // 🔍 Zoom solo en pantallas pequeñas
-                                constrained: true,
-                                minScale: 1.0,
-                                maxScale: 5.0,
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      '¿Sabes como crear una buena Metodología?',
-                                      style: TextStyle(
-                                        fontSize: tamanotexto(1) + 5,
-                                        fontFamily: 'Calibri',
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                    const SizedBox(height: 20),
-                                    _buildercard(),
-                                    SizedBox(height: altura(1)),
-                                  ],
-                                ),
-                              )
-                              : Column(
-                                // 💻 En pantallas grandes sin zoom
+                      child: esPantallaPequena
+                          ? InteractiveViewer(
+                              // 🔍 Zoom solo en pantallas pequeñas
+                              constrained: true,
+                              minScale: 1.0,
+                              maxScale: 5.0,
+                              child: Column(
                                 children: [
                                   Text(
                                     '¿Sabes como crear una buena Metodología?',
@@ -305,11 +280,30 @@ class _MetodologiasState extends State<Metodologias>
                                     ),
                                     textAlign: TextAlign.center,
                                   ),
-                                  const SizedBox(height: 35),
+                                  const SizedBox(height: 20),
                                   _buildercard(),
                                   SizedBox(height: altura(1)),
                                 ],
                               ),
+                            )
+                          : Column(
+                              // 💻 En pantallas grandes sin zoom
+                              children: [
+                                Text(
+                                  '¿Sabes como crear una buena Metodología?',
+                                  style: TextStyle(
+                                    fontSize: tamanotexto(1) + 5,
+                                    fontFamily: 'Calibri',
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                                const SizedBox(height: 35),
+                                _buildercard(),
+                                SizedBox(height: altura(1)),
+                              ],
+                            ),
                     ),
                   ),
 
@@ -367,256 +361,258 @@ class _MetodologiasState extends State<Metodologias>
                   const SizedBox(height: 20),
                   esPantallaPequena
                       ? Column(
-                        // se usa Column para mostrar el texto en dos filas
-                        children: [
-                          if (_index == 2)
-                            RichText(
-                              textAlign: TextAlign.justify,
-                              text: TextSpan(
-                                style: TextStyle(
-                                  fontSize: tamanotexto(2) + 6,
-                                  fontFamily: 'Calibri',
-                                  height: 1.5,
-                                  color: Colors.black,
-                                ),
-                                children: [
-                                  TextSpan(
-                                    text: 'Investigación Cualitativa: ',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
+                          // se usa Column para mostrar el texto en dos filas
+                          children: [
+                            if (_index == 2)
+                              RichText(
+                                textAlign: TextAlign.justify,
+                                text: TextSpan(
+                                  style: TextStyle(
+                                    fontSize: tamanotexto(2) + 4,
+                                    fontFamily: 'Calibri',
+                                    height: 1.5,
+                                    color: Colors.black,
+                                  ),
+                                  children: [
+                                    TextSpan(
+                                      text: 'Investigación Cualitativa: ',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
-                                  ),
-                                  TextSpan(
-                                    text:
-                                        'Las metodologías cualitativas se utilizan para responder cuestionamientos que no pueden ser'
-                                        ' medibles y se enfocan en obtener información de experiencias y percepciones de los participantes que interesan a la investigación.',
-                                  ),
-                                ],
-                              ),
-                            ),
-                          if (_index == 3)
-                            RichText(
-                              textAlign: TextAlign.justify,
-                              text: TextSpan(
-                                style: TextStyle(
-                                  fontSize: tamanotexto(2) + 6,
-                                  fontFamily: 'Calibri',
-                                  height: 1.5,
-                                  color: Colors.black,
-                                ),
-                                children: [
-                                  TextSpan(
-                                    text: 'Investigación Cuantitativa: ',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
+                                    TextSpan(
+                                      text:
+                                          'Las metodologías cualitativas se utilizan para responder cuestionamientos que no pueden ser'
+                                          ' medibles y se enfocan en obtener información de experiencias y percepciones de los participantes que interesan a la investigación.',
                                     ),
-                                  ),
-                                  TextSpan(
-                                    text:
-                                        'Las metodologías cuantitativas son aquéllas con las que se pueden obtener datos cuantitativos o'
-                                        ' medibles. Su importancia es que pueden validarse con modelos y principios científicos, pero pueden llegar a ser inflexibles y frías.',
-                                  ),
-                                ],
-                              ),
-                            ),
-                          if (_index == 4)
-                            RichText(
-                              textAlign: TextAlign.justify,
-                              text: TextSpan(
-                                style: TextStyle(
-                                  fontSize: tamanotexto(2) + 6,
-                                  fontFamily: 'Calibri',
-                                  height: 1.5,
-                                  color: Colors.black,
+                                  ],
                                 ),
-                                children: [
-                                  TextSpan(
-                                    text: 'Investigación Mixta: ',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
+                              ),
+                            if (_index == 3)
+                              RichText(
+                                textAlign: TextAlign.justify,
+                                text: TextSpan(
+                                  style: TextStyle(
+                                    fontSize: tamanotexto(2) + 4,
+                                    fontFamily: 'Calibri',
+                                    height: 1.5,
+                                    color: Colors.black,
+                                  ),
+                                  children: [
+                                    TextSpan(
+                                      text: 'Investigación Cuantitativa: ',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
-                                  ),
-                                  TextSpan(
-                                    text:
-                                        'Las metodologías mixtas son aquéllas que combinan tanto las metodologías cualitativas como las cuantitativas.'
-                                        ' En años recientes, los investigadores prefieren las metodologías mixtas porque les dan la oportunidad de llevar a cabo investigaciones'
-                                        ' cualitativas y cuantitativas en paralelo. Sin embargo, también pueden resultar más costosas, complejas y tomar mayor tiempo que las'
-                                        ' metodologías cualitativas y cuantitativas por separado. Dependiendo de su investigación podría pensar en combinar dos o más tipos'
-                                        ' diferentes de las metodologías anteriores considerando al menos una metodología cualitativa y una cuantitativa.',
-                                  ),
-                                ],
-                              ),
-                            ),
-                          if (_index != 2 && _index != 3 && _index != 4)
-                            Text(
-                              textos[_index],
-                              style: TextStyle(
-                                fontSize: tamanotexto(2) + 4,
-                                fontFamily: 'calibri',
-                                height: 1.5,
-                              ),
-                              textAlign: TextAlign.justify,
-                            ),
-
-                          const SizedBox(height: 20),
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(12),
-                            child: Column(
-                              children: [
-                                Image.asset(
-                                  imagenes[_index],
-                                  height: alturaImagenPequena[_index],
-                                  fit: BoxFit.contain,
+                                    TextSpan(
+                                      text:
+                                          'Las metodologías cuantitativas son aquéllas con las que se pueden obtener datos cuantitativos o'
+                                          ' medibles. Su importancia es que pueden validarse con modelos y principios científicos, pero pueden llegar a ser inflexibles y frías.',
+                                    ),
+                                  ],
                                 ),
-                                if (_index == 5)
-                                  Image.asset(
-                                    'assets/Metodologia/Metodologia_Pasos_Crear2.png',
-
-                                    fit: BoxFit.contain,
+                              ),
+                            if (_index == 4)
+                              RichText(
+                                textAlign: TextAlign.justify,
+                                text: TextSpan(
+                                  style: TextStyle(
+                                    fontSize: tamanotexto(2) + 4,
+                                    fontFamily: 'Calibri',
+                                    height: 1.5,
+                                    color: Colors.black,
                                   ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      )
-                      : Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Expanded(
-                            flex: 2,
-                            child: Padding(
-                              padding: EdgeInsets.only(right: 20),
+                                  children: [
+                                    TextSpan(
+                                      text: 'Investigación Mixta: ',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text:
+                                          'Las metodologías mixtas son aquéllas que combinan tanto las metodologías cualitativas como las cuantitativas.'
+                                          ' En años recientes, los investigadores prefieren las metodologías mixtas porque les dan la oportunidad de llevar a cabo investigaciones'
+                                          ' cualitativas y cuantitativas en paralelo. Sin embargo, también pueden resultar más costosas, complejas y tomar mayor tiempo que las'
+                                          ' metodologías cualitativas y cuantitativas por separado. Dependiendo de su investigación podría pensar en combinar dos o más tipos'
+                                          ' diferentes de las metodologías anteriores considerando al menos una metodología cualitativa y una cuantitativa.',
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            if (_index != 2 && _index != 3 && _index != 4)
+                              Text(
+                                textos[_index],
+                                style: TextStyle(
+                                  fontSize: tamanotexto(2) + 4,
+                                  fontFamily: 'calibri',
+                                  height: 1.5,
+                                ),
+                                textAlign: TextAlign.justify,
+                              ),
+                            const SizedBox(height: 20),
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(12),
                               child: Column(
                                 children: [
-                                  if (_index == 2)
-                                    RichText(
-                                      textAlign: TextAlign.justify,
-                                      text: TextSpan(
-                                        style: TextStyle(
-                                          fontSize: tamanotexto(2) + 6,
-                                          fontFamily: 'Calibri',
-                                          height: 1.5,
-                                          color: Colors.black,
-                                        ),
-                                        children: [
-                                          TextSpan(
-                                            text: 'Investigación Cualitativa: ',
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                          TextSpan(
-                                            text:
-                                                'Las metodologías cualitativas se utilizan para responder cuestionamientos que no pueden ser'
-                                                ' medibles y se enfocan en obtener información de experiencias y percepciones de los participantes que interesan a la investigación.',
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  if (_index == 3)
-                                    RichText(
-                                      textAlign: TextAlign.justify,
-                                      text: TextSpan(
-                                        style: TextStyle(
-                                          fontSize: tamanotexto(2) + 6,
-                                          fontFamily: 'Calibri',
-                                          height: 1.5,
-                                          color: Colors.black,
-                                        ),
-                                        children: [
-                                          TextSpan(
-                                            text:
-                                                'Investigación Cuantitativa: ',
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                          TextSpan(
-                                            text:
-                                                'Las metodologías cuantitativas son aquéllas con las que se pueden obtener datos cuantitativos o'
-                                                ' medibles. Su importancia es que pueden validarse con modelos y principios científicos, pero pueden llegar a ser inflexibles y frías.',
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  if (_index == 4)
-                                    RichText(
-                                      textAlign: TextAlign.justify,
-                                      text: TextSpan(
-                                        style: TextStyle(
-                                          fontSize: tamanotexto(2) + 6,
-                                          fontFamily: 'Calibri',
-                                          height: 1.5,
-                                          color: Colors.black,
-                                        ),
-                                        children: [
-                                          TextSpan(
-                                            text: 'Investigación Mixta: ',
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                          TextSpan(
-                                            text:
-                                                'Las metodologías mixtas son aquéllas que combinan tanto las metodologías cualitativas como las cuantitativas.'
-                                                ' En años recientes, los investigadores prefieren las metodologías mixtas porque les dan la oportunidad de llevar a cabo investigaciones'
-                                                ' cualitativas y cuantitativas en paralelo. Sin embargo, también pueden resultar más costosas, complejas y tomar mayor tiempo que las'
-                                                ' metodologías cualitativas y cuantitativas por separado. Dependiendo de su investigación podría pensar en combinar dos o más tipos'
-                                                ' diferentes de las metodologías anteriores considerando al menos una metodología cualitativa y una cuantitativa.',
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  if (_index != 2 && _index != 3 && _index != 4)
-                                    Text(
-                                      textos[_index],
-                                      style: TextStyle(
-                                        fontSize: tamanotexto(2) + 4,
-                                        fontFamily: 'calibri',
-                                        height: 1.5,
-                                      ),
-                                      textAlign: TextAlign.justify,
+                                  Image.asset(
+                                    imagenes[_index],
+                                    height: alturaImagenPequena[_index],
+                                    fit: BoxFit.contain,
+                                  ),
+                                  if (_index == 5)
+                                    Image.asset(
+                                      'assets/Metodologia/Metodologia_Pasos_Crear2.png',
+                                      fit: BoxFit.contain,
                                     ),
                                 ],
                               ),
                             ),
-                          ),
-                          Flexible(
-                            flex: 0,
-                            child: Align(
-                              alignment: Alignment.topRight,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(12),
+                          ],
+                        )
+                      : Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              flex: 2,
+                              child: Padding(
+                                padding: EdgeInsets.only(right: 20),
                                 child: Column(
                                   children: [
-                                    Image.asset(
-                                      imagenes[_index],
-                                      height: alturaImagengrande[_index],
-                                      fit: BoxFit.contain,
-                                    ),
-                                    if (_index == 5)
-                                      Image.asset(
-                                        'assets/Metodologia/Metodologia_Pasos_Crear2.png',
-                                        height:
-                                            MediaQuery.of(context).size.width *
-                                                0.3 -
-                                            18,
-                                        fit: BoxFit.contain,
+                                    if (_index == 2)
+                                      RichText(
+                                        textAlign: TextAlign.justify,
+                                        text: TextSpan(
+                                          style: TextStyle(
+                                            fontSize: tamanotexto(2) + 4,
+                                            fontFamily: 'Calibri',
+                                            height: 1.5,
+                                            color: Colors.black,
+                                          ),
+                                          children: [
+                                            TextSpan(
+                                              text:
+                                                  'Investigación Cualitativa: ',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            TextSpan(
+                                              text:
+                                                  'Las metodologías cualitativas se utilizan para responder cuestionamientos que no pueden ser'
+                                                  ' medibles y se enfocan en obtener información de experiencias y percepciones de los participantes que interesan a la investigación.',
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    if (_index == 3)
+                                      RichText(
+                                        textAlign: TextAlign.justify,
+                                        text: TextSpan(
+                                          style: TextStyle(
+                                            fontSize: tamanotexto(2) + 4,
+                                            fontFamily: 'Calibri',
+                                            height: 1.5,
+                                            color: Colors.black,
+                                          ),
+                                          children: [
+                                            TextSpan(
+                                              text:
+                                                  'Investigación Cuantitativa: ',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            TextSpan(
+                                              text:
+                                                  'Las metodologías cuantitativas son aquéllas con las que se pueden obtener datos cuantitativos o'
+                                                  ' medibles. Su importancia es que pueden validarse con modelos y principios científicos, pero pueden llegar a ser inflexibles y frías.',
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    if (_index == 4)
+                                      RichText(
+                                        textAlign: TextAlign.justify,
+                                        text: TextSpan(
+                                          style: TextStyle(
+                                            fontSize: tamanotexto(2) + 4,
+                                            fontFamily: 'Calibri',
+                                            height: 1.5,
+                                            color: Colors.black,
+                                          ),
+                                          children: [
+                                            TextSpan(
+                                              text: 'Investigación Mixta: ',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            TextSpan(
+                                              text:
+                                                  'Las metodologías mixtas son aquéllas que combinan tanto las metodologías cualitativas como las cuantitativas.'
+                                                  ' En años recientes, los investigadores prefieren las metodologías mixtas porque les dan la oportunidad de llevar a cabo investigaciones'
+                                                  ' cualitativas y cuantitativas en paralelo. Sin embargo, también pueden resultar más costosas, complejas y tomar mayor tiempo que las'
+                                                  ' metodologías cualitativas y cuantitativas por separado. Dependiendo de su investigación podría pensar en combinar dos o más tipos'
+                                                  ' diferentes de las metodologías anteriores considerando al menos una metodología cualitativa y una cuantitativa.',
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    if (_index != 2 &&
+                                        _index != 3 &&
+                                        _index != 4)
+                                      Text(
+                                        textos[_index],
+                                        style: TextStyle(
+                                          fontSize: tamanotexto(2) + 4,
+                                          fontFamily: 'calibri',
+                                          height: 1.5,
+                                        ),
+                                        textAlign: TextAlign.justify,
                                       ),
                                   ],
                                 ),
                               ),
                             ),
-                          ),
-                          if (_index == 5)
-                            SizedBox(
-                              width:
-                                  MediaQuery.of(context).size.width * 0.1 - 18,
+                            Flexible(
+                              flex: 0,
+                              child: Align(
+                                alignment: Alignment.topRight,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(12),
+                                  child: Column(
+                                    children: [
+                                      Image.asset(
+                                        imagenes[_index],
+                                        height: alturaImagengrande[_index],
+                                        fit: BoxFit.contain,
+                                      ),
+                                      if (_index == 5)
+                                        Image.asset(
+                                          'assets/Metodologia/Metodologia_Pasos_Crear2.png',
+                                          height: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.3 -
+                                              18,
+                                          fit: BoxFit.contain,
+                                        ),
+                                    ],
+                                  ),
+                                ),
+                              ),
                             ),
-                          if (_index == 1) SizedBox(width: 150),
-                          if (_index == 5) Spacer(),
-                        ],
-                      ),
+                            if (_index == 5)
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width * 0.1 -
+                                    18,
+                              ),
+                            if (_index == 1) SizedBox(width: 150),
+                            if (_index == 5) Spacer(),
+                          ],
+                        ),
                   if (_index == 5)
                     Padding(
                       padding: const EdgeInsets.only(top: 10),
@@ -641,13 +637,12 @@ class _MetodologiasState extends State<Metodologias>
                                   color: Colors.blue,
                                   //decoration: TextDecoration.underline,
                                 ),
-                                recognizer:
-                                    TapGestureRecognizer()
-                                      ..onTap = () {
-                                        abrirLink(
-                                          'https://youtu.be/BVo31Aun_fg',
-                                        );
-                                      },
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () {
+                                    abrirLink(
+                                      'https://youtu.be/BVo31Aun_fg',
+                                    );
+                                  },
                               ),
                             ],
                           ),
@@ -777,8 +772,7 @@ class _MetodologiasState extends State<Metodologias>
       context: context,
       isScrollControlled: true,
       constraints: BoxConstraints(
-        maxHeight:
-            MediaQuery.of(context).size.height *
+        maxHeight: MediaQuery.of(context).size.height *
             0.3, // altura máxima de la hoja modal
         minHeight: 0, // altura mínima de la hoja modal
         maxWidth:
@@ -858,22 +852,20 @@ class _MetodologiasState extends State<Metodologias>
                     children: [
                       Container(
                         decoration: BoxDecoration(
-                          color:
-                              (isSelected || isVisited)
-                                  ? obtenercolor(
-                                    'Color_Principal',
-                                  ).withOpacity(0.2)
-                                  : item['color'].withOpacity(0.2),
+                          color: (isSelected || isVisited)
+                              ? obtenercolor(
+                                  'Color_Principal',
+                                ).withOpacity(0.2)
+                              : item['color'].withOpacity(0.2),
                           shape: BoxShape.circle,
                         ),
                         padding: const EdgeInsets.all(12),
                         child: Icon(
                           item['icon'],
                           size: tamanotexto(3),
-                          color:
-                              (isSelected || isVisited)
-                                  ? obtenercolor('Color_Principal')
-                                  : item['color'],
+                          color: (isSelected || isVisited)
+                              ? obtenercolor('Color_Principal')
+                              : item['color'],
                         ),
                       ),
                       const SizedBox(height: 6),

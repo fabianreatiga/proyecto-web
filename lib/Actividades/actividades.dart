@@ -238,33 +238,13 @@ class _ActividadState extends State<Actividad> with TickerProviderStateMixin {
                         horizontal: 20,
                         vertical: 20,
                       ),
-                      child:
-                          esPantallaPequena
-                              ? InteractiveViewer(
-                                // 🔍 Zoom solo en pantallas pequeñas
-                                constrained: true,
-                                minScale: 1.0,
-                                maxScale: 5.0,
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      '¿Sabes que son las Actividades o resultados?',
-                                      style: TextStyle(
-                                        fontSize: tamanotexto(1) + 5,
-                                        fontFamily: 'Calibri',
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                    const SizedBox(height: 20),
-                                    _buildercard(),
-                                    SizedBox(height: altura(1)),
-                                  ],
-                                ),
-                              )
-                              : Column(
-                                // 💻 En pantallas grandes sin zoom
+                      child: esPantallaPequena
+                          ? InteractiveViewer(
+                              // 🔍 Zoom solo en pantallas pequeñas
+                              constrained: true,
+                              minScale: 1.0,
+                              maxScale: 5.0,
+                              child: Column(
                                 children: [
                                   Text(
                                     '¿Sabes que son las Actividades o resultados?',
@@ -276,11 +256,30 @@ class _ActividadState extends State<Actividad> with TickerProviderStateMixin {
                                     ),
                                     textAlign: TextAlign.center,
                                   ),
-                                  const SizedBox(height: 35),
+                                  const SizedBox(height: 20),
                                   _buildercard(),
                                   SizedBox(height: altura(1)),
                                 ],
                               ),
+                            )
+                          : Column(
+                              // 💻 En pantallas grandes sin zoom
+                              children: [
+                                Text(
+                                  '¿Sabes que son las Actividades o resultados?',
+                                  style: TextStyle(
+                                    fontSize: tamanotexto(1) + 5,
+                                    fontFamily: 'Calibri',
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                                const SizedBox(height: 35),
+                                _buildercard(),
+                                SizedBox(height: altura(1)),
+                              ],
+                            ),
                     ),
                   ),
 
@@ -339,67 +338,66 @@ class _ActividadState extends State<Actividad> with TickerProviderStateMixin {
                   const SizedBox(height: 20),
                   esPantallaPequena
                       ? Column(
-                        // se usa Column para mostrar el texto en dos filas
-                        children: [
-                          Text(
-                            textos[_index],
-                            style: TextStyle(
-                              fontSize: tamanotexto(2) + 4,
-                              fontFamily: 'Calibri',
-                              height: 1.5,
+                          // se usa Column para mostrar el texto en dos filas
+                          children: [
+                            Text(
+                              textos[_index],
+                              style: TextStyle(
+                                fontSize: tamanotexto(2) + 4,
+                                fontFamily: 'Calibri',
+                                height: 1.5,
+                              ),
+                              textAlign: TextAlign.justify,
                             ),
-                            textAlign: TextAlign.justify,
-                          ),
-
-                          const SizedBox(height: 20),
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(12),
-                            child: Image.asset(
-                              imagenes[_index],
-                              height: alturaImagenPequena[_index],
-                              fit: BoxFit.contain,
-                            ),
-                          ),
-                        ],
-                      )
-                      : Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Expanded(
-                            flex: 2,
-                            child: Padding(
-                              padding: EdgeInsets.only(right: 20),
-                              child: Column(
-                                children: [
-                                  Text(
-                                    textos[_index],
-                                    style: TextStyle(
-                                      fontSize: tamanotexto(2) + 4,
-                                      fontFamily: 'calibri',
-                                      height: 1.5,
-                                    ),
-                                    textAlign: TextAlign.justify,
-                                  ),
-                                ],
+                            const SizedBox(height: 20),
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(12),
+                              child: Image.asset(
+                                imagenes[_index],
+                                height: alturaImagenPequena[_index],
+                                fit: BoxFit.contain,
                               ),
                             ),
-                          ),
-                          Flexible(
-                            flex: 0,
-                            child: Align(
-                              alignment: Alignment.topRight,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(12),
-                                child: Image.asset(
-                                  imagenes[_index],
-                                  height: alturaImagengrande[_index],
-                                  fit: BoxFit.contain,
+                          ],
+                        )
+                      : Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              flex: 2,
+                              child: Padding(
+                                padding: EdgeInsets.only(right: 20),
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      textos[_index],
+                                      style: TextStyle(
+                                        fontSize: tamanotexto(2) + 4,
+                                        fontFamily: 'calibri',
+                                        height: 1.5,
+                                      ),
+                                      textAlign: TextAlign.justify,
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
+                            Flexible(
+                              flex: 0,
+                              child: Align(
+                                alignment: Alignment.topRight,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(12),
+                                  child: Image.asset(
+                                    imagenes[_index],
+                                    height: alturaImagengrande[_index],
+                                    fit: BoxFit.contain,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                   if (_index == 2)
                     Center(
                       child: RichText(
@@ -422,11 +420,10 @@ class _ActividadState extends State<Actividad> with TickerProviderStateMixin {
                                 color: Colors.blue,
                                 //decoration: TextDecoration.underline,
                               ),
-                              recognizer:
-                                  TapGestureRecognizer()
-                                    ..onTap = () {
-                                      abrirLink('https://youtu.be/xJ4aDq4JUxU');
-                                    },
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  abrirLink('https://youtu.be/xJ4aDq4JUxU');
+                                },
                             ),
                           ],
                         ),
@@ -550,8 +547,7 @@ class _ActividadState extends State<Actividad> with TickerProviderStateMixin {
       context: context,
       isScrollControlled: true,
       constraints: BoxConstraints(
-        maxHeight:
-            MediaQuery.of(context).size.height *
+        maxHeight: MediaQuery.of(context).size.height *
             0.3, // altura máxima de la hoja modal
         minHeight: 0, // altura mínima de la hoja modal
         maxWidth:
@@ -631,22 +627,20 @@ class _ActividadState extends State<Actividad> with TickerProviderStateMixin {
                     children: [
                       Container(
                         decoration: BoxDecoration(
-                          color:
-                              (isSelected || isVisited)
-                                  ? obtenercolor(
-                                    'Color_Principal',
-                                  ).withOpacity(0.2)
-                                  : item['color'].withOpacity(0.2),
+                          color: (isSelected || isVisited)
+                              ? obtenercolor(
+                                  'Color_Principal',
+                                ).withOpacity(0.2)
+                              : item['color'].withOpacity(0.2),
                           shape: BoxShape.circle,
                         ),
                         padding: const EdgeInsets.all(12),
                         child: Icon(
                           item['icon'],
                           size: tamanotexto(3),
-                          color:
-                              (isSelected || isVisited)
-                                  ? obtenercolor('Color_Principal')
-                                  : item['color'],
+                          color: (isSelected || isVisited)
+                              ? obtenercolor('Color_Principal')
+                              : item['color'],
                         ),
                       ),
                       const SizedBox(height: 6),

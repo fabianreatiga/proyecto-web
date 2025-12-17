@@ -27,26 +27,25 @@ class Menu extends StatelessWidget {
   void _progreso(BuildContext context, String mensaje) {
     showDialog(
       context: context,
-      builder:
-          (ctx) => AlertDialog(
-            content: Text(mensaje),
-            actions: [
-              Center(
-                child: Container(
-                  padding: EdgeInsets.all(0),
-                  width: 100,
-                  child: TextButton(
-                    onPressed: () => Navigator.of(ctx).pop(),
-                    style: TextButton.styleFrom(
-                      backgroundColor: obtenercolor('Color_Principal'),
-                      foregroundColor: obtenercolor('Color_Texto_Principal'),
-                    ),
-                    child: Text('Aceptar'),
-                  ),
+      builder: (ctx) => AlertDialog(
+        content: Text(mensaje),
+        actions: [
+          Center(
+            child: Container(
+              padding: EdgeInsets.all(0),
+              width: 100,
+              child: TextButton(
+                onPressed: () => Navigator.of(ctx).pop(),
+                style: TextButton.styleFrom(
+                  backgroundColor: obtenercolor('Color_Principal'),
+                  foregroundColor: obtenercolor('Color_Texto_Principal'),
                 ),
+                child: Text('Aceptar'),
               ),
-            ],
+            ),
           ),
+        ],
+      ),
     );
   }
 
@@ -87,7 +86,6 @@ class Menu extends StatelessWidget {
               color: currentScreen == 'Titulo' ? Colors.white : Colors.black,
               size: 17,
             ),
-
             title: Text(
               'Título',
               style: TextStyle(
@@ -109,20 +107,18 @@ class Menu extends StatelessWidget {
           ListTile(
             leading: Icon(
               FontAwesomeIcons.two,
-              color:
-                  currentScreen == 'PlantiamientoProblema'
-                      ? Colors.white
-                      : Colors.black,
+              color: currentScreen == 'PlantiamientoProblema'
+                  ? Colors.white
+                  : Colors.black,
               size: 17,
             ),
             title: Text(
               'Planteamiento del Problema',
               style: TextStyle(
                 fontSize: texto + 4,
-                color:
-                    currentScreen == 'PlantiamientoProblema'
-                        ? Colors.white
-                        : Colors.black,
+                color: currentScreen == 'PlantiamientoProblema'
+                    ? Colors.white
+                    : Colors.black,
               ),
             ),
             selected: currentScreen == 'PlantiamientoProblema',
@@ -148,20 +144,18 @@ class Menu extends StatelessWidget {
           ListTile(
             leading: Icon(
               FontAwesomeIcons.three,
-              color:
-                  currentScreen == 'Justificacion'
-                      ? Colors.white
-                      : Colors.black,
+              color: currentScreen == 'Justificacion'
+                  ? Colors.white
+                  : Colors.black,
               size: 17,
             ),
             title: Text(
               'Justificación',
               style: TextStyle(
                 fontSize: texto + 4,
-                color:
-                    currentScreen == 'Justificacion'
-                        ? Colors.white
-                        : Colors.black,
+                color: currentScreen == 'Justificacion'
+                    ? Colors.white
+                    : Colors.black,
               ),
             ),
             selected: currentScreen == 'Justificacion',
@@ -260,10 +254,9 @@ class Menu extends StatelessWidget {
               'Metodología',
               style: TextStyle(
                 fontSize: texto + 4,
-                color:
-                    currentScreen == 'Metodologia'
-                        ? Colors.white
-                        : Colors.black,
+                color: currentScreen == 'Metodologia'
+                    ? Colors.white
+                    : Colors.black,
               ),
             ),
             selected: currentScreen == 'Metodologia',
@@ -328,10 +321,9 @@ class Menu extends StatelessWidget {
               'Actividades o resultados',
               style: TextStyle(
                 fontSize: texto + 4,
-                color:
-                    currentScreen == 'Actividades'
-                        ? Colors.white
-                        : Colors.black,
+                color: currentScreen == 'Actividades'
+                    ? Colors.white
+                    : Colors.black,
               ),
             ),
             selected: currentScreen == 'Actividades',
@@ -363,10 +355,9 @@ class Menu extends StatelessWidget {
               'Bibliografía',
               style: TextStyle(
                 fontSize: texto + 4,
-                color:
-                    currentScreen == 'Bibliogafia'
-                        ? Colors.white
-                        : Colors.black,
+                color: currentScreen == 'Bibliogafia'
+                    ? Colors.white
+                    : Colors.black,
               ),
             ),
             selected: currentScreen == 'Bibliogafia',
@@ -393,7 +384,6 @@ class Menu extends StatelessWidget {
               Icons.search,
               color: currentScreen == 'Busqueda' ? Colors.white : Colors.black,
             ),
-
             title: Text(
               'Busqueda',
               style: TextStyle(
@@ -474,16 +464,16 @@ class Menu extends StatelessWidget {
           ListTile(
             leading: Icon(
               Icons.video_library,
-              color: currentScreen == 'Videoss' ? Colors.white : Colors.black,
+              color: currentScreen == 'Video' ? Colors.white : Colors.black,
             ),
             title: Text(
               'Videos',
               style: TextStyle(
                 fontSize: texto + 4,
-                color: currentScreen == 'Videoss' ? Colors.white : Colors.black,
+                color: currentScreen == 'Video' ? Colors.white : Colors.black,
               ),
             ),
-            selected: currentScreen == 'Videoss',
+            selected: currentScreen == 'Video',
             selectedTileColor: obtenercolor('Color_Principal'),
             onTap: () {
               Navigator.pop(context);

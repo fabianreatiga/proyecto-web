@@ -12,7 +12,9 @@ import 'package:nuevomockups/PlanteamientoProblemas/plantiamientoproblemas.dart'
 import 'package:nuevomockups/global.dart';
 
 class Titulo extends StatelessWidget {
-  const Titulo({super.key});
+  const Titulo({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,9 @@ class Titulo extends StatelessWidget {
 }
 
 class Titulos extends StatefulWidget {
-  const Titulos({super.key});
+  const Titulos({
+    super.key,
+  });
 
   @override
   State<Titulos> createState() => _TitulosState();
@@ -36,7 +40,7 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
 
   int _index = 0; //indica que las secciones inicia en la primera
   late TabController
-  _tabController; //se usa un TabController para controlar las pestañas
+      _tabController; //se usa un TabController para controlar las pestañas
   final List<int> pestanasVistas =
       []; // en esta variable se guarda las pestañas ya vistas
 
@@ -228,33 +232,13 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
                         horizontal: 20,
                         vertical: 20,
                       ),
-                      child:
-                          esPantallaPequena
-                              ? InteractiveViewer(
-                                // 🔍 Zoom solo en pantallas pequeñas
-                                constrained: true,
-                                minScale: 1.0,
-                                maxScale: 5.0,
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      '¿Sabes cómo crear un Título?',
-                                      style: TextStyle(
-                                        fontSize: tamanotexto(1) + 5,
-                                        fontFamily: 'Calibri',
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                    const SizedBox(height: 20),
-                                    _buildTimelineCard(),
-                                    SizedBox(height: altura(1)),
-                                  ],
-                                ),
-                              )
-                              : Column(
-                                // 💻 En pantallas grandes sin zoom
+                      child: esPantallaPequena
+                          ? InteractiveViewer(
+                              // 🔍 Zoom solo en pantallas pequeñas
+                              constrained: true,
+                              minScale: 1.0,
+                              maxScale: 5.0,
+                              child: Column(
                                 children: [
                                   Text(
                                     '¿Sabes cómo crear un Título?',
@@ -271,6 +255,25 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
                                   SizedBox(height: altura(1)),
                                 ],
                               ),
+                            )
+                          : Column(
+                              // 💻 En pantallas grandes sin zoom
+                              children: [
+                                Text(
+                                  '¿Sabes cómo crear un Título?',
+                                  style: TextStyle(
+                                    fontSize: tamanotexto(1) + 5,
+                                    fontFamily: 'Calibri',
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                                const SizedBox(height: 20),
+                                _buildTimelineCard(),
+                                SizedBox(height: altura(1)),
+                              ],
+                            ),
                     ),
                   ),
 
@@ -329,77 +332,74 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
                   const SizedBox(height: 20),
                   esPantallaPequena
                       ? Column(
-                        // se usa ? como un operador ternario para saber si la pantalla es pequeña o grande
-                        children: [
-                          Text(
-                            textos[_index],
-                            style: TextStyle(
-                              fontSize: tamanotexto(2) + 6,
-                              fontFamily: 'Calibri',
-                              height: 1.5,
+                          // se usa ? como un operador ternario para saber si la pantalla es pequeña o grande
+                          children: [
+                            Text(
+                              textos[_index],
+                              style: TextStyle(
+                                fontSize: tamanotexto(2) + 6,
+                                fontFamily: 'Calibri',
+                                height: 1.5,
+                              ),
+                              textAlign: TextAlign.justify,
                             ),
-                            textAlign: TextAlign.justify,
-                          ),
-
-                          const SizedBox(height: 20),
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(12),
-                            child: Image.asset(
-                              imagenes[_index],
-                              height: alturaImagenPequena[_index],
-                              fit: BoxFit.contain,
-                            ),
-                          ),
-                        ],
-                      )
-                      : Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Expanded(
-                            //se usa expanded para establecer el tamaño del texto
-                            flex: 2,
-                            //se usa flex para que la imagen ocupe el 2/3 de la pantalla
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 20),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    textos[_index],
-                                    style: TextStyle(
-                                      fontSize: tamanotexto(2) + 4,
-                                      fontFamily: 'Calibri',
-                                      height: 1.5,
-                                      //se usa height para aumentar la altura de la letra
-                                    ),
-                                    textAlign: TextAlign.justify,
-                                  ),
-                                ],
+                            const SizedBox(height: 20),
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(12),
+                              child: Image.asset(
+                                imagenes[_index],
+                                height: alturaImagenPequena[_index],
+                                fit: BoxFit.contain,
                               ),
                             ),
-                          ),
-
-                          Flexible(
-                            flex: 0,
-                            child: Align(
-                              alignment: Alignment.topRight,
-                              // Alinear imagen a la derecha.
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(12),
-                                child: Image.asset(
-                                  imagenes[_index], // Imagen dinámica.
-                                  height: alturaImagengrande[_index],
-                                  // Altura para pantallas grandes.
-                                  fit: BoxFit.contain,
-                                  // se usa fit para que la imagen se ajuste al tamaño del contenedor
+                          ],
+                        )
+                      : Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              //se usa expanded para establecer el tamaño del texto
+                              flex: 2,
+                              //se usa flex para que la imagen ocupe el 2/3 de la pantalla
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 20),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      textos[_index],
+                                      style: TextStyle(
+                                        fontSize: tamanotexto(2) + 4,
+                                        fontFamily: 'Calibri',
+                                        height: 1.5,
+                                        //se usa height para aumentar la altura de la letra
+                                      ),
+                                      textAlign: TextAlign.justify,
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
-                          ),
-
-                          if (_index == 3) Spacer(),
-                        ],
-                      ),
+                            Flexible(
+                              flex: 0,
+                              child: Align(
+                                alignment: Alignment.topRight,
+                                // Alinear imagen a la derecha.
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(12),
+                                  child: Image.asset(
+                                    imagenes[_index], // Imagen dinámica.
+                                    height: alturaImagengrande[_index],
+                                    // Altura para pantallas grandes.
+                                    fit: BoxFit.contain,
+                                    // se usa fit para que la imagen se ajuste al tamaño del contenedor
+                                  ),
+                                ),
+                              ),
+                            ),
+                            if (_index == 3) Spacer(),
+                          ],
+                        ),
                   if (_index == 4)
                     Center(
                       child: RichText(
@@ -422,11 +422,10 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
                                 color: Colors.blue,
                                 //decoration: TextDecoration.underline,
                               ),
-                              recognizer:
-                                  TapGestureRecognizer()
-                                    ..onTap = () {
-                                      abrirLink('https://youtu.be/F_MeeGwggHk');
-                                    },
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  abrirLink('https://youtu.be/F_MeeGwggHk');
+                                },
                             ),
                           ],
                         ),
@@ -514,7 +513,6 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
                   ProgresoGlobal.marcarVisto(2);
                 }
               },
-
               icon: Icon(
                 Icons.arrow_forward,
                 color: obtenercolor('Color_Texto_Principal'),
@@ -543,8 +541,7 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
       context: context,
       isScrollControlled: true,
       constraints: BoxConstraints(
-        maxHeight:
-            MediaQuery.of(context).size.height *
+        maxHeight: MediaQuery.of(context).size.height *
             0.3, // altura máxima de la hoja modal
         minHeight: 0, // altura mínima de la hoja modal
         maxWidth:
@@ -624,22 +621,20 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
                     children: [
                       Container(
                         decoration: BoxDecoration(
-                          color:
-                              (isSelected || isVisited)
-                                  ? obtenercolor(
-                                    'Color_Principal',
-                                  ).withOpacity(0.2)
-                                  : item['color'].withOpacity(0.2),
+                          color: (isSelected || isVisited)
+                              ? obtenercolor(
+                                  'Color_Principal',
+                                ).withOpacity(0.2)
+                              : item['color'].withOpacity(0.2),
                           shape: BoxShape.circle,
                         ),
                         padding: const EdgeInsets.all(12),
                         child: Icon(
                           item['icon'],
                           size: tamanotexto(3),
-                          color:
-                              (isSelected || isVisited)
-                                  ? obtenercolor('Color_Principal')
-                                  : item['color'],
+                          color: (isSelected || isVisited)
+                              ? obtenercolor('Color_Principal')
+                              : item['color'],
                         ),
                       ),
                       const SizedBox(height: 6),

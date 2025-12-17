@@ -45,7 +45,6 @@ class _CronogramasState extends State<Cronogramas>
         ' de actividades y no en una hoja de cálculo o lista de pendientes desorganizada. Con un cronograma de actividades,'
         ' tienes una idea clara de cómo encajan todas las piezas de tu plan. Entonces, ¿por qué no tienes uno aún? Sin la tecnología'
         ' adecuada, crear un cronograma de actividades de tu proyecto puede ser muy complicado.',
-
     '',
     '',
   ];
@@ -241,33 +240,13 @@ class _CronogramasState extends State<Cronogramas>
                         horizontal: 20,
                         vertical: 20,
                       ),
-                      child:
-                          esPantallaPequena
-                              ? InteractiveViewer(
-                                // 🔍 Zoom solo en pantallas pequeñas
-                                constrained: true,
-                                minScale: 1.0,
-                                maxScale: 5.0,
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      '¿Sabes como crear un Cronograma?',
-                                      style: TextStyle(
-                                        fontSize: tamanotexto(1) + 5,
-                                        fontFamily: 'Calibri',
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                    const SizedBox(height: 20),
-                                    _buildercard(),
-                                    SizedBox(height: altura(1)),
-                                  ],
-                                ),
-                              )
-                              : Column(
-                                // 💻 En pantallas grandes sin zoom
+                      child: esPantallaPequena
+                          ? InteractiveViewer(
+                              // 🔍 Zoom solo en pantallas pequeñas
+                              constrained: true,
+                              minScale: 1.0,
+                              maxScale: 5.0,
+                              child: Column(
                                 children: [
                                   Text(
                                     '¿Sabes como crear un Cronograma?',
@@ -279,11 +258,30 @@ class _CronogramasState extends State<Cronogramas>
                                     ),
                                     textAlign: TextAlign.center,
                                   ),
-                                  const SizedBox(height: 35),
+                                  const SizedBox(height: 20),
                                   _buildercard(),
                                   SizedBox(height: altura(1)),
                                 ],
                               ),
+                            )
+                          : Column(
+                              // 💻 En pantallas grandes sin zoom
+                              children: [
+                                Text(
+                                  '¿Sabes como crear un Cronograma?',
+                                  style: TextStyle(
+                                    fontSize: tamanotexto(1) + 5,
+                                    fontFamily: 'Calibri',
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                                const SizedBox(height: 35),
+                                _buildercard(),
+                                SizedBox(height: altura(1)),
+                              ],
+                            ),
                     ),
                   ),
 
@@ -343,79 +341,77 @@ class _CronogramasState extends State<Cronogramas>
                   const SizedBox(height: 20),
                   esPantallaPequena
                       ? Column(
-                        // se usa Column para mostrar el texto en dos filas
-                        children: [
-                          Text(
-                            textos[_index],
-                            style: TextStyle(
-                              fontSize: tamanotexto(2),
-                              fontFamily: 'Calibri',
-                              height: 1.5,
+                          // se usa Column para mostrar el texto en dos filas
+                          children: [
+                            Text(
+                              textos[_index],
+                              style: TextStyle(
+                                fontSize: tamanotexto(2),
+                                fontFamily: 'Calibri',
+                                height: 1.5,
+                              ),
+                              textAlign: TextAlign.justify,
                             ),
-                            textAlign: TextAlign.justify,
-                          ),
-
-                          const SizedBox(height: 20),
-
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(12),
-                            child: Image.asset(
-                              imagenes[_index],
-                              height: alturaImagenPequena[_index],
-                              fit: BoxFit.contain,
-                            ),
-                          ),
-                        ],
-                      )
-                      : Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Expanded(
-                            flex: 2,
-                            child: Padding(
-                              padding: EdgeInsets.only(right: 20),
-                              child: Column(
-                                children: [
-                                  if (_index != 2)
-                                    Text(
-                                      textos[_index],
-                                      style: TextStyle(
-                                        fontSize: tamanotexto(2) + 4,
-                                        fontFamily: 'calibri',
-                                        height: 1.5,
-                                      ),
-                                      textAlign: TextAlign.justify,
-                                    ),
-                                ],
+                            const SizedBox(height: 20),
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(12),
+                              child: Image.asset(
+                                imagenes[_index],
+                                height: alturaImagenPequena[_index],
+                                fit: BoxFit.contain,
                               ),
                             ),
-                          ),
-                          Flexible(
-                            flex: 0,
-                            child: Align(
-                              alignment: Alignment.topRight,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(12),
-                                child: Row(
+                          ],
+                        )
+                      : Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              flex: 2,
+                              child: Padding(
+                                padding: EdgeInsets.only(right: 20),
+                                child: Column(
                                   children: [
-                                    Image.asset(
-                                      imagenes[_index],
-                                      height: alturaImagengrande[_index],
-                                      fit: BoxFit.contain,
-                                    ),
+                                    if (_index != 2)
+                                      Text(
+                                        textos[_index],
+                                        style: TextStyle(
+                                          fontSize: tamanotexto(2) + 4,
+                                          fontFamily: 'calibri',
+                                          height: 1.5,
+                                        ),
+                                        textAlign: TextAlign.justify,
+                                      ),
                                   ],
                                 ),
                               ),
                             ),
-                          ),
-                          if (_index == 1) Spacer(),
-                          if (_index == 1) Spacer(),
-                          if (_index == 2)
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.1,
+                            Flexible(
+                              flex: 0,
+                              child: Align(
+                                alignment: Alignment.topRight,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(12),
+                                  child: Row(
+                                    children: [
+                                      Image.asset(
+                                        imagenes[_index],
+                                        height: alturaImagengrande[_index],
+                                        fit: BoxFit.contain,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
                             ),
-                        ],
-                      ),
+                            if (_index == 1) Spacer(),
+                            if (_index == 1) Spacer(),
+                            if (_index == 2)
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width * 0.1,
+                              ),
+                          ],
+                        ),
                   if (_index == 2)
                     Padding(
                       padding: const EdgeInsets.only(top: 10),
@@ -440,13 +436,12 @@ class _CronogramasState extends State<Cronogramas>
                                   color: Colors.blue,
                                   //decoration: TextDecoration.underline,
                                 ),
-                                recognizer:
-                                    TapGestureRecognizer()
-                                      ..onTap = () {
-                                        abrirLink(
-                                          'https://youtu.be/L0WrJUFkRKs',
-                                        );
-                                      },
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () {
+                                    abrirLink(
+                                      'https://youtu.be/L0WrJUFkRKs',
+                                    );
+                                  },
                               ),
                             ],
                           ),
@@ -532,10 +527,6 @@ class _CronogramasState extends State<Cronogramas>
                   if (!ProgresoGlobal.pestanasVistas.contains(idReal)) {
                     ProgresoGlobal.pestanasVistas.add(idReal);
                     await ProgresoGlobal.guardarLocal();
-
-                    // print("🟢 Progreso sumado → ID: $idReal");
-
-                    // 🟢 GUARDAR EN MONGODB
                     await guardarProgresoEnAPI();
                   }
                 } else {
@@ -578,8 +569,7 @@ class _CronogramasState extends State<Cronogramas>
       context: context,
       isScrollControlled: true,
       constraints: BoxConstraints(
-        maxHeight:
-            MediaQuery.of(context).size.height *
+        maxHeight: MediaQuery.of(context).size.height *
             0.3, // altura máxima de la hoja modal
         minHeight: 0, // altura mínima de la hoja modal
         maxWidth:
@@ -659,22 +649,20 @@ class _CronogramasState extends State<Cronogramas>
                     children: [
                       Container(
                         decoration: BoxDecoration(
-                          color:
-                              (isSelected || isVisited)
-                                  ? obtenercolor(
-                                    'Color_Principal',
-                                  ).withOpacity(0.2)
-                                  : item['color'].withOpacity(0.2),
+                          color: (isSelected || isVisited)
+                              ? obtenercolor(
+                                  'Color_Principal',
+                                ).withOpacity(0.2)
+                              : item['color'].withOpacity(0.2),
                           shape: BoxShape.circle,
                         ),
                         padding: const EdgeInsets.all(12),
                         child: Icon(
                           item['icon'],
                           size: tamanotexto(3),
-                          color:
-                              (isSelected || isVisited)
-                                  ? obtenercolor('Color_Principal')
-                                  : item['color'],
+                          color: (isSelected || isVisited)
+                              ? obtenercolor('Color_Principal')
+                              : item['color'],
                         ),
                       ),
                       const SizedBox(height: 6),

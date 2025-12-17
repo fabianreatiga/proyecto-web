@@ -34,16 +34,14 @@ class _Antecedentes_EstadosState extends State<Antecedentes_Estados>
 
   int _index = 0; //indica que las secciones inicia en la primera
   late TabController
-  _tabController; //se usa un TabController para controlar las pestañas
+      _tabController; //se usa un TabController para controlar las pestañas
   final List<int> pestanasVistas =
       []; // en esta variable se guarda las pestañas ya vistas
 
   final List<String> textos = [
     'Los antecedentes son una parte del trabajo de investigación donde se recopila y describe la información previa existente sobre el tema que se está estudiando. Incluyen investigaciones, artículos, tesis, proyectos o informes anteriores que abordan el mismo problema o uno relacionado. '
         'Su finalidad es mostrar qué se ha investigado antes, cuáles han sido los principales resultados obtenidos y cómo esos estudios sirven como base o referencia para tu propia investigación. Gracias a los antecedentes se puede entender el contexto, evitar repetir trabajos ya realizados y justificar por qué tu estudio es importante o necesario.',
-
     '',
-
     'El estado del arte es una parte esencial de toda investigación científica, técnica o académica. Consiste en revisar,'
         ' analizar y describir los conocimientos, teorías, métodos, avances y resultados que otros investigadores han desarrollado'
         ' previamente sobre el mismo tema o uno relacionado. Su objetivo principal es mostrar cómo está el conocimiento actual'
@@ -51,7 +49,6 @@ class _Antecedentes_EstadosState extends State<Antecedentes_Estados>
         'y qué falta por investigar. El término “estado del arte” proviene del inglés state of the art, que significa literalmente'
         ' “nivel más avanzado del conocimiento en un campo determinado”. En investigación, se utiliza para referirse a la recopilación'
         ' y análisis de la información más actualizada y relevante disponible.',
-
     'Imagina que vas a investigar sobre el uso de software educativo en colegios.'
         'Antes de empezar, revisa qué se ha estudiado sobre el tema:\n'
         '• Busca información en fuentes confiables como Google Académico, Scielo, Redalyc o Dialnet, usando palabras clave como “software educativo” o “herramientas digitales para el aprendizaje”.\n'
@@ -181,21 +178,6 @@ class _Antecedentes_EstadosState extends State<Antecedentes_Estados>
             ),
           ),
 
-          // 🌄 Fondo superior derecha decorativo
-          /* Positioned(
-            top: 0,
-            left: 0,
-            child: Opacity(
-              opacity: opacidad(1),
-              child: Image.asset(
-                'assets/BasesDatos/Fondo_superior_Izqiuerda.png',
-                width: esPantallaPequena ? 120 : 250,
-                //height: MediaQuery.of(context).size.width * 0.18,
-                fit: BoxFit.contain,
-              ),
-            ),
-          ),*/
-
           // 🌄 Fondo inferior izquierda
           Positioned(
             bottom: 90,
@@ -211,20 +193,6 @@ class _Antecedentes_EstadosState extends State<Antecedentes_Estados>
             ),
           ),
 
-          // 🌄 Fondo inferior derecha
-          /*Positioned(
-            bottom: 90,
-            right: 0,
-            child: Opacity(
-              opacity: opacidad(1),
-              child: Image.asset(
-                'assets/BasesDatos/Fondo_inferior_Derecha.png',
-                width: esPantallaPequena ? 120 : 250,
-                //height: MediaQuery.of(context).size.width * 0.18,
-                fit: BoxFit.contain,
-              ),
-            ),
-          ),*/
           Positioned(
             top: 8,
             left: 8,
@@ -252,33 +220,13 @@ class _Antecedentes_EstadosState extends State<Antecedentes_Estados>
                         horizontal: 20,
                         vertical: 20,
                       ),
-                      child:
-                          esPantallaPequena
-                              ? InteractiveViewer(
-                                // 🔍 Zoom solo en pantallas pequeñas
-                                constrained: true,
-                                minScale: 1.0,
-                                maxScale: 5.0,
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      '¿Qué son los antecedentes o el estado del arte?',
-                                      style: TextStyle(
-                                        fontSize: tamanotexto(1) + 5,
-                                        fontFamily: 'Calibri',
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                    const SizedBox(height: 20),
-                                    _buildTimelineCard(),
-                                    SizedBox(height: altura(1)),
-                                  ],
-                                ),
-                              )
-                              : Column(
-                                // 💻 En pantallas grandes sin zoom
+                      child: esPantallaPequena
+                          ? InteractiveViewer(
+                              // 🔍 Zoom solo en pantallas pequeñas
+                              constrained: true,
+                              minScale: 1.0,
+                              maxScale: 5.0,
+                              child: Column(
                                 children: [
                                   Text(
                                     '¿Qué son los antecedentes o el estado del arte?',
@@ -290,11 +238,30 @@ class _Antecedentes_EstadosState extends State<Antecedentes_Estados>
                                     ),
                                     textAlign: TextAlign.center,
                                   ),
-                                  const SizedBox(height: 35),
+                                  const SizedBox(height: 20),
                                   _buildTimelineCard(),
                                   SizedBox(height: altura(1)),
                                 ],
                               ),
+                            )
+                          : Column(
+                              // 💻 En pantallas grandes sin zoom
+                              children: [
+                                Text(
+                                  '¿Qué son los antecedentes o el estado del arte?',
+                                  style: TextStyle(
+                                    fontSize: tamanotexto(1) + 5,
+                                    fontFamily: 'Calibri',
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                                const SizedBox(height: 35),
+                                _buildTimelineCard(),
+                                SizedBox(height: altura(1)),
+                              ],
+                            ),
                     ),
                   ),
 
@@ -357,103 +324,102 @@ class _Antecedentes_EstadosState extends State<Antecedentes_Estados>
                   const SizedBox(height: 20),
                   esPantallaPequena
                       ? Column(
-                        children: [
-                          if (_index == 1)
-                            RichText(
-                              textAlign: TextAlign.justify,
-                              text: TextSpan(
+                          children: [
+                            if (_index == 1)
+                              RichText(
+                                textAlign: TextAlign.justify,
+                                text: TextSpan(
+                                  style: TextStyle(
+                                    fontSize: tamanotexto(2) + 4,
+                                    fontFamily: 'Calibri',
+                                    height: 1.5,
+                                    //color: Colors.black,
+                                  ),
+                                  children: [
+                                    TextSpan(
+                                      text: 'Antecedente 1: \n',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text:
+                                          'En 2020, María Pérez realizó un estudio sobre el uso del celular en estudiantes de secundaria. Su investigación mostró que los jóvenes pasan en promedio 4 horas al día usando redes sociales. '
+                                          'Este estudio es importante porque ayuda a entender cómo el uso del celular afecta el tiempo de estudio de los estudiantes.\n',
+                                    ),
+                                    TextSpan(
+                                      text:
+                                          'Este es un ejemplo básico que muestra:\n• Quién hizo el estudio\n• De qué trató\n• Qué encontró\n• Por qué es relevante para otra investigación.',
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            if (_index == 3)
+                              RichText(
+                                textAlign: TextAlign.justify,
+                                text: TextSpan(
+                                  style: TextStyle(
+                                    fontSize: tamanotexto(2) + 4,
+                                    fontFamily: 'Calibri',
+                                    height: 1.5,
+                                    //color: Colors.black,
+                                  ),
+                                  children: [
+                                    TextSpan(
+                                      text:
+                                          'Imagina que vas a investigar sobre el uso de software educativo en colegios.'
+                                          'Antes de empezar, revisa qué se ha estudiado sobre el tema:\n'
+                                          '• Busca información en fuentes confiables como Google Académico, Scielo, Redalyc o Dialnet, usando palabras clave como “software educativo” o “herramientas digitales para el aprendizaje”.\n',
+                                    ),
+                                    TextSpan(
+                                      text:
+                                          '• Analiza los estudios existentes: ',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text:
+                                          'algunos evalúan programas como Kahoot o Duolingo, aplicando encuestas o comparando el rendimiento antes y después de su uso.\n',
+                                    ),
+                                    TextSpan(
+                                      text:
+                                          '• Registra los principales hallazgos:',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text:
+                                          ' la mayoría concluye que el software educativo mejora la motivación y participación de los estudiantes, aunque depende de la capacitación docente.\n',
+                                    ),
+                                    TextSpan(
+                                      text:
+                                          '• Detecta vacíos en la investigación: ',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text:
+                                          'por ejemplo, el poco estudio del uso de software en zonas rurales o con acceso limitado a internet.',
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            if (_index != 3)
+                              Text(
+                                textos[_index],
                                 style: TextStyle(
                                   fontSize: tamanotexto(2) + 4,
                                   fontFamily: 'Calibri',
                                   height: 1.5,
-                                  //color: Colors.black,
                                 ),
-                                children: [
-                                  TextSpan(
-                                    text: 'Antecedente 1: \n',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  TextSpan(
-                                    text:
-                                        'En 2020, María Pérez realizó un estudio sobre el uso del celular en estudiantes de secundaria. Su investigación mostró que los jóvenes pasan en promedio 4 horas al día usando redes sociales. '
-                                        'Este estudio es importante porque ayuda a entender cómo el uso del celular afecta el tiempo de estudio de los estudiantes.\n',
-                                  ),
-
-                                  TextSpan(
-                                    text:
-                                        'Este es un ejemplo básico que muestra:\n• Quién hizo el estudio\n• De qué trató\n• Qué encontró\n• Por qué es relevante para otra investigación.',
-                                  ),
-                                ],
+                                textAlign: TextAlign.justify,
                               ),
-                            ),
-                          if (_index == 3)
-                            RichText(
-                              textAlign: TextAlign.justify,
-                              text: TextSpan(
-                                style: TextStyle(
-                                  fontSize: tamanotexto(2) + 4,
-                                  fontFamily: 'Calibri',
-                                  height: 1.5,
-                                  //color: Colors.black,
-                                ),
-                                children: [
-                                  TextSpan(
-                                    text:
-                                        'Imagina que vas a investigar sobre el uso de software educativo en colegios.'
-                                        'Antes de empezar, revisa qué se ha estudiado sobre el tema:\n'
-                                        '• Busca información en fuentes confiables como Google Académico, Scielo, Redalyc o Dialnet, usando palabras clave como “software educativo” o “herramientas digitales para el aprendizaje”.\n',
-                                  ),
-                                  TextSpan(
-                                    text: '• Analiza los estudios existentes: ',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  TextSpan(
-                                    text:
-                                        'algunos evalúan programas como Kahoot o Duolingo, aplicando encuestas o comparando el rendimiento antes y después de su uso.\n',
-                                  ),
-                                  TextSpan(
-                                    text:
-                                        '• Registra los principales hallazgos:',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  TextSpan(
-                                    text:
-                                        ' la mayoría concluye que el software educativo mejora la motivación y participación de los estudiantes, aunque depende de la capacitación docente.\n',
-                                  ),
-                                  TextSpan(
-                                    text:
-                                        '• Detecta vacíos en la investigación: ',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  TextSpan(
-                                    text:
-                                        'por ejemplo, el poco estudio del uso de software en zonas rurales o con acceso limitado a internet.',
-                                  ),
-                                ],
-                              ),
-                            ),
-                          if (_index != 3)
-                            Text(
-                              textos[_index],
-                              style: TextStyle(
-                                fontSize: tamanotexto(2) + 4,
-                                fontFamily: 'Calibri',
-                                height: 1.5,
-                              ),
-                              textAlign: TextAlign.justify,
-                            ),
+                            const SizedBox(height: 10),
 
-                          const SizedBox(height: 10),
-
-                          /*if (_index == 4)
+                            /*if (_index == 4)
                             RichText(
                               textAlign: TextAlign.justify,
                               text: TextSpan(
@@ -480,171 +446,141 @@ class _Antecedentes_EstadosState extends State<Antecedentes_Estados>
                                 ],
                               ),
                             ),*/
-                          const SizedBox(height: 20),
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(12),
-                            child: Image.asset(
-                              imagenes[_index],
-                              height: alturaImagenPequena[_index],
-                              fit: BoxFit.contain,
-                            ),
-                          ),
-                        ],
-                      )
-                      : Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Expanded(
-                            flex: 2,
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 20),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  if (_index == 1)
-                                    RichText(
-                                      textAlign: TextAlign.justify,
-                                      text: TextSpan(
-                                        style: TextStyle(
-                                          fontSize: tamanotexto(2) + 4,
-                                          fontFamily: 'Calibri',
-                                          height: 1.5,
-                                          //color: Colors.black,
-                                        ),
-                                        children: [
-                                          TextSpan(
-                                            text: 'Antecedente 1: \n',
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                          TextSpan(
-                                            text:
-                                                'En 2020, María Pérez realizó un estudio sobre el uso del celular en estudiantes de secundaria. Su investigación mostró que los jóvenes pasan en promedio 4 horas al día usando redes sociales. '
-                                                'Este estudio es importante porque ayuda a entender cómo el uso del celular afecta el tiempo de estudio de los estudiantes.\n',
-                                          ),
-
-                                          TextSpan(
-                                            text:
-                                                'Este es un ejemplo básico que muestra:\n• Quién hizo el estudio\n• De qué trató\n• Qué encontró\n• Por qué es relevante para otra investigación.',
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  if (_index == 3)
-                                    RichText(
-                                      textAlign: TextAlign.justify,
-                                      text: TextSpan(
-                                        style: TextStyle(
-                                          fontSize: tamanotexto(2) + 4,
-                                          fontFamily: 'Calibri',
-                                          height: 1.5,
-                                          //color: Colors.black,
-                                        ),
-                                        children: [
-                                          TextSpan(
-                                            text:
-                                                'Imagina que vas a investigar sobre el uso de software educativo en colegios.'
-                                                'Antes de empezar, revisa qué se ha estudiado sobre el tema:\n'
-                                                '• Busca información en fuentes confiables como Google Académico, Scielo, Redalyc o Dialnet, usando palabras clave como “software educativo” o “herramientas digitales para el aprendizaje”.\n',
-                                          ),
-                                          TextSpan(
-                                            text:
-                                                '• Analiza los estudios existentes: ',
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                          TextSpan(
-                                            text:
-                                                'algunos evalúan programas como Kahoot o Duolingo, aplicando encuestas o comparando el rendimiento antes y después de su uso.\n',
-                                          ),
-                                          TextSpan(
-                                            text:
-                                                '• Registra los principales hallazgos:',
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                          TextSpan(
-                                            text:
-                                                ' la mayoría concluye que el software educativo mejora la motivación y participación de los estudiantes, aunque depende de la capacitación docente.\n',
-                                          ),
-                                          TextSpan(
-                                            text:
-                                                '• Detecta vacíos en la investigación: ',
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                          TextSpan(
-                                            text:
-                                                'por ejemplo, el poco estudio del uso de software en zonas rurales o con acceso limitado a internet.',
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  if (_index != 3)
-                                    Text(
-                                      textos[_index],
-                                      style: TextStyle(
-                                        fontSize: tamanotexto(2) + 4,
-                                        fontFamily: 'Calibri',
-                                        height: 1.5,
-                                      ),
-                                      textAlign: TextAlign.justify,
-                                    ),
-                                  const SizedBox(height: 10),
-
-                                  /*if (_index == 4)
-                                    RichText(
-                                      textAlign: TextAlign.justify,
-                                      text: TextSpan(
-                                        style: TextStyle(
-                                          fontSize: tamanotexto(2) + 4,
-                                          fontFamily: 'Calibri',
-                                          height: 1.5,
-                                          color: Colors.black,
-                                        ),
-                                        children: [
-                                          TextSpan(text: ''),
-                                          TextSpan(
-                                            text: '',
-                                            style: TextStyle(
-                                              color: Colors.blue,
-                                              decoration:
-                                                  TextDecoration.underline,
-                                            ),
-                                            recognizer:
-                                                TapGestureRecognizer()
-                                                  ..onTap = () async {
-                                                    await abrirLink('');
-                                                  },
-                                          ),
-                                        ],
-                                      ),
-                                    ),*/
-                                ],
+                            const SizedBox(height: 20),
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(12),
+                              child: Image.asset(
+                                imagenes[_index],
+                                height: alturaImagenPequena[_index],
+                                fit: BoxFit.contain,
                               ),
                             ),
-                          ),
-                          Flexible(
-                            flex: 0,
-                            child: Align(
-                              alignment: Alignment.topRight,
-                              // Alinear imagen a la derecha.
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(12),
-                                child: Image.asset(
-                                  imagenes[_index], // Imagen dinámica.
-                                  height: alturaImagengrande[_index],
-                                  fit: BoxFit.contain,
+                          ],
+                        )
+                      : Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              flex: 2,
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 20),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    if (_index == 1)
+                                      RichText(
+                                        textAlign: TextAlign.justify,
+                                        text: TextSpan(
+                                          style: TextStyle(
+                                            fontSize: tamanotexto(2) + 4,
+                                            fontFamily: 'Calibri',
+                                            height: 1.5,
+                                            //color: Colors.black,
+                                          ),
+                                          children: [
+                                            TextSpan(
+                                              text: 'Antecedente 1: \n',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            TextSpan(
+                                              text:
+                                                  'En 2020, María Pérez realizó un estudio sobre el uso del celular en estudiantes de secundaria. Su investigación mostró que los jóvenes pasan en promedio 4 horas al día usando redes sociales. '
+                                                  'Este estudio es importante porque ayuda a entender cómo el uso del celular afecta el tiempo de estudio de los estudiantes.\n',
+                                            ),
+                                            TextSpan(
+                                              text:
+                                                  'Este es un ejemplo básico que muestra:\n• Quién hizo el estudio\n• De qué trató\n• Qué encontró\n• Por qué es relevante para otra investigación.',
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    if (_index == 3)
+                                      RichText(
+                                        textAlign: TextAlign.justify,
+                                        text: TextSpan(
+                                          style: TextStyle(
+                                            fontSize: tamanotexto(2) + 4,
+                                            fontFamily: 'Calibri',
+                                            height: 1.5,
+                                            //color: Colors.black,
+                                          ),
+                                          children: [
+                                            TextSpan(
+                                              text:
+                                                  'Imagina que vas a investigar sobre el uso de software educativo en colegios.'
+                                                  'Antes de empezar, revisa qué se ha estudiado sobre el tema:\n'
+                                                  '• Busca información en fuentes confiables como Google Académico, Scielo, Redalyc o Dialnet, usando palabras clave como “software educativo” o “herramientas digitales para el aprendizaje”.\n',
+                                            ),
+                                            TextSpan(
+                                              text:
+                                                  '• Analiza los estudios existentes: ',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            TextSpan(
+                                              text:
+                                                  'algunos evalúan programas como Kahoot o Duolingo, aplicando encuestas o comparando el rendimiento antes y después de su uso.\n',
+                                            ),
+                                            TextSpan(
+                                              text:
+                                                  '• Registra los principales hallazgos:',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            TextSpan(
+                                              text:
+                                                  ' la mayoría concluye que el software educativo mejora la motivación y participación de los estudiantes, aunque depende de la capacitación docente.\n',
+                                            ),
+                                            TextSpan(
+                                              text:
+                                                  '• Detecta vacíos en la investigación: ',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            TextSpan(
+                                              text:
+                                                  'por ejemplo, el poco estudio del uso de software en zonas rurales o con acceso limitado a internet.',
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    if (_index != 3)
+                                      Text(
+                                        textos[_index],
+                                        style: TextStyle(
+                                          fontSize: tamanotexto(2) + 4,
+                                          fontFamily: 'Calibri',
+                                          height: 1.5,
+                                        ),
+                                        textAlign: TextAlign.justify,
+                                      ),
+                                    const SizedBox(height: 10),
+                                  ],
                                 ),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
+                            Flexible(
+                              flex: 0,
+                              child: Align(
+                                alignment: Alignment.topRight,
+                                // Alinear imagen a la derecha.
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(12),
+                                  child: Image.asset(
+                                    imagenes[_index], // Imagen dinámica.
+                                    height: alturaImagengrande[_index],
+                                    fit: BoxFit.contain,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                 ],
               ),
             ),
@@ -731,7 +667,6 @@ class _Antecedentes_EstadosState extends State<Antecedentes_Estados>
                   ProgresoGlobal.marcarVisto(2);
                 }
               },
-
               icon: Icon(
                 Icons.arrow_forward,
                 color: obtenercolor('Color_Texto_Principal'),
@@ -760,8 +695,7 @@ class _Antecedentes_EstadosState extends State<Antecedentes_Estados>
       context: context,
       isScrollControlled: true,
       constraints: BoxConstraints(
-        maxHeight:
-            MediaQuery.of(context).size.height *
+        maxHeight: MediaQuery.of(context).size.height *
             0.3, // altura máxima de la hoja modal
         minHeight: 0, // altura mínima de la hoja modal
         maxWidth:
@@ -841,22 +775,20 @@ class _Antecedentes_EstadosState extends State<Antecedentes_Estados>
                     children: [
                       Container(
                         decoration: BoxDecoration(
-                          color:
-                              (isSelected || isVisited)
-                                  ? obtenercolor(
-                                    'Color_Principal',
-                                  ).withOpacity(0.2)
-                                  : item['color'].withOpacity(0.2),
+                          color: (isSelected || isVisited)
+                              ? obtenercolor(
+                                  'Color_Principal',
+                                ).withOpacity(0.2)
+                              : item['color'].withOpacity(0.2),
                           shape: BoxShape.circle,
                         ),
                         padding: const EdgeInsets.all(12),
                         child: Icon(
                           item['icon'],
                           size: tamanotexto(3),
-                          color:
-                              (isSelected || isVisited)
-                                  ? obtenercolor('Color_Principal')
-                                  : item['color'],
+                          color: (isSelected || isVisited)
+                              ? obtenercolor('Color_Principal')
+                              : item['color'],
                         ),
                       ),
                       const SizedBox(height: 6),

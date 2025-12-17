@@ -43,11 +43,8 @@ class _JustificacionesState extends State<Justificaciones>
         ' con criterios válidos, con el propósito de describir la conveniencia o necesidad,'
         ' las implicaciones tecnológicas, económicas, sociales y ambientales, el valor teórico;'
         ' así como cuestionarse la viabilidad y consecuencias de la investigación.',
-
     'Pasos para establecer una justificación:',
-
     'Algunos consejos prácticos muy útiles:',
-
     'Denise Belén Sánchez Arriaga en su trabajo: La sustentabilidad y su actual presencia en'
         ' las empresas que operan en México, presenta la siguiente justificación: Una vez que los'
         ' consumidores conozcan los verdaderos efectos de las decisiones de compra, podrán usar dicha'
@@ -251,32 +248,13 @@ class _JustificacionesState extends State<Justificaciones>
                         horizontal: 20,
                         vertical: 20,
                       ),
-                      child:
-                          esPantallaPequena
-                              ? InteractiveViewer(
-                                // 🔍 Zoom solo en pantallas pequeñas
-                                constrained: true,
-                                minScale: 1.0,
-                                maxScale: 5.0,
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      '¿Sabes como redactar una Justificación?',
-                                      style: TextStyle(
-                                        fontSize: tamanotexto(1) + 5,
-                                        fontFamily: 'Calibri',
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                    const SizedBox(height: 20),
-                                    _buildTimelineCard(),
-                                  ],
-                                ),
-                              )
-                              : Column(
-                                // 💻 En pantallas grandes sin zoom
+                      child: esPantallaPequena
+                          ? InteractiveViewer(
+                              // 🔍 Zoom solo en pantallas pequeñas
+                              constrained: true,
+                              minScale: 1.0,
+                              maxScale: 5.0,
+                              child: Column(
                                 children: [
                                   Text(
                                     '¿Sabes como redactar una Justificación?',
@@ -290,9 +268,27 @@ class _JustificacionesState extends State<Justificaciones>
                                   ),
                                   const SizedBox(height: 20),
                                   _buildTimelineCard(),
-                                  SizedBox(height: altura(1)),
                                 ],
                               ),
+                            )
+                          : Column(
+                              // 💻 En pantallas grandes sin zoom
+                              children: [
+                                Text(
+                                  '¿Sabes como redactar una Justificación?',
+                                  style: TextStyle(
+                                    fontSize: tamanotexto(1) + 5,
+                                    fontFamily: 'Calibri',
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                                const SizedBox(height: 20),
+                                _buildTimelineCard(),
+                                SizedBox(height: altura(1)),
+                              ],
+                            ),
                     ),
                   ),
 
@@ -348,71 +344,67 @@ class _JustificacionesState extends State<Justificaciones>
                   const SizedBox(height: 20),
                   esPantallaPequena
                       ? Column(
-                        children: [
-                          Text(
-                            textos[_index],
-                            style: TextStyle(
-                              fontSize: tamanotexto(2) + 4,
-                              fontFamily: 'Calibri',
-                              height: 1.5,
+                          children: [
+                            Text(
+                              textos[_index],
+                              style: TextStyle(
+                                fontSize: tamanotexto(2) + 4,
+                                fontFamily: 'Calibri',
+                                height: 1.5,
+                              ),
+                              textAlign: TextAlign.justify,
                             ),
-                            textAlign: TextAlign.justify,
-                          ),
-                          const SizedBox(height: 20),
-
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(12),
-                            child: Image.asset(
-                              imagenes[_index],
-                              height: alturaImagenPequena[_index],
-                              fit: BoxFit.contain,
-                            ),
-                          ),
-                        ],
-                      )
-                      : Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Expanded(
-                            flex: 2,
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 20),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    textos[_index],
-                                    style: TextStyle(
-                                      fontSize: tamanotexto(2) + 4,
-                                      fontFamily: 'Calibri',
-                                      height: 1.5,
-                                    ),
-                                    textAlign: TextAlign.justify,
-                                  ),
-                                ],
+                            const SizedBox(height: 20),
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(12),
+                              child: Image.asset(
+                                imagenes[_index],
+                                height: alturaImagenPequena[_index],
+                                fit: BoxFit.contain,
                               ),
                             ),
-                          ),
-
-                          if (_index <= 3)
-                            Flexible(
-                              flex: 0,
-                              child: Align(
-                                alignment: Alignment.topRight,
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(12),
-                                  child: Image.asset(
-                                    imagenes[_index],
-                                    height: alturaImagengrande[_index],
-                                    fit: BoxFit.contain,
-                                  ),
+                          ],
+                        )
+                      : Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              flex: 2,
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 20),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      textos[_index],
+                                      style: TextStyle(
+                                        fontSize: tamanotexto(2) + 4,
+                                        fontFamily: 'Calibri',
+                                        height: 1.5,
+                                      ),
+                                      textAlign: TextAlign.justify,
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
-
-                          //if ( /*_index == 1 ||*/ _index == 2) Spacer(),
-                        ],
-                      ),
+                            if (_index <= 3)
+                              Flexible(
+                                flex: 0,
+                                child: Align(
+                                  alignment: Alignment.topRight,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(12),
+                                    child: Image.asset(
+                                      imagenes[_index],
+                                      height: alturaImagengrande[_index],
+                                      fit: BoxFit.contain,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                          ],
+                        ),
                   if (_index == 3)
                     Center(
                       child: RichText(
@@ -435,11 +427,10 @@ class _JustificacionesState extends State<Justificaciones>
                                 color: Colors.blue,
                                 //decoration: TextDecoration.underline,
                               ),
-                              recognizer:
-                                  TapGestureRecognizer()
-                                    ..onTap = () {
-                                      abrirLink('https://youtu.be/GOU4qjxFNxw');
-                                    },
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  abrirLink('https://youtu.be/GOU4qjxFNxw');
+                                },
                             ),
                           ],
                         ),
@@ -564,8 +555,7 @@ class _JustificacionesState extends State<Justificaciones>
       context: context,
       isScrollControlled: true,
       constraints: BoxConstraints(
-        maxHeight:
-            MediaQuery.of(context).size.height *
+        maxHeight: MediaQuery.of(context).size.height *
             0.3, // altura máxima de la hoja modal
         minHeight: 0,
         maxWidth: MediaQuery.of(context).size.width,
@@ -646,22 +636,20 @@ class _JustificacionesState extends State<Justificaciones>
                     children: [
                       Container(
                         decoration: BoxDecoration(
-                          color:
-                              (isSelected || isVisited)
-                                  ? obtenercolor(
-                                    'Color_Principal',
-                                  ).withOpacity(0.2)
-                                  : item['color'].withOpacity(0.2),
+                          color: (isSelected || isVisited)
+                              ? obtenercolor(
+                                  'Color_Principal',
+                                ).withOpacity(0.2)
+                              : item['color'].withOpacity(0.2),
                           shape: BoxShape.circle,
                         ),
                         padding: const EdgeInsets.all(12),
                         child: Icon(
                           item['icon'],
                           size: tamanotexto(3),
-                          color:
-                              (isSelected || isVisited)
-                                  ? obtenercolor('Color_Principal')
-                                  : item['color'],
+                          color: (isSelected || isVisited)
+                              ? obtenercolor('Color_Principal')
+                              : item['color'],
                         ),
                       ),
                       const SizedBox(height: 6),

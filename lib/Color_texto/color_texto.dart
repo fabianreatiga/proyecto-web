@@ -4,7 +4,7 @@ Color obtenercolor(String color) {
   switch (color) {
     case 'Color_Principal': //color principal para el uso de botones y appbars
       return const Color.fromRGBO(57, 169, 0, 1);
-    case 'Color_Secundario': // Color secundario para el uso de botones y appbars
+    case 'Color_Secundario': // Color secundario para el uso de botones del menu secundario
       return const Color.fromRGBO(253, 195, 0, 1);
     case 'Color_Texto_Principal': // Color de texto y de iconos
       return const Color.fromARGB(255, 255, 255, 255);

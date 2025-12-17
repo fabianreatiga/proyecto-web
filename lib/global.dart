@@ -22,7 +22,6 @@ class ProgresoGlobal {
     ...List.generate(3, (i) => i + 46), // Actividades
     ...List.generate(7, (i) => i + 49), // Bibliografía
     ...List.generate(8, (i) => i + 56), // Búsqueda
-    //...List.generate(3, (i) => i + 61), // Bases de datos
   };
 
   /// Progreso total entre 0 y 1
@@ -83,56 +82,12 @@ String getFichaGlobal() => fichaglobal;
 String getprogramaGlobal() => programaglobal;
 
 /// ------------------------------------------------------
-/// 🔄 SINCRONIZAR PROGRESO DESPUÉS DEL LOGIN (OPCIÓN A)
-/// ------------------------------------------------------
-/// Se ejecuta DESPUÉS del login
-///
-/// 1. Carga progreso guardado en MongoDB
-/// 2. Actualiza SharedPreferences
-/// 3. No reinicia progreso
-/// ------------------------------------------------------
-/*Future<void> sincronizarProgresoConAPI() async {
-  if (usuarioglobal.isEmpty || fichaglobal.isEmpty) return;
-
-  final url = Uri.parse(
-    "https://proyecto-api-1vjo.onrender.com/obtenerProgreso",
-  );
-
-  final response = await http.post(
-    url,
-    headers: {"Content-Type": "application/json"},
-    body: jsonEncode({"nombre": usuarioglobal, "ficha": fichaglobal}),
-  );
-
-  if (response.statusCode != 200) return;
-
-  final data = jsonDecode(response.body);
-
-  if (data["progreso"] == null) return;
-
-  final int progresoGuardado = data["progreso"];
-
-  // Convertir porcentaje a cantidad de IDs vistos
-  final int cantidadVistas =
-      ((progresoGuardado / 100) * ProgresoGlobal.todosLosIDs.length).round();
-
-  // Limpiar y cargar esos IDs
-  ProgresoGlobal.pestanasVistas.clear();
-  ProgresoGlobal.pestanasVistas.addAll(
-    ProgresoGlobal.todosLosIDs.take(cantidadVistas),
-  );
-
-  await ProgresoGlobal.guardarLocal();
-
-}*/
-
-/// ------------------------------------------------------
 /// GUARDAR PROGRESO FINAL EN LA API
 /// ------------------------------------------------------
 Future<void> sincronizarProgresoConAPI() async {
   try {
     final url = Uri.parse(
-      "https://proyecto-api-1vjo.onrender.com/progreso"
+      "https://proyecto-web-4xe1.onrender.com/progreso"
       "?nombre=$usuarioglobal&ficha=$fichaglobal",
     );
 
@@ -187,7 +142,7 @@ Future<void> guardarProgresoEnAPI() async {
   final int porcentaje = ProgresoGlobal.porcentaje;
 
   final url = Uri.parse(
-    "https://proyecto-api-1vjo.onrender.com/guardarProgreso",
+    "https://proyecto-web-4xe1.onrender.com/guardarProgreso",
   );
 
   // 🔥 2. Enviar progreso, nombre y ficha

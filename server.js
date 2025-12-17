@@ -23,14 +23,7 @@ mongoose.connect(process.env.MONGO_URI, {
 // =======================
 // MODELO
 // =======================
-/*const ItemSchema = new mongoose.Schema({
-  nombre: { type: String, required: true, trim: true, lowercase: true },
-  programa: { type: String, trim: true},
-  ficha: { type: String, required: true, trim: true },
-  progreso: { type: Number,},
-  fecha: { type: Date }, 
-}, { timestamps: true });
-*/
+
 const ItemSchema = new mongoose.Schema({
   nombre: { type: String, required: true, trim: true, lowercase: true },
   programa: { type: String, trim: true },
@@ -192,36 +185,6 @@ app.get('/items/:id', async (req, res) => {
   }
 });
 
-/*app.post("/guardarProgreso", async (req, res) => { en caso de que no funcione este es el codigo anterior
-  try {
-    const { nombre, ficha } = req.body;
-
-    if (!nombre || !ficha) {
-      return res.status(400).json({ mensaje: "nombre y ficha son requeridos" });
-    }
-
-    let item = await Item.findOne({ nombre, ficha });
-
-    if (!item) {
-      // Si no existe lo creamos con progreso inicial en 2
-      item = new Item({ nombre, ficha, progreso: 0 });
-    } else {
-      // 👉 Validar que no pase de 100
-      if (item.progreso < 100) {
-        item.progreso = Math.min(item.progreso + 2, 100); // nunca mayor a 100
-      }
-    }
-
-    await item.save();
-    res.json({
-      mensaje: "✅ Progreso actualizado",
-      progreso: item.progreso,
-      completado: item.progreso >= 100
-    });
-  } catch (err) {
-    res.status(500).json({ mensaje: err.message });
-  }
-});*/
 app.post("/guardarProgreso", async (req, res) => {
   try {
     const { nombre, ficha, progreso } = req.body;
@@ -256,9 +219,6 @@ app.post("/guardarProgreso", async (req, res) => {
     res.status(500).json({ mensaje: err.message });
   }
 });
-
-
-
 
 app.get("/progreso", async (req, res) => {
   try {
@@ -320,110 +280,6 @@ app.get("/progreso", async (req, res) => {
     res.status(500).json({ mensaje: err.message });
   }
 });
-
-
-
-// Guardar progreso (+2 cada vez)
-/*app.post("/guardarProgreso", async (req, res) => {
-  try {
-    const { nombre, ficha, progreso } = req.body;
-
-    if (!nombre || !ficha) {
-      return res.status(400).json({ mensaje: "nombre y ficha son requeridos" });
-    }
-
-    // Buscar el registro del usuario
-    let item = await Item.findOne({ nombre, ficha });
-
-    if (!item) {
-      // Si no existe, lo creamos
-      item = new Item({ nombre, ficha, progreso: [progreso] });
-    } else {
-      // Si existe, agregamos el nuevo progreso (suma de 2 en 2)
-      item.progreso.push(progreso);
-    }
-
-    await item.save();
-    res.json({ mensaje: "✅ Progreso guardado", progreso: item.progreso });
-  } catch (err) {
-    res.status(500).json({ mensaje: err.message });
-  }
-});*/
-
-
-/*app.post("/guardarProgreso", async (req, res) => {
-  try {
-    const { progreso } = req.body;
-
-    if (progreso === undefined) {
-      return res.status(400).json({ mensaje: "El campo 'progreso' es requerido" });
-    }
-
-    // 👉 Aquí decides cómo identificar al usuario
-    // Supongamos que ya tienes el usuario en sesión o en la base de datos
-    // y solo necesitas actualizarle el progreso
-    const usuario = await Usuario.findOne(); // o busca por ID en sesión/token
-
-    if (!usuario) {
-      return res.status(404).json({ mensaje: "Usuario no encontrado" });
-    }
-
-    usuario.progreso = progreso;
-    await usuario.save();
-
-    res.status(200).json({ mensaje: "✅ Progreso actualizado", progreso });
-  } catch (error) {
-    console.error("❌ Error al guardar progreso:", error);
-    res.status(500).json({ mensaje: "Error al guardar progreso" });
-  }
-});*/
-
-
-// =======================
-// MODELO ENCUESTA
-// =======================
-/*const EncuestaSchema = new mongoose.Schema({
-  diseno: { type: String, required: true },
-  facil: { type: String, required: true },
-  util: { type: String, required: true },
-  organizacion: { type: String, required: true },
-  fecha: { type: Date, default: Date.now }
-}, { timestamps: true });
-
-const Encuesta = mongoose.model("Encuesta", EncuestaSchema);
-
-
-// =======================
-// RUTA ENCUESTA
-// =======================
-app.post("/encuestas", async (req, res) => {
-  try {
-    const { diseno, facil, util, organizacion } = req.body;
-
-    if (!diseno || !facil || !util || !organizacion) {
-      return res.status(400).json({ mensaje: "Todos los campos son requeridos" });
-    }
-
-    const nuevaEncuesta = new Encuesta({ diseno, facil, util, organizacion });
-    await nuevaEncuesta.save();
-
-    res.status(201).json({ mensaje: "✅ Encuesta guardada", encuesta: nuevaEncuesta });
-  } catch (err) {
-    res.status(500).json({ mensaje: err.message });
-  }
-});
-
-// Obtener todas las encuestas
-app.get("/encuestas", async (req, res) => {
-  try {
-    const encuestas = await Encuesta.find().sort({ createdAt: -1 });
-    res.json(encuestas);
-  } catch (err) {
-    res.status(500).json({ mensaje: err.message });
-  }
-});
-*/
-
 
 // =======================
 // SERVIDOR

@@ -12,7 +12,7 @@ import 'package:http/http.dart' as http;
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 
-const String baseApiUrl = "https://proyecto-api-1vjo.onrender.com";
+const String baseApiUrl = "https://proyecto-web-4xe1.onrender.com";
 
 void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -356,7 +356,7 @@ class _InicioState extends State<Inicio> {
                   Text(
                     descripciones,
                     style: TextStyle(
-                      fontSize: tamanotexto(2),
+                      fontSize: tamanotexto(2) - 6,
                       height: 1.4,
                       fontFamily: 'Calibri',
                       color: Colors.black,
@@ -563,7 +563,8 @@ class _InicioState extends State<Inicio> {
                               Text(
                                 descripciones,
                                 style: TextStyle(
-                                  fontSize: tamanotexto(2),
+                                  fontSize: tamanotexto(
+                                      6), // en el tamaño del texto se essta usando 6 para obtener el tamaño de texto ma pequeño
                                   height: 1.4,
                                   fontFamily: 'Calibri',
                                   color: Colors.black,

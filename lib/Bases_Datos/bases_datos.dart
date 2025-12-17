@@ -32,20 +32,18 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
 
   int _index = 0; //indica que las secciones inicia en la primera
   late TabController
-  _tabController; //se usa un TabController para controlar las pestañas
+      _tabController; //se usa un TabController para controlar las pestañas
   final List<int> pestanasVistas =
       []; // en esta variable se guarda las pestañas ya vistas
 
   final List<String> textos = [
     'Una base de datos científica es una plataforma digital que almacena, organiza y permite acceder a información validada de investigaciones, como artículos, tesis y revistas especializadas. Facilita la búsqueda, consulta y citación de fuentes confiables, garantizando la calidad y veracidad del conocimiento científico.',
-
     'Una base de datos científica sirve para:\n'
         '🔍 Buscar información confiable: Permite encontrar artículos, investigaciones y documentos revisados por expertos.\n'
         '🧠 Consultar antecedentes y estado del arte: Ayuda a conocer lo que ya se ha investigado sobre un tema.\n'
         '📝 Citar correctamente: Facilita la obtención de datos bibliográficos para evitar el plagio.\n'
         '📊 Analizar tendencias científicas: Permite ver qué temas son más estudiados o citados.\n'
         '🎓 Apoyar trabajos académicos y tesis: Brinda información actualizada y verificada para sustentar investigaciones.',
-
     'El SENA ofrece una Biblioteca Virtual donde todos los aprendices e instructores pueden acceder a bases de datos académicas y científicas. Estas bases contienen libros digitales, revistas, artículos, normas técnicas, investigaciones y otros recursos confiables para apoyar la formación y los proyectos. ',
   ];
   final List<String> imagenes = [
@@ -240,33 +238,13 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
                         horizontal: 20,
                         vertical: 20,
                       ),
-                      child:
-                          esPantallaPequena
-                              ? InteractiveViewer(
-                                // 🔍 Zoom solo en pantallas pequeñas
-                                constrained: true,
-                                minScale: 1.0,
-                                maxScale: 5.0,
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      '¿Sabes qué es una base de datos científica?',
-                                      style: TextStyle(
-                                        fontSize: tamanotexto(1) + 5,
-                                        fontFamily: 'Calibri',
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                    const SizedBox(height: 20),
-                                    _buildTimelineCard(),
-                                    SizedBox(height: altura(1)),
-                                  ],
-                                ),
-                              )
-                              : Column(
-                                // 💻 En pantallas grandes sin zoom
+                      child: esPantallaPequena
+                          ? InteractiveViewer(
+                              // 🔍 Zoom solo en pantallas pequeñas
+                              constrained: true,
+                              minScale: 1.0,
+                              maxScale: 5.0,
+                              child: Column(
                                 children: [
                                   Text(
                                     '¿Sabes qué es una base de datos científica?',
@@ -278,11 +256,30 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
                                     ),
                                     textAlign: TextAlign.center,
                                   ),
-                                  const SizedBox(height: 35),
+                                  const SizedBox(height: 20),
                                   _buildTimelineCard(),
                                   SizedBox(height: altura(1)),
                                 ],
                               ),
+                            )
+                          : Column(
+                              // 💻 En pantallas grandes sin zoom
+                              children: [
+                                Text(
+                                  '¿Sabes qué es una base de datos científica?',
+                                  style: TextStyle(
+                                    fontSize: tamanotexto(1) + 5,
+                                    fontFamily: 'Calibri',
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                                const SizedBox(height: 35),
+                                _buildTimelineCard(),
+                                SizedBox(height: altura(1)),
+                              ],
+                            ),
                     ),
                   ),
 
@@ -345,50 +342,48 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
                   const SizedBox(height: 20),
                   esPantallaPequena
                       ? Column(
-                        children: [
-                          if (_index == 4)
-                            RichText(
-                              textAlign: TextAlign.justify,
-                              text: TextSpan(
-                                style: TextStyle(
-                                  fontSize: tamanotexto(2) + 4,
-                                  fontFamily: 'Calibri',
-                                  height: 1.5,
-                                  //color: Colors.black,
-                                ),
-                                children: [
-                                  TextSpan(
-                                    text: 'Antecedente 1: \n',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
+                          children: [
+                            if (_index == 4)
+                              RichText(
+                                textAlign: TextAlign.justify,
+                                text: TextSpan(
+                                  style: TextStyle(
+                                    fontSize: tamanotexto(2) + 4,
+                                    fontFamily: 'Calibri',
+                                    height: 1.5,
+                                    //color: Colors.black,
+                                  ),
+                                  children: [
+                                    TextSpan(
+                                      text: 'Antecedente 1: \n',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
-                                  ),
-                                  TextSpan(
-                                    text:
-                                        'En 2020, María Pérez realizó un estudio sobre el uso del celular en estudiantes de secundaria. Su investigación mostró que los jóvenes pasan en promedio 4 horas al día usando redes sociales. '
-                                        'Este estudio es importante porque ayuda a entender cómo el uso del celular afecta el tiempo de estudio de los estudiantes.\n',
-                                  ),
-
-                                  TextSpan(
-                                    text:
-                                        'Este es un ejemplo básico que muestra:\n• Quién hizo el estudio\n• De qué trató\n• Qué encontró\n• Por qué es relevante para otra investigación.',
-                                  ),
-                                ],
+                                    TextSpan(
+                                      text:
+                                          'En 2020, María Pérez realizó un estudio sobre el uso del celular en estudiantes de secundaria. Su investigación mostró que los jóvenes pasan en promedio 4 horas al día usando redes sociales. '
+                                          'Este estudio es importante porque ayuda a entender cómo el uso del celular afecta el tiempo de estudio de los estudiantes.\n',
+                                    ),
+                                    TextSpan(
+                                      text:
+                                          'Este es un ejemplo básico que muestra:\n• Quién hizo el estudio\n• De qué trató\n• Qué encontró\n• Por qué es relevante para otra investigación.',
+                                    ),
+                                  ],
+                                ),
                               ),
+                            Text(
+                              textos[_index],
+                              style: TextStyle(
+                                fontSize: tamanotexto(2) + 4,
+                                fontFamily: 'Calibri',
+                                height: 1.5,
+                              ),
+                              textAlign: TextAlign.justify,
                             ),
-                          Text(
-                            textos[_index],
-                            style: TextStyle(
-                              fontSize: tamanotexto(2) + 4,
-                              fontFamily: 'Calibri',
-                              height: 1.5,
-                            ),
-                            textAlign: TextAlign.justify,
-                          ),
+                            const SizedBox(height: 10),
 
-                          const SizedBox(height: 10),
-
-                          /*if (_index == 4)
+                            /*if (_index == 4)
                             RichText(
                               textAlign: TextAlign.justify,
                               text: TextSpan(
@@ -415,127 +410,125 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
                                 ],
                               ),
                             ),*/
-                          if (_index == 2)
-                            RichText(
-                              textAlign: TextAlign.justify,
-                              text: TextSpan(
-                                style: TextStyle(
-                                  fontSize: tamanotexto(2) + 4,
-                                  fontFamily: 'Calibri',
-                                  height: 1.5,
-                                  //color: Colors.black,
-                                ),
-                                children: [
-                                  TextSpan(
-                                    text: 'Para acceder:\n',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: obtenercolor('Color_Principal'),
-                                      fontSize: tamanotexto(1) - 10,
-                                    ),
+                            if (_index == 2)
+                              RichText(
+                                textAlign: TextAlign.justify,
+                                text: TextSpan(
+                                  style: TextStyle(
+                                    fontSize: tamanotexto(2) + 4,
+                                    fontFamily: 'Calibri',
+                                    height: 1.5,
+                                    //color: Colors.black,
                                   ),
-                                  TextSpan(text: 'Ingresa a 👉'),
-                                  TextSpan(
-                                    text:
-                                        ' https://biblioteca.sena.edu.co/paginas/bases.html\n',
-                                    style: TextStyle(
-                                      color: Colors.blue,
-                                      //decoration: TextDecoration.underline,
-                                    ),
-                                    recognizer:
-                                        TapGestureRecognizer()
-                                          ..onTap = () {
-                                            abrirLink(
-                                              'https://biblioteca.sena.edu.co/paginas/bases.html',
-                                            );
-                                          },
-                                  ),
-                                  TextSpan(text: 'Allí verás dos tipos:.\n'),
-                                  TextSpan(
-                                    text: 'Bases suscritas: ',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  TextSpan(
-                                    text:
-                                        'el SENA paga la licencia y puedes entrar con usuario institucional.\n',
-                                  ),
-                                  TextSpan(
-                                    text: 'Bases libres: ',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  TextSpan(
-                                    text:
-                                        'disponibles para todos sin registro.',
-                                  ),
-                                ],
-                              ),
-                            ),
-                          const SizedBox(height: 20),
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(12),
-                            child: Image.asset(
-                              imagenes[_index],
-                              height: alturaImagenPequena[_index],
-                              fit: BoxFit.contain,
-                            ),
-                          ),
-                        ],
-                      )
-                      : Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Expanded(
-                            flex: 2,
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 20),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  if (_index == 4)
-                                    RichText(
-                                      textAlign: TextAlign.justify,
-                                      text: TextSpan(
-                                        style: TextStyle(
-                                          fontSize: tamanotexto(2) + 4,
-                                          fontFamily: 'Calibri',
-                                          height: 1.5,
-                                          //color: Colors.black,
-                                        ),
-                                        children: [
-                                          TextSpan(
-                                            text: 'Antecedente 1: \n',
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                          TextSpan(
-                                            text:
-                                                'En 2020, María Pérez realizó un estudio sobre el uso del celular en estudiantes de secundaria. Su investigación mostró que los jóvenes pasan en promedio 4 horas al día usando redes sociales. '
-                                                'Este estudio es importante porque ayuda a entender cómo el uso del celular afecta el tiempo de estudio de los estudiantes.\n',
-                                          ),
-
-                                          TextSpan(
-                                            text:
-                                                'Este es un ejemplo básico que muestra:\n• Quién hizo el estudio\n• De qué trató\n• Qué encontró\n• Por qué es relevante para otra investigación.',
-                                          ),
-                                        ],
+                                  children: [
+                                    TextSpan(
+                                      text: 'Para acceder:\n',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: obtenercolor('Color_Principal'),
+                                        fontSize: tamanotexto(1) - 10,
                                       ),
                                     ),
-                                  Text(
-                                    textos[_index],
-                                    style: TextStyle(
-                                      fontSize: tamanotexto(2) + 4,
-                                      fontFamily: 'Calibri',
-                                      height: 1.5,
+                                    TextSpan(text: 'Ingresa a 👉'),
+                                    TextSpan(
+                                      text:
+                                          ' https://biblioteca.sena.edu.co/paginas/bases.html\n',
+                                      style: TextStyle(
+                                        color: Colors.blue,
+                                        //decoration: TextDecoration.underline,
+                                      ),
+                                      recognizer: TapGestureRecognizer()
+                                        ..onTap = () {
+                                          abrirLink(
+                                            'https://biblioteca.sena.edu.co/paginas/bases.html',
+                                          );
+                                        },
                                     ),
-                                    textAlign: TextAlign.justify,
-                                  ),
-                                  const SizedBox(height: 10),
-                                  /*if (_index == 4)
+                                    TextSpan(text: 'Allí verás dos tipos:.\n'),
+                                    TextSpan(
+                                      text: 'Bases suscritas: ',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text:
+                                          'el SENA paga la licencia y puedes entrar con usuario institucional.\n',
+                                    ),
+                                    TextSpan(
+                                      text: 'Bases libres: ',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text:
+                                          'disponibles para todos sin registro.',
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            const SizedBox(height: 20),
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(12),
+                              child: Image.asset(
+                                imagenes[_index],
+                                height: alturaImagenPequena[_index],
+                                fit: BoxFit.contain,
+                              ),
+                            ),
+                          ],
+                        )
+                      : Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              flex: 2,
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 20),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    if (_index == 4)
+                                      RichText(
+                                        textAlign: TextAlign.justify,
+                                        text: TextSpan(
+                                          style: TextStyle(
+                                            fontSize: tamanotexto(2) + 4,
+                                            fontFamily: 'Calibri',
+                                            height: 1.5,
+                                            //color: Colors.black,
+                                          ),
+                                          children: [
+                                            TextSpan(
+                                              text: 'Antecedente 1: \n',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            TextSpan(
+                                              text:
+                                                  'En 2020, María Pérez realizó un estudio sobre el uso del celular en estudiantes de secundaria. Su investigación mostró que los jóvenes pasan en promedio 4 horas al día usando redes sociales. '
+                                                  'Este estudio es importante porque ayuda a entender cómo el uso del celular afecta el tiempo de estudio de los estudiantes.\n',
+                                            ),
+                                            TextSpan(
+                                              text:
+                                                  'Este es un ejemplo básico que muestra:\n• Quién hizo el estudio\n• De qué trató\n• Qué encontró\n• Por qué es relevante para otra investigación.',
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    Text(
+                                      textos[_index],
+                                      style: TextStyle(
+                                        fontSize: tamanotexto(2) + 4,
+                                        fontFamily: 'Calibri',
+                                        height: 1.5,
+                                      ),
+                                      textAlign: TextAlign.justify,
+                                    ),
+                                    const SizedBox(height: 10),
+                                    /*if (_index == 4)
                                     RichText(
                                       textAlign: TextAlign.justify,
                                       text: TextSpan(
@@ -563,91 +556,90 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
                                         ],
                                       ),
                                     ),*/
-                                  if (_index == 2)
-                                    RichText(
-                                      textAlign: TextAlign.justify,
-                                      text: TextSpan(
-                                        style: TextStyle(
-                                          fontSize: tamanotexto(2) + 4,
-                                          fontFamily: 'Calibri',
-                                          height: 1.5,
-                                          color: Colors.black,
-                                        ),
-                                        children: [
-                                          TextSpan(
-                                            text: 'Para acceder:\n',
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              color: obtenercolor(
-                                                'Color_Principal',
+                                    if (_index == 2)
+                                      RichText(
+                                        textAlign: TextAlign.justify,
+                                        text: TextSpan(
+                                          style: TextStyle(
+                                            fontSize: tamanotexto(2) + 4,
+                                            fontFamily: 'Calibri',
+                                            height: 1.5,
+                                            color: Colors.black,
+                                          ),
+                                          children: [
+                                            TextSpan(
+                                              text: 'Para acceder:\n',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                color: obtenercolor(
+                                                  'Color_Principal',
+                                                ),
+                                                fontSize: tamanotexto(1) - 10,
                                               ),
-                                              fontSize: tamanotexto(1) - 10,
                                             ),
-                                          ),
-                                          TextSpan(text: 'Ingresa a 👉'),
-                                          TextSpan(
-                                            text:
-                                                ' https://biblioteca.sena.edu.co/paginas/bases.html\n',
-                                            style: TextStyle(
-                                              color: Colors.blue,
-                                              //decoration: TextDecoration.underline,
+                                            TextSpan(text: 'Ingresa a 👉'),
+                                            TextSpan(
+                                              text:
+                                                  ' https://biblioteca.sena.edu.co/paginas/bases.html\n',
+                                              style: TextStyle(
+                                                color: Colors.blue,
+                                                //decoration: TextDecoration.underline,
+                                              ),
+                                              recognizer: TapGestureRecognizer()
+                                                ..onTap = () {
+                                                  abrirLink(
+                                                    'https://biblioteca.sena.edu.co/paginas/bases.html',
+                                                  );
+                                                },
                                             ),
-                                            recognizer:
-                                                TapGestureRecognizer()
-                                                  ..onTap = () {
-                                                    abrirLink(
-                                                      'https://biblioteca.sena.edu.co/paginas/bases.html',
-                                                    );
-                                                  },
-                                          ),
-                                          TextSpan(
-                                            text: 'Allí verás dos tipos:.\n',
-                                          ),
-                                          TextSpan(
-                                            text: 'Bases suscritas: ',
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
+                                            TextSpan(
+                                              text: 'Allí verás dos tipos:.\n',
                                             ),
-                                          ),
-                                          TextSpan(
-                                            text:
-                                                'el SENA paga la licencia y puedes entrar con usuario institucional.\n',
-                                          ),
-                                          TextSpan(
-                                            text: 'Bases libres: ',
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
+                                            TextSpan(
+                                              text: 'Bases suscritas: ',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                              ),
                                             ),
-                                          ),
-                                          TextSpan(
-                                            text:
-                                                'disponibles para todos sin registro.',
-                                          ),
-                                        ],
+                                            TextSpan(
+                                              text:
+                                                  'el SENA paga la licencia y puedes entrar con usuario institucional.\n',
+                                            ),
+                                            TextSpan(
+                                              text: 'Bases libres: ',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            TextSpan(
+                                              text:
+                                                  'disponibles para todos sin registro.',
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          Flexible(
-                            flex: 0,
-                            child: Align(
-                              alignment: Alignment.topRight,
-                              // Alinear imagen a la derecha.
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(12),
-                                child: Image.asset(
-                                  imagenes[_index], // Imagen dinámica.
-                                  height: alturaImagengrande[_index],
-                                  fit: BoxFit.contain,
+                                  ],
                                 ),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                  if (_index == 2)
+                            Flexible(
+                              flex: 0,
+                              child: Align(
+                                alignment: Alignment.topRight,
+                                // Alinear imagen a la derecha.
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(12),
+                                  child: Image.asset(
+                                    imagenes[_index], // Imagen dinámica.
+                                    height: alturaImagengrande[_index],
+                                    fit: BoxFit.contain,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                  if (_index == 7)
                     Center(
                       child: SizedBox(
                         child: Column(
@@ -752,7 +744,6 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
                   ProgresoGlobal.marcarVisto(2);
                 }
               },
-
               icon: Icon(
                 Icons.arrow_forward,
                 color: obtenercolor('Color_Texto_Principal'),
@@ -781,8 +772,7 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
       context: context,
       isScrollControlled: true,
       constraints: BoxConstraints(
-        maxHeight:
-            MediaQuery.of(context).size.height *
+        maxHeight: MediaQuery.of(context).size.height *
             0.3, // altura máxima de la hoja modal
         minHeight: 0, // altura mínima de la hoja modal
         maxWidth:
@@ -862,22 +852,20 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
                     children: [
                       Container(
                         decoration: BoxDecoration(
-                          color:
-                              (isSelected || isVisited)
-                                  ? obtenercolor(
-                                    'Color_Principal',
-                                  ).withOpacity(0.2)
-                                  : item['color'].withOpacity(0.2),
+                          color: (isSelected || isVisited)
+                              ? obtenercolor(
+                                  'Color_Principal',
+                                ).withOpacity(0.2)
+                              : item['color'].withOpacity(0.2),
                           shape: BoxShape.circle,
                         ),
                         padding: const EdgeInsets.all(12),
                         child: Icon(
                           item['icon'],
                           size: tamanotexto(3),
-                          color:
-                              (isSelected || isVisited)
-                                  ? obtenercolor('Color_Principal')
-                                  : item['color'],
+                          color: (isSelected || isVisited)
+                              ? obtenercolor('Color_Principal')
+                              : item['color'],
                         ),
                       ),
                       const SizedBox(height: 6),
