@@ -931,7 +931,7 @@ class _BusquedasState extends State<Busquedas> with TickerProviderStateMixin {
                     // ignore: avoid_print
                     print(" Progreso sumado → ID: $idReal");
 
-                    await guardarProgresoEnAPI();
+                    await guardarProgresoEnAPI(idReal);
                   }
                 } else {
                   Navigator.push(

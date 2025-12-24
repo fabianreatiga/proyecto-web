@@ -156,10 +156,10 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
       drawer: Menu(
         currentScreen: 'Titulo',
         progreso: ProgresoGlobal.porcentaje,
-      ), // Een este bloque de codigo se usa para mostrar y navegar por el modal menu
+      ), // En este bloque de codigo se usa para mostrar y navegar por el modal menu
       body: Stack(
         children: [
-          // 🌄 Fondo superior izquierda decorativo
+          // Fondo superior izquierda decorativo
           Positioned(
             top: 0,
             left: 0,
@@ -174,7 +174,7 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
             ),
           ),
 
-          // 🌄 Fondo superior derecha decorativo
+          // Fondo superior derecha decorativo
           Positioned(
             top: 0,
             right: 0,
@@ -189,7 +189,7 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
             ),
           ),
 
-          // 🌄 Fondo inferior izquierda
+          // Fondo inferior izquierda
           Positioned(
             bottom: 90,
             left: 0,
@@ -204,7 +204,7 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
             ),
           ),
 
-          // 🌄 Fondo inferior derecha
+          // Fondo inferior derecha
           Positioned(
             bottom: 90,
             right: 0,
@@ -219,7 +219,7 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
             ),
           ),
 
-          // 📜 Contenido principal
+          // Contenido principal
           SafeArea(
             child: Container(
               padding: EdgeInsets.zero,
@@ -234,7 +234,7 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
                       ),
                       child: esPantallaPequena
                           ? InteractiveViewer(
-                              // 🔍 Zoom solo en pantallas pequeñas
+                              // Zoom solo en pantallas pequeñas
                               constrained: true,
                               minScale: 1.0,
                               maxScale: 5.0,
@@ -257,7 +257,7 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
                               ),
                             )
                           : Column(
-                              // 💻 En pantallas grandes sin zoom
+                              // En pantallas grandes sin zoom
                               children: [
                                 Text(
                                   '¿Sabes cómo crear un Título?',
@@ -441,29 +441,41 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
   }
 
   Widget _buildNavigation() {
+    // Widget que construye la barra de navegación inferior
+    // con los botones de Anterior y Siguiente
     return Container(
+      // Altura fija del contenedor de navegación
       height: 85,
+      // Espaciado interno horizontal y vertical
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+      // Fondo transparente para no interferir con el diseño
       color: Colors.transparent,
       child: Row(
+        // Se distribuyen los botones a los extremos
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          // Botón "Anterior", solo se muestra si no estamos en la primera sección
           if (_index > 0)
             SizedBox(
               width: 150,
               height: 45,
               child: ElevatedButton.icon(
+                // Acción al presionar el botón Anterior
                 onPressed: () {
+                  // Se cambia a la pestaña anterior
                   _tabController.animateTo(_index - 1);
+                  // Se actualiza la sección actual
                   setState(() {
                     _currentseccion = _index - 1;
                   });
                 },
+                // Ícono de flecha hacia atrás
                 icon: Icon(
                   Icons.arrow_back,
                   color: obtenercolor('Color_Texto_Principal'),
                   size: tamanotexto(2),
                 ),
+                // Texto del botón
                 label: Text(
                   'Anterior',
                   style: TextStyle(
@@ -471,6 +483,7 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
                     fontSize: tamanotexto(2),
                   ),
                 ),
+                // Estilo del botón
                 style: ElevatedButton.styleFrom(
                   backgroundColor: obtenercolor('Color_Principal'),
                   padding: EdgeInsets.zero,
@@ -478,31 +491,44 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
               ),
             )
           else
+            // Si es la primera sección, se deja un espacio vacío
             const SizedBox(),
+          // Botón "Siguiente" o "Adelante"
           SizedBox(
             width: 150,
             height: 45,
             child: ElevatedButton.icon(
+              // Acción al presionar el botón
               onPressed: () async {
+                // Si no estamos en la última sección
                 if (_index < secciones.length - 1) {
+                  // Se avanza a la siguiente pestaña
                   _tabController.animateTo(_index + 1);
 
+                  // Se actualiza la sección actual
                   setState(() {
                     _currentseccion = _index + 1;
                   });
 
+                  // Se calcula el ID real de progreso
                   int idReal = ID_BASE_PROGRESO + _index + 1;
 
+                  // Se valida si la pestaña ya fue marcada como vista
                   if (!ProgresoGlobal.pestanasVistas.contains(idReal)) {
+                    // Se agrega la pestaña a la lista de vistas
                     ProgresoGlobal.pestanasVistas.add(idReal);
+                    // Se guarda el progreso de forma local
                     await ProgresoGlobal.guardarLocal();
 
+                    // Mensaje de depuración en consola
                     // ignore: avoid_print
                     print(" Progreso sumado → ID: $idReal");
 
-                    await guardarProgresoEnAPI();
+                    // Se guarda el progreso en la API
+                    await guardarProgresoEnAPI(idReal);
                   }
                 } else {
+                  // Si ya es la última sección, se navega a la siguiente pantalla
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -510,14 +536,17 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
                     ),
                   );
 
+                  // Se marca el progreso final correspondiente
                   ProgresoGlobal.marcarVisto(2);
                 }
               },
+              // Ícono de flecha hacia adelante
               icon: Icon(
                 Icons.arrow_forward,
                 color: obtenercolor('Color_Texto_Principal'),
                 size: tamanotexto(2),
               ),
+              // Texto dinámico del botón según la sección actual
               label: Text(
                 _index < secciones.length - 1 ? 'Siguiente' : 'Adelante',
                 style: TextStyle(
@@ -525,6 +554,7 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
                   fontSize: tamanotexto(2),
                 ),
               ),
+              // Estilo del botón
               style: ElevatedButton.styleFrom(
                 backgroundColor: obtenercolor('Color_Principal'),
                 padding: EdgeInsets.zero,
@@ -537,26 +567,26 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
   }
 
   void modalmenu(BuildContext context) {
+    // Muestra un menú modal en la parte inferior de la pantalla
     showModalBottomSheet(
       context: context,
-      isScrollControlled: true,
+      isScrollControlled: true, // Permite controlar la altura del modal
       constraints: BoxConstraints(
-        maxHeight: MediaQuery.of(context).size.height *
-            0.3, // altura máxima de la hoja modal
-        minHeight: 0, // altura mínima de la hoja modal
-        maxWidth:
-            MediaQuery.of(context).size.width, // ancho máximo de la hoja modal
-        minWidth: 0, // ancho mínimo de la hoja modal
+        // El modal ocupa máximo el 30% de la altura de la pantalla
+        maxHeight: MediaQuery.of(context).size.height * 0.3,
+        maxWidth: MediaQuery.of(context).size.width,
       ),
       backgroundColor: Colors.transparent,
       builder: (x) {
         return Align(
           alignment: Alignment.bottomCenter,
           child: Container(
+            // Estilo visual del modal
             decoration: BoxDecoration(
               color: obtenercolor('Color_Fondo'),
               borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
             ),
+            // Contenido principal del menú
             child: _buildGridMenu(context),
           ),
         );
@@ -565,27 +595,33 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
   }
 
   Widget _buildGridMenu(BuildContext context) {
+    // Se obtiene el tamaño de pantalla
     final double screenWidth = MediaQuery.of(context).size.width;
+    // Se valida si es pantalla grande (web o tablets)
     final bool esPantallaGrande = kIsWeb || screenWidth > 600;
 
+    // Controlador para el scroll horizontal
     final ScrollController scrollController = ScrollController();
+
+    // Tamaño dinámico de los ítems del menú
     final double itemWidth = esPantallaGrande ? 180 : 120;
-    final double itemSpacing = 24; // margen horizontal * 2 (12+12)
+    final double itemSpacing = 24;
+
+    // Se calcula el ancho total del contenido
     final double totalContentWidth =
         (itemWidth + itemSpacing) * menuItems.length;
 
+    // Padding lateral para centrar los ítems si sobra espacio
     double sidePadding = 0;
     if (totalContentWidth < screenWidth) {
       sidePadding = (screenWidth - totalContentWidth) / 2;
     }
 
     return SizedBox(
-      height: 190,
+      height: 190, // Altura fija del menú
       child: Scrollbar(
         controller: scrollController,
         thumbVisibility: true,
-        trackVisibility: true,
-        interactive: true,
         child: ListView.builder(
           controller: scrollController,
           scrollDirection: Axis.horizontal,
@@ -593,6 +629,8 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
           padding: EdgeInsets.symmetric(horizontal: sidePadding),
           itemBuilder: (context, index) {
             final item = menuItems[index];
+
+            // Se valida si la pestaña fue visitada o está seleccionada
             final bool isVisited = pestanasVistas.contains(item['indice']);
             final bool isSelected = _tabController.index == item['indice'];
 
@@ -601,17 +639,19 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
               child: Container(
                 margin: const EdgeInsets.symmetric(horizontal: 12),
                 child: GestureDetector(
-                  onTap: () {
+                  onTap: () async {
+                    await guardarProgresoEnAPI(item['id']);
+                    // Cierra el modal y navega a la pestaña seleccionada
                     Navigator.pop(context);
                     final nuevoIndex = item['indice'];
                     if (nuevoIndex != null) {
                       _tabController.animateTo(nuevoIndex);
                       setState(() {
                         _index = nuevoIndex;
+                        // Se marca la pestaña como vista
                         if (!pestanasVistas.contains(nuevoIndex)) {
                           pestanasVistas.add(nuevoIndex);
                           ProgresoGlobal.marcarVisto(item['id']);
-                          //_progresoContador++;
                         }
                       });
                     }
@@ -619,12 +659,11 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      // Icono del menú con color dinámico
                       Container(
                         decoration: BoxDecoration(
                           color: (isSelected || isVisited)
-                              ? obtenercolor(
-                                  'Color_Principal',
-                                ).withOpacity(0.2)
+                              ? obtenercolor('Color_Principal').withOpacity(0.2)
                               : item['color'].withOpacity(0.2),
                           shape: BoxShape.circle,
                         ),
@@ -638,6 +677,7 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
                         ),
                       ),
                       const SizedBox(height: 6),
+                      // Texto descriptivo del ítem
                       Text(
                         item['text'],
                         style: TextStyle(fontSize: tamanotexto(2)),

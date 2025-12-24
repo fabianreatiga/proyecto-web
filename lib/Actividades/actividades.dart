@@ -505,7 +505,7 @@ class _ActividadState extends State<Actividad> with TickerProviderStateMixin {
                     ProgresoGlobal.pestanasVistas.add(idReal);
                     await ProgresoGlobal.guardarLocal();
 
-                    await guardarProgresoEnAPI();
+                    await guardarProgresoEnAPI(idReal);
                   }
                 } else {
                   Navigator.push(

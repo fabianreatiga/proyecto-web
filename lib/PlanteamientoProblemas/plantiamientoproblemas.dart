@@ -189,18 +189,34 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
   @override
   void initState() {
     super.initState();
+    // Se ejecuta una sola vez cuando se abre la pantalla.
 
     pestanasVistas.add(0);
-    // Marca la primera pestaña vista con el ID base definido:
+    // Se marca la primera sección como vista porque es la que se muestra al iniciar.
+
     ProgresoGlobal.marcarVisto(ID_BASE_PROGRESO + 0);
+    // Se registra la primera sección en el progreso general del aplicativo.
 
     _tabController = TabController(length: secciones.length, vsync: this);
+    // Controla el cambio entre las diferentes secciones.
+
     _tabController.addListener(() {
+      // Detecta cuando el usuario cambia de sección.
+
       if (!_tabController.indexIsChanging) {
+        // Se ejecuta solo cuando el cambio de sección termina.
+
         setState(() => _index = _tabController.index);
+        // Actualiza la sección actual que se muestra en pantalla.
+
         if (!pestanasVistas.contains(_tabController.index)) {
+          // Verifica si la sección aún no ha sido visitada.
+
           pestanasVistas.add(_tabController.index);
+          // Guarda la sección como vista.
+
           ProgresoGlobal.marcarVisto(ID_BASE_PROGRESO + _tabController.index);
+          // Actualiza el progreso del usuario.
         }
       }
     });
@@ -208,15 +224,20 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
 
   @override
   Widget build(BuildContext context) {
+    // Se verifica si la pantalla es pequeña (celular o tablet)
     final bool esPantallaPequena =
         MediaQuery.of(context).size.shortestSide < 650;
 
     return Scaffold(
+      // Color de fondo general de la pantalla
       backgroundColor: obtenercolor('Color_Fondo'),
+
+      // Barra superior personalizada con progreso y menú
       appBar: Appbar2(
         nombre: '',
         progreso: ProgresoGlobal.progreso,
         actions: [
+          // Botón para abrir el menú inferior de secciones
           TextButton.icon(
             onPressed: () {
               modalmenu(context);
@@ -236,13 +257,16 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
           ),
         ],
       ),
+
+      // Menú lateral (Drawer) con control de progreso
       drawer: Menu(
         currentScreen: 'PlantiamientoProblema',
         progreso: ProgresoGlobal.porcentaje,
       ),
+
       body: Stack(
         children: [
-          // 🌄 Fondo superior izquierda decorativo
+          // Imagen decorativa superior derecha
           Positioned(
             top: 0,
             right: 0,
@@ -251,13 +275,12 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
               child: Image.asset(
                 'assets/PlanteamientoProblema/Fondo_superior_Derecha.png',
                 width: esPantallaPequena ? 120 : 250,
-                //MediaQuery.of(context).size.width * 0.18,
                 fit: BoxFit.contain,
               ),
             ),
           ),
 
-          // 🌄 Fondo superior derecha decorativo
+          // Imagen decorativa superior izquierda
           Positioned(
             top: 0,
             left: 0,
@@ -266,13 +289,12 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
               child: Image.asset(
                 'assets/PlanteamientoProblema/Fondo_Supeior_Izquierda.png',
                 width: esPantallaPequena ? 120 : 250,
-                //height: MediaQuery.of(context).size.width * 0.18,
                 fit: BoxFit.contain,
               ),
             ),
           ),
 
-          // 🌄 Fondo inferior izquierda
+          // Imagen decorativa inferior izquierda
           Positioned(
             bottom: 90,
             left: 0,
@@ -281,13 +303,12 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
               child: Image.asset(
                 'assets/PlanteamientoProblema/Fondo_inferior_Izquierda.png',
                 width: esPantallaPequena ? 120 : 250,
-                //height: MediaQuery.of(context).size.width * 0.18,
                 fit: BoxFit.contain,
               ),
             ),
           ),
 
-          // 🌄 Fondo inferior derecha
+          // Imagen decorativa inferior derecha
           Positioned(
             bottom: 90,
             right: 0,
@@ -296,19 +317,18 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
               child: Image.asset(
                 'assets/PlanteamientoProblema/Fondo_Inferior_Derecha.png',
                 width: esPantallaPequena ? 120 : 250,
-                //height: MediaQuery.of(context).size.width * 0.18,
                 fit: BoxFit.contain,
               ),
             ),
           ),
 
-          // 📜 Contenido principal
+          // Contenido principal de la pantalla
           SafeArea(
             child: Container(
               padding: EdgeInsets.zero,
               child: Column(
                 children: [
-                  // Scroll del contenido
+                  // Área desplazable del contenido
                   Expanded(
                     child: SingleChildScrollView(
                       padding: const EdgeInsets.symmetric(
@@ -317,12 +337,13 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                       ),
                       child: esPantallaPequena
                           ? InteractiveViewer(
-                              // 🔍 Zoom solo en pantallas pequeñas
+                              // Permite hacer zoom solo en pantallas pequeñas
                               constrained: true,
                               minScale: 1.0,
                               maxScale: 5.0,
                               child: Column(
                                 children: [
+                                  // Título principal del módulo
                                   Text(
                                     '¿Sabes cómo crear un Planteamiento del Problema?',
                                     style: TextStyle(
@@ -334,13 +355,14 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                                     textAlign: TextAlign.center,
                                   ),
                                   const SizedBox(height: 20),
+                                  // Tarjeta con el contenido de la sección actual
                                   _buildTimelineCard(),
                                   SizedBox(height: altura(1)),
                                 ],
                               ),
                             )
                           : Column(
-                              // 💻 En pantallas grandes sin zoom
+                              // En pantallas grandes no se usa zoom
                               children: [
                                 Text(
                                   '¿Sabes cómo crear un Planteamiento del Problema?',
@@ -360,7 +382,7 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                     ),
                   ),
 
-                  // 🔘 Navegación inferior
+                  // Barra de navegación inferior (Anterior / Siguiente)
                   _buildNavigation(),
                 ],
               ),
@@ -374,18 +396,25 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
   Widget _buildTimelineCard() {
     return LayoutBuilder(
       builder: (context, constraints) {
+        // Detecta si la pantalla es pequeña o grande
         bool esPantallaPequena = constraints.maxWidth < 1000;
+
+        // Alturas de imágenes según el tamaño de pantalla
         final alturaImagenPequena = Pequena(context);
         final alturaImagengrande = ngrande(context);
+
         return Card(
+          // Tarjeta principal del contenido
           color: obtenercolor('Color_Fondo'),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30),
           ),
           elevation: 4,
+
           child: Padding(
             padding: const EdgeInsets.all(24),
             child: Container(
+              // Fondo decorativo interno
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage('assets/fondo_textura_2.png'),
@@ -395,9 +424,11 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                   fit: BoxFit.none,
                 ),
               ),
+
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  // Título de la sección actual
                   Text(
                     secciones[_index],
                     style: TextStyle(
@@ -408,12 +439,16 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                       backgroundColor: Colors.white,
                     ),
                   ),
+
                   const SizedBox(height: 20),
+
+                  // ===== VISTA PARA PANTALLAS PEQUEÑAS =====
                   esPantallaPequena
                       ? Center(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
+                              // Ejemplo 5W1H
                               if (_index == 3)
                                 RichText(
                                   textAlign: TextAlign.justify,
@@ -422,79 +457,64 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                                       fontSize: tamanotexto(2) + 4,
                                       fontFamily: 'Calibri',
                                       height: 1.5,
-                                      //color: Colors.black,
                                     ),
                                     children: [
                                       TextSpan(text: 'Ejemplos: '),
                                       TextSpan(
                                         text: 'Qué (WHAT): ',
                                         style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                                            fontWeight: FontWeight.bold),
                                       ),
                                       TextSpan(
                                         text:
-                                            ' Hay personas que sufren de los ojos, conjuntivitis alergénica y llevan aplicándose '
-                                            'medicamento hace mucho tiempo sin curarse. ',
+                                            ' Hay personas que sufren de los ojos, conjuntivitis alergénica y llevan aplicándose medicamento hace mucho tiempo sin curarse. ',
                                       ),
-                                      //TextSpan(text: 'Porqué '),
                                       TextSpan(
                                         text: 'Porqué (WHY): ',
                                         style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                                            fontWeight: FontWeight.bold),
                                       ),
                                       TextSpan(
                                         text:
-                                            'Virosis de conjuntivitis, cuando hay altas tasas de polución y cuando se usa '
-                                            'mucho los celulares o pantallas. ',
+                                            'Virosis de conjuntivitis, cuando hay altas tasas de polución y cuando se usa mucho los celulares o pantallas. ',
                                       ),
-                                      //TextSpan(text: ' Cuando '),
                                       TextSpan(
                                         text: 'Cuando (WHEN): ',
                                         style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                                            fontWeight: FontWeight.bold),
                                       ),
                                       TextSpan(
                                         text:
-                                            'Virosis de conjuntivitis, cuando hay altas tasas de polución y cuando se usa '
-                                            'mucho los celulares o pantallas. ',
+                                            'Virosis de conjuntivitis, cuando hay altas tasas de polución y cuando se usa mucho los celulares o pantallas. ',
                                       ),
-                                      //TextSpan(text: 'Dónde '),
                                       TextSpan(
                                         text: 'Dónde (WHERE): ',
                                         style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                                            fontWeight: FontWeight.bold),
                                       ),
                                       TextSpan(
                                         text:
-                                            'Ciudades con mayor polución, en el campo durante las quemas '
-                                            'y preparación, cuando cocina con leña, en personal de obra constructivo. En niños de etapa temprana. ',
+                                            'Ciudades con mayor polución, en el campo durante las quemas y preparación, cuando cocina con leña, en personal de obra constructivo. En niños de etapa temprana. ',
                                       ),
-                                      //TextSpan(text: 'Quién '),
                                       TextSpan(
                                         text: 'Quién (WHO): ',
                                         style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                                            fontWeight: FontWeight.bold),
                                       ),
                                       TextSpan(
                                         text:
-                                            'Personal de construcción, agricultores, niños, madres cabeza de familia que cocinan con '
-                                            'leña, adultos mayores, personas que trabajan muchas horas desde la pantalla. ',
+                                            'Personal de construcción, agricultores, niños, madres cabeza de familia que cocinan con leña, adultos mayores, personas que trabajan muchas horas desde la pantalla. ',
                                       ),
-                                      //TextSpan(text: 'Cómo '),
                                       TextSpan(
                                         text: 'Cómo (HOW): ',
                                         style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                                            fontWeight: FontWeight.bold),
                                       ),
                                     ],
                                   ),
                                 ),
+
+                              // Esquema de redacción (producto)
                               if (_index == 5)
                                 RichText(
                                   textAlign: TextAlign.justify,
@@ -503,7 +523,6 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                                       fontSize: tamanotexto(2) + 4,
                                       fontFamily: 'Calibri',
                                       height: 1.5,
-                                      //color: Colors.black,
                                     ),
                                     children: [
                                       TextSpan(
@@ -513,33 +532,31 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                                       TextSpan(
                                         text: '[Producto o servicio] ',
                                         style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                                            fontWeight: FontWeight.bold),
                                       ),
                                       TextSpan(text: ' no está cumpliendo '),
                                       TextSpan(
                                         text: '[con estos objetivos],',
                                         style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                                            fontWeight: FontWeight.bold),
                                       ),
                                       TextSpan(text: ' lo cual está causando '),
                                       TextSpan(
                                         text: '[efecto negativo] ',
                                         style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                                            fontWeight: FontWeight.bold),
                                       ),
                                       TextSpan(text: ' a nuestro '),
                                       TextSpan(
                                         text: '[impacto en el negocio].',
                                         style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                                            fontWeight: FontWeight.bold),
                                       ),
                                     ],
                                   ),
                                 ),
+
+                              // Esquema de redacción (usuario)
                               if (_index == 6)
                                 RichText(
                                   textAlign: TextAlign.justify,
@@ -548,7 +565,6 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                                       fontSize: tamanotexto(2) + 4,
                                       fontFamily: 'Calibri',
                                       height: 1.5,
-                                      //color: Colors.black,
                                     ),
                                     children: [
                                       TextSpan(
@@ -558,41 +574,38 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                                       TextSpan(
                                         text: '[Tipo de usuario] ',
                                         style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                                            fontWeight: FontWeight.bold),
                                       ),
                                       TextSpan(text: 'intenta '),
                                       TextSpan(
                                         text:
                                             '[descripción de su necesidad u objetivo] ',
                                         style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                                            fontWeight: FontWeight.bold),
                                       ),
                                       TextSpan(text: 'pero '),
                                       TextSpan(
                                         text: '[barrera] ',
                                         style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                                            fontWeight: FontWeight.bold),
                                       ),
                                       TextSpan(text: 'porque '),
                                       TextSpan(
                                         text: '[hallazgo] ',
                                         style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                                            fontWeight: FontWeight.bold),
                                       ),
                                       TextSpan(text: 'lo cual le hace sentir '),
                                       TextSpan(
                                         text: '[efecto negativo].',
                                         style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                                            fontWeight: FontWeight.bold),
                                       ),
                                     ],
                                   ),
                                 ),
+
+                              // Texto general de la sección
                               Text(
                                 textos[_index],
                                 style: TextStyle(
@@ -602,7 +615,10 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                                 ),
                                 textAlign: TextAlign.justify,
                               ),
+
                               const SizedBox(height: 20),
+
+                              // Imagen principal
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(12),
                                 child: Image.asset(
@@ -611,6 +627,8 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                                   fit: BoxFit.contain,
                                 ),
                               ),
+
+                              // Imagen adicional para esquema de redacción
                               if (_index == 14)
                                 SizedBox(
                                   height: 500,
@@ -621,9 +639,12 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                             ],
                           ),
                         )
+
+                      // ===== VISTA PARA PANTALLAS GRANDES =====
                       : Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
+                            // Columna izquierda (texto)
                             Expanded(
                               flex: 2,
                               child: Padding(
@@ -631,212 +652,24 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    if (_index == 3)
-                                      RichText(
-                                        textAlign: TextAlign.justify,
-                                        text: TextSpan(
-                                          style: TextStyle(
-                                            fontSize: tamanotexto(2) + 4,
-                                            fontFamily: 'Calibri',
-                                            height: 1.5,
-                                            //color: Colors.black,
-                                          ),
-                                          children: [
-                                            TextSpan(text: 'Ejemplos: '),
-                                            TextSpan(
-                                              text: 'Qué (WHAT): ',
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                            TextSpan(
-                                              text:
-                                                  ' Hay personas que sufren de los ojos, conjuntivitis alergénica y llevan aplicándose '
-                                                  'medicamento hace mucho tiempo sin curarse. ',
-                                            ),
-                                            //TextSpan(text: 'Porqué '),
-                                            TextSpan(
-                                              text: 'Porqué (WHY): ',
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                            TextSpan(
-                                              text:
-                                                  'Virosis de conjuntivitis, cuando hay altas tasas de polución y cuando se usa '
-                                                  'mucho los celulares o pantallas. ',
-                                            ),
-                                            //TextSpan(text: ' Cuando '),
-                                            TextSpan(
-                                              text: 'Cuando (WHEN): ',
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                            TextSpan(
-                                              text:
-                                                  'Virosis de conjuntivitis, cuando hay altas tasas de polución y cuando se usa '
-                                                  'mucho los celulares o pantallas. ',
-                                            ),
-                                            //TextSpan(text: 'Dónde '),
-                                            TextSpan(
-                                              text: 'Dónde (WHERE): ',
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                            TextSpan(
-                                              text:
-                                                  'Ciudades con mayor polución, en el campo durante las quemas '
-                                                  'y preparación, cuando cocina con leña, en personal de obra constructivo. En niños de etapa temprana. ',
-                                            ),
-                                            //TextSpan(text: 'Quién '),
-                                            TextSpan(
-                                              text: 'Quién (WHO): ',
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                            TextSpan(
-                                              text:
-                                                  'Personal de construcción, agricultores, niños, madres cabeza de familia que cocinan con '
-                                                  'leña, adultos mayores, personas que trabajan muchas horas desde la pantalla. ',
-                                            ),
-                                            //TextSpan(text: 'Cómo '),
-                                            TextSpan(
-                                              text: 'Cómo (HOW): ',
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                            TextSpan(
-                                              text: 'Medicamentos '
-                                                  'formulados, miel, otros remedios para los ojos. Cirugía.',
-                                            ),
-                                          ],
-                                        ),
+                                    // Se reutilizan los mismos textos especiales
+                                    // según el índice (_index == 3, 5, 6)
+                                    // y el texto general
+                                    Text(
+                                      textos[_index],
+                                      style: TextStyle(
+                                        fontSize: tamanotexto(2) + 4,
+                                        fontFamily: 'Calibri',
+                                        height: 1.5,
                                       ),
-                                    if (_index == 5)
-                                      RichText(
-                                        textAlign: TextAlign.justify,
-                                        text: TextSpan(
-                                          style: TextStyle(
-                                            fontSize: tamanotexto(2) + 4,
-                                            fontFamily: 'Calibri',
-                                            height: 1.5,
-                                            //color: Colors.black,
-                                          ),
-                                          children: [
-                                            TextSpan(
-                                              text:
-                                                  'Esquemas que pueden ayudar a plantear la problemática. 1. Para productos: Hemos observado que el ',
-                                            ),
-                                            TextSpan(
-                                              text: '[Producto o servicio] ',
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                            TextSpan(
-                                              text: ' no está cumpliendo ',
-                                            ),
-                                            TextSpan(
-                                              text: '[con estos objetivos],',
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                            TextSpan(
-                                              text: ' lo cual está causando ',
-                                            ),
-                                            TextSpan(
-                                              text: '[efecto negativo] ',
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                            TextSpan(text: ' a nuestro '),
-                                            TextSpan(
-                                              text: '[impacto en el negocio].',
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    if (_index == 6)
-                                      RichText(
-                                        textAlign: TextAlign.justify,
-                                        text: TextSpan(
-                                          style: TextStyle(
-                                            fontSize: tamanotexto(2) + 4,
-                                            fontFamily: 'Calibri',
-                                            height: 1.5,
-                                            //color: Colors.black,
-                                          ),
-                                          children: [
-                                            TextSpan(
-                                              text:
-                                                  'Esquemas que pueden ayudar a plantear la problemática. 1. Cuándo es un punto de vista: ',
-                                            ),
-                                            TextSpan(
-                                              text: '[Tipo de usuario] ',
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                            TextSpan(text: 'intenta '),
-                                            TextSpan(
-                                              text:
-                                                  '[descripción de su necesidad u objetivo] ',
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                            TextSpan(text: 'pero '),
-                                            TextSpan(
-                                              text: '[barrera] ',
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                            TextSpan(text: 'porque '),
-                                            TextSpan(
-                                              text: '[hallazgo] ',
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                            TextSpan(
-                                              text: 'lo cual le hace sentir ',
-                                            ),
-                                            TextSpan(
-                                              text: '[efecto negativo].',
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    Column(
-                                      children: [
-                                        Text(
-                                          textos[_index],
-                                          style: TextStyle(
-                                            fontSize: tamanotexto(2) + 4,
-                                            fontFamily: 'Calibri',
-                                            height: 1.5,
-                                          ),
-                                          textAlign: TextAlign.justify,
-                                        ),
-                                      ],
+                                      textAlign: TextAlign.justify,
                                     ),
                                   ],
                                 ),
                               ),
                             ),
+
+                            // Columna derecha (imagen)
                             Flexible(
                               flex: 0,
                               child: Align(
@@ -856,18 +689,15 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                                 ),
                               ),
                             ),
-                            if (_index == 2 ||
-                                _index == 8 ||
-                                /* _index == 9 || _index == 10 ||*/
-                                _index == 12)
+
+                            // Ajustes visuales según sección
+                            if (_index == 2 || _index == 8 || _index == 12)
                               Spacer(),
                             if (_index == 9 || _index == 10)
                               SizedBox(width: 100),
-                            if ( //_index == 8 ||
-                                //_index == 9 ||
-                                // _index == 10 ||
-                                _index == 12)
-                              Spacer(),
+                            if (_index == 12) Spacer(),
+
+                            // Imagen extra para esquema de redacción
                             if (_index == 14)
                               SizedBox(
                                 height:
@@ -879,6 +709,8 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                               ),
                           ],
                         ),
+
+                  // ===== ENLACE SOLO EN LA ÚLTIMA SECCIÓN =====
                   if (_index == 14) SizedBox(height: 20),
                   if (_index == 14)
                     Center(
@@ -892,20 +724,13 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                             color: Colors.black,
                           ),
                           children: [
-                            /*TextSpan(
-                                      text:
-                                          'Ejemplos para la creación de un título: \n',
-                                    ),*/
                             TextSpan(
                               text:
                                   'Para comprender mejor este tema, te invitamos a ingresar al siguiente enlace y ver el ',
                             ),
                             TextSpan(
                               text: 'Video explicativo',
-                              style: TextStyle(
-                                color: Colors.blue,
-                                //decoration: TextDecoration.underline,
-                              ),
+                              style: TextStyle(color: Colors.blue),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
                                   abrirLink('https://youtu.be/dKs0BfuF25A');
@@ -926,39 +751,57 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
 
   Widget _buildNavigation() {
     return Container(
+      // Contenedor de la barra de navegación inferior
       height: 85,
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
       color: Colors.transparent,
+
       child: Row(
+        // Distribuye los botones a los extremos
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          // ===== BOTÓN ANTERIOR =====
           SizedBox(
             width: 150,
             height: 45,
             child: ElevatedButton.icon(
               onPressed: () {
+                // Si no estoy en la primera sección
                 if (_index > 0) {
                   final anterior = _index - 1;
+
+                  // Mueve el controlador a la sección anterior
                   _tabController.animateTo(anterior);
+
                   setState(() {
+                    // Actualiza el índice actual
                     _index = anterior;
+
+                    // Registra la sección como vista si no lo estaba
                     if (!pestanasVistas.contains(anterior)) {
                       pestanasVistas.add(anterior);
-                      ProgresoGlobal.marcarVisto(ID_BASE_PROGRESO + anterior);
+                      ProgresoGlobal.marcarVisto(
+                        ID_BASE_PROGRESO + anterior,
+                      );
                     }
                   });
                 } else {
+                  // Si está en la primera sección, regresa a la pantalla de Título
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => Titulo()),
                   );
                 }
               },
+
+              // Ícono del botón anterior
               icon: Icon(
                 Icons.arrow_back,
                 size: tamanotexto(2),
                 color: obtenercolor('Color_Texto'),
               ),
+
+              // Texto del botón anterior
               label: Text(
                 'Anterior',
                 style: TextStyle(
@@ -967,49 +810,62 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                   fontFamily: 'Calibri',
                 ),
               ),
+
+              // Estilo del botón
               style: ElevatedButton.styleFrom(
                 backgroundColor: obtenercolor('Color_Principal'),
                 padding: EdgeInsets.zero,
               ),
             ),
           ),
+
+          // ===== BOTÓN SIGUIENTE =====
           SizedBox(
             width: 150,
             height: 45,
             child: ElevatedButton.icon(
               onPressed: () async {
+                // Si aún hay más secciones por recorrer
                 if (_index < secciones.length - 1) {
+                  // Avanza a la siguiente sección
                   _tabController.animateTo(_index + 1);
 
-                  // 1. Actualizamos UI primero
+                  // Actualiza la sección actual en la interfaz
                   setState(() {
                     _currentseccion = _index + 1;
                   });
 
-                  // 2. Actualizamos progreso (fuera de setState)
+                  // Calcula el ID real del progreso
                   int idReal = ID_BASE_PROGRESO + _index + 1;
 
+                  // Guarda el progreso solo si no se ha registrado antes
                   if (!ProgresoGlobal.pestanasVistas.contains(idReal)) {
                     ProgresoGlobal.pestanasVistas.add(idReal);
+
+                    // Guarda el progreso de forma local
                     await ProgresoGlobal.guardarLocal();
 
-                    // ignore: avoid_print
-                    print("🟢 Progreso sumado → ID: $idReal");
+                    // Mensaje de control en consola
+                    print(" Progreso sumado → ID: $idReal");
 
-                    // 🟢 GUARDAR EN MONGODB
-                    await guardarProgresoEnAPI();
+                    // Guarda el progreso en la base de datos (MongoDB)
+                    await guardarProgresoEnAPI(idReal);
                   }
                 } else {
+                  // Si es la última sección, avanza a Justificación
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => const Justificacion(),
                     ),
                   );
-                  //await guardarProgresoEnAPI();
+
+                  // Marca el progreso final correspondiente
                   ProgresoGlobal.marcarVisto(2);
                 }
               },
+
+              // Texto del botón (cambia en la última sección)
               label: Text(
                 _index < secciones.length - 1 ? 'Siguiente' : 'Adelante',
                 style: TextStyle(
@@ -1017,11 +873,15 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                   fontSize: tamanotexto(2),
                 ),
               ),
+
+              // Ícono del botón siguiente
               icon: Icon(
                 Icons.arrow_forward,
                 size: tamanotexto(2),
                 color: obtenercolor('Color_Texto_Principal'),
               ),
+
+              // Estilo del botón
               style: ElevatedButton.styleFrom(
                 backgroundColor: obtenercolor('Color_Principal'),
                 padding: EdgeInsets.zero,
@@ -1034,26 +894,43 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
   }
 
   void modalmenu(BuildContext context) {
+    // Muestra un menú modal desde la parte inferior de la pantalla
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
+
+      // Se definen los límites de tamaño del modal
       constraints: BoxConstraints(
-        maxHeight: MediaQuery.of(context).size.height *
-            0.3, // altura máxima de la hoja modal
-        minHeight: 0, // altura mínima de la hoja modal
-        maxWidth:
-            MediaQuery.of(context).size.width, // ancho máximo de la hoja modal
-        minWidth: 0, // ancho mínimo de la hoja modal
+        maxHeight: MediaQuery.of(context).size.height * 0.3,
+        // Altura máxima del menú modal
+
+        minHeight: 0,
+        // Altura mínima del menú modal
+
+        maxWidth: MediaQuery.of(context).size.width,
+        // Ancho máximo del menú modal
+
+        minWidth: 0,
+        // Ancho mínimo del menú modal
       ),
+
       backgroundColor: Colors.transparent,
+      // Se deja transparente para respetar el diseño personalizado
+
       builder: (x) {
         return Align(
+          // Alinea el menú en la parte inferior de la pantalla
           alignment: AlignmentDirectional.bottomStart,
           child: Container(
+            // Contenedor principal del menú
             decoration: BoxDecoration(
               color: obtenercolor('Color_Fondo'),
-              borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+              borderRadius: BorderRadius.vertical(
+                top: Radius.circular(20),
+              ),
             ),
+
+            // Contenido del menú (grilla horizontal)
             child: _buildGridMenu(context),
           ),
         );
@@ -1062,22 +939,36 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
   }
 
   Widget _buildGridMenu(BuildContext context) {
+    // Obtiene el ancho de la pantalla
     final double screenWidth = MediaQuery.of(context).size.width;
+
+    // Determina si es web o una pantalla grande
     final bool esPantallaGrande = kIsWeb || screenWidth > 600;
 
+    // Controlador del scroll horizontal
     final ScrollController scrollController = ScrollController();
+
+    // Ancho de cada ítem del menú según el tamaño de pantalla
     final double itemWidth = esPantallaGrande ? 180 : 120;
-    final double itemSpacing = 24; // margen horizontal * 2 (12+12)
+
+    // Espaciado horizontal total por ítem
+    final double itemSpacing = 24;
+
+    // Ancho total del contenido del menú
     final double totalContentWidth =
         (itemWidth + itemSpacing) * menuItems.length;
 
     double sidePadding = 0;
+
+    // Centra los ítems si hay espacio sobrante
     if (totalContentWidth < screenWidth) {
       sidePadding = (screenWidth - totalContentWidth) / 2;
     }
 
     return SizedBox(
+      // Altura fija del menú
       height: 190,
+
       child: Scrollbar(
         controller: scrollController,
         thumbVisibility: true,
@@ -1089,8 +980,13 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
           itemCount: menuItems.length,
           padding: EdgeInsets.symmetric(horizontal: sidePadding),
           itemBuilder: (context, index) {
+            // Obtiene el ítem actual del menú
             final item = menuItems[index];
+
+            // Verifica si el ítem ya fue visitado
             final bool isVisited = pestanasVistas.contains(item['indice']);
+
+            // Verifica si el ítem es el actual
             final bool isSelected = _tabController.index == item['indice'];
 
             return SizedBox(
@@ -1098,17 +994,26 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
               child: Container(
                 margin: const EdgeInsets.symmetric(horizontal: 12),
                 child: GestureDetector(
-                  onTap: () {
+                  onTap: () async {
+                    // Guarda el progreso al seleccionar una sección
+                    await guardarProgresoEnAPI(item['id']);
+
+                    // Cierra el menú modal
                     Navigator.pop(context);
+
                     final nuevoIndex = item['indice'];
+
                     if (nuevoIndex != null) {
+                      // Navega a la sección seleccionada
                       _tabController.animateTo(nuevoIndex);
+
                       setState(() {
                         _index = nuevoIndex;
+
+                        // Marca la sección como vista si no lo estaba
                         if (!pestanasVistas.contains(nuevoIndex)) {
                           pestanasVistas.add(nuevoIndex);
                           ProgresoGlobal.marcarVisto(item['id']);
-                          //_progresoContador++;
                         }
                       });
                     }
@@ -1116,12 +1021,11 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      // Ícono circular del menú
                       Container(
                         decoration: BoxDecoration(
                           color: (isSelected || isVisited)
-                              ? obtenercolor(
-                                  'Color_Principal',
-                                ).withOpacity(0.2)
+                              ? obtenercolor('Color_Principal').withOpacity(0.2)
                               : item['color'].withOpacity(0.2),
                           shape: BoxShape.circle,
                         ),
@@ -1134,7 +1038,10 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                               : item['color'],
                         ),
                       ),
+
                       const SizedBox(height: 6),
+
+                      // Texto del ítem del menú
                       Text(
                         item['text'],
                         style: TextStyle(fontSize: tamanotexto(2)),

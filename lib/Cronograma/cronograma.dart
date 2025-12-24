@@ -527,7 +527,7 @@ class _CronogramasState extends State<Cronogramas>
                   if (!ProgresoGlobal.pestanasVistas.contains(idReal)) {
                     ProgresoGlobal.pestanasVistas.add(idReal);
                     await ProgresoGlobal.guardarLocal();
-                    await guardarProgresoEnAPI();
+                    await guardarProgresoEnAPI(idReal);
                   }
                 } else {
                   Navigator.push(

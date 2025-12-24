@@ -369,6 +369,8 @@ class _VideoState extends State<Video> {
 class Appbars extends StatelessWidget implements PreferredSizeWidget {
   const Appbars({super.key});
 
+  // todo este bloque es un appbar secuncundario que muestra el nombre del usuario y pero no el progreso
+
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -376,7 +378,7 @@ class Appbars extends StatelessWidget implements PreferredSizeWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          // 🔹 Título principal
+          //  Título principal
           Text(
             'Aplicativo para la estructuración de proyectos de investigación',
             style: TextStyle(
@@ -387,7 +389,7 @@ class Appbars extends StatelessWidget implements PreferredSizeWidget {
             ),
           ),
 
-          // 🔹 Nombre de usuario + progreso
+          // Nombre de usuario + progreso
           Row(
             children: [
               Icon(
@@ -398,7 +400,7 @@ class Appbars extends StatelessWidget implements PreferredSizeWidget {
 
               const SizedBox(width: 10),
 
-              // 👤 Aquí aparece el nombre dinámico
+              // Aquí aparece el nombre dinámico
               Text(
                 ProgresoGlobal.usuarioglobal,
                 style: TextStyle(

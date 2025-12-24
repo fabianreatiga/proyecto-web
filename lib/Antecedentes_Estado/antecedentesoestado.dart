@@ -657,7 +657,7 @@ class _Antecedentes_EstadosState extends State<Antecedentes_Estados>
                     ProgresoGlobal.pestanasVistas.add(idReal);
                     await ProgresoGlobal.guardarLocal();
 
-                    await guardarProgresoEnAPI();
+                    await guardarProgresoEnAPI(idReal);
                   }
                 } else {
                   Navigator.push(

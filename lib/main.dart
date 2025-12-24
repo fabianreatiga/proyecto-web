@@ -24,7 +24,6 @@ void main(List<String> args) async {
     ),
   );
 }
-//noooo no sirve
 
 class Inicio extends StatefulWidget {
   const Inicio({super.key});
@@ -34,7 +33,8 @@ class Inicio extends StatefulWidget {
 }
 
 class _InicioState extends State<Inicio> {
-  int index = 0;
+  int index =
+      0; //Esta es la variable encargada de controlar el indice de las imagenes
 
   List<String> imagenes = [
     'assets/Resumen/1.png',
@@ -48,7 +48,7 @@ class _InicioState extends State<Inicio> {
     'assets/Resumen/9.png',
     'assets/Resumen/10.png',
     'assets/Resumen/11.png',
-  ];
+  ]; //Esta es la lista de imagenes que se muestran en el resumen del aplicativo
 
   @override
   void initState() {
@@ -60,11 +60,12 @@ class _InicioState extends State<Inicio> {
         index = (index + 1) % imagenes.length;
       });
     });
-  }
+  } // En este bloque controla la rotacion de las imagenes
 
   final TextEditingController _Nficha = TextEditingController();
   final TextEditingController _NombrePrograma = TextEditingController();
   final TextEditingController _NombreAprendiz = TextEditingController();
+  //Las 3 lineas de codigos son variables encangadas de enviar la informacioon a la Base de Datos
 
   bool _isLoading = false;
 
@@ -72,7 +73,7 @@ class _InicioState extends State<Inicio> {
     var conectividad = await Connectivity().checkConnectivity();
     // ignore: unrelated_type_equality_checks
     return conectividad != ConnectivityResult.none;
-  }
+  } // En este bloque controla la verificacion de la conexion
 
   Future<bool> usuarioRegistrado(String nombre, String ficha) async {
     try {
@@ -88,7 +89,7 @@ class _InicioState extends State<Inicio> {
       print("⚠️ Error al verificar usuario: $e");
     }
     return false;
-  }
+  } //En este bloque de codigo se verifica si el usuario ya esta registrado en la base de datos
 
   Future<void> _guardarEnAPI(BuildContext context) async {
     final data = {
@@ -96,7 +97,7 @@ class _InicioState extends State<Inicio> {
       "programa": _NombrePrograma.text,
       "ficha": _Nficha.text,
       "fecha": DateTime.now().toIso8601String(),
-    };
+    }; //En este bloque de codigo se crea un mapa con la informacion del usuario
 
     try {
       final response = await http.post(
@@ -111,7 +112,7 @@ class _InicioState extends State<Inicio> {
     } catch (e) {
       print("Error HTTP: $e");
     }
-  }
+  } // en este bloque de codigo se guarda la informacion del usuario en la base de datos
 
   Future<void> guardarProgresoFinal(int incremento) async {
     try {
@@ -132,7 +133,7 @@ class _InicioState extends State<Inicio> {
     } catch (e) {
       print("Error al procesar datos: $e");
     }
-  }
+  } //En este bloque de codigo guarda el progreso en la base de datos
 
   void _mostrarcamposenblanco(BuildContext context, String mensaje) {
     showDialog(
@@ -158,40 +159,43 @@ class _InicioState extends State<Inicio> {
         ],
       ),
     );
-  }
+  } //En este bloque de codigo se muestra un cuadro de dialogo cuando hay campos en blanco
 
   Future<void> _boton(BuildContext context) async {
+    //Este bloque de codigo es la funcion del boton de inicio
+
     final nombre = _NombreAprendiz.text.trim();
     final programa = _NombrePrograma.text.trim();
     final ficha = _Nficha.text.trim();
+    // estas lineas de codigo obtienen el texto de los campos de texto y los guardan en variables
 
     if (nombre.isEmpty || programa.isEmpty || ficha.isEmpty) {
       _mostrarcamposenblanco(context, 'No puede haber campos en blanco');
       return;
-    }
+    } //en este bloque de codigo se verifica si los campos de texto estan vacios
 
-    setState(() => _isLoading = true);
+    setState(() => _isLoading = true); //muestra el indicador de carga
 
     try {
       setUsuarioGlobal(nombre);
       setFichaGlobal(ficha);
       setprogramaGlobal(programa);
-
-      // ❌ ESTA LÍNEA NO ➝ await guardarProgresoFinal(0);
+      //estos 3 codigos son variables globales
 
       await usuarioRegistrado(nombre, ficha);
       await _guardarEnAPI(context);
-
       await sincronizarProgresoConAPI();
+      //estos 3 codigos se encargande de guardar la informacion en la base de datos
 
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => Titulo()),
-      );
+      ); //con el navigator se cambia de pantalla
 
       _NombreAprendiz.clear();
       _NombrePrograma.clear();
       _Nficha.clear();
+      //Borrra el contenido de los campos de texto
     } catch (e) {
       print("⚠️ Error al procesar datos: $e");
     } finally {
@@ -241,6 +245,7 @@ class _InicioState extends State<Inicio> {
                             return isSmallScreen
                                 ? _buildColumnLayout(context)
                                 : _buildRowLayout(context);
+                            //En esta parte del codigo se analiza la pantalla del dispositivo
                           },
                         ),
                       ),
@@ -294,10 +299,10 @@ class _InicioState extends State<Inicio> {
             ),
             LayoutBuilder(
               builder: (context, constraints) {
-                // double screenWidth = constraints.maxWidth;
                 return Column(
                   children: [
                     InkWell(
+                      //se esta usando inkwell para hacer que la imagen sea clickeable y envar al video
                       child: Center(
                         child: Column(
                           children: [
@@ -311,7 +316,8 @@ class _InicioState extends State<Inicio> {
                               ),
                             ),
                             Image.asset(
-                              imagenes[index],
+                              imagenes[
+                                  index], // este cidigo llama a las imagenes de la lista de imagenes
                               width: 350,
                               height: 197,
                               fit: BoxFit.cover,
@@ -321,18 +327,6 @@ class _InicioState extends State<Inicio> {
                       ),
                       onTap: () => {abrirLink('https://youtu.be/y7czaORl13Y')},
                     ),
-                    /* Container(
-                            child: Image.asset(
-                              imagenes[index],
-                              //width: screenWidth,
-                              height:
-                                  screenWidth < 1000
-                                      ? MediaQuery.of(context).size.height * 0.1
-                                      : MediaQuery.of(context).size.height *
-                                          0.3,
-                              fit: BoxFit.cover,
-                            ),
-                          ),*/
                   ],
                 );
               },
@@ -343,7 +337,7 @@ class _InicioState extends State<Inicio> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    aplicativo,
+                    aplicativo, //este codigo llama a la bariable que contiene el titulo dela plicativo
                     style: TextStyle(
                       fontSize: tamanotexto(3),
                       fontWeight: FontWeight.bold,
@@ -354,7 +348,7 @@ class _InicioState extends State<Inicio> {
                   ),
                   SizedBox(height: 20),
                   Text(
-                    descripciones,
+                    descripciones, //este codigo llama a la bariable que contiene el texto descriptictivo del apliocativo
                     style: TextStyle(
                       fontSize: tamanotexto(2) - 6,
                       height: 1.4,
@@ -387,7 +381,7 @@ class _InicioState extends State<Inicio> {
             SizedBox(
               width: 250,
               child: Tooltip(
-                message: 'Si eres intructor,colocar "0000000" ',
+                message: 'Si eres intructor,colocar "0"',
                 // se agrego este SizedBox para integrar el campo de texto del N° ficha
                 child: TextField(
                   controller: _Nficha,
@@ -438,7 +432,7 @@ class _InicioState extends State<Inicio> {
     } else {
       return 3; // pantallas grandes o PC
     }
-  }
+  } //se usa este codigo para determinar el tamaño de la pantalla
 
   Widget _buildRowLayout(BuildContext context) {
     // este es el widget que se usa para cuando las pantallas son grandes
@@ -496,10 +490,10 @@ class _InicioState extends State<Inicio> {
                     children: [
                       LayoutBuilder(
                         builder: (context, constraints) {
-                          // double screenWidth = constraints.maxWidth;
                           return Column(
                             children: [
                               InkWell(
+                                //se esta usando inkwell para hacer que la imagen sea clickeable y envar al video
                                 child: Center(
                                   child: Column(
                                     children: [
@@ -515,7 +509,8 @@ class _InicioState extends State<Inicio> {
                                         ),
                                       ),
                                       Image.asset(
-                                        imagenes[index],
+                                        imagenes[
+                                            index], //este cidigo llama a las imagenes de la lista de imagenes
                                         width: 400,
                                         height: 247,
                                         fit: BoxFit.cover,
@@ -527,18 +522,6 @@ class _InicioState extends State<Inicio> {
                                   abrirLink('https://youtu.be/y7czaORl13Y'),
                                 },
                               ),
-                              /* Container(
-                            child: Image.asset(
-                              imagenes[index],
-                              //width: screenWidth,
-                              height:
-                                  screenWidth < 1000
-                                      ? MediaQuery.of(context).size.height * 0.1
-                                      : MediaQuery.of(context).size.height *
-                                          0.3,
-                              fit: BoxFit.cover,
-                            ),
-                          ),*/
                             ],
                           );
                         },
@@ -550,7 +533,7 @@ class _InicioState extends State<Inicio> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                aplicativo,
+                                aplicativo, //este codigo llama a la bariable que contiene el titulo dela plicativo
                                 style: TextStyle(
                                   fontSize: tamanotexto(3),
                                   fontWeight: FontWeight.bold,
@@ -561,7 +544,7 @@ class _InicioState extends State<Inicio> {
                               ),
                               SizedBox(height: 20),
                               Text(
-                                descripciones,
+                                descripciones, //este codigo llama a la bariable que contiene el texto descriptictivo del apliocativo
                                 style: TextStyle(
                                   fontSize: tamanotexto(
                                       6), // en el tamaño del texto se essta usando 6 para obtener el tamaño de texto ma pequeño
@@ -637,7 +620,7 @@ class _InicioState extends State<Inicio> {
                   child: Tooltip(
                     message: 'Si eres intructor, colocar "0" ',
                     // se agrego este SizedBox para integrar el campo de texto del N° ficha
-                    //ejemplo
+
                     child: TextField(
                       controller: _Nficha,
                       decoration: InputDecoration(
@@ -695,7 +678,8 @@ class _InicioState extends State<Inicio> {
         ),
         onPressed: () {
           _boton(context);
-        },
+        }, //este es el codigo que se ejecuta al presionar el boton
+
         icon: Icon(
           Icons.arrow_forward,
           color: obtenercolor('Color_Texto_Principal'),
@@ -714,7 +698,7 @@ class _InicioState extends State<Inicio> {
   }
 
   static Widget _campoTexto({
-    //se creo este widget para darle estilo a los campos de texto
+    //se creo este widget reutilizable para darle estilo a los campos de texto
     required String label,
     required IconData icon,
     required String hint,
@@ -755,3 +739,4 @@ const String descripciones =
     'Por tanto, este proyecto busca desarrollar un software interactivo que facilite el aprendizaje en la estructuración de proyectos de investigación y está dirigido a aprendices en programas tecnológicos, técnicos y operarios, además de instructores interesados en mejorar sus conocimientos en la temática de investigación. '
     'Igualmente, la herramienta se implementará en semilleros y el grupo de investigación del centro de formación. '
     'Se proyecta que esta herramienta estimule el aprendizaje hacia la investigación al hacer uso de las TIC y de una plataforma interactiva que incentive el pensamiento crítico y la creatividad.';
+//se esta usando esta variable para guardar un texto, se esta uasndo en 2 partes del codigo

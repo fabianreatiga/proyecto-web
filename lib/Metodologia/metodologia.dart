@@ -732,7 +732,7 @@ class _MetodologiasState extends State<Metodologias>
                     // print("🟢 Progreso sumado → ID: $idReal");
 
                     // 🟢 GUARDAR EN MONGODB
-                    await guardarProgresoEnAPI();
+                    await guardarProgresoEnAPI(idReal);
                   }
                 } else {
                   Navigator.push(

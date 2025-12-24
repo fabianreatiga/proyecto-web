@@ -516,7 +516,7 @@ class _JustificacionesState extends State<Justificaciones>
                     ProgresoGlobal.pestanasVistas.add(idReal);
                     await ProgresoGlobal.guardarLocal();
 
-                    await guardarProgresoEnAPI();
+                    await guardarProgresoEnAPI(idReal);
                   }
                 } else {
                   Navigator.push(

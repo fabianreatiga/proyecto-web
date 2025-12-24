@@ -38,7 +38,6 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
 
   final List<String> textos = [
     'Hay varias formas de establecer objetivos, siendo una de las más utilizadas y populares la metodología SMART. Sin embargo, surgen nuevas propuestas metodológicas en el establecimiento de los objetivos desde otras perspectivas más globales o transversales, adaptándose a las diferentes filosofías y formas de trabajo empresarial y el entorno VUCA de la sociedad actual. En todos los casos, pero hay unos elementos comunes, los cuales son:',
-
     '',
     /* 'El modelo SMART –acrónimo que significa «inteligente» en inglés– hace referencia a cinco conceptos que hay'
         ' que tener presentes constantemente a la hora de fijar objetivos si lo que buscamos es validar su pertinencia.'
@@ -48,19 +47,15 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
     'Esta metodología se basa en que el logro de un objetivo debe suponer un esfuerzo para que este sea relevante. Además,'
         ' incorpora nuevos elementos poco frecuentes hasta el momento en el planteamiento de objetivos tales como la legalidad o'
         ' el impacto en el medio ambiente. Según: https://www.itik.cat/uploads/files/5%20m%C3%A9todos %20para%20establecer%20objetivos.pdf',
-
     'La responsabilidad social y ética en las organizaciones cada vez está más presente en las estrategias de futuro,'
         ' y la metodología PURE se focaliza en la ética y relevancia de la concreción de los objetivos. Los elementos clave son:'
         ' • Positive stated (enunciados en positivo) • Understood (comprensible) • Relevant (relevante) • Ethical (ético)..',
-
     'Esta metodología propone una revisión del contexto en el que se definen los objetivos de una organización o de un proyecto'
         ' específico. Establece que el deseo y el compromiso son elementos indispensables para el logro de las metas propuestas asociando'
         ' también este camino a un crecimiento personal y profesional. • Goal (meta) • Reality (realidad)• Options (opciones)• Will (deseo).',
-
     'La metodología DUMB resalta las características que debe tener un objetivo de negocio. DUMB significa: Doable, Understandable, Manejable'
         ' y Beneficial. En traducción sería que cada objetivo tiene que ser realizable, entendible, manejable y beneficioso. Deben ser aquellos que'
         ' entreguen valor a la empresa y a la marca.',
-
     'El árbol de objetivos reúne los medios y alternativas para solucionar el problema principal. Gracias a ello, se logra una visión positiva de las'
         ' situaciones negativas que aparecían en el árbol anterior, aunque utilice la misma estructura. Así, se busca ir resolviendo el problema paso a paso.\n',
   ];
@@ -120,35 +115,56 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
+    // Se ejecuta una sola vez al abrir la pantalla.
 
     pestanasVistas.add(0);
-    // Marca la primera pestaña vista con el ID base definido:
+    // Se marca la primera sección como vista.
+
     ProgresoGlobal.marcarVisto(ID_BASE_PROGRESO + 0);
+    // Se guarda el progreso inicial en el sistema global.
 
     _tabController = TabController(length: secciones.length, vsync: this);
+    // Controla la navegación entre secciones.
+
     _tabController.addListener(() {
+      // Detecta cuando el usuario cambia de sección.
+
       if (!_tabController.indexIsChanging) {
+        // Se ejecuta cuando el cambio ya terminó.
+
         setState(() => _index = _tabController.index);
+        // Actualiza la sección actual.
+
         if (!pestanasVistas.contains(_tabController.index)) {
+          // Si la sección no estaba marcada como vista…
+
           pestanasVistas.add(_tabController.index);
+          // Se guarda como vista.
+
           ProgresoGlobal.marcarVisto(ID_BASE_PROGRESO + _tabController.index);
+          // Se actualiza el progreso global.
         }
       }
     });
   }
 
   @override
+  @override
   Widget build(BuildContext context) {
-    // 📌 Ahora el nombre refleja la condición real
+    // Se verifica si la pantalla es pequeña (celular o tablet)
     final bool esPantallaPequena =
         MediaQuery.of(context).size.shortestSide < 650;
 
     return Scaffold(
+      // Color de fondo principal de la pantalla
       backgroundColor: obtenercolor('Color_Fondo'),
+
+      // Barra superior con progreso y botón de menú
       appBar: Appbar2(
         nombre: '',
         progreso: ProgresoGlobal.progreso,
         actions: [
+          // Botón para abrir el menú inferior
           TextButton.icon(
             onPressed: () {
               modalmenu(context);
@@ -168,13 +184,16 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
           ),
         ],
       ),
+
+      // Menú lateral con control de progreso
       drawer: Menu(
         currentScreen: 'Objetivos',
         progreso: ProgresoGlobal.porcentaje,
       ),
+
       body: Stack(
         children: [
-          // 🌄 Fondo superior izquierda decorativo
+          // Imagen decorativa superior derecha
           Positioned(
             top: 0,
             right: 0,
@@ -183,12 +202,12 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
               child: Image.asset(
                 'assets/Objetivos/Fondo_superior_Derecha.png',
                 width: esPantallaPequena ? 120 : 250,
-                //MediaQuery.of(context).size.width * 0.18,
                 fit: BoxFit.contain,
               ),
             ),
           ),
 
+          // Ícono decorativo superior derecho
           Positioned(
             top: 8,
             right: 8,
@@ -197,13 +216,12 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
               child: Image.asset(
                 'assets/Icono_Proveta.png',
                 width: esPantallaPequena ? 45 : 98,
-                //MediaQuery.of(context).size.width * 0.18,
                 fit: BoxFit.contain,
               ),
             ),
           ),
 
-          // 🌄 Fondo superior derecha decorativo
+          // Imagen decorativa superior izquierda
           Positioned(
             top: 0,
             left: 0,
@@ -212,13 +230,12 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
               child: Image.asset(
                 'assets/Objetivos/Fondo_Supeior_Izquierda.png',
                 width: esPantallaPequena ? 120 : 250,
-                //height: MediaQuery.of(context).size.width * 0.18,
                 fit: BoxFit.contain,
               ),
             ),
           ),
 
-          // 🌄 Fondo inferior izquierda
+          // Imagen decorativa inferior izquierda
           Positioned(
             bottom: 90,
             left: 0,
@@ -227,13 +244,12 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
               child: Image.asset(
                 'assets/Objetivos/Fondo_inferior_Izquierda.png',
                 width: esPantallaPequena ? 120 : 250,
-                //height: MediaQuery.of(context).size.width * 0.18,
                 fit: BoxFit.contain,
               ),
             ),
           ),
 
-          // 🌄 Fondo inferior derecha
+          // Imagen decorativa inferior derecha
           Positioned(
             bottom: 90,
             right: 0,
@@ -242,12 +258,12 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
               child: Image.asset(
                 'assets/Objetivos/Fondo_Inferior_Derecha.png',
                 width: esPantallaPequena ? 120 : 250,
-                //height: MediaQuery.of(context).size.width * 0.18,
                 fit: BoxFit.contain,
               ),
             ),
           ),
 
+          // Ícono decorativo superior izquierdo
           Positioned(
             top: 8,
             left: 8,
@@ -256,53 +272,33 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
               child: Image.asset(
                 'assets/Icono_Bombilla.png',
                 width: esPantallaPequena ? 45 : 98,
-                //MediaQuery.of(context).size.width * 0.18,
                 fit: BoxFit.contain,
               ),
             ),
           ),
 
-          // 📜 Contenido principal
+          // Contenido principal
           SafeArea(
             child: Container(
               padding: EdgeInsets.zero,
               child: Column(
                 children: [
-                  // Scroll del contenido
+                  // Área con scroll del contenido
                   Expanded(
                     child: SingleChildScrollView(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 20,
                         vertical: 20,
                       ),
-                      child:
-                          esPantallaPequena
-                              ? InteractiveViewer(
-                                // 🔍 Zoom solo en pantallas pequeñas
-                                constrained: true,
-                                minScale: 1.0,
-                                maxScale: 5.0,
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      '¿Sabes como crear los Objetivos?',
-                                      style: TextStyle(
-                                        fontSize: tamanotexto(1) + 5,
-                                        fontFamily: 'Calibri',
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                    const SizedBox(height: 20),
-                                    _buildercard(),
-                                    SizedBox(height: altura(1)),
-                                  ],
-                                ),
-                              )
-                              : Column(
-                                // 💻 En pantallas grandes sin zoom
+                      child: esPantallaPequena
+                          ? InteractiveViewer(
+                              // Permite hacer zoom solo en pantallas pequeñas
+                              constrained: true,
+                              minScale: 1.0,
+                              maxScale: 5.0,
+                              child: Column(
                                 children: [
+                                  // Título principal de la sección
                                   Text(
                                     '¿Sabes como crear los Objetivos?',
                                     style: TextStyle(
@@ -313,15 +309,37 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
                                     ),
                                     textAlign: TextAlign.center,
                                   ),
-                                  const SizedBox(height: 35),
+                                  const SizedBox(height: 20),
+
+                                  // Tarjeta con el contenido principal
                                   _buildercard(),
+
                                   SizedBox(height: altura(1)),
                                 ],
                               ),
+                            )
+                          : Column(
+                              // En pantallas grandes no se usa zoom
+                              children: [
+                                Text(
+                                  '¿Sabes como crear los Objetivos?',
+                                  style: TextStyle(
+                                    fontSize: tamanotexto(1) + 5,
+                                    fontFamily: 'Calibri',
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                                const SizedBox(height: 35),
+                                _buildercard(),
+                                SizedBox(height: altura(1)),
+                              ],
+                            ),
                     ),
                   ),
 
-                  // 🔘 Navegación inferior
+                  // Barra de navegación inferior
                   _buildNavigation(),
                 ],
               ),
@@ -377,404 +395,395 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
                   const SizedBox(height: 20),
                   esPantallaPequena
                       ? Column(
-                        // se usa Column para mostrar el texto en dos filas
-                        children: [
-                          if (_index == 1)
-                            RichText(
-                              textAlign: TextAlign.justify,
-                              text: TextSpan(
-                                style: TextStyle(
-                                  fontSize: tamanotexto(2) + 4,
-                                  fontFamily: 'Calibri',
-                                  height: 1.5,
-                                  //color: Colors.black,
-                                ),
-                                children: [
-                                  TextSpan(text: 'El modelo '),
-                                  TextSpan(
-                                    text: 'SMART',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                          // se usa Column para mostrar el texto en dos filas
+                          children: [
+                            if (_index == 1)
+                              RichText(
+                                textAlign: TextAlign.justify,
+                                text: TextSpan(
+                                  style: TextStyle(
+                                    fontSize: tamanotexto(2) + 4,
+                                    fontFamily: 'Calibri',
+                                    height: 1.5,
+                                    //color: Colors.black,
                                   ),
-                                  TextSpan(text: ' –acrónimo que significa '),
-                                  TextSpan(
-                                    text: '«inteligente» ',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  TextSpan(
-                                    text:
-                                        'en inglés– hace referencia a cinco conceptos que hay'
-                                        'que tener presentes constantemente a la hora de fijar objetivos si lo que buscamos es validar su pertinencia.',
-                                  ),
-                                  TextSpan(
-                                    text: ' Por orden, los conceptos son ',
-                                  ),
-                                  TextSpan(
-                                    text:
-                                        '«específico» (S, specific), «medible» (M, measurable), «asignable» (A, assignable),'
-                                        ' «realista» (R, realistic), «temporal» (T, time-related), ',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  TextSpan(
-                                    text:
-                                        'es decir, determinado en el tiempo. Según Steffens, G.,'
-                                        ' & Cadiat, A. C. (2016). Los criterios SMART: El método para fijar objetivos con éxito. 50Minutos.',
-                                  ),
-                                ],
-                              ),
-                            ),
-                          if (_index == 2)
-                            RichText(
-                              textAlign: TextAlign.justify,
-                              text: TextSpan(
-                                style: TextStyle(
-                                  fontSize: tamanotexto(2) + 4,
-                                  fontFamily: 'Calibri',
-                                  height: 1.5,
-                                  //color: Colors.black,
-                                ),
-                                children: [
-                                  TextSpan(
-                                    text:
-                                        'Esta metodología se basa en que el logro de un objetivo debe suponer un esfuerzo para que este sea relevante. Además,'
-                                        ' incorpora nuevos elementos poco frecuentes hasta el momento en el planteamiento de objetivos tales como la legalidad o'
-                                        ' el impacto en el medio ambiente. Según: ',
-                                  ),
-                                  TextSpan(
-                                    text:
-                                        'https://www.itik.cat/uploads/files/5%20m%C3%A9todos %20para%20establecer%20objetivos.pdf',
-                                    style: TextStyle(
-                                      color: Colors.blue,
-                                      //decoration: TextDecoration.underline,
-                                    ),
-                                    recognizer:
-                                        TapGestureRecognizer()
-                                          ..onTap = () {
-                                            abrirLink(
-                                              'https://www.itik.cat/uploads/files/5%20m%C3%A9todos%20para%20establecer%20objetivos.pdf',
-                                            );
-                                          },
-                                  ),
-                                ],
-                              ),
-                            ),
-                          if (_index == 3)
-                            RichText(
-                              textAlign: TextAlign.justify,
-                              text: TextSpan(
-                                style: TextStyle(
-                                  fontSize: tamanotexto(2) + 4,
-                                  fontFamily: 'Calibri',
-                                  height: 1.5,
-                                  //color: Colors.black,
-                                ),
-                                children: [
-                                  TextSpan(
-                                    text:
-                                        'La responsabilidad social y ética en las organizaciones cada vez está más presente en las estrategias de futuro,'
-                                        ' y la metodología',
-                                  ),
-                                  TextSpan(
-                                    text: ' PURE ',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  TextSpan(
-                                    text:
-                                        'se focaliza en la ética y relevancia de la concreción de los objetivos. Los elementos clave son: ',
-                                  ),
-                                  TextSpan(
-                                    text:
-                                        '• Positive stated (enunciados en positivo) • Understood (comprensible) • Relevant (relevante) • Ethical (ético).',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          if (_index == 4)
-                            RichText(
-                              textAlign: TextAlign.justify,
-                              text: TextSpan(
-                                style: TextStyle(
-                                  fontSize: tamanotexto(2) + 4,
-                                  fontFamily: 'Calibri',
-                                  height: 1.5,
-                                  //color: Colors.black,
-                                ),
-                                children: [
-                                  TextSpan(
-                                    text:
-                                        'Esta metodología propone una revisión del contexto en el que se definen los objetivos de una organización o de un proyecto'
-                                        ' específico. Establece que el deseo y el compromiso son elementos indispensables para el logro de las metas propuestas asociando'
-                                        ' también este camino a un crecimiento personal y profesional. ',
-                                  ),
-                                  TextSpan(
-                                    text:
-                                        '• Goal (meta) • Reality (realidad)• Options (opciones)• Will (deseo).',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          if (_index != 1 &&
-                              _index != 2 &&
-                              _index != 3 &&
-                              _index != 4)
-                            Text(
-                              textos[_index],
-                              style: TextStyle(
-                                fontSize: tamanotexto(2) + 4,
-                                fontFamily: 'Calibri',
-                                height: 1.5,
-                              ),
-                              textAlign: TextAlign.justify,
-                            ),
-
-                          const SizedBox(height: 20),
-                          if (_index <= 6)
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(12),
-                              child: Image.asset(
-                                imagenes[_index],
-                                height: alturaImagenPequena[_index],
-                                fit: BoxFit.contain,
-                              ),
-                            ),
-                        ],
-                      )
-                      : Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Expanded(
-                            flex: 2,
-                            child: Padding(
-                              padding: EdgeInsets.only(right: 20),
-                              child: Column(
-                                children: [
-                                  if (_index == 1)
-                                    RichText(
-                                      textAlign: TextAlign.justify,
-                                      text: TextSpan(
-                                        style: TextStyle(
-                                          fontSize: tamanotexto(2) + 4,
-                                          fontFamily: 'Calibri',
-                                          height: 1.5,
-                                          //color: Colors.black,
-                                        ),
-                                        children: [
-                                          TextSpan(text: 'El modelo '),
-                                          TextSpan(
-                                            text: 'SMART',
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                          TextSpan(
-                                            text: ' –acrónimo que significa ',
-                                          ),
-                                          TextSpan(
-                                            text: '«inteligente» ',
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                          TextSpan(
-                                            text:
-                                                'en inglés– hace referencia a cinco conceptos que hay'
-                                                'que tener presentes constantemente a la hora de fijar objetivos si lo que buscamos es validar su pertinencia.',
-                                          ),
-                                          TextSpan(
-                                            text:
-                                                ' Por orden, los conceptos son ',
-                                          ),
-                                          TextSpan(
-                                            text:
-                                                '«específico» (S, specific), «medible» (M, measurable), «asignable» (A, assignable),'
-                                                ' «realista» (R, realistic), «temporal» (T, time-related), ',
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                          TextSpan(
-                                            text:
-                                                'es decir, determinado en el tiempo. Según Steffens, G.,'
-                                                ' & Cadiat, A. C. (2016). Los criterios SMART: El método para fijar objetivos con éxito. 50Minutos.',
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  if (_index == 2)
-                                    RichText(
-                                      textAlign: TextAlign.justify,
-                                      text: TextSpan(
-                                        style: TextStyle(
-                                          fontSize: tamanotexto(2) + 4,
-                                          fontFamily: 'Calibri',
-                                          height: 1.5,
-                                          //color: Colors.black,
-                                        ),
-                                        children: [
-                                          TextSpan(
-                                            text:
-                                                'Esta metodología se basa en que el logro de un objetivo debe suponer un esfuerzo para que este sea relevante. Además,'
-                                                ' incorpora nuevos elementos poco frecuentes hasta el momento en el planteamiento de objetivos tales como la legalidad o'
-                                                ' el impacto en el medio ambiente. Según: ',
-                                          ),
-                                          TextSpan(
-                                            text:
-                                                'https://www.itik.cat/uploads/files/5%20m%C3%A9todos %20para%20establecer%20objetivos.pdf',
-                                            style: TextStyle(
-                                              color: Colors.blue,
-                                              //decoration: TextDecoration.underline,
-                                            ),
-                                            recognizer:
-                                                TapGestureRecognizer()
-                                                  ..onTap = () {
-                                                    abrirLink(
-                                                      'https://www.itik.cat/uploads/files/5%20m%C3%A9todos%20para%20establecer%20objetivos.pdf',
-                                                    );
-                                                  },
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  if (_index == 3)
-                                    RichText(
-                                      textAlign: TextAlign.justify,
-                                      text: TextSpan(
-                                        style: TextStyle(
-                                          fontSize: tamanotexto(2) + 4,
-                                          fontFamily: 'Calibri',
-                                          height: 1.5,
-                                          //color: Colors.black,
-                                        ),
-                                        children: [
-                                          TextSpan(
-                                            text:
-                                                'La responsabilidad social y ética en las organizaciones cada vez está más presente en las estrategias de futuro,'
-                                                ' y la metodología',
-                                          ),
-                                          TextSpan(
-                                            text: ' PURE ',
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                          TextSpan(
-                                            text:
-                                                'se focaliza en la ética y relevancia de la concreción de los objetivos. Los elementos clave son: ',
-                                          ),
-                                          TextSpan(
-                                            text:
-                                                '• Positive stated (enunciados en positivo) • Understood (comprensible) • Relevant (relevante) • Ethical (ético).',
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  if (_index == 4)
-                                    RichText(
-                                      textAlign: TextAlign.justify,
-                                      text: TextSpan(
-                                        style: TextStyle(
-                                          fontSize: tamanotexto(2) + 4,
-                                          fontFamily: 'Calibri',
-                                          height: 1.5,
-                                          //color: Colors.black,
-                                        ),
-                                        children: [
-                                          TextSpan(
-                                            text:
-                                                'Esta metodología propone una revisión del contexto en el que se definen los objetivos de una organización o de un proyecto'
-                                                ' específico. Establece que el deseo y el compromiso son elementos indispensables para el logro de las metas propuestas asociando'
-                                                ' también este camino a un crecimiento personal y profesional. ',
-                                          ),
-                                          TextSpan(
-                                            text:
-                                                '• Goal (meta) • Reality (realidad)• Options (opciones)• Will (deseo).',
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-
-                                  if (_index != 1 &&
-                                      _index != 2 &&
-                                      _index != 3 &&
-                                      _index != 4)
-                                    Text(
-                                      textos[_index],
+                                  children: [
+                                    TextSpan(text: 'El modelo '),
+                                    TextSpan(
+                                      text: 'SMART',
                                       style: TextStyle(
-                                        fontSize: tamanotexto(2) + 4,
-                                        fontFamily: 'calibri',
-                                        height: 1.5,
+                                        fontWeight: FontWeight.bold,
                                       ),
-                                      textAlign: TextAlign.justify,
                                     ),
-                                ],
+                                    TextSpan(text: ' –acrónimo que significa '),
+                                    TextSpan(
+                                      text: '«inteligente» ',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text:
+                                          'en inglés– hace referencia a cinco conceptos que hay'
+                                          'que tener presentes constantemente a la hora de fijar objetivos si lo que buscamos es validar su pertinencia.',
+                                    ),
+                                    TextSpan(
+                                      text: ' Por orden, los conceptos son ',
+                                    ),
+                                    TextSpan(
+                                      text:
+                                          '«específico» (S, specific), «medible» (M, measurable), «asignable» (A, assignable),'
+                                          ' «realista» (R, realistic), «temporal» (T, time-related), ',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text:
+                                          'es decir, determinado en el tiempo. Según Steffens, G.,'
+                                          ' & Cadiat, A. C. (2016). Los criterios SMART: El método para fijar objetivos con éxito. 50Minutos.',
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                          ),
-
-                          if (_index <= 6)
-                            Flexible(
-                              flex: 0,
-                              child: Align(
-                                alignment: Alignment.topRight,
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(12),
-                                  child: Image.asset(
-                                    imagenes[_index],
-                                    height: alturaImagengrande[_index],
-                                    fit: BoxFit.contain,
+                            if (_index == 2)
+                              RichText(
+                                textAlign: TextAlign.justify,
+                                text: TextSpan(
+                                  style: TextStyle(
+                                    fontSize: tamanotexto(2) + 4,
+                                    fontFamily: 'Calibri',
+                                    height: 1.5,
+                                    //color: Colors.black,
                                   ),
+                                  children: [
+                                    TextSpan(
+                                      text:
+                                          'Esta metodología se basa en que el logro de un objetivo debe suponer un esfuerzo para que este sea relevante. Además,'
+                                          ' incorpora nuevos elementos poco frecuentes hasta el momento en el planteamiento de objetivos tales como la legalidad o'
+                                          ' el impacto en el medio ambiente. Según: ',
+                                    ),
+                                    TextSpan(
+                                      text:
+                                          'https://www.itik.cat/uploads/files/5%20m%C3%A9todos %20para%20establecer%20objetivos.pdf',
+                                      style: TextStyle(
+                                        color: Colors.blue,
+                                        //decoration: TextDecoration.underline,
+                                      ),
+                                      recognizer: TapGestureRecognizer()
+                                        ..onTap = () {
+                                          abrirLink(
+                                            'https://www.itik.cat/uploads/files/5%20m%C3%A9todos%20para%20establecer%20objetivos.pdf',
+                                          );
+                                        },
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            if (_index == 3)
+                              RichText(
+                                textAlign: TextAlign.justify,
+                                text: TextSpan(
+                                  style: TextStyle(
+                                    fontSize: tamanotexto(2) + 4,
+                                    fontFamily: 'Calibri',
+                                    height: 1.5,
+                                    //color: Colors.black,
+                                  ),
+                                  children: [
+                                    TextSpan(
+                                      text:
+                                          'La responsabilidad social y ética en las organizaciones cada vez está más presente en las estrategias de futuro,'
+                                          ' y la metodología',
+                                    ),
+                                    TextSpan(
+                                      text: ' PURE ',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text:
+                                          'se focaliza en la ética y relevancia de la concreción de los objetivos. Los elementos clave son: ',
+                                    ),
+                                    TextSpan(
+                                      text:
+                                          '• Positive stated (enunciados en positivo) • Understood (comprensible) • Relevant (relevante) • Ethical (ético).',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            if (_index == 4)
+                              RichText(
+                                textAlign: TextAlign.justify,
+                                text: TextSpan(
+                                  style: TextStyle(
+                                    fontSize: tamanotexto(2) + 4,
+                                    fontFamily: 'Calibri',
+                                    height: 1.5,
+                                    //color: Colors.black,
+                                  ),
+                                  children: [
+                                    TextSpan(
+                                      text:
+                                          'Esta metodología propone una revisión del contexto en el que se definen los objetivos de una organización o de un proyecto'
+                                          ' específico. Establece que el deseo y el compromiso son elementos indispensables para el logro de las metas propuestas asociando'
+                                          ' también este camino a un crecimiento personal y profesional. ',
+                                    ),
+                                    TextSpan(
+                                      text:
+                                          '• Goal (meta) • Reality (realidad)• Options (opciones)• Will (deseo).',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            if (_index != 1 &&
+                                _index != 2 &&
+                                _index != 3 &&
+                                _index != 4)
+                              Text(
+                                textos[_index],
+                                style: TextStyle(
+                                  fontSize: tamanotexto(2) + 4,
+                                  fontFamily: 'Calibri',
+                                  height: 1.5,
+                                ),
+                                textAlign: TextAlign.justify,
+                              ),
+                            const SizedBox(height: 20),
+                            if (_index <= 6)
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(12),
+                                child: Image.asset(
+                                  imagenes[_index],
+                                  height: alturaImagenPequena[_index],
+                                  fit: BoxFit.contain,
+                                ),
+                              ),
+                          ],
+                        )
+                      : Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              flex: 2,
+                              child: Padding(
+                                padding: EdgeInsets.only(right: 20),
+                                child: Column(
+                                  children: [
+                                    if (_index == 1)
+                                      RichText(
+                                        textAlign: TextAlign.justify,
+                                        text: TextSpan(
+                                          style: TextStyle(
+                                            fontSize: tamanotexto(2) + 4,
+                                            fontFamily: 'Calibri',
+                                            height: 1.5,
+                                            //color: Colors.black,
+                                          ),
+                                          children: [
+                                            TextSpan(text: 'El modelo '),
+                                            TextSpan(
+                                              text: 'SMART',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            TextSpan(
+                                              text: ' –acrónimo que significa ',
+                                            ),
+                                            TextSpan(
+                                              text: '«inteligente» ',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            TextSpan(
+                                              text:
+                                                  'en inglés– hace referencia a cinco conceptos que hay'
+                                                  'que tener presentes constantemente a la hora de fijar objetivos si lo que buscamos es validar su pertinencia.',
+                                            ),
+                                            TextSpan(
+                                              text:
+                                                  ' Por orden, los conceptos son ',
+                                            ),
+                                            TextSpan(
+                                              text:
+                                                  '«específico» (S, specific), «medible» (M, measurable), «asignable» (A, assignable),'
+                                                  ' «realista» (R, realistic), «temporal» (T, time-related), ',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            TextSpan(
+                                              text:
+                                                  'es decir, determinado en el tiempo. Según Steffens, G.,'
+                                                  ' & Cadiat, A. C. (2016). Los criterios SMART: El método para fijar objetivos con éxito. 50Minutos.',
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    if (_index == 2)
+                                      RichText(
+                                        textAlign: TextAlign.justify,
+                                        text: TextSpan(
+                                          style: TextStyle(
+                                            fontSize: tamanotexto(2) + 4,
+                                            fontFamily: 'Calibri',
+                                            height: 1.5,
+                                            //color: Colors.black,
+                                          ),
+                                          children: [
+                                            TextSpan(
+                                              text:
+                                                  'Esta metodología se basa en que el logro de un objetivo debe suponer un esfuerzo para que este sea relevante. Además,'
+                                                  ' incorpora nuevos elementos poco frecuentes hasta el momento en el planteamiento de objetivos tales como la legalidad o'
+                                                  ' el impacto en el medio ambiente. Según: ',
+                                            ),
+                                            TextSpan(
+                                              text:
+                                                  'https://www.itik.cat/uploads/files/5%20m%C3%A9todos %20para%20establecer%20objetivos.pdf',
+                                              style: TextStyle(
+                                                color: Colors.blue,
+                                                //decoration: TextDecoration.underline,
+                                              ),
+                                              recognizer: TapGestureRecognizer()
+                                                ..onTap = () {
+                                                  abrirLink(
+                                                    'https://www.itik.cat/uploads/files/5%20m%C3%A9todos%20para%20establecer%20objetivos.pdf',
+                                                  );
+                                                },
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    if (_index == 3)
+                                      RichText(
+                                        textAlign: TextAlign.justify,
+                                        text: TextSpan(
+                                          style: TextStyle(
+                                            fontSize: tamanotexto(2) + 4,
+                                            fontFamily: 'Calibri',
+                                            height: 1.5,
+                                            //color: Colors.black,
+                                          ),
+                                          children: [
+                                            TextSpan(
+                                              text:
+                                                  'La responsabilidad social y ética en las organizaciones cada vez está más presente en las estrategias de futuro,'
+                                                  ' y la metodología',
+                                            ),
+                                            TextSpan(
+                                              text: ' PURE ',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            TextSpan(
+                                              text:
+                                                  'se focaliza en la ética y relevancia de la concreción de los objetivos. Los elementos clave son: ',
+                                            ),
+                                            TextSpan(
+                                              text:
+                                                  '• Positive stated (enunciados en positivo) • Understood (comprensible) • Relevant (relevante) • Ethical (ético).',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    if (_index == 4)
+                                      RichText(
+                                        textAlign: TextAlign.justify,
+                                        text: TextSpan(
+                                          style: TextStyle(
+                                            fontSize: tamanotexto(2) + 4,
+                                            fontFamily: 'Calibri',
+                                            height: 1.5,
+                                            //color: Colors.black,
+                                          ),
+                                          children: [
+                                            TextSpan(
+                                              text:
+                                                  'Esta metodología propone una revisión del contexto en el que se definen los objetivos de una organización o de un proyecto'
+                                                  ' específico. Establece que el deseo y el compromiso son elementos indispensables para el logro de las metas propuestas asociando'
+                                                  ' también este camino a un crecimiento personal y profesional. ',
+                                            ),
+                                            TextSpan(
+                                              text:
+                                                  '• Goal (meta) • Reality (realidad)• Options (opciones)• Will (deseo).',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    if (_index != 1 &&
+                                        _index != 2 &&
+                                        _index != 3 &&
+                                        _index != 4)
+                                      Text(
+                                        textos[_index],
+                                        style: TextStyle(
+                                          fontSize: tamanotexto(2) + 4,
+                                          fontFamily: 'calibri',
+                                          height: 1.5,
+                                        ),
+                                        textAlign: TextAlign.justify,
+                                      ),
+                                  ],
                                 ),
                               ),
                             ),
-                        ],
-                      ),
-
+                            if (_index <= 6)
+                              Flexible(
+                                flex: 0,
+                                child: Align(
+                                  alignment: Alignment.topRight,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(12),
+                                    child: Image.asset(
+                                      imagenes[_index],
+                                      height: alturaImagengrande[_index],
+                                      fit: BoxFit.contain,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                          ],
+                        ),
                   if (_index == 1)
                     Center(
                       child: Image.asset(
-                        height:
-                            esPantallaPequena
-                                ? MediaQuery.of(context).size.width * 0.3 - 18
-                                : MediaQuery.of(context).size.width * 0.2 - 18,
+                        height: esPantallaPequena
+                            ? MediaQuery.of(context).size.width * 0.3 - 18
+                            : MediaQuery.of(context).size.width * 0.2 - 18,
                         'assets/Objetivos/Objetivos_Método_Smart_Titulo.png',
                       ),
                     ),
                   if (_index == 2)
                     Center(
                       child: Image.asset(
-                        height:
-                            esPantallaPequena
-                                ? MediaQuery.of(context).size.width * 0.45 - 18
-                                : MediaQuery.of(context).size.width * 0.35 - 18,
+                        height: esPantallaPequena
+                            ? MediaQuery.of(context).size.width * 0.45 - 18
+                            : MediaQuery.of(context).size.width * 0.35 - 18,
                         'assets/Objetivos/Objetivos_Método_Clear_Titulo.png',
                       ),
                     ),
                   if (_index == 5)
                     Center(
                       child: Image.asset(
-                        height:
-                            esPantallaPequena
-                                ? MediaQuery.of(context).size.width * 0.35 - 18
-                                : MediaQuery.of(context).size.width * 0.3 - 18,
+                        height: esPantallaPequena
+                            ? MediaQuery.of(context).size.width * 0.35 - 18
+                            : MediaQuery.of(context).size.width * 0.3 - 18,
                         'assets/Objetivos/Objetivos_Método_Dumb_Titulo.png',
                       ),
                     ),
@@ -801,9 +810,8 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
                               alignment: PlaceholderAlignment.middle,
                               child: TextButton(
                                 style: TextButton.styleFrom(
-                                  padding:
-                                      EdgeInsets
-                                          .zero, // para que no se vea como botón grande
+                                  padding: EdgeInsets
+                                      .zero, // para que no se vea como botón grande
                                   minimumSize: Size(0, 0), // evita alto extra
                                   tapTargetSize:
                                       MaterialTapTargetSize.shrinkWrap,
@@ -908,7 +916,7 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
                     //  print("🟢 Progreso sumado → ID: $idReal");
 
                     // 🟢 GUARDAR EN MONGODB
-                    await guardarProgresoEnAPI();
+                    await guardarProgresoEnAPI(idReal);
                   }
                 } else {
                   Navigator.push(
@@ -950,8 +958,7 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
       context: context,
       isScrollControlled: true,
       constraints: BoxConstraints(
-        maxHeight:
-            MediaQuery.of(context).size.height *
+        maxHeight: MediaQuery.of(context).size.height *
             0.3, // altura máxima de la hoja modal
         minHeight: 0, // altura mínima de la hoja modal
         maxWidth:
@@ -1031,22 +1038,20 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
                     children: [
                       Container(
                         decoration: BoxDecoration(
-                          color:
-                              (isSelected || isVisited)
-                                  ? obtenercolor(
-                                    'Color_Principal',
-                                  ).withOpacity(0.2)
-                                  : item['color'].withOpacity(0.2),
+                          color: (isSelected || isVisited)
+                              ? obtenercolor(
+                                  'Color_Principal',
+                                ).withOpacity(0.2)
+                              : item['color'].withOpacity(0.2),
                           shape: BoxShape.circle,
                         ),
                         padding: const EdgeInsets.all(12),
                         child: Icon(
                           item['icon'],
                           size: tamanotexto(3),
-                          color:
-                              (isSelected || isVisited)
-                                  ? obtenercolor('Color_Principal')
-                                  : item['color'],
+                          color: (isSelected || isVisited)
+                              ? obtenercolor('Color_Principal')
+                              : item['color'],
                         ),
                       ),
                       const SizedBox(height: 6),

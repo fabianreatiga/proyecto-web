@@ -256,33 +256,13 @@ class _BibliografiasState extends State<Bibliografias>
                         horizontal: 20,
                         vertical: 20,
                       ),
-                      child:
-                          esPantallaPequena
-                              ? InteractiveViewer(
-                                // 🔍 Zoom solo en pantallas pequeñas
-                                constrained: true,
-                                minScale: 1.0,
-                                maxScale: 5.0,
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      '¿Sabes que es una Bibliografía?',
-                                      style: TextStyle(
-                                        fontSize: tamanotexto(1) + 5,
-                                        fontFamily: 'Calibri',
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                    const SizedBox(height: 20),
-                                    _buildercard(),
-                                    SizedBox(height: altura(1)),
-                                  ],
-                                ),
-                              )
-                              : Column(
-                                // 💻 En pantallas grandes sin zoom
+                      child: esPantallaPequena
+                          ? InteractiveViewer(
+                              // 🔍 Zoom solo en pantallas pequeñas
+                              constrained: true,
+                              minScale: 1.0,
+                              maxScale: 5.0,
+                              child: Column(
                                 children: [
                                   Text(
                                     '¿Sabes que es una Bibliografía?',
@@ -294,11 +274,30 @@ class _BibliografiasState extends State<Bibliografias>
                                     ),
                                     textAlign: TextAlign.center,
                                   ),
-                                  const SizedBox(height: 35),
+                                  const SizedBox(height: 20),
                                   _buildercard(),
                                   SizedBox(height: altura(1)),
                                 ],
                               ),
+                            )
+                          : Column(
+                              // 💻 En pantallas grandes sin zoom
+                              children: [
+                                Text(
+                                  '¿Sabes que es una Bibliografía?',
+                                  style: TextStyle(
+                                    fontSize: tamanotexto(1) + 5,
+                                    fontFamily: 'Calibri',
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                                const SizedBox(height: 35),
+                                _buildercard(),
+                                SizedBox(height: altura(1)),
+                              ],
+                            ),
                     ),
                   ),
 
@@ -358,82 +357,79 @@ class _BibliografiasState extends State<Bibliografias>
                   const SizedBox(height: 20),
                   esPantallaPequena
                       ? Column(
-                        // se usa Column para mostrar el texto en dos filas
-                        children: [
-                          Text(
-                            textos[_index],
-                            style: TextStyle(
-                              fontSize: tamanotexto(2) + 4,
-                              fontFamily: 'Calibri',
-                              height: 1.5,
+                          // se usa Column para mostrar el texto en dos filas
+                          children: [
+                            Text(
+                              textos[_index],
+                              style: TextStyle(
+                                fontSize: tamanotexto(2) + 4,
+                                fontFamily: 'Calibri',
+                                height: 1.5,
+                              ),
+                              textAlign: TextAlign.justify,
                             ),
-                            textAlign: TextAlign.justify,
-                          ),
-
-                          const SizedBox(height: 20),
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(12),
-                            child: Image.asset(
-                              imagenes[_index],
-                              height: alturaImagenPequena[_index],
-                              fit: BoxFit.contain,
-                            ),
-                          ),
-                        ],
-                      )
-                      : Row(
-                        crossAxisAlignment:
-                            _index == 0 || _index == 3
-                                ? CrossAxisAlignment.center
-                                : CrossAxisAlignment.center,
-
-                        children: [
-                          Expanded(
-                            //se usa expanded para establecer el tamaño del texto
-                            flex: 2,
-                            //se usa flex para que la imagen ocupe el 2/3 de la pantalla
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 20),
-                              child: Column(
-                                children: [
-                                  Text(
-                                    textos[_index],
-                                    style: TextStyle(
-                                      fontSize: tamanotexto(2) + 4,
-                                      fontFamily: 'Calibri',
-                                      height: 1.5,
-                                      //se usa height para aumentar la altura de la letra
-                                    ),
-                                    textAlign: TextAlign.justify,
-                                  ),
-                                ],
+                            const SizedBox(height: 20),
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(12),
+                              child: Image.asset(
+                                imagenes[_index],
+                                height: alturaImagenPequena[_index],
+                                fit: BoxFit.contain,
                               ),
                             ),
-                          ),
-                          Flexible(
-                            flex: 0,
-                            child: Align(
-                              alignment: Alignment.topRight,
-                              // Alinear imagen a la derecha.
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(12),
-                                child: Image.asset(
-                                  imagenes[_index], // Imagen dinámica.
-                                  height: alturaImagengrande[_index],
-                                  // Altura para pantallas grandes.
-                                  fit: BoxFit.contain,
-                                  // se usa fit para que la imagen se ajuste al tamaño del contenedor
+                          ],
+                        )
+                      : Row(
+                          crossAxisAlignment: _index == 0 || _index == 3
+                              ? CrossAxisAlignment.center
+                              : CrossAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              //se usa expanded para establecer el tamaño del texto
+                              flex: 2,
+                              //se usa flex para que la imagen ocupe el 2/3 de la pantalla
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 20),
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      textos[_index],
+                                      style: TextStyle(
+                                        fontSize: tamanotexto(2) + 4,
+                                        fontFamily: 'Calibri',
+                                        height: 1.5,
+                                        //se usa height para aumentar la altura de la letra
+                                      ),
+                                      textAlign: TextAlign.justify,
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
-                          ),
+                            Flexible(
+                              flex: 0,
+                              child: Align(
+                                alignment: Alignment.topRight,
+                                // Alinear imagen a la derecha.
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(12),
+                                  child: Image.asset(
+                                    imagenes[_index], // Imagen dinámica.
+                                    height: alturaImagengrande[_index],
+                                    // Altura para pantallas grandes.
+                                    fit: BoxFit.contain,
+                                    // se usa fit para que la imagen se ajuste al tamaño del contenedor
+                                  ),
+                                ),
+                              ),
+                            ),
 
-                          // Si index es 0 o 3, agregamos Spacer después para centrar
-                          if (_index == 0 || _index == 3 || _index == 5)
-                            Spacer(),
-                          //if (_index == 0 /*|| _index == 3 || _index == 5*/ ) Spacer(),
-                        ],
-                      ),
+                            // Si index es 0 o 3, agregamos Spacer después para centrar
+                            if (_index == 0 || _index == 3 || _index == 5)
+                              Spacer(),
+                            //if (_index == 0 /*|| _index == 3 || _index == 5*/ ) Spacer(),
+                          ],
+                        ),
                   if (_index == 6)
                     Center(
                       child: RichText(
@@ -456,11 +452,10 @@ class _BibliografiasState extends State<Bibliografias>
                                 color: Colors.blue,
                                 //decoration: TextDecoration.underline,
                               ),
-                              recognizer:
-                                  TapGestureRecognizer()
-                                    ..onTap = () {
-                                      abrirLink('https://youtu.be/bHvl_wPp4a4');
-                                    },
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  abrirLink('https://youtu.be/bHvl_wPp4a4');
+                                },
                             ),
                           ],
                         ),
@@ -551,7 +546,7 @@ class _BibliografiasState extends State<Bibliografias>
                     // print("🟢 Progreso sumado → ID: $idReal");
 
                     // 🟢 GUARDAR EN MONGODB
-                    await guardarProgresoEnAPI();
+                    await guardarProgresoEnAPI(idReal);
                   }
                 } else {
                   Navigator.push(
@@ -591,8 +586,7 @@ class _BibliografiasState extends State<Bibliografias>
       context: context,
       isScrollControlled: true,
       constraints: BoxConstraints(
-        maxHeight:
-            MediaQuery.of(context).size.height *
+        maxHeight: MediaQuery.of(context).size.height *
             0.3, // altura máxima de la hoja modal
         minHeight: 0, // altura mínima de la hoja modal
         maxWidth:
@@ -672,22 +666,20 @@ class _BibliografiasState extends State<Bibliografias>
                     children: [
                       Container(
                         decoration: BoxDecoration(
-                          color:
-                              (isSelected || isVisited)
-                                  ? obtenercolor(
-                                    'Color_Principal',
-                                  ).withOpacity(0.2)
-                                  : item['color'].withOpacity(0.2),
+                          color: (isSelected || isVisited)
+                              ? obtenercolor(
+                                  'Color_Principal',
+                                ).withOpacity(0.2)
+                              : item['color'].withOpacity(0.2),
                           shape: BoxShape.circle,
                         ),
                         padding: const EdgeInsets.all(12),
                         child: Icon(
                           item['icon'],
                           size: tamanotexto(3),
-                          color:
-                              (isSelected || isVisited)
-                                  ? obtenercolor('Color_Principal')
-                                  : item['color'],
+                          color: (isSelected || isVisited)
+                              ? obtenercolor('Color_Principal')
+                              : item['color'],
                         ),
                       ),
                       const SizedBox(height: 6),

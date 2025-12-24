@@ -733,7 +733,7 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
                     await ProgresoGlobal.guardarLocal();
 
                     //  GUARDAR EN MONGODB
-                    await guardarProgresoEnAPI();
+                    await guardarProgresoEnAPI(idReal);
                   }
                 } else {
                   //  await guardarProgresoFinal(2);

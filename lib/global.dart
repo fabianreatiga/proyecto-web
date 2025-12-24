@@ -112,40 +112,40 @@ Future<void> sincronizarProgresoConAPI() async {
 
     int progresoAPI = data["progreso"] ?? 0;
 
-    //print("🔵 Progreso recibido desde API: $progresoAPI %");
+    //print("Progreso recibido desde API: $progresoAPI %");
 
     int total = ProgresoGlobal.todosLosIDs.length;
     int cantidadVistas = ((progresoAPI / 100) * total).round();
 
-    //print("🔵 Pestañas a marcar como vistas: $cantidadVistas de $total");
+    //print("Pestañas a marcar como vistas: $cantidadVistas de $total");
 
     ProgresoGlobal.pestanasVistas.clear();
     ProgresoGlobal.pestanasVistas.addAll(
       ProgresoGlobal.todosLosIDs.take(cantidadVistas),
     );
 
-    //print("🔵 IDs cargados: ${ProgresoGlobal.pestanasVistas}");
+    //print("IDs cargados: ${ProgresoGlobal.pestanasVistas}");
 
     await ProgresoGlobal.guardarLocal();
   } catch (e) {
-    //print("❌ Error al sincronizar progreso: $e");
+    //print("Error al sincronizar progreso: $e");
   }
 }
 
 /// ------------------------------------------------------
 /// GUARDAR PROGRESO EN LA API (SUMA +2 HASTA 100)
 /// ------------------------------------------------------
-Future<void> guardarProgresoEnAPI() async {
+Future<void> guardarProgresoEnAPI(int i) async {
   if (usuarioglobal.isEmpty || fichaglobal.isEmpty) return;
 
-  // 🔥 1. Obtener el progreso actual en porcentaje
+  // 1. Obtener el progreso actual en porcentaje
   final int porcentaje = ProgresoGlobal.porcentaje;
 
   final url = Uri.parse(
     "https://proyecto-web-4xe1.onrender.com/guardarProgreso",
   );
 
-  // 🔥 2. Enviar progreso, nombre y ficha
+  // 2. Enviar progreso, nombre y ficha
   final response = await http.post(
     url,
     headers: {"Content-Type": "application/json"},
@@ -156,6 +156,6 @@ Future<void> guardarProgresoEnAPI() async {
     }),
   );
 
-  print("📡 Enviando PROGRESO: $porcentaje%");
-  print("📩 Respuesta API: ${response.body}");
+  print("=> Enviando PROGRESO: $porcentaje%");
+  print("<= Respuesta API: ${response.body}");
 }
