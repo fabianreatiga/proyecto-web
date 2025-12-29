@@ -106,17 +106,29 @@ class _MetodologiasState extends State<Metodologias>
   void initState() {
     super.initState();
 
+    // Registro la primera pestaña como visitada al iniciar la vista
     pestanasVistas.add(0);
-    // Marca la primera pestaña vista con el ID base definido:
+
+    // Marco la primera pestaña en el progreso global usando el ID base
     ProgresoGlobal.marcarVisto(ID_BASE_PROGRESO + 0);
 
-    _tabController = TabController(length: secciones.length, vsync: this);
+    // Inicializo el controlador de pestañas según la cantidad de secciones
+    _tabController = TabController(
+      length: secciones.length,
+      vsync: this,
+    );
+
+    // Escucho los cambios de pestaña para actualizar el índice y el progreso
     _tabController.addListener(() {
       if (!_tabController.indexIsChanging) {
         setState(() => _index = _tabController.index);
+
+        // Registro la pestaña como visitada si aún no ha sido marcada
         if (!pestanasVistas.contains(_tabController.index)) {
           pestanasVistas.add(_tabController.index);
-          ProgresoGlobal.marcarVisto(ID_BASE_PROGRESO + _tabController.index);
+          ProgresoGlobal.marcarVisto(
+            ID_BASE_PROGRESO + _tabController.index,
+          );
         }
       }
     });
@@ -160,7 +172,7 @@ class _MetodologiasState extends State<Metodologias>
       ),
       body: Stack(
         children: [
-          // 🌄 Fondo superior izquierda decorativo
+          // Fondo superior izquierda decorativo
           Positioned(
             top: 0,
             right: 0,
@@ -188,7 +200,7 @@ class _MetodologiasState extends State<Metodologias>
             ),
           ),
 
-          // 🌄 Fondo superior derecha decorativo
+          // Fondo superior derecha decorativo
           Positioned(
             top: 0,
             left: 0,
@@ -203,7 +215,7 @@ class _MetodologiasState extends State<Metodologias>
             ),
           ),
 
-          // 🌄 Fondo inferior izquierda
+          // Fondo inferior izquierda
           Positioned(
             bottom: 90,
             left: 0,
@@ -218,7 +230,7 @@ class _MetodologiasState extends State<Metodologias>
             ),
           ),
 
-          // 🌄 Fondo inferior derecha
+          // Fondo inferior derecha
           Positioned(
             bottom: 90,
             right: 0,
@@ -247,7 +259,7 @@ class _MetodologiasState extends State<Metodologias>
             ),
           ),
 
-          // 📜 Contenido principal
+          // Contenido principal
           SafeArea(
             child: Container(
               padding: EdgeInsets.zero,
@@ -262,7 +274,7 @@ class _MetodologiasState extends State<Metodologias>
                       ),
                       child: esPantallaPequena
                           ? InteractiveViewer(
-                              // 🔍 Zoom solo en pantallas pequeñas
+                              //  Zoom solo en pantallas pequeñas
                               constrained: true,
                               minScale: 1.0,
                               maxScale: 5.0,
@@ -285,7 +297,7 @@ class _MetodologiasState extends State<Metodologias>
                               ),
                             )
                           : Column(
-                              // 💻 En pantallas grandes sin zoom
+                              //  En pantallas grandes sin zoom
                               children: [
                                 Text(
                                   '¿Sabes como crear una buena Metodología?',
@@ -656,6 +668,7 @@ class _MetodologiasState extends State<Metodologias>
     );
   }
 
+// Construye la barra de navegación inferior con los botones Anterior y Siguiente
   Widget _buildNavigation() {
     return Container(
       height: 85,
@@ -669,17 +682,21 @@ class _MetodologiasState extends State<Metodologias>
             height: 45,
             child: ElevatedButton.icon(
               onPressed: () {
+                // Si no estoy en la primera sección, retrocedo a la pestaña anterior
                 if (_index > 0) {
                   final anterior = _index - 1;
                   _tabController.animateTo(anterior);
                   setState(() {
                     _index = anterior;
+
+                    // Registro la pestaña como visitada y actualizo el progreso
                     if (!pestanasVistas.contains(anterior)) {
                       pestanasVistas.add(anterior);
                       ProgresoGlobal.marcarVisto(ID_BASE_PROGRESO + anterior);
                     }
                   });
                 } else {
+                  // Si estoy en la primera sección, navego a la pantalla de Antecedentes
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -712,27 +729,28 @@ class _MetodologiasState extends State<Metodologias>
             height: 45,
             child: ElevatedButton.icon(
               onPressed: () async {
+                // Si no estoy en la última sección, avanzo a la siguiente
                 if (_index < secciones.length - 1) {
                   _tabController.animateTo(_index + 1);
 
-                  // 1. Actualizamos UI primero
+                  // Actualizo primero el estado visual de la sección
                   setState(() {
                     _currentseccion = _index + 1;
                   });
 
-                  // 2. Actualizamos progreso (fuera de setState)
+                  // Calculo el ID real de progreso para la siguiente sección
                   int idReal = ID_BASE_PROGRESO + _index + 1;
 
+                  // Registro el progreso solo si aún no ha sido guardado
                   if (!ProgresoGlobal.pestanasVistas.contains(idReal)) {
                     ProgresoGlobal.pestanasVistas.add(idReal);
                     await ProgresoGlobal.guardarLocal();
 
-                    // print("🟢 Progreso sumado → ID: $idReal");
-
-                    // 🟢 GUARDAR EN MONGODB
+                    // Guardo el progreso de forma remota en la base de datos
                     await guardarProgresoEnAPI(idReal);
                   }
                 } else {
+                  // Si ya es la última sección, navego a la pantalla de Cronograma
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const Cronograma()),
@@ -746,8 +764,9 @@ class _MetodologiasState extends State<Metodologias>
                 color: obtenercolor('Color_Texto'),
               ),
               label: Text(
+                // Muestra “Siguiente” mientras existan secciones por recorrer
+                // y “Adelante” cuando se llega a la última
                 _index < secciones.length - 1 ? 'Siguiente' : 'Adelante',
-                //si el index es menor que la longitud de la lista de secciones, se muestra 'Siguiente', de lo contrario se muestra 'Adelante'
                 style: TextStyle(
                   color: obtenercolor('Color_Texto'),
                   fontFamily: 'Calibri',
@@ -765,27 +784,37 @@ class _MetodologiasState extends State<Metodologias>
     );
   }
 
+// Muestra un menú modal inferior con un menú horizontal de navegación
   void modalmenu(BuildContext context) {
     showModalBottomSheet(
       context: context,
+
+      // Permite que el modal ajuste su tamaño según el contenido
       isScrollControlled: true,
+
+      // Defino las restricciones de tamaño del modal
       constraints: BoxConstraints(
-        maxHeight: MediaQuery.of(context).size.height *
-            0.3, // altura máxima de la hoja modal
-        minHeight: 0, // altura mínima de la hoja modal
-        maxWidth:
-            MediaQuery.of(context).size.width, // ancho máximo de la hoja modal
-        minWidth: 0, // ancho mínimo de la hoja modal
+        maxHeight: MediaQuery.of(context).size.height * 0.3, // Altura máxima
+        minHeight: 0, // Altura mínima
+        maxWidth: MediaQuery.of(context).size.width, // Ancho máximo
+        minWidth: 0, // Ancho mínimo
       ),
+
+      // Uso fondo transparente para personalizar el contenedor
       backgroundColor: Colors.transparent,
+
       builder: (x) {
         return Align(
           alignment: AlignmentDirectional.bottomStart,
           child: Container(
             decoration: BoxDecoration(
               color: obtenercolor('Color_Fondo'),
+
+              // Bordes redondeados solo en la parte superior
               borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
             ),
+
+            // Construyo el contenido principal del menú
             child: _buildGridMenu(context),
           ),
         );
@@ -793,28 +822,40 @@ class _MetodologiasState extends State<Metodologias>
     );
   }
 
+// Construye el menú horizontal con desplazamiento para navegar entre secciones
   Widget _buildGridMenu(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
+
+    // Determino si la pantalla es grande (web o tablet)
     final bool esPantallaGrande = kIsWeb || screenWidth > 600;
 
+    // Controlador del scroll horizontal
     final ScrollController scrollController = ScrollController();
+
+    // Ajusto el ancho de los items según el tipo de pantalla
     final double itemWidth = esPantallaGrande ? 180 : 120;
-    final double itemSpacing = 24; // margen horizontal * 2 (12+12)
+    final double itemSpacing = 24; // Margen horizontal total (12 + 12)
+
+    // Calculo el ancho total del contenido del menú
     final double totalContentWidth =
         (itemWidth + itemSpacing) * menuItems.length;
 
+    // Centro el menú si el contenido no ocupa todo el ancho de la pantalla
     double sidePadding = 0;
     if (totalContentWidth < screenWidth) {
       sidePadding = (screenWidth - totalContentWidth) / 2;
     }
 
     return SizedBox(
-      height: 190,
+      height: 190, // Altura fija del menú
       child: Scrollbar(
         controller: scrollController,
+
+        // Mantengo visible el scrollbar para mejorar la experiencia de usuario
         thumbVisibility: true,
         trackVisibility: true,
         interactive: true,
+
         child: ListView.builder(
           controller: scrollController,
           scrollDirection: Axis.horizontal,
@@ -822,7 +863,11 @@ class _MetodologiasState extends State<Metodologias>
           padding: EdgeInsets.symmetric(horizontal: sidePadding),
           itemBuilder: (context, index) {
             final item = menuItems[index];
+
+            // Verifico si la pestaña ya fue visitada
             final bool isVisited = pestanasVistas.contains(item['indice']);
+
+            // Verifico si la pestaña está actualmente seleccionada
             final bool isSelected = _tabController.index == item['indice'];
 
             return SizedBox(
@@ -831,29 +876,35 @@ class _MetodologiasState extends State<Metodologias>
                 margin: const EdgeInsets.symmetric(horizontal: 12),
                 child: GestureDetector(
                   onTap: () {
+                    // Cierro el modal antes de cambiar de sección
                     Navigator.pop(context);
+
                     final nuevoIndex = item['indice'];
                     if (nuevoIndex != null) {
+                      // Cambio de pestaña con animación
                       _tabController.animateTo(nuevoIndex);
+
                       setState(() {
                         _index = nuevoIndex;
+
+                        // Registro la pestaña como visitada y actualizo el progreso
                         if (!pestanasVistas.contains(nuevoIndex)) {
                           pestanasVistas.add(nuevoIndex);
                           ProgresoGlobal.marcarVisto(item['id']);
-                          //_progresoContador++;
                         }
                       });
                     }
                   },
+
+                  // Define la apariencia visual de cada item del menú
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
                         decoration: BoxDecoration(
+                          // El color cambia si la pestaña está seleccionada o visitada
                           color: (isSelected || isVisited)
-                              ? obtenercolor(
-                                  'Color_Principal',
-                                ).withOpacity(0.2)
+                              ? obtenercolor('Color_Principal').withOpacity(0.2)
                               : item['color'].withOpacity(0.2),
                           shape: BoxShape.circle,
                         ),
@@ -867,6 +918,8 @@ class _MetodologiasState extends State<Metodologias>
                         ),
                       ),
                       const SizedBox(height: 6),
+
+                      // Texto descriptivo de la sección del menú
                       Text(
                         item['text'],
                         style: TextStyle(fontSize: tamanotexto(2)),

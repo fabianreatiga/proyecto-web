@@ -3,17 +3,23 @@ import 'package:nuevomockups/Color_texto/color_texto.dart';
 import 'package:nuevomockups/global.dart';
 //import 'package:nuevomockups/global.dart';
 
+// AppBar personalizado que muestra el título del aplicativo,
+// el nombre del usuario, el progreso general y acciones dinámicas
 class Appbar2 extends StatelessWidget implements PreferredSizeWidget {
   final List<Widget> actions;
-  final double progreso; // <- Añadido
-  final String nombre; // 👈 añadimos el nombre
+
+  // Valor de progreso que se muestra en la barra inferior
+  final double progreso;
+
+  // Nombre del usuario que se visualiza en el AppBar
+  final String nombre;
 
   const Appbar2({
     super.key,
     required this.actions,
     required this.progreso,
-    required this.nombre, // 👈 requerido
-  }); // aca se recibe el nombre, progreso y las acciones
+    required this.nombre,
+  }); // Aquí se reciben las acciones, el progreso y el nombre del usuario
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +28,7 @@ class Appbar2 extends StatelessWidget implements PreferredSizeWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          // 🔹 Título principal
+          // Título principal del aplicativo
           Text(
             'Aplicativo para la estructuración de proyectos de investigación',
             style: TextStyle(
@@ -33,7 +39,7 @@ class Appbar2 extends StatelessWidget implements PreferredSizeWidget {
             ),
           ),
 
-          // 🔹 Nombre de usuario + progreso
+          // Fila que muestra el nombre del usuario y el porcentaje de progreso
           Row(
             children: [
               Icon(
@@ -44,7 +50,7 @@ class Appbar2 extends StatelessWidget implements PreferredSizeWidget {
 
               const SizedBox(width: 10),
 
-              // 👤 Aquí aparece el nombre dinámico
+              // Nombre del usuario mostrado de forma dinámica
               Text(
                 usuarioglobal,
                 style: TextStyle(
@@ -56,6 +62,7 @@ class Appbar2 extends StatelessWidget implements PreferredSizeWidget {
 
               const SizedBox(width: 20),
 
+              // Porcentaje de progreso global del usuario
               Text(
                 '${(ProgresoGlobal.progreso * 100).toInt()}%',
                 style: TextStyle(
@@ -68,9 +75,11 @@ class Appbar2 extends StatelessWidget implements PreferredSizeWidget {
           ),
         ],
       ),
+
+      // Acciones personalizadas que se inyectan desde cada pantalla
       actions: actions,
 
-      // 🔹 Barra inferior de progreso
+      // Barra inferior que muestra visualmente el progreso del usuario
       bottom: PreferredSize(
         preferredSize: const Size.fromHeight(10),
         child: Stack(
@@ -91,6 +100,7 @@ class Appbar2 extends StatelessWidget implements PreferredSizeWidget {
       iconTheme: IconThemeData(color: obtenercolor('Color_Texto_Principal')),
       foregroundColor: obtenercolor('Color_Texto_Principal'),
 
+      // Fondo decorativo con textura para el AppBar
       flexibleSpace: Container(
         decoration: BoxDecoration(
           color: obtenercolor('Color_Principal'),
@@ -100,15 +110,13 @@ class Appbar2 extends StatelessWidget implements PreferredSizeWidget {
             opacity: 0.15,
           ),
         ),
-        // aca tambien agregamos una textura
       ),
     );
   }
 
+  // Define la altura personalizada del AppBar
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight + 15); // se usa para ajustar el tamaño del appbar
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight + 15);
 }
 
-
-
-// el appbar.dart se esta usando en todas las ventanas del aplicativo
+// Este AppBar se reutiliza en todas las ventanas del aplicativo

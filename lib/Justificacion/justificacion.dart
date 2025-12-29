@@ -445,6 +445,7 @@ class _JustificacionesState extends State<Justificaciones>
     );
   }
 
+  // Construye la barra de navegación inferior con los botones Anterior y Siguiente
   Widget _buildNavigation() {
     return Container(
       height: 85,
@@ -458,17 +459,21 @@ class _JustificacionesState extends State<Justificaciones>
             height: 45,
             child: ElevatedButton.icon(
               onPressed: () {
+                // Si no estoy en la primera pestaña, retrocedo una sección
                 if (_index > 0) {
                   final anterior = _index - 1;
                   _tabController.animateTo(anterior);
                   setState(() {
                     _index = anterior;
+
+                    // Registro la pestaña como visitada y actualizo el progreso
                     if (!pestanasVistas.contains(anterior)) {
                       pestanasVistas.add(anterior);
                       ProgresoGlobal.marcarVisto(ID_BASE_PROGRESO + anterior);
                     }
                   });
                 } else {
+                  // Si estoy en la primera sección, navego a la pantalla anterior
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -501,24 +506,25 @@ class _JustificacionesState extends State<Justificaciones>
             height: 45,
             child: ElevatedButton.icon(
               onPressed: () async {
+                // Si no estoy en la última sección, avanzo a la siguiente
                 if (_index < secciones.length - 1) {
                   _tabController.animateTo(_index + 1);
 
-                  // 1. Actualizamos UI primero
+                  // Actualizo primero el estado visual
                   setState(() {
                     _currentseccion = _index + 1;
                   });
 
-                  // 2. Actualizamos progreso (fuera de setState)
+                  // Actualizo el progreso de forma persistente
                   int idReal = ID_BASE_PROGRESO + _index + 1;
 
                   if (!ProgresoGlobal.pestanasVistas.contains(idReal)) {
                     ProgresoGlobal.pestanasVistas.add(idReal);
                     await ProgresoGlobal.guardarLocal();
-
                     await guardarProgresoEnAPI(idReal);
                   }
                 } else {
+                  // Si ya es la última sección, navego a la pantalla de objetivos
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const Objetivos()),
@@ -550,28 +556,39 @@ class _JustificacionesState extends State<Justificaciones>
     );
   }
 
+  // Muestra un menú modal inferior con navegación horizontal entre secciones
   void modalmenu(BuildContext context) {
     showModalBottomSheet(
       context: context,
+
+      // Permite que el modal ajuste su tamaño según el contenido
       isScrollControlled: true,
+
+      // Limito la altura máxima del modal al 30% de la pantalla
       constraints: BoxConstraints(
-        maxHeight: MediaQuery.of(context).size.height *
-            0.3, // altura máxima de la hoja modal
+        maxHeight: MediaQuery.of(context).size.height * 0.3,
         minHeight: 0,
         maxWidth: MediaQuery.of(context).size.width,
         minWidth: 0,
       ),
+
+      // Fondo transparente para personalizar el diseño del contenedor
       backgroundColor: Colors.transparent,
+
       builder: (x) {
         return Align(
           alignment: AlignmentDirectional.bottomStart,
           child: Container(
             decoration: BoxDecoration(
               color: obtenercolor('Color_Fondo'),
+
+              // Bordes redondeados únicamente en la parte superior
               borderRadius: const BorderRadius.vertical(
                 top: Radius.circular(20),
               ),
             ),
+
+            // Construyo el contenido del menú
             child: _buildGridMenu(context),
           ),
         );
@@ -579,28 +596,40 @@ class _JustificacionesState extends State<Justificaciones>
     );
   }
 
+// Construye el menú horizontal con los accesos a las pestañas
   Widget _buildGridMenu(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
+
+    // Determino si la pantalla es grande (web o tablet)
     final bool esPantallaGrande = kIsWeb || screenWidth > 600;
 
+    // Controlador para el desplazamiento horizontal
     final ScrollController scrollController = ScrollController();
+
+    // Ajusto el tamaño de los items según el tipo de pantalla
     final double itemWidth = esPantallaGrande ? 180 : 120;
-    final double itemSpacing = 24; // margen horizontal * 2 (12+12)
+    final double itemSpacing = 24;
+
+    // Calculo el ancho total del contenido del menú
     final double totalContentWidth =
         (itemWidth + itemSpacing) * menuItems.length;
 
+    // Si el contenido es menor que el ancho de pantalla, lo centro
     double sidePadding = 0;
     if (totalContentWidth < screenWidth) {
       sidePadding = (screenWidth - totalContentWidth) / 2;
     }
 
     return SizedBox(
-      height: 190,
+      height: 190, // Altura fija del menú
       child: Scrollbar(
         controller: scrollController,
+
+        // Hago visible el scrollbar para mejorar la usabilidad
         thumbVisibility: true,
         trackVisibility: true,
         interactive: true,
+
         child: ListView.builder(
           controller: scrollController,
           scrollDirection: Axis.horizontal,
@@ -608,7 +637,11 @@ class _JustificacionesState extends State<Justificaciones>
           padding: EdgeInsets.symmetric(horizontal: sidePadding),
           itemBuilder: (context, index) {
             final item = menuItems[index];
+
+            // Verifico si la pestaña ya fue visitada
             final bool isVisited = pestanasVistas.contains(item['indice']);
+
+            // Verifico si la pestaña está actualmente seleccionada
             final bool isSelected = _tabController.index == item['indice'];
 
             return SizedBox(
@@ -617,29 +650,35 @@ class _JustificacionesState extends State<Justificaciones>
                 margin: const EdgeInsets.symmetric(horizontal: 12),
                 child: GestureDetector(
                   onTap: () {
+                    // Cierro el modal antes de cambiar de pestaña
                     Navigator.pop(context);
+
                     final nuevoIndex = item['indice'];
                     if (nuevoIndex != null) {
+                      // Cambio de pestaña con animación
                       _tabController.animateTo(nuevoIndex);
+
                       setState(() {
                         _index = nuevoIndex;
+
+                        // Registro la pestaña como visitada y actualizo el progreso
                         if (!pestanasVistas.contains(nuevoIndex)) {
                           pestanasVistas.add(nuevoIndex);
                           ProgresoGlobal.marcarVisto(item['id']);
-                          //_progresoContador++;
                         }
                       });
                     }
                   },
+
+                  // Define la apariencia visual de cada item del menú
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
                         decoration: BoxDecoration(
+                          // El color cambia si está seleccionada o ya fue visitada
                           color: (isSelected || isVisited)
-                              ? obtenercolor(
-                                  'Color_Principal',
-                                ).withOpacity(0.2)
+                              ? obtenercolor('Color_Principal').withOpacity(0.2)
                               : item['color'].withOpacity(0.2),
                           shape: BoxShape.circle,
                         ),
@@ -653,6 +692,8 @@ class _JustificacionesState extends State<Justificaciones>
                         ),
                       ),
                       const SizedBox(height: 6),
+
+                      // Texto descriptivo del item del menú
                       Text(
                         item['text'],
                         style: TextStyle(fontSize: tamanotexto(2)),

@@ -94,15 +94,25 @@ class _Antecedentes_EstadosState extends State<Antecedentes_Estados>
   void initState() {
     super.initState();
 
+    // Registro la primera pestaña como visitada al iniciar el widget
     pestanasVistas.add(0);
-    // Marca la primera pestaña vista con el ID base definido:
+
+    // Marco la primera pestaña en el progreso global usando el ID base
     ProgresoGlobal.marcarVisto(ID_BASE_PROGRESO + 0);
 
-    _tabController = TabController(length: secciones.length, vsync: this);
+    // Inicializo el controlador de pestañas según la cantidad de secciones
+    _tabController = TabController(
+      length: secciones.length,
+      vsync: this,
+    );
+
+    // Escucho los cambios de pestaña para actualizar el índice y el progreso
     _tabController.addListener(() {
       if (!_tabController.indexIsChanging) {
         setState(() {
           _index = _tabController.index;
+
+          // Registro la pestaña como visitada si aún no ha sido marcada
           if (!pestanasVistas.contains(_index)) {
             pestanasVistas.add(_index);
             ProgresoGlobal.marcarVisto(ID_BASE_PROGRESO + _index);
@@ -110,7 +120,10 @@ class _Antecedentes_EstadosState extends State<Antecedentes_Estados>
         });
       }
     });
-  } // es este bloque de codigo se usa para inicializar el estado del widget
+  }
+
+// Este bloque se utiliza para inicializar el estado del widget,
+// configurar el TabController y llevar el control del progreso por pestañas.
 
   @override
   Widget build(BuildContext context) {
@@ -149,7 +162,7 @@ class _Antecedentes_EstadosState extends State<Antecedentes_Estados>
       drawer: Menu(currentScreen: 'Arte', progreso: ProgresoGlobal.porcentaje),
       body: Stack(
         children: [
-          // 🌄 Fondo superior izquierda decorativo
+          //  Fondo superior izquierda decorativo
           Positioned(
             top: 0,
             right: 0,
@@ -178,7 +191,7 @@ class _Antecedentes_EstadosState extends State<Antecedentes_Estados>
             ),
           ),
 
-          // 🌄 Fondo inferior izquierda
+          //  Fondo inferior izquierda
           Positioned(
             bottom: 90,
             left: 0,
@@ -207,7 +220,7 @@ class _Antecedentes_EstadosState extends State<Antecedentes_Estados>
             ),
           ),
 
-          // 📜 Contenido principal
+          //  Contenido principal
           SafeArea(
             child: Container(
               padding: EdgeInsets.zero,
@@ -222,7 +235,7 @@ class _Antecedentes_EstadosState extends State<Antecedentes_Estados>
                       ),
                       child: esPantallaPequena
                           ? InteractiveViewer(
-                              // 🔍 Zoom solo en pantallas pequeñas
+                              //  Zoom solo en pantallas pequeñas
                               constrained: true,
                               minScale: 1.0,
                               maxScale: 5.0,
@@ -245,7 +258,7 @@ class _Antecedentes_EstadosState extends State<Antecedentes_Estados>
                               ),
                             )
                           : Column(
-                              // 💻 En pantallas grandes sin zoom
+                              //  En pantallas grandes sin zoom
                               children: [
                                 Text(
                                   '¿Qué son los antecedentes o el estado del arte?',
@@ -265,7 +278,7 @@ class _Antecedentes_EstadosState extends State<Antecedentes_Estados>
                     ),
                   ),
 
-                  // 🔘 Navegación inferior
+                  //  Navegación inferior
                   _buildNavigation(),
                 ],
               ),
@@ -590,6 +603,7 @@ class _Antecedentes_EstadosState extends State<Antecedentes_Estados>
     );
   }
 
+  // Construye la barra de navegación inferior con los botones Anterior y Siguiente
   Widget _buildNavigation() {
     return Container(
       height: 85,
@@ -603,17 +617,21 @@ class _Antecedentes_EstadosState extends State<Antecedentes_Estados>
             height: 45,
             child: ElevatedButton.icon(
               onPressed: () {
+                // Si no estoy en la primera sección, retrocedo a la pestaña anterior
                 if (_index > 0) {
                   final anterior = _index - 1;
                   _tabController.animateTo(anterior);
                   setState(() {
                     _index = anterior;
+
+                    // Registro la pestaña como visitada y actualizo el progreso
                     if (!pestanasVistas.contains(anterior)) {
                       pestanasVistas.add(anterior);
                       ProgresoGlobal.marcarVisto(ID_BASE_PROGRESO + anterior);
                     }
                   });
                 } else {
+                  // Si estoy en la primera sección, navego a la pantalla de Objetivo
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => Objetivo()),
@@ -644,22 +662,28 @@ class _Antecedentes_EstadosState extends State<Antecedentes_Estados>
             height: 45,
             child: ElevatedButton.icon(
               onPressed: () async {
+                // Si no estoy en la última sección, avanzo a la siguiente
                 if (_index < secciones.length - 1) {
                   _tabController.animateTo(_index + 1);
 
+                  // Actualizo primero el estado visual de la sección actual
                   setState(() {
                     _currentseccion = _index + 1;
                   });
 
+                  // Calculo el ID real de progreso para la siguiente sección
                   int idReal = ID_BASE_PROGRESO + _index + 1;
 
+                  // Registro el progreso solo si aún no ha sido guardado
                   if (!ProgresoGlobal.pestanasVistas.contains(idReal)) {
                     ProgresoGlobal.pestanasVistas.add(idReal);
                     await ProgresoGlobal.guardarLocal();
 
+                    // Guardo el progreso de forma remota
                     await guardarProgresoEnAPI(idReal);
                   }
                 } else {
+                  // Si ya es la última sección, navego a la pantalla de Metodología
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => Metodologia()),
@@ -673,6 +697,7 @@ class _Antecedentes_EstadosState extends State<Antecedentes_Estados>
                 size: tamanotexto(2),
               ),
               label: Text(
+                // Cambia el texto según si aún hay secciones por recorrer
                 _index < secciones.length - 1 ? 'Siguiente' : 'Adelante',
                 style: TextStyle(
                   color: obtenercolor('Color_Texto_Principal'),
@@ -690,27 +715,37 @@ class _Antecedentes_EstadosState extends State<Antecedentes_Estados>
     );
   }
 
+  // Muestra un menú modal inferior centrado con acceso rápido a las secciones
   void modalmenu(BuildContext context) {
     showModalBottomSheet(
       context: context,
+
+      // Permite que el modal ajuste su tamaño según el contenido
       isScrollControlled: true,
+
+      // Defino las restricciones de tamaño del modal
       constraints: BoxConstraints(
-        maxHeight: MediaQuery.of(context).size.height *
-            0.3, // altura máxima de la hoja modal
-        minHeight: 0, // altura mínima de la hoja modal
-        maxWidth:
-            MediaQuery.of(context).size.width, // ancho máximo de la hoja modal
-        minWidth: 0, // ancho mínimo de la hoja modal
+        maxHeight: MediaQuery.of(context).size.height * 0.3, // Altura máxima
+        minHeight: 0, // Altura mínima
+        maxWidth: MediaQuery.of(context).size.width, // Ancho máximo
+        minWidth: 0, // Ancho mínimo
       ),
+
+      // Uso fondo transparente para personalizar el contenedor interno
       backgroundColor: Colors.transparent,
+
       builder: (x) {
         return Align(
           alignment: Alignment.bottomCenter,
           child: Container(
             decoration: BoxDecoration(
               color: obtenercolor('Color_Fondo'),
+
+              // Bordes redondeados solo en la parte superior
               borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
             ),
+
+            // Construyo el contenido principal del menú
             child: _buildGridMenu(context),
           ),
         );
@@ -718,28 +753,40 @@ class _Antecedentes_EstadosState extends State<Antecedentes_Estados>
     );
   }
 
+// Construye el menú horizontal con desplazamiento para navegar entre secciones
   Widget _buildGridMenu(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
+
+    // Determino si la pantalla es grande (web o dispositivos con mayor ancho)
     final bool esPantallaGrande = kIsWeb || screenWidth > 600;
 
+    // Controlador del scroll horizontal del menú
     final ScrollController scrollController = ScrollController();
+
+    // Ajusto el ancho de cada item según el tipo de pantalla
     final double itemWidth = esPantallaGrande ? 180 : 120;
-    final double itemSpacing = 24; // margen horizontal * 2 (12+12)
+    final double itemSpacing = 24; // Margen horizontal total (12 + 12)
+
+    // Calculo el ancho total que ocupará el contenido del menú
     final double totalContentWidth =
         (itemWidth + itemSpacing) * menuItems.length;
 
+    // Centro el menú si el contenido no ocupa todo el ancho disponible
     double sidePadding = 0;
     if (totalContentWidth < screenWidth) {
       sidePadding = (screenWidth - totalContentWidth) / 2;
     }
 
     return SizedBox(
-      height: 190,
+      height: 190, // Altura fija del menú
       child: Scrollbar(
         controller: scrollController,
+
+        // Mantengo visible el scrollbar para mejorar la experiencia de usuario
         thumbVisibility: true,
         trackVisibility: true,
         interactive: true,
+
         child: ListView.builder(
           controller: scrollController,
           scrollDirection: Axis.horizontal,
@@ -747,7 +794,11 @@ class _Antecedentes_EstadosState extends State<Antecedentes_Estados>
           padding: EdgeInsets.symmetric(horizontal: sidePadding),
           itemBuilder: (context, index) {
             final item = menuItems[index];
+
+            // Verifico si la pestaña ya fue visitada
             final bool isVisited = pestanasVistas.contains(item['indice']);
+
+            // Verifico si la pestaña está actualmente seleccionada
             final bool isSelected = _tabController.index == item['indice'];
 
             return SizedBox(
@@ -756,29 +807,35 @@ class _Antecedentes_EstadosState extends State<Antecedentes_Estados>
                 margin: const EdgeInsets.symmetric(horizontal: 12),
                 child: GestureDetector(
                   onTap: () {
+                    // Cierro el modal antes de cambiar de sección
                     Navigator.pop(context);
+
                     final nuevoIndex = item['indice'];
                     if (nuevoIndex != null) {
+                      // Cambio de pestaña con animación
                       _tabController.animateTo(nuevoIndex);
+
                       setState(() {
                         _index = nuevoIndex;
+
+                        // Registro la pestaña como visitada y actualizo el progreso
                         if (!pestanasVistas.contains(nuevoIndex)) {
                           pestanasVistas.add(nuevoIndex);
                           ProgresoGlobal.marcarVisto(item['id']);
-                          //_progresoContador++;
                         }
                       });
                     }
                   },
+
+                  // Define la estructura visual de cada item del menú
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
                         decoration: BoxDecoration(
+                          // El color cambia si la pestaña está seleccionada o ya fue visitada
                           color: (isSelected || isVisited)
-                              ? obtenercolor(
-                                  'Color_Principal',
-                                ).withOpacity(0.2)
+                              ? obtenercolor('Color_Principal').withOpacity(0.2)
                               : item['color'].withOpacity(0.2),
                           shape: BoxShape.circle,
                         ),
@@ -792,6 +849,8 @@ class _Antecedentes_EstadosState extends State<Antecedentes_Estados>
                         ),
                       ),
                       const SizedBox(height: 6),
+
+                      // Texto descriptivo de la sección del menú
                       Text(
                         item['text'],
                         style: TextStyle(fontSize: tamanotexto(2)),

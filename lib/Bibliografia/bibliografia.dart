@@ -97,17 +97,29 @@ class _BibliografiasState extends State<Bibliografias>
   void initState() {
     super.initState();
 
+    // Registro la primera pestaña como visitada al iniciar la pantalla
     pestanasVistas.add(0);
-    // Marca la primera pestaña vista con el ID base definido:
+
+    // Marco la primera pestaña en el progreso global usando el ID base
     ProgresoGlobal.marcarVisto(ID_BASE_PROGRESO + 0);
 
-    _tabController = TabController(length: secciones.length, vsync: this);
+    // Inicializo el controlador de pestañas según la cantidad de secciones
+    _tabController = TabController(
+      length: secciones.length,
+      vsync: this,
+    );
+
+    // Escucho los cambios de pestaña para actualizar el índice y el progreso
     _tabController.addListener(() {
       if (!_tabController.indexIsChanging) {
         setState(() => _index = _tabController.index);
+
+        // Registro la pestaña como visitada si aún no ha sido marcada
         if (!pestanasVistas.contains(_tabController.index)) {
           pestanasVistas.add(_tabController.index);
-          ProgresoGlobal.marcarVisto(ID_BASE_PROGRESO + _tabController.index);
+          ProgresoGlobal.marcarVisto(
+            ID_BASE_PROGRESO + _tabController.index,
+          );
         }
       }
     });
@@ -151,7 +163,7 @@ class _BibliografiasState extends State<Bibliografias>
       ),
       body: Stack(
         children: [
-          // 🌄 Fondo superior izquierda decorativo
+          //  Fondo superior izquierda decorativo
           Positioned(
             top: 0,
             right: 0,
