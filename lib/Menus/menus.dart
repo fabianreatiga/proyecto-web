@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nuevomockups/Actividades/actividades.dart';
 import 'package:nuevomockups/Antecedentes_Estado/antecedentesoestado.dart';
-//import 'package:nuevomockups/Bases_Datos/bases_datos.dart';
 import 'package:nuevomockups/Bibliografia/bibliografia.dart';
 import 'package:nuevomockups/Busqueda/busqueda.dart';
 import 'package:nuevomockups/Color_texto/color_texto.dart';
@@ -47,7 +46,7 @@ class Menu extends StatelessWidget {
         ],
       ),
     );
-  }
+  } // este bloque de código muestra una alerta si el progreso es insuficiente
 
   @override
   Widget build(BuildContext context) {
@@ -348,7 +347,7 @@ class Menu extends StatelessWidget {
             leading: Icon(
               FontAwesomeIcons.nine,
               color:
-                  currentScreen == 'Bibliografia' ? Colors.white : Colors.black,
+                  currentScreen == 'Bibliogafia' ? Colors.white : Colors.black,
               size: 17,
             ),
             title: Text(
@@ -409,58 +408,6 @@ class Menu extends StatelessWidget {
               }
             },
           ),
-
-          //======================= BASES DE DATOS =======================\\
-          /* ListTile(
-            leading: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(
-                  FontAwesomeIcons.one,
-                  color:
-                      currentScreen == 'BasesDeDatos'
-                          ? Colors.white
-                          : Colors.black,
-                  size: 17,
-                ),
-                SizedBox(width: 2),
-                Icon(
-                  FontAwesomeIcons.one,
-                  color:
-                      currentScreen == 'BasesDeDatos'
-                          ? Colors.white
-                          : Colors.black,
-                  size: 17,
-                ),
-              ],
-            ),
-            title: Text(
-              'Base de Datos Científica',
-              style: TextStyle(
-                fontSize: texto + 4,
-                color:
-                    currentScreen == 'BaseDeDatos'
-                        ? Colors.white
-                        : Colors.black,
-              ),
-            ),
-            selected: currentScreen == 'BaseDeDatos',
-            selectedTileColor: obtenercolor('Color_Principal'),
-            onTap: () {
-              if (progreso < 95) {
-                _progreso(
-                  context,
-                  'Para seguir debes superar el 95% del progreso en Búsqueda',
-                );
-              } else {
-                Navigator.pop(context);
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Basesdatos()),
-                );
-              }
-            },
-          ),*/
           ListTile(
             leading: Icon(
               Icons.video_library,

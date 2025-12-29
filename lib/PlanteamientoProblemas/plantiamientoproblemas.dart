@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names, deprecated_member_use, unused_field
+// ignore_for_file: non_constant_identifier_names, deprecated_member_use, unused_field, avoid_print
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
@@ -46,52 +46,24 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
     'El planteamiento del problema es el punto de partida de todo proyecto o investigación. '
         'El problema expresa un vacío en el conocimiento o una necesidad que debe ser resuelta. '
         'La problemática requiere un sustento que haga evidente la necesidad de resolver el problema a tratar.',
-
     'Tener en cuenta:\n • ¿Qué es lo que se pretende conocer de un determinado objeto de estudio a partir de su '
         'investigación?\n • ¿De qué manera se piensa abordar la temática para esclarecer su desconocimiento?',
-
     'Se recomiendan estas 4 metodologías:\n • 5W1H,\n• Espina de pescado,\n• Árbol de problemas,\n• Esquema de redacción.',
-
-    /*'Ejemplos: Qué (WHAT): Hay personas que sufren de los ojos, conjuntivitis alergénica y llevan aplicándose '
-        'medicamento hace mucho tiempo sin curarse. Porqué (WHY): Porque los medicamentos que se aplican no son '
-        'efectivos. Cuando (WHEN): Virosis de conjuntivitis, cuando hay altas tasas de polución y cuando se usa '
-        'mucho los celulares o pantallas. Dónde (WHERE): Ciudades con mayor polución, en el campo durante las quemas '
-        'y preparación, cuando cocina con leña, en personal de obra constructivo. En niños de etapa temprana. '
-        'Quién (WHO): Personal de construcción, agricultores, niños, madres cabeza de familia que cocinan con '
-        'leña, adultos mayores, personas que trabajan muchas horas desde la pantalla. Cómo (HOW): Medicamentos '
-        'formulados, miel, otros remedios para los ojos. Cirugía.',*/
     '',
-
     'Basado en el análisis de los ítems anteriores se redacta un párrafo general con la descripción de '
         'la problemática identificada.',
-
     '',
-    //'Esquemas que pueden ayudar a plantear la problemática. 1. Para productos: Hemos observado que el '
-    //  '[Producto o servicio] no está cumpliendo [con estos objetivos], lo cual está causando [efecto negativo] '
-    //  'a nuestro [impacto en el negocio].',
-
-    /*
-    'Esquemas que pueden ayudar a plantear la problemática. 1. Cuándo es un punto de vista: [Tipo de usuario] '
-        'intenta [descripción de su necesidad u objetivo] pero [barrera] porque [hallazgo] lo cual le hace sentir '
-        '[efecto negativo].',*/
     '',
-
     'Herramienta para el análisis de los problemas que básicamente representa la relación entre un efecto (problema) '
         'y todas las posibles causas que lo ocasionan. Diagrama de causa-efecto.',
-    '¿Cómo hacer el diagrama de Ishikawa?',
-
+    '¿Cómo hacer el diagrama de Ishikawa?\nPara la elaboración del diagrama se deben considerar las 6M: maquinaria, mano de obra, materiales, métodos, medio ambiente y medición.',
     'Ejemplo utilizando las categorías tradicionales.',
-
     'Ejemplo creando las categorías según la necesidad del proyecto.',
-
     'Es una herramienta gráfica que permite visualizar de forma sistemática un problema central con sus '
         'causas y consecuencias como raíces y ramas respectivamente. El tronco constituye el problema central. '
         'Las raíces son las causas. Las ramas son las consecuencias.',
-
     '',
-
     'Ejemplo árbol de problemas:',
-
     'Estructura del Planteamiento del problema:\n',
   ];
 
@@ -396,25 +368,18 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
   Widget _buildTimelineCard() {
     return LayoutBuilder(
       builder: (context, constraints) {
-        // Detecta si la pantalla es pequeña o grande
         bool esPantallaPequena = constraints.maxWidth < 1000;
-
-        // Alturas de imágenes según el tamaño de pantalla
         final alturaImagenPequena = Pequena(context);
         final alturaImagengrande = ngrande(context);
-
         return Card(
-          // Tarjeta principal del contenido
           color: obtenercolor('Color_Fondo'),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30),
           ),
           elevation: 4,
-
           child: Padding(
             padding: const EdgeInsets.all(24),
             child: Container(
-              // Fondo decorativo interno
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage('assets/fondo_textura_2.png'),
@@ -424,11 +389,9 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                   fit: BoxFit.none,
                 ),
               ),
-
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Título de la sección actual
                   Text(
                     secciones[_index],
                     style: TextStyle(
@@ -439,16 +402,12 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                       backgroundColor: Colors.white,
                     ),
                   ),
-
                   const SizedBox(height: 20),
-
-                  // ===== VISTA PARA PANTALLAS PEQUEÑAS =====
                   esPantallaPequena
                       ? Center(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              // Ejemplo 5W1H
                               if (_index == 3)
                                 RichText(
                                   textAlign: TextAlign.justify,
@@ -457,64 +416,79 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                                       fontSize: tamanotexto(2) + 4,
                                       fontFamily: 'Calibri',
                                       height: 1.5,
+                                      //color: Colors.black,
                                     ),
                                     children: [
                                       TextSpan(text: 'Ejemplos: '),
                                       TextSpan(
                                         text: 'Qué (WHAT): ',
                                         style: TextStyle(
-                                            fontWeight: FontWeight.bold),
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                       TextSpan(
                                         text:
-                                            ' Hay personas que sufren de los ojos, conjuntivitis alergénica y llevan aplicándose medicamento hace mucho tiempo sin curarse. ',
+                                            ' Hay personas que sufren de los ojos, conjuntivitis alergénica y llevan aplicándose '
+                                            'medicamento hace mucho tiempo sin curarse. ',
                                       ),
+                                      //TextSpan(text: 'Porqué '),
                                       TextSpan(
                                         text: 'Porqué (WHY): ',
                                         style: TextStyle(
-                                            fontWeight: FontWeight.bold),
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                       TextSpan(
                                         text:
-                                            'Virosis de conjuntivitis, cuando hay altas tasas de polución y cuando se usa mucho los celulares o pantallas. ',
+                                            'Virosis de conjuntivitis, cuando hay altas tasas de polución y cuando se usa '
+                                            'mucho los celulares o pantallas. ',
                                       ),
+                                      //TextSpan(text: ' Cuando '),
                                       TextSpan(
                                         text: 'Cuando (WHEN): ',
                                         style: TextStyle(
-                                            fontWeight: FontWeight.bold),
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                       TextSpan(
                                         text:
-                                            'Virosis de conjuntivitis, cuando hay altas tasas de polución y cuando se usa mucho los celulares o pantallas. ',
+                                            'Virosis de conjuntivitis, cuando hay altas tasas de polución y cuando se usa '
+                                            'mucho los celulares o pantallas. ',
                                       ),
+                                      //TextSpan(text: 'Dónde '),
                                       TextSpan(
                                         text: 'Dónde (WHERE): ',
                                         style: TextStyle(
-                                            fontWeight: FontWeight.bold),
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                       TextSpan(
                                         text:
-                                            'Ciudades con mayor polución, en el campo durante las quemas y preparación, cuando cocina con leña, en personal de obra constructivo. En niños de etapa temprana. ',
+                                            'Ciudades con mayor polución, en el campo durante las quemas '
+                                            'y preparación, cuando cocina con leña, en personal de obra constructivo. En niños de etapa temprana. ',
                                       ),
+                                      //TextSpan(text: 'Quién '),
                                       TextSpan(
                                         text: 'Quién (WHO): ',
                                         style: TextStyle(
-                                            fontWeight: FontWeight.bold),
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                       TextSpan(
                                         text:
-                                            'Personal de construcción, agricultores, niños, madres cabeza de familia que cocinan con leña, adultos mayores, personas que trabajan muchas horas desde la pantalla. ',
+                                            'Personal de construcción, agricultores, niños, madres cabeza de familia que cocinan con '
+                                            'leña, adultos mayores, personas que trabajan muchas horas desde la pantalla. ',
                                       ),
+                                      //TextSpan(text: 'Cómo '),
                                       TextSpan(
                                         text: 'Cómo (HOW): ',
                                         style: TextStyle(
-                                            fontWeight: FontWeight.bold),
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                     ],
                                   ),
                                 ),
-
-                              // Esquema de redacción (producto)
                               if (_index == 5)
                                 RichText(
                                   textAlign: TextAlign.justify,
@@ -523,6 +497,7 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                                       fontSize: tamanotexto(2) + 4,
                                       fontFamily: 'Calibri',
                                       height: 1.5,
+                                      //color: Colors.black,
                                     ),
                                     children: [
                                       TextSpan(
@@ -532,31 +507,33 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                                       TextSpan(
                                         text: '[Producto o servicio] ',
                                         style: TextStyle(
-                                            fontWeight: FontWeight.bold),
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                       TextSpan(text: ' no está cumpliendo '),
                                       TextSpan(
                                         text: '[con estos objetivos],',
                                         style: TextStyle(
-                                            fontWeight: FontWeight.bold),
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                       TextSpan(text: ' lo cual está causando '),
                                       TextSpan(
                                         text: '[efecto negativo] ',
                                         style: TextStyle(
-                                            fontWeight: FontWeight.bold),
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                       TextSpan(text: ' a nuestro '),
                                       TextSpan(
                                         text: '[impacto en el negocio].',
                                         style: TextStyle(
-                                            fontWeight: FontWeight.bold),
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                     ],
                                   ),
                                 ),
-
-                              // Esquema de redacción (usuario)
                               if (_index == 6)
                                 RichText(
                                   textAlign: TextAlign.justify,
@@ -565,6 +542,7 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                                       fontSize: tamanotexto(2) + 4,
                                       fontFamily: 'Calibri',
                                       height: 1.5,
+                                      //color: Colors.black,
                                     ),
                                     children: [
                                       TextSpan(
@@ -574,38 +552,41 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                                       TextSpan(
                                         text: '[Tipo de usuario] ',
                                         style: TextStyle(
-                                            fontWeight: FontWeight.bold),
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                       TextSpan(text: 'intenta '),
                                       TextSpan(
                                         text:
                                             '[descripción de su necesidad u objetivo] ',
                                         style: TextStyle(
-                                            fontWeight: FontWeight.bold),
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                       TextSpan(text: 'pero '),
                                       TextSpan(
                                         text: '[barrera] ',
                                         style: TextStyle(
-                                            fontWeight: FontWeight.bold),
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                       TextSpan(text: 'porque '),
                                       TextSpan(
                                         text: '[hallazgo] ',
                                         style: TextStyle(
-                                            fontWeight: FontWeight.bold),
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                       TextSpan(text: 'lo cual le hace sentir '),
                                       TextSpan(
                                         text: '[efecto negativo].',
                                         style: TextStyle(
-                                            fontWeight: FontWeight.bold),
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                     ],
                                   ),
                                 ),
-
-                              // Texto general de la sección
                               Text(
                                 textos[_index],
                                 style: TextStyle(
@@ -615,10 +596,7 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                                 ),
                                 textAlign: TextAlign.justify,
                               ),
-
                               const SizedBox(height: 20),
-
-                              // Imagen principal
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(12),
                                 child: Image.asset(
@@ -627,8 +605,6 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                                   fit: BoxFit.contain,
                                 ),
                               ),
-
-                              // Imagen adicional para esquema de redacción
                               if (_index == 14)
                                 SizedBox(
                                   height: 500,
@@ -639,12 +615,9 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                             ],
                           ),
                         )
-
-                      // ===== VISTA PARA PANTALLAS GRANDES =====
                       : Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            // Columna izquierda (texto)
                             Expanded(
                               flex: 2,
                               child: Padding(
@@ -652,24 +625,212 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    // Se reutilizan los mismos textos especiales
-                                    // según el índice (_index == 3, 5, 6)
-                                    // y el texto general
-                                    Text(
-                                      textos[_index],
-                                      style: TextStyle(
-                                        fontSize: tamanotexto(2) + 4,
-                                        fontFamily: 'Calibri',
-                                        height: 1.5,
+                                    if (_index == 3)
+                                      RichText(
+                                        textAlign: TextAlign.justify,
+                                        text: TextSpan(
+                                          style: TextStyle(
+                                            fontSize: tamanotexto(2) + 4,
+                                            fontFamily: 'Calibri',
+                                            height: 1.5,
+                                            //color: Colors.black,
+                                          ),
+                                          children: [
+                                            TextSpan(text: 'Ejemplos: '),
+                                            TextSpan(
+                                              text: 'Qué (WHAT): ',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            TextSpan(
+                                              text:
+                                                  ' Hay personas que sufren de los ojos, conjuntivitis alergénica y llevan aplicándose '
+                                                  'medicamento hace mucho tiempo sin curarse. ',
+                                            ),
+                                            //TextSpan(text: 'Porqué '),
+                                            TextSpan(
+                                              text: 'Porqué (WHY): ',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            TextSpan(
+                                              text:
+                                                  'Virosis de conjuntivitis, cuando hay altas tasas de polución y cuando se usa '
+                                                  'mucho los celulares o pantallas. ',
+                                            ),
+                                            //TextSpan(text: ' Cuando '),
+                                            TextSpan(
+                                              text: 'Cuando (WHEN): ',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            TextSpan(
+                                              text:
+                                                  'Virosis de conjuntivitis, cuando hay altas tasas de polución y cuando se usa '
+                                                  'mucho los celulares o pantallas. ',
+                                            ),
+                                            //TextSpan(text: 'Dónde '),
+                                            TextSpan(
+                                              text: 'Dónde (WHERE): ',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            TextSpan(
+                                              text:
+                                                  'Ciudades con mayor polución, en el campo durante las quemas '
+                                                  'y preparación, cuando cocina con leña, en personal de obra constructivo. En niños de etapa temprana. ',
+                                            ),
+                                            //TextSpan(text: 'Quién '),
+                                            TextSpan(
+                                              text: 'Quién (WHO): ',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            TextSpan(
+                                              text:
+                                                  'Personal de construcción, agricultores, niños, madres cabeza de familia que cocinan con '
+                                                  'leña, adultos mayores, personas que trabajan muchas horas desde la pantalla. ',
+                                            ),
+                                            //TextSpan(text: 'Cómo '),
+                                            TextSpan(
+                                              text: 'Cómo (HOW): ',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            TextSpan(
+                                              text: 'Medicamentos '
+                                                  'formulados, miel, otros remedios para los ojos. Cirugía.',
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                      textAlign: TextAlign.justify,
+                                    if (_index == 5)
+                                      RichText(
+                                        textAlign: TextAlign.justify,
+                                        text: TextSpan(
+                                          style: TextStyle(
+                                            fontSize: tamanotexto(2) + 4,
+                                            fontFamily: 'Calibri',
+                                            height: 1.5,
+                                            //color: Colors.black,
+                                          ),
+                                          children: [
+                                            TextSpan(
+                                              text:
+                                                  'Esquemas que pueden ayudar a plantear la problemática. 1. Para productos: Hemos observado que el ',
+                                            ),
+                                            TextSpan(
+                                              text: '[Producto o servicio] ',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            TextSpan(
+                                              text: ' no está cumpliendo ',
+                                            ),
+                                            TextSpan(
+                                              text: '[con estos objetivos],',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            TextSpan(
+                                              text: ' lo cual está causando ',
+                                            ),
+                                            TextSpan(
+                                              text: '[efecto negativo] ',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            TextSpan(text: ' a nuestro '),
+                                            TextSpan(
+                                              text: '[impacto en el negocio].',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    if (_index == 6)
+                                      RichText(
+                                        textAlign: TextAlign.justify,
+                                        text: TextSpan(
+                                          style: TextStyle(
+                                            fontSize: tamanotexto(2) + 4,
+                                            fontFamily: 'Calibri',
+                                            height: 1.5,
+                                            //color: Colors.black,
+                                          ),
+                                          children: [
+                                            TextSpan(
+                                              text:
+                                                  'Esquemas que pueden ayudar a plantear la problemática. 1. Cuándo es un punto de vista: ',
+                                            ),
+                                            TextSpan(
+                                              text: '[Tipo de usuario] ',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            TextSpan(text: 'intenta '),
+                                            TextSpan(
+                                              text:
+                                                  '[descripción de su necesidad u objetivo] ',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            TextSpan(text: 'pero '),
+                                            TextSpan(
+                                              text: '[barrera] ',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            TextSpan(text: 'porque '),
+                                            TextSpan(
+                                              text: '[hallazgo] ',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            TextSpan(
+                                              text: 'lo cual le hace sentir ',
+                                            ),
+                                            TextSpan(
+                                              text: '[efecto negativo].',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    Column(
+                                      children: [
+                                        Text(
+                                          textos[_index],
+                                          style: TextStyle(
+                                            fontSize: tamanotexto(2) + 4,
+                                            fontFamily: 'Calibri',
+                                            height: 1.5,
+                                          ),
+                                          textAlign: TextAlign.justify,
+                                        ),
+                                      ],
                                     ),
                                   ],
                                 ),
                               ),
                             ),
-
-                            // Columna derecha (imagen)
                             Flexible(
                               flex: 0,
                               child: Align(
@@ -689,15 +850,18 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                                 ),
                               ),
                             ),
-
-                            // Ajustes visuales según sección
-                            if (_index == 2 || _index == 8 || _index == 12)
+                            if (_index == 2 ||
+                                _index == 8 ||
+                                /* _index == 9 || _index == 10 ||*/
+                                _index == 12)
                               Spacer(),
                             if (_index == 9 || _index == 10)
                               SizedBox(width: 100),
-                            if (_index == 12) Spacer(),
-
-                            // Imagen extra para esquema de redacción
+                            if ( //_index == 8 ||
+                                //_index == 9 ||
+                                // _index == 10 ||
+                                _index == 12)
+                              Spacer(),
                             if (_index == 14)
                               SizedBox(
                                 height:
@@ -709,8 +873,6 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                               ),
                           ],
                         ),
-
-                  // ===== ENLACE SOLO EN LA ÚLTIMA SECCIÓN =====
                   if (_index == 14) SizedBox(height: 20),
                   if (_index == 14)
                     Center(
@@ -724,13 +886,20 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
                             color: Colors.black,
                           ),
                           children: [
+                            /*TextSpan(
+                                      text:
+                                          'Ejemplos para la creación de un título: \n',
+                                    ),*/
                             TextSpan(
                               text:
                                   'Para comprender mejor este tema, te invitamos a ingresar al siguiente enlace y ver el ',
                             ),
                             TextSpan(
                               text: 'Video explicativo',
-                              style: TextStyle(color: Colors.blue),
+                              style: TextStyle(
+                                color: Colors.blue,
+                                //decoration: TextDecoration.underline,
+                              ),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
                                   abrirLink('https://youtu.be/dKs0BfuF25A');
@@ -994,10 +1163,7 @@ class _PlatieamientoProblemasState extends State<PlatieamientoProblemas>
               child: Container(
                 margin: const EdgeInsets.symmetric(horizontal: 12),
                 child: GestureDetector(
-                  onTap: () async {
-                    // Guarda el progreso al seleccionar una sección
-                    await guardarProgresoEnAPI(item['id']);
-
+                  onTap: () {
                     // Cierra el menú modal
                     Navigator.pop(context);
 

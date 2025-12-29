@@ -250,7 +250,7 @@ class _JustificacionesState extends State<Justificaciones>
                       ),
                       child: esPantallaPequena
                           ? InteractiveViewer(
-                              // 🔍 Zoom solo en pantallas pequeñas
+                              //  Zoom solo en pantallas pequeñas
                               constrained: true,
                               minScale: 1.0,
                               maxScale: 5.0,
@@ -272,7 +272,7 @@ class _JustificacionesState extends State<Justificaciones>
                               ),
                             )
                           : Column(
-                              // 💻 En pantallas grandes sin zoom
+                              //  En pantallas grandes sin zoom
                               children: [
                                 Text(
                                   '¿Sabes como redactar una Justificación?',
@@ -292,7 +292,7 @@ class _JustificacionesState extends State<Justificaciones>
                     ),
                   ),
 
-                  // 🔘 Navegación inferior
+                  //  Navegación inferior
                   _buildNavigation(),
                 ],
               ),

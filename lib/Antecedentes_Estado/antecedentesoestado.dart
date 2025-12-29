@@ -74,8 +74,8 @@ class _Antecedentes_EstadosState extends State<Antecedentes_Estados>
   ]; // lista de las secciones
 
   final List<double> alturaImagengrande = [
-    250,
-    300,
+    250, //¿QUÉ SON LOS ANTECEDENTES?
+    300, //EJEMPLO
     250, // ¿QUÉ ES EL ESTADO DEL ARTE?
     350, // EJEMPLOS
   ]; // lista de las alturas de las imagenes para pantallas grandes

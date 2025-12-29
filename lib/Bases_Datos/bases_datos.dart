@@ -382,34 +382,6 @@ class _BassesdatoState extends State<Bassesdato> with TickerProviderStateMixin {
                               textAlign: TextAlign.justify,
                             ),
                             const SizedBox(height: 10),
-
-                            /*if (_index == 4)
-                            RichText(
-                              textAlign: TextAlign.justify,
-                              text: TextSpan(
-                                style: TextStyle(
-                                  fontSize: tamanotexto(2) + 4,
-                                  fontFamily: 'Calibri',
-                                  height: 1.5,
-                                  color: Colors.black,
-                                ),
-                                children: [
-                                  TextSpan(text: ''),
-                                  TextSpan(
-                                    text: '',
-                                    style: TextStyle(
-                                      color: Colors.blue,
-                                      decoration: TextDecoration.underline,
-                                    ),
-                                    recognizer:
-                                        TapGestureRecognizer()
-                                          ..onTap = () async {
-                                            await abrirLink('');
-                                          },
-                                  ),
-                                ],
-                              ),
-                            ),*/
                             if (_index == 2)
                               RichText(
                                 textAlign: TextAlign.justify,

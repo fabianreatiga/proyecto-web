@@ -639,8 +639,7 @@ class _TitulosState extends State<Titulos> with TickerProviderStateMixin {
               child: Container(
                 margin: const EdgeInsets.symmetric(horizontal: 12),
                 child: GestureDetector(
-                  onTap: () async {
-                    await guardarProgresoEnAPI(item['id']);
+                  onTap: () {
                     // Cierra el modal y navega a la pestaña seleccionada
                     Navigator.pop(context);
                     final nuevoIndex = item['indice'];

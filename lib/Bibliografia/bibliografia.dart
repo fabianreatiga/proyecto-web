@@ -66,11 +66,6 @@ class _BibliografiasState extends State<Bibliografias>
     'SITIOS WEB RECOMENDADOS',
   ];
 
-  /*int _progresoContador = 1;
-  double get progreso {
-    return _progresoContador / secciones.length;
-  }*/
-
   List<double> grande(BuildContext context) {
     return [
       MediaQuery.of(context).size.width * 0.5 - 18, //BIBLIOGRAFÍA

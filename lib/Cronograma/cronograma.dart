@@ -60,9 +60,6 @@ class _CronogramasState extends State<Cronogramas>
     'EJEMPLO',
   ];
 
-  //int _progresoContador = 1;
-  //double get progreso {  return _progresoContador / secciones.length;}
-
   List<double> grande(BuildContext context) {
     return [
       MediaQuery.of(context).size.width * 0.2 - 18, //COMO CREAR UN CRONOGRAMA
@@ -639,7 +636,6 @@ class _CronogramasState extends State<Cronogramas>
                         if (!pestanasVistas.contains(nuevoIndex)) {
                           pestanasVistas.add(nuevoIndex);
                           ProgresoGlobal.marcarVisto(item['id']);
-                          //_progresoContador++;
                         }
                       });
                     }

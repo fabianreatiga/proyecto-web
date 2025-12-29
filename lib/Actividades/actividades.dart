@@ -58,11 +58,6 @@ class _ActividadState extends State<Actividad> with TickerProviderStateMixin {
     'FORMULACIÓN DE RESULTADOS',
   ];
 
-  //  int _progresoContador = 1;
-  //  double get progreso {
-  //return _progresoContador / secciones.length;
-  //}
-
   List<double> grande(BuildContext context) {
     return [
       MediaQuery.of(context).size.width * 0.4 - 18, //ACTIVIDADES

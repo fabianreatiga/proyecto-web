@@ -34,11 +34,14 @@ class Metodologias extends StatefulWidget {
 
 class _MetodologiasState extends State<Metodologias>
     with TickerProviderStateMixin {
-  int _index = 0;
-  late TabController _tabController;
-  final List<int> pestanasVistas = [];
+  int _index = 0; //indica que las secciones inicia en la primera
+  late TabController
+      _tabController; //se usa un TabController para controlar las pestañas
+  final List<int> pestanasVistas =
+      []; // en esta variable se guarda las pestañas ya vistas
 
   final List<String> textos = [
+    //Lista de texto del la sección
     'La metodología de investigación es la estrategia que se utilizará para que un proyecto de investigación sea exitoso por'
         ' lo que su elección determina todo el rumbo de la investigación. La mejor metodología que deba usarse, sin embargo, es'
         ' una las decisiones más difíciles para los investigadores por lo que es importante conocer los factores que influyen en'
@@ -73,11 +76,6 @@ class _MetodologiasState extends State<Metodologias>
     'MIXTA',
     'PASOS PARA CREAR',
   ];
-
-  /*int _progresoContador = 1;
-  double get progreso {
-    return _progresoContador / secciones.length;
-  }*/
 
   List<double> agrande(BuildContext context) {
     return [

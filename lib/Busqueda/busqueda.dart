@@ -9,8 +9,6 @@ import 'package:nuevomockups/Links/links.dart';
 import 'package:nuevomockups/Menus/menus.dart';
 import 'package:nuevomockups/global.dart';
 
-// Solo se usa en web
-
 class Busqueda extends StatelessWidget {
   const Busqueda({super.key});
 

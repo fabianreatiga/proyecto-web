@@ -11,28 +11,37 @@ import 'package:nuevomockups/global.dart';
 
 // Ahora enviamos nombre y ficha también
 
-//quitar
+// Función asíncrona encargada de enviar los datos de la encuesta al servidor
 Future<void> enviarEncuesta({
-  required String observacion,
-  required String nombre,
-  required String ficha,
+  required String observacion, // Observación final ingresada por el usuario
+  required String nombre, // Nombre del usuario que responde la encuesta
+  required String ficha, // Ficha asociada al usuario
 }) async {
+  // URL del endpoint donde se almacenan los datos de la encuesta
   final url = Uri.parse("https://proyecto-web-4xe1.onrender.com/guardarTodo");
 
+  // Petición HTTP POST al backend enviando los datos en formato JSON
   final respuesta = await http.post(
     url,
-    headers: {"Content-Type": "application/json"},
+    headers: {
+      "Content-Type":
+          "application/json", // Indica que se envía información en JSON
+    },
     body: jsonEncode({
-      "observacion": observacion,
-      "nombre": nombre,
-      "ficha": ficha,
-      //"fecha": DateTime.now().toIso8601String(),
+      "observacion": observacion, // Observación escrita por el usuario
+      "nombre": nombre, // Nombre del usuario
+      "ficha": ficha, // Ficha del usuario
     }),
   );
 
+  // Verifica si la respuesta del servidor NO fue exitosa
+  // Se aceptan únicamente los códigos 200 (OK) y 201 (CREADO)
   if (respuesta.statusCode != 200 && respuesta.statusCode != 201) {
+    // Lanza una excepción con el mensaje devuelto por el backend
     throw Exception("Error al enviar encuesta: ${respuesta.body}");
   }
+
+  // Mensaje de depuración para confirmar que los datos fueron enviados correctamente
   debugPrint(
     "📤 Enviando: ${jsonEncode({
           "observacion": observacion,
@@ -42,29 +51,38 @@ Future<void> enviarEncuesta({
   );
 }
 
+// Función asíncrona que envía al servidor la cantidad de intentos realizados por el usuario en el cuestionario
 Future<void> enviarintentos({
-  required String nombre,
-  required String ficha,
-  required int intentos,
+  required String nombre, // Nombre del usuario
+  required String ficha, // Ficha del usuario
+  required int intentos, // Número de intentos realizados
 }) async {
+  // URL del endpoint encargado de guardar los intentos
   final url = Uri.parse(
     "https://proyecto-web-4xe1.onrender.com/guardarintentos",
   );
 
+  // Petición HTTP POST enviando los datos en formato JSON
   final respuesta = await http.post(
     url,
-    headers: {"Content-Type": "application/json"},
+    headers: {
+      "Content-Type": "application/json", // Se especifica el tipo de contenido
+    },
     body: jsonEncode({
-      "intentos": intentos,
-      "nombre": nombre,
-      "ficha": ficha,
-      //"fecha": DateTime.now().toIso8601String(),
+      "intentos": intentos, // Cantidad de intentos
+      "nombre": nombre, // Nombre del usuario
+      "ficha": ficha, // Ficha asociada
+      //"fecha": DateTime.now().toIso8601String(), // Fecha opcional
     }),
   );
 
+  // Verifica que la respuesta del servidor sea correcta
   if (respuesta.statusCode != 200 && respuesta.statusCode != 201) {
+    // Lanza una excepción si ocurre un error en el envío
     throw Exception("Error al enviar encuesta: ${respuesta.body}");
   }
+
+  // Mensaje de depuración para confirmar los datos enviados
   debugPrint(
     "📤 Enviando: ${jsonEncode({
           "intentos": intentos,
@@ -73,7 +91,6 @@ Future<void> enviarintentos({
         })}",
   );
 }
-//Quitar
 
 class Encuesta extends StatelessWidget {
   const Encuesta({super.key});
@@ -91,22 +108,34 @@ class Encuestas extends StatefulWidget {
   State<Encuestas> createState() => _EncuestasState();
 }
 
+// Función que muestra un cuadro de diálogo cuando existen campos sin completar
 void _mostrarcamposenblanco(BuildContext context, String mensaje) {
+  // Muestra un diálogo emergente en la pantalla actual
   showDialog(
     context: context,
     builder: (ctx) => AlertDialog(
+      // Título del cuadro de diálogo
       title: const Text('Error'),
+
+      // Mensaje dinámico que describe el error ocurrido
       content: Text(mensaje),
+
+      // Acciones disponibles en el diálogo
       actions: [
         Center(
           child: SizedBox(
             width: 100,
             child: TextButton(
+              // Cierra el cuadro de diálogo al presionar el botón
               onPressed: () => Navigator.of(ctx).pop(),
+
+              // Estilos personalizados del botón
               style: TextButton.styleFrom(
                 backgroundColor: obtenercolor('Color_Principal'),
                 foregroundColor: obtenercolor('Color_Texto_Principal'),
               ),
+
+              // Texto del botón
               child: const Text('Aceptar'),
             ),
           ),
@@ -117,49 +146,65 @@ void _mostrarcamposenblanco(BuildContext context, String mensaje) {
 }
 
 class _EncuestasState extends State<Encuestas> {
+  // Contador que registra el número de intentos realizados en la encuesta
   int _intentos = 1;
-  String? _titulopregunta1; // en esta variable se guarda el titulo
-  String? _titulopregunta2;
-  String? _titulopregunta3;
-  String? _plnateamientopregunta1;
-  String? _plnateamientopregunta2;
-  String? _plnateamientopregunta3;
-  String? _justificacionpregunta1;
-  String? _justificacionpregunta2;
-  String? _justificacionpregunta3;
-  String? _objetivospregunta1;
-  String? _objetivospregunta2;
-  String? _objetivospregunta3;
-  String? _metodologiapregunta1;
-  String? _metodologiapregunta2;
-  String? _metodologiapregunta3;
-  String? _cronogramapregunta1;
-  String? _cronogramapregunta2;
-  String? _cronogramapregunta3;
-  String? _actiivadadespregunta1;
-  String? _actiivadadespregunta2;
-  String? _actiivadadespregunta3;
-  String? _bibliografiapregunta1;
-  String? _bibliografiapregunta2;
-  String? _bibliografiapregunta3;
 
+  String?
+      _titulopregunta1; // Almacena la respuesta de la primera pregunta del título
+  String?
+      _titulopregunta2; // Almacena la respuesta de la segunda pregunta del título
+  String?
+      _titulopregunta3; // Almacena la respuesta de la tercera pregunta del título
+  String? _plnateamientopregunta1; // Respuesta 1 del planteamiento
+  String? _plnateamientopregunta2; // Respuesta 2 del planteamiento
+  String? _plnateamientopregunta3; // Respuesta 3 del planteamiento
+  String? _justificacionpregunta1; // Respuesta 1 de la justificación
+  String? _justificacionpregunta2; // Respuesta 2 de la justificación
+  String? _justificacionpregunta3; // Respuesta 3 de la justificación
+  String? _objetivospregunta1; // Respuesta 1 de objetivos
+  String? _objetivospregunta2; // Respuesta 2 de objetivos
+  String? _objetivospregunta3; // Respuesta 3 de objetivos
+  String? _metodologiapregunta1; // Respuesta 1 de metodología
+  String? _metodologiapregunta2; // Respuesta 2 de metodología
+  String? _metodologiapregunta3; // Respuesta 3 de metodología
+  String? _cronogramapregunta1; // Respuesta 1 de cronograma
+  String? _cronogramapregunta2; // Respuesta 2 de cronograma
+  String? _cronogramapregunta3; // Respuesta 3 de cronograma
+  String? _actiivadadespregunta1; // Respuesta 1 de actividades
+  String? _actiivadadespregunta2; // Respuesta 2 de actividades
+  String? _actiivadadespregunta3; // Respuesta 3 de actividades
+  String? _bibliografiapregunta1; // Respuesta 1 de bibliografía
+  String? _bibliografiapregunta2; // Respuesta 2 de bibliografía
+  String? _bibliografiapregunta3; // Respuesta 3 de bibliografía
+
+  // Controlador para el campo de texto de observaciones finales
   final TextEditingController _observaciontext = TextEditingController();
 
+  // Construye una opción con RadioButton y texto
   Widget _buildOpcion({
-    required String texto,
-    required String value,
-    required String? groupValue,
-    required Function(String?) onChanged,
+    required String texto, // Texto visible para el usuario
+    required String value, // Valor asignado a la opción
+    required String? groupValue, // Valor actualmente seleccionado
+    required Function(String?) onChanged, // Acción al cambiar la selección
   }) {
     return Row(
+      // Alinea los elementos verticalmente al centro
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+        // Botón de selección tipo Radio permite elegir una opción dentro de un mismo grupo
         Radio<String>(
-          value: value,
-          groupValue: groupValue,
-          onChanged: onChanged,
+          value: value, // Valor asociado a esta opción
+          groupValue: groupValue, // Valor actualmente seleccionado
+          onChanged: onChanged, // Acción al seleccionar la opción
         ),
-        Expanded(child: Text(texto, style: const TextStyle(fontSize: 16))),
+
+        // Permite que el texto ocupe el espacio disponible
+        Expanded(
+          child: Text(
+            texto, // Texto que se muestra al usuario
+            style: const TextStyle(fontSize: 16), // Tamaño del texto
+          ),
+        ),
       ],
     );
   }
@@ -192,7 +237,6 @@ class _EncuestasState extends State<Encuestas> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          // Preguntas (1 a 4) siguen igual
                           Text(
                             '1. ¿Porque el título de un proyecto es importante?',
                             style: TextStyle(fontSize: tamanotexto(2)),
@@ -351,7 +395,7 @@ class _EncuestasState extends State<Encuestas> {
                                 ),
                                 _buildOpcion(
                                   texto:
-                                      'B) 5WIH, Espina de pesacado, Árbol de problemas, Esquema de redacción.',
+                                      'B) 5WIH, Espina de pescado, Árbol de problemas, Esquema de redacción.',
                                   value: 'correcto',
                                   groupValue: _plnateamientopregunta1,
                                   onChanged: (val) => setState(
@@ -446,7 +490,7 @@ class _EncuestasState extends State<Encuestas> {
                                 ),
                                 _buildOpcion(
                                   texto:
-                                      'B) Máquinaria, mano de obra, materiales, métodos, medio ambiente y medición.',
+                                      'B) Maquinaria, mano de obra, materiales, métodos, medio ambiente y medición.',
                                   value: 'correcto',
                                   groupValue: _plnateamientopregunta3,
                                   onChanged: (val) => setState(
@@ -1350,45 +1394,72 @@ class _EncuestasState extends State<Encuestas> {
     );
   }
 
+  // Widget que construye la tarjeta donde el usuario escribe la observación final
   Widget _card(BuildContext context) {
     return Card(
+      // Color de fondo de la tarjeta
       color: obtenercolor('Color_Fondo'),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+
+      // Bordes redondeados de la tarjeta
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(30),
+      ),
+
+      // Elevación para dar efecto de sombra
       elevation: 4,
+
       child: Padding(
+        // Espaciado interno de la tarjeta
         padding: const EdgeInsets.only(
           top: 30,
           bottom: 20,
           left: 20,
           right: 20,
         ),
+
         child: Column(
           children: [
+            // Campo de texto para que el usuario escriba su observación
             TextField(
-              controller: _observaciontext,
+              controller: _observaciontext, // Controla el texto ingresado
               decoration: InputDecoration(
+                // Pregunta que se muestra como etiqueta
                 labelText:
                     '¿Cómo fue su experiencia al usar el aplicativo y por qué?',
+
+                // Estilo del texto de la etiqueta
                 labelStyle: TextStyle(color: Colors.black),
+
+                // Estilo del borde cuando el campo no está seleccionado
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: Colors.black),
                 ),
+
+                // Estilo del borde cuando el campo está seleccionado
                 focusedBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: Colors.black),
                 ),
               ),
             ),
+
+            // Espacio entre el campo de texto y el botón
             SizedBox(height: 20),
+
             SizedBox(
               height: 45,
               child: ElevatedButton(
+                // Estilos del botón
                 style: ElevatedButton.styleFrom(
                   backgroundColor: obtenercolor('Color_Principal'),
                   foregroundColor: obtenercolor('Color_Texto_Principal'),
                 ),
+
+                // Acción que se ejecuta al presionar el botón
                 onPressed: () {
                   _respuesta(context);
                 },
+
+                // Texto del botón
                 child: Text(
                   'Enviar Respuesta',
                   style: TextStyle(fontSize: tamanotexto(2)),
@@ -1401,15 +1472,22 @@ class _EncuestasState extends State<Encuestas> {
     );
   }
 
+  // Función que gestiona el envío de la respuesta escrita por el usuario
+  // Se ejecuta al presionar el botón "Enviar Respuesta"
   void _respuesta(BuildContext context) async {
+    // Obtiene el texto ingresado en el campo de observación
+    // y elimina espacios innecesarios al inicio y al final
     final respuesta = _observaciontext.text.trim();
 
+    // Envía la observación al servidor junto con los datos del usuario
     await enviarEncuesta(
       observacion: respuesta,
-      nombre: usuarioglobal,
-      ficha: fichaglobal,
+      nombre:
+          usuarioglobal, // Nombre del usuario obtenido de la variable global
+      ficha: fichaglobal, // Ficha del usuario obtenida de la variable global
     );
 
+    // Muestra un mensaje emergente confirmando el envío de la respuesta
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Center(child: Text("Muchas por su opinión 😊")),
@@ -1417,16 +1495,22 @@ class _EncuestasState extends State<Encuestas> {
       ),
     );
 
+    // Limpia el campo de texto después de enviar la respuesta
     _observaciontext.clear();
   }
 
+  // Widget que construye el botón final del cuestionario
   Widget _bonton(BuildContext context) {
     return ElevatedButton(
+      // Estilos visuales del botón
       style: ElevatedButton.styleFrom(
         backgroundColor: obtenercolor('Color_Principal'),
         foregroundColor: obtenercolor('Color_Texto_Principal'),
       ),
+
+      // Acción que se ejecuta al presionar el botón
       onPressed: () async {
+        // Validación: verifica que todas las preguntas hayan sido respondidas
         if (_titulopregunta1 == null ||
             _titulopregunta2 == null ||
             _titulopregunta3 == null ||
@@ -1451,22 +1535,39 @@ class _EncuestasState extends State<Encuestas> {
             _bibliografiapregunta1 == null ||
             _bibliografiapregunta2 == null ||
             _bibliografiapregunta3 == null) {
-          _mostrarcamposenblanco(context, 'No puede haber campos en blanco');
+          // Muestra un mensaje de error si existen campos sin responder
+          _mostrarcamposenblanco(
+            context,
+            'No puede haber campos en blanco',
+          );
+
+          // Detiene la ejecución si la validación falla
           return;
         } else {
+          // Ejecuta la función principal asociada al botón
           _funcionboton(context);
+
+          // Envía al servidor el número de intentos realizados
           await enviarintentos(
             nombre: usuarioglobal,
             ficha: fichaglobal,
-            intentos: _intentos, // Envía el valor real
+            intentos: _intentos, // Envía el valor real de intentos
           );
         }
       },
-      child: Text('Finalizar', style: TextStyle(fontSize: tamanotexto(2))),
+
+      // Texto que se muestra en el botón
+      child: Text(
+        'Finalizar',
+        style: TextStyle(fontSize: tamanotexto(2)),
+      ),
     );
   }
 
+  // Función que elimina todas las respuestas seleccionadas en el cuestionario
+  // Se utiliza para reiniciar el estado de las preguntas
   void _eliminarrespuesta(BuildContext context) {
+    // Actualiza el estado del widget
     setState(() {
       _titulopregunta1 = null;
       _titulopregunta2 = null;
@@ -1496,10 +1597,16 @@ class _EncuestasState extends State<Encuestas> {
   }
 
   void _funcionboton(BuildContext context) {
+    // Variable que almacena el total de respuestas correctas
     int totalCorrectas = 0;
+
+    // Lista que guarda el resultado individual de cada pregunta
+    // Se utiliza para evaluar y mostrar el desempeño del usuario
     List<String> resultados = [];
 
-    // --- Título ---
+    // Se verifica cada pregunta y se incrementa el contador
+    // de respuestas correctas según corresponda.
+    // Además, se guarda el resultado individual en la lista.
     if (_titulopregunta1 == "correcto") {
       totalCorrectas++;
       resultados.add("Pregunta 1 (Título): ✅ Correcta");
@@ -1675,31 +1782,44 @@ class _EncuestasState extends State<Encuestas> {
       resultados.add("Pregunta 24 (Bibliografía): ❌ Incorrecta");
     }
 
-    // --- Calcular nota sobre 100 ---
+    // Calcula la nota final sobre 100
+    // Se divide el total de respuestas correctas entre el total de preguntas
     double nota = (totalCorrectas / 24) * 100;
 
-    // --- Mostrar resultados ---
+    // Muestra los resultados del cuestionario en un cuadro de diálogo
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
+        // Color de fondo del diálogo
         backgroundColor: Colors.white,
+
+        // Título del diálogo
         title: const Text("Resultados del Cuestionario"),
+
+        // Contenido principal del diálogo con scroll
         content: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // Muestra el puntaje final obtenido
               Text(
                 "Puntaje final: ${nota.toStringAsFixed(1)} / 100",
-                style:
-                    TextStyle(fontSize: tamanotexto(3), fontFamily: 'Calibri'),
+                style: TextStyle(
+                  fontSize: tamanotexto(3),
+                  fontFamily: 'Calibri',
+                ),
               ),
+
+              // Mensaje mostrado cuando el puntaje es perfecto
               if (nota == 100.0)
                 Column(
                   children: [
                     Text(
                       'Felicidades',
                       style: TextStyle(
-                          fontSize: tamanotexto(3), fontFamily: 'Calibri'),
+                        fontSize: tamanotexto(3),
+                        fontFamily: 'Calibri',
+                      ),
                     ),
                     Text(
                       "Respuestas correctas: $totalCorrectas de 24",
@@ -1710,6 +1830,8 @@ class _EncuestasState extends State<Encuestas> {
                     ),
                   ],
                 ),
+
+              // Mensaje mostrado cuando el puntaje no es perfecto
               if (nota != 100.0)
                 Text(
                   "Respuestas correctas: $totalCorrectas de 24",
@@ -1719,9 +1841,16 @@ class _EncuestasState extends State<Encuestas> {
                     fontFamily: 'Calibri',
                   ),
                 ),
+
+              // Espaciado visual
               const SizedBox(height: 10),
+
+              // Encabezado del detalle de preguntas
               Text("Detalle de preguntas:"),
+
               const SizedBox(height: 10),
+
+              // Lista dinámica con el resultado de cada pregunta
               ...resultados
                   .map(
                     (r) => Text(
@@ -1734,16 +1863,22 @@ class _EncuestasState extends State<Encuestas> {
             ],
           ),
         ),
+
+        // Acciones disponibles en el diálogo
         actions: [
           Center(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              // uno izq, otro der
+              // Botones alineados horizontalmente
               children: [
+                // Botón que aparece solo si el puntaje es perfecto
                 if (nota == 100)
                   TextButton(
                     onPressed: () {
+                      // Limpia las respuestas seleccionadas
                       _eliminarrespuesta(context);
+
+                      // Cierra el diálogo
                       Navigator.of(ctx).pop();
                     },
                     style: TextButton.styleFrom(
@@ -1754,14 +1889,23 @@ class _EncuestasState extends State<Encuestas> {
                     ),
                     child: const Text("Aceptar"),
                   ),
+
+                // Botón que aparece cuando el usuario no obtiene el puntaje completo
                 if (nota <= 99.9)
                   TextButton(
                     onPressed: () async {
+                      // Incrementa el número de intentos
                       setState(() {
                         _intentos += 1;
                       });
+
+                      // Limpia las respuestas para un nuevo intento
                       _eliminarrespuesta(context);
+
+                      // Cierra el diálogo
                       Navigator.of(ctx).pop();
+
+                      // Envía al servidor el nuevo número de intentos
                       await enviarintentos(
                         nombre: usuarioglobal,
                         ficha: fichaglobal,

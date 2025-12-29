@@ -32,18 +32,15 @@ class Objetivo extends StatefulWidget {
 }
 
 class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
-  int _index = 0;
-  late TabController _tabController;
-  final List<int> pestanasVistas = [];
+  int _index = 0; //indica que las secciones inicia en la primera
+  late TabController
+      _tabController; //se usa un TabController para controlar las pestañas
+  final List<int> pestanasVistas =
+      []; // en esta variable se guarda las pestañas ya vistas
 
   final List<String> textos = [
     'Hay varias formas de establecer objetivos, siendo una de las más utilizadas y populares la metodología SMART. Sin embargo, surgen nuevas propuestas metodológicas en el establecimiento de los objetivos desde otras perspectivas más globales o transversales, adaptándose a las diferentes filosofías y formas de trabajo empresarial y el entorno VUCA de la sociedad actual. En todos los casos, pero hay unos elementos comunes, los cuales son:',
     '',
-    /* 'El modelo SMART –acrónimo que significa «inteligente» en inglés– hace referencia a cinco conceptos que hay'
-        ' que tener presentes constantemente a la hora de fijar objetivos si lo que buscamos es validar su pertinencia.'
-        ' Por orden, los conceptos son «específico» (S, specific), «medible» (M, measurable), «asignable» (A, assignable),'
-        ' «realista» (R, realistic), «temporal» (T, time-related), es decir, determinado en el tiempo. Según Steffens, G.,'
-        ' & Cadiat, A. C. (2016). Los criterios SMART: El método para fijar objetivos con éxito. 50Minutos.',*/
     'Esta metodología se basa en que el logro de un objetivo debe suponer un esfuerzo para que este sea relevante. Además,'
         ' incorpora nuevos elementos poco frecuentes hasta el momento en el planteamiento de objetivos tales como la legalidad o'
         ' el impacto en el medio ambiente. Según: https://www.itik.cat/uploads/files/5%20m%C3%A9todos %20para%20establecer%20objetivos.pdf',
@@ -79,11 +76,6 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
     'MÉTODO DUMB',
     'ÁRBOL DE OJETIVOS',
   ];
-
-  /* int _progresoContador = 1;
-  double get progreso {
-    return _progresoContador / secciones.length;
-  }*/
 
   List<double> grande(BuildContext context) {
     return [
@@ -405,7 +397,6 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
                                     fontSize: tamanotexto(2) + 4,
                                     fontFamily: 'Calibri',
                                     height: 1.5,
-                                    //color: Colors.black,
                                   ),
                                   children: [
                                     TextSpan(text: 'El modelo '),
@@ -468,7 +459,6 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
                                           'https://www.itik.cat/uploads/files/5%20m%C3%A9todos %20para%20establecer%20objetivos.pdf',
                                       style: TextStyle(
                                         color: Colors.blue,
-                                        //decoration: TextDecoration.underline,
                                       ),
                                       recognizer: TapGestureRecognizer()
                                         ..onTap = () {
@@ -546,7 +536,8 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
                             if (_index != 1 &&
                                 _index != 2 &&
                                 _index != 3 &&
-                                _index != 4)
+                                _index !=
+                                    4) //con esta condidional se evita que se muestre el texto de la imagen
                               Text(
                                 textos[_index],
                                 style: TextStyle(
@@ -729,7 +720,8 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
                                     if (_index != 1 &&
                                         _index != 2 &&
                                         _index != 3 &&
-                                        _index != 4)
+                                        _index !=
+                                            4) //con esta condicional mostramos los textos
                                       Text(
                                         textos[_index],
                                         style: TextStyle(
@@ -805,7 +797,7 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
                                   'Para comprender mejor este tema, te invitamos a ingresar al siguiente enlace y ver el ',
                             ),
 
-                            // 🔵 BOTÓN DENTRO DEL TEXTO
+                            //  BOTÓN DENTRO DEL TEXTO
                             WidgetSpan(
                               alignment: PlaceholderAlignment.middle,
                               child: TextButton(
@@ -843,29 +835,41 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
   }
 
   Widget _buildNavigation() {
+    // Contenedor principal de la navegación inferior
     return Container(
       height: 85,
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
       color: Colors.transparent,
       child: Row(
+        // Distribuye los botones a los extremos
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          // 🔙 BOTÓN ANTERIOR
           SizedBox(
             width: 150,
             height: 45,
             child: ElevatedButton.icon(
               onPressed: () {
+                // Si no es la primera sección
                 if (_index > 0) {
                   final anterior = _index - 1;
+
+                  // Navega a la sección anterior
                   _tabController.animateTo(anterior);
+
                   setState(() {
                     _index = anterior;
+
+                    // Marca la sección como vista si aún no lo estaba
                     if (!pestanasVistas.contains(anterior)) {
                       pestanasVistas.add(anterior);
-                      ProgresoGlobal.marcarVisto(ID_BASE_PROGRESO + anterior);
+                      ProgresoGlobal.marcarVisto(
+                        ID_BASE_PROGRESO + anterior,
+                      );
                     }
                   });
                 } else {
+                  // Si está en la primera sección, navega a la pantalla anterior
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -874,11 +878,15 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
                   );
                 }
               },
+
+              // Ícono del botón Anterior
               icon: Icon(
                 Icons.arrow_back,
                 size: tamanotexto(2),
                 color: obtenercolor('Color_Texto'),
               ),
+
+              // Texto del botón Anterior
               label: Text(
                 'Anterior',
                 style: TextStyle(
@@ -887,61 +895,78 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
                   fontSize: tamanotexto(2),
                 ),
               ),
+
+              // Estilo del botón
               style: ElevatedButton.styleFrom(
                 backgroundColor: obtenercolor('Color_Principal'),
                 padding: EdgeInsets.zero,
               ),
             ),
           ),
+
+          // ➡️ BOTÓN SIGUIENTE / ADELANTE
           SizedBox(
             width: 150,
             height: 45,
             child: ElevatedButton.icon(
               onPressed: () async {
+                // Si aún hay más secciones
                 if (_index < secciones.length - 1) {
+                  // Navega a la siguiente sección
                   _tabController.animateTo(_index + 1);
 
-                  // 1. Actualizamos UI primero
+                  // 1. Actualiza la sección actual en la interfaz
                   setState(() {
                     _currentseccion = _index + 1;
                   });
 
-                  // 2. Actualizamos progreso (fuera de setState)
+                  // 2. Calcula el ID real del progreso
                   int idReal = ID_BASE_PROGRESO + _index + 1;
 
+                  // Guarda el progreso solo si no estaba registrado
                   if (!ProgresoGlobal.pestanasVistas.contains(idReal)) {
                     ProgresoGlobal.pestanasVistas.add(idReal);
+
+                    // Guarda el progreso localmente
                     await ProgresoGlobal.guardarLocal();
 
-                    //  print("🟢 Progreso sumado → ID: $idReal");
-
-                    // 🟢 GUARDAR EN MONGODB
+                    // Guarda el progreso en la base de datos (MongoDB)
                     await guardarProgresoEnAPI(idReal);
                   }
                 } else {
+                  // Si es la última sección, avanza al siguiente módulo
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => const Antecedente_EStado(),
                     ),
                   );
+
+                  // Marca el módulo como completado
                   ProgresoGlobal.marcarVisto(2);
                 }
               },
+
+              // Ícono del botón Siguiente
               icon: Icon(
                 Icons.arrow_forward,
                 size: tamanotexto(2),
                 color: obtenercolor('Color_Texto'),
               ),
+
+              // Texto dinámico del botón
               label: Text(
                 _index < secciones.length - 1 ? 'Siguiente' : 'Adelante',
-                //si el index es menor que la longitud de la lista de secciones, se muestra 'Siguiente', de lo contrario se muestra 'Adelante'
+                // Muestra “Siguiente” mientras haya secciones,
+                // y “Adelante” al llegar a la última
                 style: TextStyle(
                   color: obtenercolor('Color_Texto'),
                   fontFamily: 'Calibri',
                   fontSize: tamanotexto(2),
                 ),
               ),
+
+              // Estilo del botón
               style: ElevatedButton.styleFrom(
                 backgroundColor: obtenercolor('Color_Principal'),
                 padding: EdgeInsets.zero,
@@ -1028,7 +1053,6 @@ class _ObjetivoState extends State<Objetivo> with TickerProviderStateMixin {
                         if (!pestanasVistas.contains(nuevoIndex)) {
                           pestanasVistas.add(nuevoIndex);
                           ProgresoGlobal.marcarVisto(item['id']);
-                          //_progresoContador++;
                         }
                       });
                     }
